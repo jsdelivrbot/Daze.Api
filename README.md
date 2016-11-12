@@ -1,8 +1,8 @@
 ### Technologies used
 Front End          | Back End           | Persistance
 ------------------ | ------------------ | ------------------ 
-Angular2           | AspNetCore         | Postgres, Marten
-Typescript         |                    | Redis, 
-Javascript         |                    |     
+Angular 2          | AspNetCore Mvc     | Postgres
+Typescript         |                    | Marten 
+Javascript         |                    | Redis    
 Css                |                    |  
 

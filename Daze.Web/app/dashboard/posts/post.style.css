@@ -1,0 +1,35 @@
+
+article.blogpost-article {
+    padding: 0;
+    margin: 0;
+    border:  1px solid black;
+    height: 160px;
+    width: 540px;
+    display: flex;
+}
+
+article.blogpost-article:hover {
+    background: red;
+}
+
+.blogpost-article-image {
+}
+
+.blogpost-article-image > img {
+    height: 160px;
+    width: 160;
+}
+
+
+
+.blogpost-article-body {
+    width: 100%;
+    height: 100%;
+}
+
+.blogpost-article-body-title {
+}
+
+.blogpost-article-body-details {
+}
+

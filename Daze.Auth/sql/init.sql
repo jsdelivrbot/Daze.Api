@@ -1,9 +1,11 @@
-drop schema if exists membership cascade;
+drop schema if exists auth cascade;
 
-create schema membership;
-set search_path = membership;
+create schema auth;
+set search_path = auth;
 
 select 'Schema initialized' as Works;
 
 
 
+
+-- ends here

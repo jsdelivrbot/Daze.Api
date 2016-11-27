@@ -1,2 +1,19 @@
 
+leftnavbar {
+  border: 1px solid black;
+  flex-basis: 20%;
+  text-align: center;
+}
+
+dashboard {
+  border: 1px solid black;
+  flex-basis: 60%;
+  text-align: center;
+}
+
+rightnavbar {
+  border: 1px solid black;
+  flex-basis: 20%;
+  text-align: center;
+}
 

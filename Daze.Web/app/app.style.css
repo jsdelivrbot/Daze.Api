@@ -1,19 +1,14 @@
 
 leftnavbar {
-  border: 1px solid black;
-  flex-basis: 20%;
+  border: 1px dashed black;
+  flex-basis: 24%;
   text-align: center;
+  background-color: #22384e;
 }
 
 dashboard {
-  border: 1px solid black;
-  flex-basis: 60%;
-  text-align: center;
-}
-
-rightnavbar {
-  border: 1px solid black;
-  flex-basis: 20%;
+  border: 1px dashed black;
+  flex-basis: 76%;
   text-align: center;
 }
 

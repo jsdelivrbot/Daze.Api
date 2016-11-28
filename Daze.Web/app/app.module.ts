@@ -10,8 +10,6 @@ import { AvatarComponent } from './leftnavbar/avatar/avatar.component';
 import { DashboardComponent } from './dashboard/dashboard.component'
 import { PostComponent } from './dashboard/posts/post.component'
 
-import { RightNavbarComponent } from './rightnavbar/rightnavbar.component';
-
 import { AppComponent } from './app.component';
 
 @NgModule({
@@ -26,8 +24,7 @@ import { AppComponent } from './app.component';
         LeftNavbarComponent,
         AvatarComponent,
         DashboardComponent,
-        PostComponent,
-        RightNavbarComponent
+        PostComponent
     ],
     bootstrap: [AppComponent]
 })

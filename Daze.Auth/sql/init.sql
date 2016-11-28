@@ -5,7 +5,11 @@ set search_path = auth;
 
 select 'Schema initialized' as Works;
 
+create extension if not exists pgcrypto 
+with schema auth;
 
 
 
--- ends here
+
+
+-- (* ends here *)

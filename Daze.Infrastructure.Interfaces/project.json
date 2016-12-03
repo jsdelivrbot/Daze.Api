@@ -3,8 +3,6 @@
 
   "dependencies": {
     "Daze.Domain": "1.0.0-*",
-    "Daze.Infrastructure.Interfaces": "1.0.0-*",
-    "Marten": "1.2.0",
     "NETStandard.Library": "1.6.0"
   },
 

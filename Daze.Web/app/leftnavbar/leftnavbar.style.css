@@ -12,10 +12,18 @@ ul.leftnavbar-actions-list li {
    padding: 4px;
 }
 
+ul.leftnavbar-actions-list li a {
+   text-align: center;
+   padding: 4px;
+   text-decoration: none;
+}
+
+
+
 li.leftnavbar-action {
     background: black;
     margin: 10px 20px 0 20px;
-   text-align: center;
+    text-align: center;
 }
 
 avatar {

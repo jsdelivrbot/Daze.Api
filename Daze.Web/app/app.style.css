@@ -6,7 +6,7 @@ leftnavbar {
   background-color: #22384e;
 }
 
-dashboard {
+div.dashboard {
   border: 1px dashed black;
   flex-basis: 76%;
   text-align: center;

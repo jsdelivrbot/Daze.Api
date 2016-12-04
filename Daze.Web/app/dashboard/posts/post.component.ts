@@ -5,7 +5,5 @@ import { Component } from '@angular/core';
     templateUrl: 'app/dashboard/posts/post.template.html',
     styleUrls: ['app/dashboard/posts/post.style.css']
 })
-export class PostComponent {
-
-}
+export class PostComponent { }
 

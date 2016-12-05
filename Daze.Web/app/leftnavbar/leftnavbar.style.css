@@ -18,10 +18,8 @@ ul.leftnavbar-actions-list li a {
    text-decoration: none;
 }
 
-
-
 li.leftnavbar-action {
-    background: black;
+    /*background: black;*/
     margin: 10px 20px 0 20px;
     text-align: center;
 }

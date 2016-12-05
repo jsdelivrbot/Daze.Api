@@ -10,5 +10,7 @@ div.dashboard {
   border: 1px dashed black;
   flex-basis: 76%;
   text-align: center;
+  background-color:#ECF0F1;
+
 }
 

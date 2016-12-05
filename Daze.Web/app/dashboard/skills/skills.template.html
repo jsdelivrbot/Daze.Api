@@ -1,0 +1,35 @@
+<section>
+    <h3>Languages</h3>
+    <ul class="skillsList">
+        <li *ngFor="let language of languages" class="skill">
+            <label>{{language.name}}</label>
+            <div class="barHolder">
+                <div class="progressBar" [style.width.%]="language.level"></div>
+            </div>
+        </li>
+    </ul>
+</section>
+
+<section>
+    <h3>Frameworks</h3>
+    <ul class="skillsList">
+        <li *ngFor="let framework of frameworks" class="skill">
+            <label>{{framework.name}}</label>
+            <div class="barHolder">
+                <div class="progressBar" [style.width.%]="framework.level"></div>
+            </div>
+        </li>
+    </ul>
+</section>
+
+<section>
+    <h3>Databases</h3>
+    <ul class="skillsList">
+        <li *ngFor="let database of databases" class="skill">
+            <label>{{database.name}}</label>
+            <div class="barHolder">
+                <div class="progressBar" [style.width.%]="database.level"></div>
+            </div>
+        </li>
+    </ul>
+</section>

@@ -1,37 +1,55 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using System.Net.Http;
 using Daze.Infrastructure.Interfaces;
-using Newtonsoft.Json;
-using System.Text;
+using Daze.Domain;
 
 namespace Daze.Api.Controllers
 {
     public class PostController : Controller
     {
+        private readonly IUnitOfWork _unitOfWork; // todo fix uow
         private readonly IPostRepository _postRepository;
-        public PostController(IPostRepository postRepository)
+        public PostController(IUnitOfWork unitOfWork)
         {
-            _postRepository = postRepository;
-        }
-
-        public IActionResult Get()
-        {
-            //_postRepository.Add(new Domain.Post()
-            //{
-            //    Title = "dfsdf",
-            //    Content = "sdfsd"
-            //});
-            var resultr = _postRepository.GetAllAsJson();
-            return Json(resultr);
+            _unitOfWork = unitOfWork;
+            _postRepository = _unitOfWork.PostRepo;
         }
 
 
+        [HttpGet, Route("api/post/{id:guid?}")]
+        public IActionResult Get(Guid? id)
+        {
+            if (id.HasValue)
+            {
+                var post = _postRepository.Find(id.Value);
+                return Json(post);
+            }
 
+            var posts = _postRepository.GetAll();
+            return Json(posts);
+        }
 
+        [HttpPost, Route("api/post")]
+        public IActionResult Post([FromBody]Post post)
+        {
+            if (post == null || !ModelState.IsValid)
+            {
+                return BadRequest();
+            }
 
+            _postRepository.Add(post);
+            _unitOfWork.CommitChanges();
+
+            return Ok();
+        }
+
+        [HttpDelete, Route("api/post/{id:guid}")]
+        public IActionResult Delete(Guid id)
+        {
+            _postRepository.Remove(id);
+            _unitOfWork.CommitChanges();
+
+            return Ok();
+        }
     }
 }

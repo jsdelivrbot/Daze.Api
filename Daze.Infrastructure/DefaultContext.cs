@@ -9,8 +9,13 @@ using Remotion.Linq.Parsing.Structure;
 
 namespace Daze.Infrastructure
 {
-    public class DefaultContext
+    public class DefaultContext : DocumentStore
     {
+        public DefaultContext(StoreOptions options) : base(options)
+        {
+            options.Connection("host=localhost;database=daze_api;password=daze;username=daze");
+        }
+
 
     }
 }

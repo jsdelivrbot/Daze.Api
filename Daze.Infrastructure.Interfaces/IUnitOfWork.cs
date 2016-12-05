@@ -8,7 +8,8 @@ namespace Daze.Infrastructure.Interfaces
 {
     public interface IUnitOfWork : IDisposable
     {
-
+        IPostRepository PostRepo { get; set; }
+        ITagRepository TagRepo { get; set; }
 
         void CommitChanges();
     }

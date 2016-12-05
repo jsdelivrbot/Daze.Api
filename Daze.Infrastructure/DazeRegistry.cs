@@ -11,9 +11,6 @@ namespace Daze.Infrastructure
     {
         public DazeRegistry()
         {
-            this.For<Post>();
-
-
         }
     }
 }

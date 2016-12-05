@@ -7,10 +7,10 @@ namespace Daze.Infrastructure.Interfaces
 {
     public interface IRepository <TEntity>
     {
-        IEnumerable<TEntity> GetAllAsJson();
-        TEntity Find(int id);
+        IEnumerable<TEntity> GetAll();
+        TEntity Find(Guid id);
 
         void Add(TEntity entity);
-        void Remove(TEntity entity);
+        void Remove(Guid entity);
     }
 }

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Daze.Domain
 {
-    public class Post
+    public class Post : IEntity
     {
         public Guid ID { get; set; }
         public string Title { get; set; }

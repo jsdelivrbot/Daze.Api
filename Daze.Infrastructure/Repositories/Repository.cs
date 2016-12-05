@@ -9,34 +9,22 @@ using System.Threading.Tasks;
 namespace Daze.Infrastructure.Repositories
 {
     public class Repository<TEntity> : IRepository<TEntity>
-        where TEntity : class
+        where TEntity : class, IEntity
     {
         private readonly IDocumentSession _session;
-        private readonly IDocumentStore _store;
-
-        public Repository()
+        public Repository(IDocumentStore store)
         {
-            _store = DocumentStore.For(options =>
-            {
-                options.Connection("host=localhost;database=daze_api;password=daze;username=daze");
-                options.AutoCreateSchemaObjects = AutoCreate.CreateOrUpdate;
-            });
-
-            _session = _store.OpenSession(DocumentTracking.IdentityOnly);
+            _session = store.OpenSession(DocumentTracking.DirtyTracking);
         }
 
-        public TEntity Find(int id)
+        public TEntity Find(Guid id)
         {
-            throw new NotImplementedException();
+            return _session.Query<TEntity>().FirstOrDefault(q => q.ID == id);
         }
 
-        public IEnumerable<TEntity> GetAllAsJson()
+        public IEnumerable<TEntity> GetAll()
         {
-            var res = _store.LightweightSession(System.Data.IsolationLevel.ReadCommitted);
-
-            var result = res.Query<TEntity>().ToList();
-
-            return result;
+            return _session.Query<TEntity>().ToList();
         }
 
         public void Add(TEntity entity)
@@ -45,9 +33,10 @@ namespace Daze.Infrastructure.Repositories
             _session.SaveChanges();
         }
 
-        public void Remove(TEntity entity)
+        public void Remove(Guid id)
         {
-            throw new NotImplementedException();
+            _session.Delete<TEntity>(id);
+            _session.SaveChanges();
         }
     }
 }

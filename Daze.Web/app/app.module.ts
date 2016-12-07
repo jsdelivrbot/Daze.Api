@@ -8,33 +8,18 @@ import { AvatarComponent } from './leftnavbar/avatar/avatar.component';
 import { PostComponent } from './dashboard/posts/post.component';
 import { SkillsComponent } from './dashboard/skills/skills.component';
 import { ProjectsComponent } from './dashboard/projects/projects.component';
-import { NotFoundComponent } from './errorpages/notfound.component';
+import { NotFoundComponent } from './shared/notfound.component';
 
 import { AppComponent } from './app.component';
+import { RoutesBuilder } from './infrastructure/RoutesBuilder';
 
-
-const routes: Array<Route> = [
-    {
-        path: 'posts',
-        component: PostComponent
-    },
-    {
-        path: 'skills',
-        component: SkillsComponent
-    },
-    {
-        path: 'projects',
-        component: ProjectsComponent
-    },
-    {
-        path: '',
-        component: PostComponent
-    },
-    {
-        path: '**',
-        component: NotFoundComponent
-    }
-];
+const routes = new RoutesBuilder()
+    .addRoute('posts', PostComponent)
+    .addRoute('skills', SkillsComponent)
+    .addRoute('projects', ProjectsComponent)
+    .addDefault(PostComponent)
+    .addNotFound(NotFoundComponent)
+    .build();
 
 @NgModule({
     imports: [

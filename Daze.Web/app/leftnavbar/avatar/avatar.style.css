@@ -1,13 +1,13 @@
 
-div.avatar-image-container { }
+div.avatarImageContainer { }
 
-div.avatar-image-container > img {
+div.avatarImageContainer > img {
     height: 140px;
     width: 140px;
     border-radius: 6px;
     border: 4px solid #3a667b;
 }
 
-h3.pen-name {
+h3.penName {
     margin: 0 0 20px 0;
 }

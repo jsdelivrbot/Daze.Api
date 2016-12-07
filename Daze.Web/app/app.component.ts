@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-    selector: 'daze-app',
+    selector: 'dazeApp',
     templateUrl: 'app/app.template.html',
     styleUrls: ['app/app.style.css']
 })

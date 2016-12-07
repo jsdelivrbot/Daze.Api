@@ -2,23 +2,23 @@
     color: white;
 }
 
-ul.leftnavbar-actions-list {
+ul.leftnavbarActionsList {
    list-style-type: none;
    padding: 20px 0 0 0;
 }
 
-ul.leftnavbar-actions-list li {
+ul.leftnavbarActionsList li {
    text-align: center;
    padding: 4px;
 }
 
-ul.leftnavbar-actions-list li a {
+ul.leftnavbarActionsList li a {
    text-align: center;
    padding: 4px;
    text-decoration: none;
 }
 
-li.leftnavbar-action {
+li.leftnavbarAction {
     /*background: black;*/
     margin: 10px 20px 0 20px;
     text-align: center;

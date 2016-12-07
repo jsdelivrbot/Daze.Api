@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 
 @Component({
-    selector: 'not-found',
+    selector: 'notFound',
     template: `
         <h2> page not found </h2>
     `

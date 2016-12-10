@@ -1,0 +1,177 @@
+{
+  "languages": [
+    {
+      "name": "Javascript/Typescript",
+      "courses": [
+        {
+          "CourseTag": "Pluralsight",
+          "CourseTitle": "Rapid ES6 Training"
+        },
+        {
+          "CourseTag": "Udacity",
+          "CourseTitle": "Javascript Promises"
+        },
+        {
+          "CourseTag": "Pluralsight",
+          "CourseTitle": "Javascript for C# devs"
+        },
+        {
+          "CourseTag": "Pluralsight",
+          "CourseTitle": "Advanced JavaScript"
+        },
+        {
+          "CourseTag": "Pluralsight",
+          "CourseTitle": "JS.Next ES6"
+        }
+      ]
+    },
+    {
+      "name": "C#",
+      "courses": [
+        {
+          "CourseTag": "Pluralsight",
+          "CourseTitle": "C# Language internals - Part 1"
+        },
+        {
+          "CourseTag": "Pluralsight",
+          "CourseTitle": "More Effective LINQ"
+        },
+        {
+          "CourseTag": "Oreilly",
+          "CourseTitle": "Intermediate C# Programming by EricLippert"
+        },
+        {
+          "CourseTag": "Pluralsight",
+          "CourseTitle": "Functional Programming With CSharp"
+        },
+        {
+          "CourseTag": "O'Reilly",
+          "CourseTitle": "Generics in dotNET"
+        },
+        {
+          "CourseTag": "Pluralsight",
+          "CourseTitle": "Practical Data Modeling With C# and SQLServer"
+        }
+      ]
+    },
+    {
+      "name": "F#",
+      "courses": [
+        {
+          "CourseTag": "Pluralsight",
+          "CourseTitle": "Accessing Data With FSharp Type Providers"
+        },
+        {
+          "CourseTag": "Pluralsight",
+          "CourseTitle": "F# Fundamentals"
+        },
+        {
+          "CourseTag": "Pluralsight",
+          "CourseTitle": "F# JumpStart"
+        }
+      ]
+    },
+    {
+      "name": "Html/Css",
+      "courses": [
+        {
+          "CourseTag": "Pluralsight",
+          "CourseTitle": "Intoduction to CSS"
+        }
+      ]
+    }
+  ],
+  "databases": [
+    {
+      "name": "PostgreSql",
+      "courses": [
+        {
+          "CourseTag": "Pluralsight",
+          "CourseTitle": "The PostgreSQL Document Database"
+        },
+        {
+          "CourseTag": "Pluralsight",
+          "CourseTitle": "Postgres for .NET Developers"
+        },
+        {
+          "CourseTag": "Pluralsight",
+          "CourseTitle": "PostgreSQL Advanced SQL Queries"
+        },
+        {
+          "CourseTag": "Pluralsight",
+          "CourseTitle": "PostgreSQL Introduction to SQL Queries"
+        },
+        {
+          "CourseTag": "Pluralsight",
+          "CourseTitle": "PostgreSQL Getting Started"
+        }
+      ]
+    },
+    {
+      "name": "Sql Server",
+      "courses": [
+        {
+          "CourseTag": "Pluralsight",
+          "CourseTitle": "TSql Common Table Expressions"
+        },
+        {
+          "CourseTag": "Pluralsight",
+          "CourseTitle": "Developer s T-SQL Playbook"
+        }
+      ]
+    }
+  ],
+  "frameworks": [
+    {
+      "name": "AspNet/Core",
+      "courses": [
+        {
+          "CourseTag": "Pluralsight",
+          "CourseTitle": "Search Engine Optimization with ASP.NET"
+        },
+        {
+          "CourseTag": "Pluralsight",
+          "CourseTitle": "Testing in ASP.NET MVC"
+        },
+        {
+          "CourseTag": "Tutsplus",
+          "CourseTitle": "ASP.NET At Your Service - Web API"
+        },
+        {
+          "CourseTag": "Pluralsight",
+          "CourseTitle": "Automated ASP.NET MVC Testing End to End"
+        },
+        {
+          "CourseTag": "Pluralsight",
+          "CourseTitle": "Best Practices in ASP.NET Entities, Validation, and View Models"
+        }
+      ]
+    },
+    {
+      "name": "Entity Framework/Core",
+      "courses": [
+        {
+          "CourseTag": "Pluralsight",
+          "CourseTitle": "Entity Framework Database Performance Anti-patterns"
+        },
+        {
+          "CourseTag": "Pluralsight",
+          "CourseTitle": "Entity Framework 6 Ninja Edition What's New in EF6"
+        }
+      ]
+    },
+    {
+      "name": "Node/Express",
+      "courses": [
+        {
+          "CourseTag": "Pluralsight",
+          "CourseTitle": "Introduction to Node js"
+        },
+        {
+          "CourseTag": "Pluralsight",
+          "CourseTitle": "NPM Playbook"
+        }
+      ]
+    }
+  ]
+}

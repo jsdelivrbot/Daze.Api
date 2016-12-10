@@ -14,8 +14,10 @@ ul.leftnavbarActionsList li {
 
 ul.leftnavbarActionsList li a {
    text-align: center;
-   padding: 4px;
    text-decoration: none;
+   font-weight: 900;
+   font-size: 13pt;
+   /*padding: 4px;*/
 }
 
 li.leftnavbarAction {
@@ -27,7 +29,6 @@ li.leftnavbarAction {
 avatar {
     cursor: default;
 }
-
 
 
 

@@ -1,5 +1,6 @@
 // modules
 import { NgModule, } from '@angular/core';
+import { HttpModule } from '@angular/http';
 import { RouterModule, Route, RouterOutlet } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -11,7 +12,7 @@ import { ProjectsComponent } from './dashboard/projects/projects.component';
 import { NotFoundComponent } from './shared/notfound.component';
 
 import { AppComponent } from './app.component';
-import { RoutesBuilder } from './infrastructure/RoutesBuilder';
+import { RoutesBuilder } from './infrastructure/routes.builder';
 
 const routes = new RoutesBuilder()
     .addRoute('posts', PostComponent)
@@ -24,6 +25,7 @@ const routes = new RoutesBuilder()
 @NgModule({
     imports: [
         BrowserModule,
+        HttpModule,
         RouterModule.forRoot(routes)
     ],
     declarations: [

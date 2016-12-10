@@ -6,6 +6,7 @@ div.avatarImageContainer > img {
     width: 140px;
     border-radius: 6px;
     border: 4px solid #3a667b;
+    pointer-events: none;
 }
 
 h3.penName {

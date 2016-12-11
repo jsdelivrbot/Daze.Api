@@ -1,0 +1,23 @@
+
+.diamond {
+	/*width: 0;
+	height: 0;
+	border: 50px solid transparent;*/
+	border-bottom-color: dodgerblue;
+	/*position: relative;
+	top: -50px;*/
+	shape-outside:polygon(66.67px 200.00px,133.33px 315.47px,266.67px 315.47px,333.33px 200.00px,266.67px 84.53px,133.33px 84.53px)
+}
+
+/*
+.diamond:after {
+	content: '';
+	position: absolute;
+	left: -50px;
+	top: 50px;
+	width: 0;
+	height: 0;
+	border: 50px solid transparent;
+	border-top-color: dodgerblue;
+	shape-outside: polygon();
+}*/

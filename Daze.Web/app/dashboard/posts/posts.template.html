@@ -1,0 +1,21 @@
+<ul class="postList">
+    <li *ngFor="let post of _posts">
+        <!--<template>-->
+        <article class="postArticle card card-1">
+            <div class="postArticleImage">
+                <!--<img src="http://placehold.it/350x150" alt="postImage">-->
+                <img src="http://placehold.it/350x350" alt="postImage">
+            </div>
+            <div class="postArticleBody">
+                <div class="postArticleBodyTitle">
+                    <a class="blogLink" href="">{{post.title}}</a>
+                </div>
+                <hr />  
+                <div class="postArticleBodyDetails">
+                    {{post.content}}
+                </div>
+            </div>
+        </article>
+        <!--</template>-->
+    </li>
+</ul>

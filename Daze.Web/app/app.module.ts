@@ -6,7 +6,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { LeftNavbarComponent } from './leftnavbar/leftnavbar.component';
 import { AvatarComponent } from './leftnavbar/avatar/avatar.component';
-import { PostComponent } from './dashboard/posts/post.component';
+import { PostsComponent } from './dashboard/posts/posts.component';
 import { SkillsComponent } from './dashboard/skills/skills.component';
 import { ProjectsComponent } from './dashboard/projects/projects.component';
 import { NotFoundComponent } from './shared/notfound.component';
@@ -15,10 +15,10 @@ import { AppComponent } from './app.component';
 import { RoutesBuilder } from './infrastructure/routes.builder';
 
 const routes = new RoutesBuilder()
-    .addRoute('posts', PostComponent)
+    .addRoute('posts', PostsComponent)
     .addRoute('skills', SkillsComponent)
     .addRoute('projects', ProjectsComponent)
-    .addDefault(PostComponent)
+    .addDefault(PostsComponent)
     .addNotFound(NotFoundComponent)
     .build();
 
@@ -32,7 +32,7 @@ const routes = new RoutesBuilder()
         AppComponent,
         LeftNavbarComponent,
         AvatarComponent,
-        PostComponent,
+        PostsComponent,
         SkillsComponent,
         ProjectsComponent,
         NotFoundComponent

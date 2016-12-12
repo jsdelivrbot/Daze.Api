@@ -32,6 +32,11 @@ namespace Daze.Api
         {
             loggerFactory.AddConsole();
 
+            app.UseCors(policy =>
+            {
+                policy.WithOrigins("http://localhost:3000");
+            });
+
             app.UseMvc(options =>
                 options.MapRoute("DefaultWebApi", "api/{controller=Post}/{action=Get}")
             );

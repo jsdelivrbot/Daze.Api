@@ -14,8 +14,7 @@ namespace Daze.Infrastructure
         public DefaultContext(StoreOptions options) : base(options)
         {
             options.Connection("host=localhost;database=daze_api;password=daze;username=daze");
+            options.DatabaseSchemaName = "blog";
         }
-
-
     }
 }

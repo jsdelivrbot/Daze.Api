@@ -7,14 +7,13 @@ namespace Daze.Api.Controllers
 {
     public class PostController : Controller
     {
-        private readonly IUnitOfWork _unitOfWork; // todo fix uow
+        private readonly IUnitOfWork _unitOfWork;
         private readonly IPostRepository _postRepository;
         public PostController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
             _postRepository = _unitOfWork.PostRepo;
         }
-
 
         [HttpGet, Route("api/post/{id:guid?}")]
         public IActionResult Get(Guid? id)

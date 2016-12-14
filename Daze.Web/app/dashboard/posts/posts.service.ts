@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
-import { IPost } from '../../shared/interfaces/post.interface';
-import { ITag } from '../../shared/interfaces/tag.interface';
+import { IPost } from '../../shared/interfaces/interfaces';
+import { ITag } from '../../shared/interfaces/interfaces';
 import 'rxjs/add/operator/exhaustMap';
 import 'rxjs/add/operator/map';
 

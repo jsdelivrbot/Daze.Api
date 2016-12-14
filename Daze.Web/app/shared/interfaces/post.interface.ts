@@ -1,5 +1,4 @@
-
-    import { ITag } from './tag.interface';
+namespace Daze.Interfaces {
 
     export interface IPost {
         ID: string;
@@ -9,5 +8,4 @@
         ModifiedAt: Date;
         Tags: Array<ITag>;
     }
-namespace Daze.Interfaces {
 }

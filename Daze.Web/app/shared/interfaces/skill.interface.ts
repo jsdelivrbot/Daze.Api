@@ -1,7 +1,8 @@
-import { ICourse } from './course.interface'
+namespace Daze.Interfaces {
 
-export interface ISkill {
-    name: string
-    courses: Array<ICourse>
-    // level: number;
+    export interface ISkill {
+        name: string
+        courses: Array<ICourse>
+        // level: number;
+    }
 }

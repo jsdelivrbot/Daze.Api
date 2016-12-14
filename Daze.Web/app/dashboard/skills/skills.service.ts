@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { Observable } from 'rxjs';
 import { Skill } from '../../shared/pocos/skill';
-import { ISkill } from '../../shared/interfaces/skill.interface';
+import { ISkill } from '../../shared/interfaces/interfaces';
 import { FocusArea } from '../../shared/enums/focusarea';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/exhaustMap';

@@ -1,4 +1,5 @@
 {
+  "compileOnSave": true,
   "compilerOptions": {
     "target": "es2015",
     "module": "commonjs",
@@ -7,17 +8,20 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "removeComments": false,
-    "pretty": true,
+    "pretty": false,
     //"alwaysStrict": true,
     "strictNullChecks": false,
     "noImplicitAny": true,
     "suppressImplicitAnyIndexErrors": true,
-    "forceConsistentCasingInFileNames": true,
+    "forceConsistentCasingInFileNames": false,
+    "lib": [
+      "es2015",
+      "dom"
+    ],
     "typeRoots": [
       "./node_modules/@types/"
     ]
   },
-  "compileOnSave": true,
   "exclude": [
     "node_modules/*",
     "**/*-aot.ts"

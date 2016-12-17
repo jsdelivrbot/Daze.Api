@@ -14,6 +14,7 @@ import { NotFoundComponent } from './shared/notfound.component';
 import { AppComponent } from './app.component';
 import { RoutesBuilder } from './infrastructure/routes.builder';
 
+
 const routes = new RoutesBuilder()
     .addRoute('posts', PostsComponent)
     .addRoute('skills', SkillsComponent)

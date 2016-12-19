@@ -3,12 +3,12 @@ import * as path from "path";
 import * as _ from "lodash";
 
 const sourceDir = path.join(__dirname, "../sql/");
-const tableDir = path.join(sourceDir, "tables")
-const functionsDir = path.join(sourceDir, "functions")
-const viewsDir = path.join(sourceDir, "views")
-const indexesDir = path.join(sourceDir, "indexes")
-const proceduresDir = path.join(sourceDir, "procedures")
-
+const tableDir = path.join(sourceDir, "tables");
+const functionsDir = path.join(sourceDir, "functions");
+const viewsDir = path.join(sourceDir, "views");
+const indexesDir = path.join(sourceDir, "indexes");
+const proceduresDir = path.join(sourceDir, "procedures");
+const typesDir = path.join(sourceDir, "types");
 
 
 let loadAndJoinFiles = (dir: string): string => {
@@ -28,21 +28,11 @@ const readInit = (): string => {
     return fs.readFileSync(initFile, "utf-8");
 };
 
-const readTables = (): string => {
-    return loadAndJoinFiles(tableDir);
-};
-
-const readFunctions = () => {
-    return loadAndJoinFiles(functionsDir);
-};
-
-const readIndexes = () => {
-    return loadAndJoinFiles(indexesDir);
-};
-
-const readProcedures = () => {
-    return loadAndJoinFiles(proceduresDir);
-};
+const readTables = (): string => loadAndJoinFiles(tableDir);
+const readFunctions = (): string => loadAndJoinFiles(functionsDir);
+const readProcedures = (): string => loadAndJoinFiles(proceduresDir);
+const readTypes = (): string => loadAndJoinFiles(typesDir);
+const readIndexes = (): string => loadAndJoinFiles(indexesDir);
 
 export const readSql = () => {
     let sqlBits = [];
@@ -51,6 +41,7 @@ export const readSql = () => {
     sqlBits.push(readInit());
     sqlBits.push(readTables());
     sqlBits.push(readFunctions());
+    sqlBits.push(readTypes());
     sqlBits.push(readIndexes());
 
     return sqlBits.join("\r\n");

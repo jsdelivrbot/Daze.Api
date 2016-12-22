@@ -12,7 +12,7 @@ import { ProjectsComponent } from './dashboard/projects/projects.component';
 import { NotFoundComponent } from './shared/notfound.component';
 
 import { AppComponent } from './app.component';
-import { RoutesBuilder } from './infrastructure/routes.builder';
+import { RoutesBuilder } from './infrastructure/routes_builder';
 
 
 const routes = new RoutesBuilder()

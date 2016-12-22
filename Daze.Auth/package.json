@@ -1,6 +1,6 @@
 {
     "name": "daze_auth",
-    "version": "0.0.28",
+    "version": "0.0.29",
     "description": "The authentication system for the dazed programmer blog.",
     "author": "The Dazed Programmer",
     "main": "index.js",

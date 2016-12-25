@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { Observable } from 'rxjs';
-import { IAvatar } from '../../interfaces';
-import { Avatar } from '../../pocos';
+import { Avatar } from '../../shared/pocos/avatar';
+import IAvatar = Daze.Interfaces.IAvatar;
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 

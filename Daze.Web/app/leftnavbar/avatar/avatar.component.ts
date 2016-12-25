@@ -8,13 +8,12 @@ import AvatarService from './avatar.service';
     styleUrls: ['app/leftnavbar/avatar/avatar.style.css']
 })
 export class AvatarComponent implements OnInit {
-    public avatar = {};
+    private _avatar = {};
     constructor(private avatarService: AvatarService) { }
 
     ngOnInit() {
-        this.avatarService.getAvatarInfo().subscribe(res => {
-            this.avatar = res;
-        });
+        this.avatarService.getAvatarInfo()
+            .subscribe(res => this._avatar = res);
     }
 }
 

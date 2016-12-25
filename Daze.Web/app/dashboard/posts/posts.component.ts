@@ -1,19 +1,24 @@
 import { Component, OnInit } from '@angular/core';
-import { PostsService } from './posts.service';
-import { IPost } from '../../interfaces';
+import { PostsService } from '../../shared/services/posts.service';
+import IPost = Daze.Interfaces.IPost;
 
 @Component({
-    selector: 'post',
+    selector: 'posts',
     providers: [PostsService],
     templateUrl: 'app/dashboard/posts/posts.template.html',
     styleUrls: ['app/dashboard/posts/posts.style.css']
 })
 export class PostsComponent implements OnInit {
     private _posts = new Array<IPost>();
+    private _isLoading = true;
     constructor(private readonly _postService: PostsService) { }
 
     ngOnInit() {
-        this._posts = this._postService.getPosts();
+        let result = this._postService.getPosts()
+            .subscribe(
+            post => this._posts.push(post),
+            _ => _,
+            () => this._isLoading = false);
     }
 }
 

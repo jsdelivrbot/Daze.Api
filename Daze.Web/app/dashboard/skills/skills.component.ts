@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SkillsService } from './skills.service';
 import { Skill } from '../../shared/pocos/skill';
-import { FocusArea } from '../../enums';
+import { FocusArea } from '../../shared/enums/focus_area';
 
 @Component({
     selector: 'skills',

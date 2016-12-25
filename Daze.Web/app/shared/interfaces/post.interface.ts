@@ -1,11 +1,11 @@
 namespace Daze.Interfaces {
 
     export interface IPost {
-        ID: string;
-        Title: string;
-        Content: string;
-        CreatedAt: Date;
-        ModifiedAt: Date;
-        Tags: Array<ITag>;
+        id: number;
+        title: string;
+        content: string;
+        createdAt: Date;
+        modifiedAt: Date;
+        tags: Array<ITag>;
     }
 }

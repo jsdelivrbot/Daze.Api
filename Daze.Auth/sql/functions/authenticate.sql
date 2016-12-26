@@ -19,12 +19,7 @@ begin
     set search_path = auth;
 
     if (prov = 'local') then
-        select l.user_id
-        from logins as l
-        where provider = prov
-        and provider_key = key
-        and provider_token = crypt (token, provider_token)
-        limit 1
+        select get_user_by_password (key, token)
         into found_id;
     else
         select l.user_id

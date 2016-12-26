@@ -21,7 +21,7 @@ begin
         
         -- add logins
         insert into logins (user_id, provider_key, provider_token)
-      values (new_id, input_email, crypt(input_password, gen_salt('bf', 10)) );
+        values (new_id, input_email, crypt(input_password, gen_salt('bf', 10)) );
 
         -- token login
         insert into logins (user_id, provider, provider_token)

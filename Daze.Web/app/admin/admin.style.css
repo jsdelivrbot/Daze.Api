@@ -1,0 +1,35 @@
+.postsHolder {
+    display: inline-flex;
+    width: 100%;
+    padding:  10px 0 0 0;
+}
+
+.postsMaster {
+    text-align: center;
+    padding: 20px;    
+    flex-basis: 40%;
+ }
+
+.postsMaster ul li {
+    padding: 10px 0;
+}
+
+.postsDetail { 
+    text-align: center;
+    padding: 20px;
+    flex-basis: 55%;
+}
+
+.verticalLine {
+    flex-basis: 5%;
+    border-left: thick solid #22384e;
+}
+
+.postLink {
+    cursor: pointer;
+}
+
+.postLink:hover {
+    color: #2196F3;
+}
+

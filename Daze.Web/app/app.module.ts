@@ -9,8 +9,8 @@ import { AvatarComponent } from './leftnavbar/avatar/avatar.component';
 import { PostsComponent } from './dashboard/posts/posts.component';
 import { SkillsComponent } from './dashboard/skills/skills.component';
 import { ProjectsComponent } from './dashboard/projects/projects.component';
-import { NotFoundComponent } from './shared/components/notfound.component';
-import { SpinnerComponent } from './shared/components/spinner.component';
+import { NotFoundComponent } from './shared/notfound/notfound.component';
+import { SpinnerComponent } from './shared/spinner/spinner.component';
 
 import { AdminComponent } from './admin/admin.component';
 

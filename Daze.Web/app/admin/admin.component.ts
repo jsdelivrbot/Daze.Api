@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PostsService } from '../shared/services/posts.service';
+import { PostsService } from '../shared/posts.service/posts.service';
 import IPost = Daze.Interfaces.IPost;
 
 @Component({
@@ -17,7 +17,7 @@ export class AdminComponent implements OnInit {
 
     onPostClick(id: number) {
         this._selectedPost = this._posts.find(p => p.id == id);
-        this._isPostSelected = !this._isPostSelected;
+        this._isPostSelected = true;
     }
 
     ngOnInit() {
@@ -25,6 +25,6 @@ export class AdminComponent implements OnInit {
             .subscribe(
             post => this._posts.push(post),
             _ => _,
-            () => this._isLoading = false);
+            () => { this._isLoading = false });
     }
 }

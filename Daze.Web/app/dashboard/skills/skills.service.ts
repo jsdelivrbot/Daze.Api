@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { Observable } from 'rxjs';
-import { Skill } from '../../shared/pocos/skill';
 import { FocusArea } from '../../shared/enums/focus_area';
 import ISkill = Daze.Interfaces.ISkill;
 import 'rxjs/add/operator/map';
@@ -12,8 +11,7 @@ export class SkillsService {
     private static jsonDataUrl = "./app/shared/data/skills.json";
     constructor(private _http: Http) { }
 
-    getData(focusArea: FocusArea): Array<Skill> {
-        let ray = new Array<Skill>();
+    getData(focusArea: FocusArea) {
         let fs: string = null;
         switch (focusArea) {
             case FocusArea.languages: fs = "languages"; break;
@@ -21,13 +19,9 @@ export class SkillsService {
             case FocusArea.frameworks: fs = "frameworks"; break;
         }
 
-        this._http.get(SkillsService.jsonDataUrl)
+        return this._http.get(SkillsService.jsonDataUrl)
             .map(res => res.json())
             .map(data => data[fs] as Array<ISkill>)
-            .exhaustMap(skills => skills)
-            .subscribe(skill => ray.push(
-                new Skill(skill.name, skill.courses.length)
-            ));
-        return ray;
+            .exhaustMap(skills => skills);
     }
 }

@@ -1,17 +1,18 @@
 {
-    "name": "daze_auth",
-    "version": "0.0.29",
-    "description": "The authentication system for the dazed programmer blog.",
-    "author": "The Dazed Programmer",
-    "main": "index.js",
-    "scripts": {
-        "test": "test",
-        "build2": "node index.js build"
-    },
-    "license": "MIT",
-    "dependencies": {
-        "commander": "^2.9.0",
-        "lodash": "^4.17.2",
-        "massive": "^2.5.0"
-    }
+  "name": "daze_auth",
+  "version": "0.0.29",
+  "description": "The authentication system for the dazed programmer blog.",
+  "author": "The Dazed Programmer",
+  "main": "index.js",
+  "scripts": {
+    "test": "test",
+    "build2": "node index.js build"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^2.9.0",
+    "epa": "^0.2.1",
+    "lodash": "^4.17.2",
+    "massive": "^2.5.0"
+  }
 }

@@ -1,6 +1,7 @@
 import * as fs from "fs";
 import * as path from "path";
 import * as _ from "lodash";
+var config = require('../package.json');
 
 const sourceDir = path.join(__dirname, "../sql/");
 const tableDir = path.join(sourceDir, "tables");
@@ -9,7 +10,6 @@ const viewsDir = path.join(sourceDir, "views");
 const indexesDir = path.join(sourceDir, "indexes");
 const proceduresDir = path.join(sourceDir, "procedures");
 const typesDir = path.join(sourceDir, "types");
-
 
 let loadAndJoinFiles = (dir: string): string => {
     let ray = [];
@@ -34,6 +34,12 @@ const readProcedures = (): string => loadAndJoinFiles(proceduresDir);
 const readTypes = (): string => loadAndJoinFiles(typesDir);
 const readIndexes = (): string => loadAndJoinFiles(indexesDir);
 
+// let decideFileName = () => {
+//     var buildDir = path.join(__dirname, '../build');
+//     var fileName = config.version.replace(/\./g, '=') + '.sql';
+//     return path.join(buildDir, fileName);
+// };
+
 export const readSql = () => {
     let sqlBits = [];
 
@@ -46,9 +52,6 @@ export const readSql = () => {
 
     return sqlBits.join("\r\n");
 };
-
-
-
 
 
 

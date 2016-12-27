@@ -1,7 +1,8 @@
+import IAvatar = Daze.Interfaces.IAvatar;
 
-
-export class Avatar implements Daze.Interfaces.IAvatar {
-    constructor(public penName: string,
+export class Avatar implements IAvatar {
+    constructor(
+        public penName: string,
         public profileImageUrl: string,
         public bio: string) { }
 }

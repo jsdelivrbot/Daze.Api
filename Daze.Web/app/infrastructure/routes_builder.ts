@@ -11,6 +11,15 @@ export class RoutesBuilder {
         return this;
     }
 
+    // obsolete
+    addRoute2(path: string, component: any, test: string) {
+        this.routes.push({
+            path: path,
+            component: component
+        });
+        return this;
+    }
+
     addDefault(component: any) {
         this.routes.push({
             path: '',

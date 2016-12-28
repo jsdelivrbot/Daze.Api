@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PostsService } from '../../shared/posts.service/posts.service';
 import IPost = Daze.Interfaces.IPost;
+import { Observable } from 'rxjs';
 
 @Component({
     selector: 'posts',

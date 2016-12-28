@@ -16,4 +16,10 @@ export class PostsService {
             .map(res => res.json() as Array<IPost>)
             .exhaustMap(posts => posts);
     }
+
+    getPostById(id: string) {
+        return this._http.get(`${PostsService.requestUri}${id}`)
+            .map(res => res.json() as IPost);
+    }
+
 }

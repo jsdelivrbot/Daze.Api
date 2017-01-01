@@ -10,10 +10,13 @@ import IProject = Daze.Interfaces.IProject;
 })
 export class ProjectsComponent implements OnInit {
     private _projects = new Array<IProject>();
+    private _isLoading = true;
     constructor(private _projectsService: ProjectsService) { }
 
     ngOnInit() {
         this._projectsService.getData()
-            .subscribe(project => this._projects.push(project));
+            .subscribe(project => this._projects.push(project),
+            _ => _,
+            () => this._isLoading = false);
     }
 }

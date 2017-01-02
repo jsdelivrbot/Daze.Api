@@ -17,9 +17,15 @@ export class PostsService {
             .exhaustMap(posts => posts);
     }
 
+    async getPostsArrayified() {
+        return await this._http
+            .get(PostsService.requestUri)
+            .map(res => res.json() as Array<IPost>)
+            .toPromise();
+    }
+
     getPostById(id: string) {
         return this._http.get(`${PostsService.requestUri}${id}`)
             .map(res => res.json() as IPost);
     }
-
 }

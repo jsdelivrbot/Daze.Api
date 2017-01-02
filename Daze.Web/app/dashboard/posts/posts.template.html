@@ -1,21 +1,36 @@
-<spinner *ngIf="_isLoading">
-</spinner>
+<spinner *ngIf="_isLoading"></spinner>
 
 <ul class="postList">
-    <li *ngFor="let post of _posts">
+    <li *ngFor="let post of (currentPage == 1 ? _pagedPosts : _posts)">
         <article class="postArticle card card-1">
             <div class="postArticleImage">
                 <img src="http://placehold.it/350x350" alt="postImage">
             </div>
             <div class="postArticleBody">
                 <div class="postArticleBodyTitle">
-                    <a class="blogLink" routerLink="/posts/{{post.id}}">{{post.title}}</a>
+                    <a class="blogLink" routerLink="/posts/{{ post.id }}">{{ post.title }}</a>
                 </div>
                 <hr />
                 <div class="postArticleBodyDetails">
-                    {{post.content}}
+                    {{ post.content }}
                 </div>
             </div>
         </article>
     </li>
 </ul>
+
+<pager *ngIf="!_isLoading" [items]="_posts" (pageChanged)="onPageChanged($event)"></pager>
+
+<!--
+<ul class="pagination">
+    <li class="pagination-item">
+        <a>&laquo;</a>
+    </li>
+    <li *ngFor="let pageNumber of numberOfPagesArray" class="pagination-item">
+        <a (click)="changePage(pageNumber)">{{ pageNumber }}</a>
+    </li>
+    <li class="pagination-item">
+        <a>&raquo;</a>
+    </li>
+</ul>
+-->

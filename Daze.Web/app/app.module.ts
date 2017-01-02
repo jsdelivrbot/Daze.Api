@@ -12,6 +12,7 @@ import { SkillsComponent } from './dashboard/skills/skills.component';
 import { ProjectsComponent } from './dashboard/projects/projects.component';
 import { NotFoundComponent } from './shared/notfound/notfound.component';
 import { SpinnerComponent } from './shared/spinner/spinner.component';
+import { PagerComponent } from './shared/pager/pager.component';
 
 import { AdminComponent } from './admin/admin.component';
 
@@ -44,6 +45,7 @@ const routes = new RoutesBuilder()
         ProjectsComponent,
         NotFoundComponent,
         SpinnerComponent,
+        PagerComponent,
         AdminComponent
     ],
     bootstrap: [AppComponent]

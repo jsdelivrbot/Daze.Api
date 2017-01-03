@@ -2,6 +2,7 @@
 import { NgModule, } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { RouterModule, Route, RouterOutlet } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { LeftNavbarComponent } from './leftnavbar/leftnavbar.component';
@@ -15,9 +16,14 @@ import { SpinnerComponent } from './shared/spinner/spinner.component';
 import { PagerComponent } from './shared/pager/pager.component';
 
 import { AdminComponent } from './admin/admin.component';
+import { AdminPostsComponent } from './admin/posts/admin.posts.component';
+import { AdminPostsCreateComponent } from './admin/posts/create/admin.posts.create.component';
+
+import { AdminSkillsComponent } from './admin/skills/admin.skills.component';
+import { AdminProjectsComponent } from './admin/projects/admin.projects.component';
 
 import { AppComponent } from './app.component';
-import { RoutesBuilder } from './infrastructure/routes_builder';
+import { RoutesBuilder } from './infrastructure/routesBuilder';
 
 const routes = new RoutesBuilder()
     .addRoute('posts', PostsComponent)
@@ -25,6 +31,10 @@ const routes = new RoutesBuilder()
     .addRoute('skills', SkillsComponent)
     .addRoute('projects', ProjectsComponent)
     .addRoute('admin', AdminComponent)
+    .addRoute('admin/posts', AdminPostsComponent)
+    .addRoute('admin/posts/create', AdminPostsCreateComponent)
+    .addRoute('admin/projects', AdminProjectsComponent)
+    .addRoute('admin/skills', AdminSkillsComponent)
     .addDefault(PostsComponent)
     .addNotFound(NotFoundComponent)
     .build();
@@ -33,7 +43,9 @@ const routes = new RoutesBuilder()
     imports: [
         BrowserModule,
         HttpModule,
-        RouterModule.forRoot(routes)
+        FormsModule,
+        ReactiveFormsModule,
+        RouterModule.forRoot(routes),
     ],
     declarations: [
         AppComponent,
@@ -46,7 +58,11 @@ const routes = new RoutesBuilder()
         NotFoundComponent,
         SpinnerComponent,
         PagerComponent,
-        AdminComponent
+        AdminComponent,
+        AdminPostsComponent,
+        AdminPostsCreateComponent,
+        AdminProjectsComponent,
+        AdminSkillsComponent
     ],
     bootstrap: [AppComponent]
 })

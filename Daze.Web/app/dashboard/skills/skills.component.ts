@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SkillsService } from './skills.service';
-import { FocusArea } from '../../shared/enums/focus_area';
-import { Skill } from '../../shared/pocos/skill';
+import { FocusArea } from '../../shared/enums/focusArea';
+import { Skill } from '../../shared/models/skill.model';
 import ISkill = Daze.Interfaces.ISkill;
 import { Observable } from 'rxjs/Observable';
 

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { Observable } from 'rxjs';
-import { FocusArea } from '../../shared/enums/focus_area';
+import { FocusArea } from '../../shared/enums/focusArea';
 import ISkill = Daze.Interfaces.ISkill;
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/exhaustMap';

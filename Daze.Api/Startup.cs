@@ -34,7 +34,9 @@ namespace Daze.Api
 
             app.UseCors(policy =>
             {
-                policy.WithOrigins("http://localhost:3000");
+                policy.AllowAnyOrigin();
+                //policy.WithOrigins("http://localhost:3000")
+                //      .AllowAnyMethod();
             });
 
             app.UseMvc(options =>

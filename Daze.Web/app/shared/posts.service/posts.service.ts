@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, Headers } from '@angular/http';
 import IPost = Daze.Interfaces.IPost;
 import ITag = Daze.Interfaces.ITag;
 import 'rxjs/add/operator/exhaustMap';
@@ -28,4 +28,13 @@ export class PostsService {
         return this._http.get(`${PostsService.requestUri}${id}`)
             .map(res => res.json() as IPost);
     }
+
+    addPost(post: IPost) {
+
+        let headers = new Headers();
+        // headers.append('Content-Type', 'application/ json');
+        // headers.append('Access-Control-Allow-Origin', '*');
+        return this._http.post(PostsService.requestUri, post);
+    }
+
 }

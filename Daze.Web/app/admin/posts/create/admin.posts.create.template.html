@@ -1,0 +1,28 @@
+<form [formGroup]="postForm" #f (ngSubmit)="onFormSubmit($event)" class="form-horizontal" role="form">
+    <div>
+        <legend>Create a new post</legend>
+    </div>
+
+    <div>
+        <label for="title">Title</label>
+        <!--[(ngModel)]="post.title"-->
+        <input formControlName="title" type="text" id="title" />
+    </div>
+
+    <div>
+        <!--[(ngModel)]="post.content" -->
+        <label for="content">Content</label>
+        <textarea formControlName="content" id="content" cols="30" rows="10"></textarea>
+    </div>
+
+    <div>
+        <label for="">Tags</label>
+        <ul>
+            <li>todo: tags</li>
+        </ul>
+    </div>
+
+    <div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+</form>

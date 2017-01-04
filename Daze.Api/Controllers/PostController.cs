@@ -5,6 +5,7 @@ using Daze.Domain;
 
 namespace Daze.Api.Controllers
 {
+    [Route("api/post/")]
     public class PostController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -15,7 +16,7 @@ namespace Daze.Api.Controllers
             _postRepository = _unitOfWork.PostRepo;
         }
 
-        [HttpGet, Route("api/post/{id:guid?}")]
+        [HttpGet, Route("{id:guid?}")]
         public IActionResult Get(Guid? id)
         {
             if (id.HasValue)
@@ -28,7 +29,7 @@ namespace Daze.Api.Controllers
             return Json(posts);
         }
 
-        [HttpPost, Route("api/post")]
+        [HttpPost]
         public IActionResult Post([FromBody]Post post)
         {
             if (post == null || !ModelState.IsValid)
@@ -42,7 +43,7 @@ namespace Daze.Api.Controllers
             return Ok();
         }
 
-        [HttpDelete, Route("api/post/{id:guid}")]
+        [HttpDelete, Route("{id:guid}")]
         public IActionResult Delete(Guid id)
         {
             _postRepository.Remove(id);

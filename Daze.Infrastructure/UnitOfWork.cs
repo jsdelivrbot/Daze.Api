@@ -13,13 +13,15 @@ namespace Daze.Infrastructure
         private readonly IDocumentSession _session;
         public UnitOfWork(IDocumentStore store)
         {
-            _session = store.DirtyTrackedSession(System.Data.IsolationLevel.Unspecified);
-            PostRepo = new PostRepository(store);
-            TagRepo = new TagRepository(store);
+            this._session = store.DirtyTrackedSession(System.Data.IsolationLevel.Unspecified);
+            this.PostRepo = new PostRepository(store);
+            this.TagRepo = new TagRepository(store);
+            this.SkillRepo = new SkillRepository(store);
         }
 
         public IPostRepository PostRepo { get; set; }
         public ITagRepository TagRepo { get; set; }
+        public ISkillRepository SkillRepo { get; set; }
 
 
         public void CommitChanges()

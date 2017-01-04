@@ -32,9 +32,12 @@ export class PostsService {
     addPost(post: IPost) {
 
         let headers = new Headers();
-        // headers.append('Content-Type', 'application/ json');
-        // headers.append('Access-Control-Allow-Origin', '*');
-        return this._http.post(PostsService.requestUri, post);
+        headers.append('content-type', 'application/json');
+        headers.append('accept', 'application/json');
+        return this._http.post(PostsService.requestUri, JSON.stringify(post), {
+            headers: headers
+        })
+            .map(res => res.json());
     }
 
 }

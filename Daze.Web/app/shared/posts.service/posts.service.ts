@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
-import IPost = Daze.Interfaces.IPost;
-import ITag = Daze.Interfaces.ITag;
+import { Observable } from 'rxjs';
 import 'rxjs/add/operator/exhaustMap';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/take';
+import IPost = Daze.Interfaces.IPost;
+import ITag = Daze.Interfaces.ITag;
 
 @Injectable()
 export class PostsService {

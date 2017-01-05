@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PostsService } from '../../shared/posts.service/posts.service';
-import { Observable } from 'rxjs';
 import IPost = Daze.Interfaces.IPost;
-import 'rxjs/add/operator/take';
 
 @Component({
     selector: 'posts',

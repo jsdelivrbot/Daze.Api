@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { Observable } from 'rxjs';
-import { FocusArea } from '../../shared/enums/focusArea';
+import { FocusArea } from '../../shared/types/focusArea';
 import ISkill = Daze.Interfaces.ISkill;
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/exhaustMap';
@@ -14,9 +14,9 @@ export class SkillsService {
     getData(focusArea: FocusArea) {
         let fs: string = null;
         switch (focusArea) {
-            case FocusArea.languages: fs = "languages"; break;
-            case FocusArea.databases: fs = "databases"; break;
-            case FocusArea.frameworks: fs = "frameworks"; break;
+            // case FocusArea.languages: fs = "languages"; break;
+            // case FocusArea.databases: fs = "databases"; break;
+            // case FocusArea.frameworks: fs = "frameworks"; break;
         }
 
         return this._http.get(SkillsService.jsonDataUrl)

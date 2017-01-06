@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Params, ActivatedRoute, Route } from '@angular/router';
-import { PostsService } from '../../../shared/posts.service/posts.service';
+import { PostsService } from '../../../shared/services/posts.service';
 import IPost = Daze.Interfaces.IPost;
 
 @Component({

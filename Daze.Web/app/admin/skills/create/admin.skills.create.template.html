@@ -1,0 +1,22 @@
+<form [formGroup]="skillForm" #f (ngSubmit)="onFormSubmit($event)" class="form-horizontal" role="form">
+    <div>
+        <legend>Create a new skill</legend>
+    </div>
+
+    <div>
+        <label for="name">Name</label>
+        <!--[(ngModel)]="post.title"-->
+        <input formControlName="name" type="text" id="name" />
+    </div>
+
+    <div>
+        <label>courses</label>
+        <ul>
+            <li>todo: courses</li>
+        </ul>
+    </div>
+
+    <div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+</form>

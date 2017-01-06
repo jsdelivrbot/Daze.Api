@@ -1,14 +1,14 @@
 <spinner *ngIf="_isLoading"></spinner>
 
-<ul class="postsActions">
+<ul class="actions">
     <a routerLink="/admin/posts/create">Create a new Post</a>
 </ul>
 
-<div class="postsHolder">
-    <section class="postsMaster">
+<div class="masterDetail">
+    <section class="master">
         <ul>
             <li *ngFor="let post of _posts">
-                <a class="postLink" (click)="onPostClick(post.id)">
+                <a class="masterLink" (click)="onPostClick(post.id)">
                     <span>{{post.title}}</span>
                 </a>
             </li>
@@ -16,7 +16,8 @@
     </section>
 
     <div class="verticalLine"></div>
-    <section class="postsDetail">
+    
+    <section class="detail">
         <article *ngIf="_isPostSelected">
             <h3>{{!!_selectedPost ? _selectedPost.title : ''}}</h3>
             <div>

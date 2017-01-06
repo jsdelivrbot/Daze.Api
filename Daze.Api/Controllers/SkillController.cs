@@ -1,5 +1,6 @@
 ﻿using Daze.Domain;
 using Daze.Infrastructure.Interfaces;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Daze.Api.Controllers
 {
-    [Route("api/skill/")]
+    [/*EnableCors("CorsPolicy"),*/ Route("api/skill/")]
     public class SkillController : Controller
     {
         private IUnitOfWork _unitOfWork;
@@ -33,7 +34,7 @@ namespace Daze.Api.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody]Skill skill)
+        public IActionResult Post([FromBody,]Skill skill)
         {
             if (skill == null || !ModelState.IsValid)
             {

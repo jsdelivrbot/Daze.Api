@@ -1,0 +1,33 @@
+<spinner *ngIf="_isLoading"></spinner>
+
+<ul class="actionsF">
+    <a routerLink="/admin/skills/create">Create a new Skill</a>
+</ul>
+
+<div class="masterDetail">
+    <section class="master">
+        <ul>
+            <li *ngFor="let skill of _skills">
+                <a class="masterLink" (click)="onSkillClick(skill.id)">
+                    <span>{{skill.name}}</span>
+                </a>
+            </li>
+        </ul>
+    </section>
+
+    <div class="verticalLine"></div>
+    
+    <section class="detail">
+        <article *ngIf="_isSkillSelected">
+            <h3>{{!!_selectedSkill ? _selectedSkill.name : ''}}</h3>
+            <div>
+                {{_selectedSkill.name}} <br/> {{_selectedSkill.level}} <br/>
+                <ul *ngIf="_selectedSkill.courses && _selectedSkill.courses.length > 0">
+                    <li *ngFor="let course of _selectedSkill.courses">
+                        {{course.name}}
+                    </li>
+                </ul>
+            </div>
+        </article>
+    </section>
+</div>

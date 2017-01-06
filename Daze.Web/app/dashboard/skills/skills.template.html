@@ -1,8 +1,6 @@
-<spinner *ngIf="_isLoading">
-</spinner>
-
 <section>
-    <ul class="skillsList">
+    <spinner *ngIf="_isLanguagesLoading"></spinner>
+    <ul class="skillsList" *ngIf="!_isLanguagesLoading">
         <h3><em>Languages</em></h3>
         <li *ngFor="let language of _languages" class="skill">
             <label>{{language.name}}</label>
@@ -14,7 +12,8 @@
 </section>
 
 <section>
-    <ul class="skillsList">
+    <spinner *ngIf="_isFrameworksLoading"></spinner>
+    <ul class="skillsList" *ngIf="!_isFrameworksLoading">
         <h3><em>Frameworks</em></h3>
         <li *ngFor="let framework of _frameworks" class="skill">
             <label>{{framework.name}}</label>
@@ -26,7 +25,8 @@
 </section>
 
 <section>
-    <ul class="skillsList">
+    <spinner *ngIf="_isDatabasesLoading"></spinner>
+    <ul class="skillsList" *ngIf="!_isDatabasesLoading">
         <h3><em>Databases</em></h3>
         <li *ngFor="let database of _databases" class="skill">
             <label>{{database.name}}</label>

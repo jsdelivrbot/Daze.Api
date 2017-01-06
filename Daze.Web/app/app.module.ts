@@ -1,4 +1,3 @@
-// modules
 import { NgModule, } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { RouterModule, Route, RouterOutlet } from '@angular/router';
@@ -20,6 +19,8 @@ import { AdminPostsComponent } from './admin/posts/admin.posts.component';
 import { AdminPostsCreateComponent } from './admin/posts/create/admin.posts.create.component';
 
 import { AdminSkillsComponent } from './admin/skills/admin.skills.component';
+import { AdminSkillsCreateComponent } from './admin/skills/create/admin.skills.create.component';
+
 import { AdminProjectsComponent } from './admin/projects/admin.projects.component';
 
 import { AppComponent } from './app.component';
@@ -35,6 +36,7 @@ const routes = new RoutesBuilder()
     .addRoute('admin/posts/create', AdminPostsCreateComponent)
     .addRoute('admin/projects', AdminProjectsComponent)
     .addRoute('admin/skills', AdminSkillsComponent)
+    .addRoute('admin/skills/create', AdminSkillsCreateComponent)
     .addDefault(PostsComponent)
     .addNotFound(NotFoundComponent)
     .build();
@@ -62,7 +64,8 @@ const routes = new RoutesBuilder()
         AdminPostsComponent,
         AdminPostsCreateComponent,
         AdminProjectsComponent,
-        AdminSkillsComponent
+        AdminSkillsComponent,
+        AdminSkillsCreateComponent
     ],
     bootstrap: [AppComponent]
 })

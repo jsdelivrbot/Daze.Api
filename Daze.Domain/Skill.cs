@@ -10,6 +10,7 @@ namespace Daze.Domain
         public Guid ID { get; set; }
         public string Name { get; set; }
         public int Level { get; set; }
+        public string FocusArea { get; set; }
 
         public ICollection<Course> Courses { get; set; }
     }

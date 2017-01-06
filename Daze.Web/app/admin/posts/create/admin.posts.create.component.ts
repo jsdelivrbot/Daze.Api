@@ -1,8 +1,7 @@
 import { Inject, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { PostsService } from '../../../shared/posts.service/posts.service';
+import { PostsService } from '../../../shared/services/posts.service';
 import { Post } from '../../../shared/models/post.model';
-import IPost = Daze.Interfaces.IPost;
 
 @Component({
     selector: 'adminPostsCreate',
@@ -19,7 +18,7 @@ export class AdminPostsCreateComponent implements OnInit {
         console.log(this.post);
         if (this.post) {
             this._postsService.addPost(this.post)
-                .subscribe(res => console.log("post was inserted!"),
+                .subscribe(r => console.log("post was inserted!"),
                 err => console.log(err),
                 () => { });
         }

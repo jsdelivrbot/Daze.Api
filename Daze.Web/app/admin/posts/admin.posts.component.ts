@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { PostsService } from '../../shared/posts.service/posts.service';
+import { PostsService } from '../../shared/services/posts.service';
 import IPost = Daze.Interfaces.IPost;
 
 @Component({
     selector: 'adminPosts',
     providers: [PostsService],
-    styleUrls: ['app/admin/posts/admin.posts.style.css'],
+    styleUrls: ['app/admin/admin.style.css'],
     templateUrl: 'app/admin/posts/admin.posts.template.html'
 })
 export class AdminPostsComponent {
@@ -22,9 +22,9 @@ export class AdminPostsComponent {
 
     ngOnInit() {
         this._postsService.getPosts()
-            .subscribe(post => this._posts.push(post),
+            .subscribe(p => this._posts.push(p),
             _ => _,
-            () => { this._isLoading = false });
+            () => this._isLoading = false);
     }
 }
 

@@ -12,6 +12,8 @@ using Daze.Infrastructure.Repositories;
 using Microsoft.AspNetCore.Routing.Constraints;
 using Marten;
 using Daze.Infrastructure;
+using Microsoft.AspNetCore.Mvc.Cors.Internal;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Daze.Api
 {
@@ -19,7 +21,17 @@ namespace Daze.Api
     {
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+                options.AddPolicy("CorsPolicy", builder =>
+                    builder.WithOrigins("http://localhost:3000")
+                           .AllowAnyMethod()
+                           .AllowAnyHeader()
+                           .AllowCredentials())
+            );
             services.AddMvc();
+            services.Configure<MvcOptions>(options =>
+                options.Filters.Add(new CorsAuthorizationFilterFactory("CorsPolicy"))
+            );
             services.AddTransient<IUnitOfWork, UnitOfWork>();
             services.AddTransient<IPostRepository, PostRepository>();
             services.AddTransient<ITagRepository, TagRepository>();
@@ -32,12 +44,7 @@ namespace Daze.Api
         {
             loggerFactory.AddConsole();
 
-            app.UseCors(policy =>
-            {
-                //policy.AllowAnyOrigin();
-                policy.WithOrigins(new[] { "http://localhost" })
-                      .AllowAnyMethod();
-            });
+            app.UseCors("CorsPolicy");
 
             app.UseMvc(options =>
                 options.MapRoute("DefaultWebApi", "api/{controller=Post}/{action=Get}")

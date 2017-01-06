@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 import { Observable } from 'rxjs';
 import 'rxjs/add/operator/exhaustMap';
-import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/take';
+import 'rxjs/add/operator/retry';
 import IPost = Daze.Interfaces.IPost;
 import ITag = Daze.Interfaces.ITag;
 
@@ -15,6 +15,7 @@ export class PostsService {
     getPosts() {
         return this._http
             .get(PostsService.requestUri)
+            .retry(3)
             .map(res => res.json() as Array<IPost>)
             .exhaustMap(posts => posts);
     }
@@ -22,24 +23,22 @@ export class PostsService {
     async getPostsArrayified() {
         return await this._http
             .get(PostsService.requestUri)
+            .retry(3)
             .map(res => res.json() as Array<IPost>)
             .toPromise();
     }
 
     getPostById(id: string) {
         return this._http.get(`${PostsService.requestUri}${id}`)
+            .retry(3)
             .map(res => res.json() as IPost);
     }
 
     addPost(post: IPost) {
-
         let headers = new Headers();
         headers.append('content-type', 'application/json');
-        headers.append('accept', 'application/json');
-        return this._http.post(PostsService.requestUri, JSON.stringify(post), {
+        return this._http.post(PostsService.requestUri, post, {
             headers: headers
-        })
-            .map(res => res.json());
+        });
     }
-
 }

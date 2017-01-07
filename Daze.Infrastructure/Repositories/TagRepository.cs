@@ -8,7 +8,7 @@ using Marten;
 
 namespace Daze.Infrastructure.Repositories
 {
-    public class TagRepository : Repository<Tag>, ITagRepository
+    public sealed class TagRepository : Repository<Tag>, ITagRepository
     {
         public TagRepository(IDocumentStore store) : base(store)
         {

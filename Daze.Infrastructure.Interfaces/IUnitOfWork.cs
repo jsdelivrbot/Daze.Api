@@ -11,6 +11,7 @@ namespace Daze.Infrastructure.Interfaces
         IPostRepository PostRepo { get; set; }
         ITagRepository TagRepo { get; set; }
         ISkillRepository SkillRepo { get; set; }
+        IProjectRepository ProjectRepo { get; set; }
 
         void CommitChanges();
     }

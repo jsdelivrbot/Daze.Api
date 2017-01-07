@@ -54,7 +54,6 @@ namespace Daze.Api
             {
                 app.UseDeveloperExceptionPage();
             }
-
         }
     }
 

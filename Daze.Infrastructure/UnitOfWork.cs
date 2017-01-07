@@ -17,12 +17,13 @@ namespace Daze.Infrastructure
             this.PostRepo = new PostRepository(store);
             this.TagRepo = new TagRepository(store);
             this.SkillRepo = new SkillRepository(store);
+            this.ProjectRepo = new ProjectRepository(store);
         }
 
         public IPostRepository PostRepo { get; set; }
         public ITagRepository TagRepo { get; set; }
         public ISkillRepository SkillRepo { get; set; }
-
+        public IProjectRepository ProjectRepo { get; set; }
 
         public void CommitChanges()
         {

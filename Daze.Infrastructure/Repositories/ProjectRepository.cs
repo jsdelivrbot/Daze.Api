@@ -8,9 +8,9 @@ using Marten;
 
 namespace Daze.Infrastructure.Repositories
 {
-    public sealed class SkillRepository : Repository<Skill>, ISkillRepository
+    public sealed class ProjectRepository : Repository<Project>, IProjectRepository
     {
-        public SkillRepository(IDocumentStore store) : base(store)
+        public ProjectRepository(IDocumentStore store) : base(store)
         {
         }
     }

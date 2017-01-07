@@ -8,7 +8,7 @@ using Marten;
 
 namespace Daze.Infrastructure.Repositories
 {
-    public class PostRepository : Repository<Post>, IPostRepository
+    public sealed class PostRepository : Repository<Post>, IPostRepository
     {
         public PostRepository(IDocumentStore store) : base(store)
         {

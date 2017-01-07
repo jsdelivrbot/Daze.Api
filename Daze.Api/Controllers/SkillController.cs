@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Daze.Api.Controllers
 {
-    [/*EnableCors("CorsPolicy"),*/ Route("api/skill/")]
+    [Route("api/skill/")]
     public class SkillController : Controller
     {
         private IUnitOfWork _unitOfWork;

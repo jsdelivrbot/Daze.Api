@@ -1,23 +1,23 @@
 import { Inject, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { PostsService } from '../../../shared/services/posts.service';
+import { PostService } from '../../../shared/services/post.service';
 import { Post } from '../../../shared/models/post.model';
 
 @Component({
     selector: 'adminPostsCreate',
-    providers: [FormBuilder, PostsService],
+    providers: [FormBuilder, PostService],
     templateUrl: 'app/admin/posts/create/admin.posts.create.template.html'
 })
 export class AdminPostsCreateComponent implements OnInit {
     public postForm: FormGroup;
     public post = new Post();
     constructor(private formBuilder: FormBuilder,
-        private _postsService: PostsService) { }
+        private _postService: PostService) { }
 
     onFormSubmit(ev: MouseEvent) {
         console.log(this.post);
         if (this.post) {
-            this._postsService.addPost(this.post)
+            this._postService.addPost(this.post)
                 .subscribe(r => console.log("post was inserted!"),
                 err => console.log(err),
                 () => { });
@@ -25,7 +25,7 @@ export class AdminPostsCreateComponent implements OnInit {
     }
 
     onValueChanged(data?: Post) {
-        this.post = data;
+        this.post = !!data ? data : new Post();
     }
 
     ngOnInit() {

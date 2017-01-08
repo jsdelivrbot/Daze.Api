@@ -1,0 +1,24 @@
+<form [formGroup]="projectForm" #f (ngSubmit)="onFormSubmit($event)" class="form-horizontal" role="form">
+    <div>
+        <legend>Create a new project</legend>
+    </div>
+
+    <div>
+        <label for="name">Name</label>
+        <input formControlName="name" type="text" id="name" />
+    </div>
+
+    <div>
+        <label for="description">Description</label>
+        <textarea formControlName="description" id="description" cols="30" rows="10"></textarea>
+    </div>
+
+    <div>
+        <label for="url">Url</label>
+        <input formControlName="url" type="text" id="url" />
+    </div>
+
+    <div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+</form>

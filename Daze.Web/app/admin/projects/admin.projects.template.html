@@ -1,0 +1,28 @@
+<spinner *ngIf="_isLoading"></spinner>
+
+<ul class="actions">
+    <a routerLink="/admin/projects/create">Create a new Project</a>
+</ul>
+
+<div class="masterDetail">
+    <section class="master">
+        <ul>
+            <li *ngFor="let project of _projects">
+                <a class="masterLink" (click)="onProjectClick(project.id)">
+                    <span>{{project.name}}</span>
+                </a>
+            </li>
+        </ul>
+    </section>
+
+    <div class="verticalLine"></div>
+
+    <section class="detail">
+        <article *ngIf="_isProjectSelected">
+            <h3>{{!!_selectedProject ? _selectedProject.name : ''}}</h3>
+            <div>
+                {{_selectedProject.name}}
+            </div>
+        </article>
+    </section>
+</div>

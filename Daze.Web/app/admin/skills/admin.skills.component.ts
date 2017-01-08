@@ -1,19 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { SkillsService } from '../../shared/services/skills.service';
+import { SkillService } from '../../shared/services/skill.service';
 import ISkill = Daze.Interfaces.ISkill;
 
 @Component({
     selector: 'adminSkills',
-    providers: [SkillsService],
+    providers: [SkillService],
     styleUrls: ['app/admin/admin.style.css'],
     templateUrl: 'app/admin/skills/admin.skills.template.html'
 })
 export class AdminSkillsComponent implements OnInit {
     private _skills = new Array<ISkill>();
-    private _selectedSkill: ISkill = null;
+    private _selectedSkill: ISkill | null | undefined = null;
     private _isSkillSelected = false;
     private _isLoading = true;
-    constructor(private _skillsService: SkillsService) { }
+    constructor(private _skillService: SkillService) { }
 
     onSkillClick(id: string) {
         this._selectedSkill = this._skills.find(s => s.id == id);
@@ -21,7 +21,7 @@ export class AdminSkillsComponent implements OnInit {
     }
 
     ngOnInit() {
-        this._skillsService.getSkills()
+        this._skillService.getSkills()
             .subscribe(s => this._skills.push(s),
             _ => _,
             () => this._isLoading = false);

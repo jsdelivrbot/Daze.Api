@@ -8,25 +8,25 @@ import 'rxjs/add/operator/take';
 import ISkill = Daze.Interfaces.ISkill;
 
 @Injectable()
-export class SkillsService {
+export class SkillService {
     private static requestUri = 'http://localhost:21403/api/skill/';
     constructor(private _http: Http) { }
 
     getSkills() {
-        return this._http.get(SkillsService.requestUri)
+        return this._http.get(SkillService.requestUri)
             .retry(3)
             .map(res => res.json() as Array<ISkill>)
             .exhaustMap(skills => skills);
     }
 
     getSkillById(id: string) {
-        return this._http.get(`${SkillsService.requestUri}${id}`)
+        return this._http.get(`${SkillService.requestUri}${id}`)
             .retry(3)
             .map(res => res.json() as ISkill);
     }
 
     getSkillsByFocusArea(focusArea: FocusArea) {
-        return this._http.get(SkillsService.requestUri)
+        return this._http.get(SkillService.requestUri)
             .retry(3)
             .map(res => res.json() as Array<ISkill>)
             .exhaustMap(skills => skills)
@@ -36,7 +36,7 @@ export class SkillsService {
     addSkill(skill: ISkill) {
         let headers = new Headers();
         headers.append('content-type', 'application/json');
-        return this._http.post(SkillsService.requestUri, skill, {
+        return this._http.post(SkillService.requestUri, skill, {
             headers: headers
         });
     }

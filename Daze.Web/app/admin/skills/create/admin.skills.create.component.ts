@@ -1,23 +1,23 @@
 import { Component, OnInit } from '@angular/core';
-import { SkillsService } from '../../../shared/services/skills.service';
+import { SkillService } from '../../../shared/services/skill.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Skill } from '../../../shared/models/skill.model';
 
 @Component({
     selector: 'adminSkillsCreate',
-    providers: [FormBuilder, SkillsService],
+    providers: [FormBuilder, SkillService],
     templateUrl: 'app/admin/skills/create/admin.skills.create.template.html'
 })
 export class AdminSkillsCreateComponent implements OnInit {
     public skillForm: FormGroup;
-    public skill = new Skill(undefined, undefined);
+    public skill = new Skill(null, null);
     constructor(private _formBuilder: FormBuilder,
-        private _skillsService: SkillsService) { }
+        private _skillService: SkillService) { }
 
     onFormSubmit(ev: MouseEvent) {
         console.log(this.skill);
         if (this.skill) {
-            this._skillsService.addSkill(this.skill)
+            this._skillService.addSkill(this.skill)
                 .subscribe(r => console.log("skill was inserted"),
                 err => console.log(err),
                 () => { });
@@ -25,7 +25,7 @@ export class AdminSkillsCreateComponent implements OnInit {
     }
 
     onValueChanged(data?: Skill) {
-        this.skill = data;
+        this.skill = !!data ? data : new Skill(null, null);
     }
 
     ngOnInit() {

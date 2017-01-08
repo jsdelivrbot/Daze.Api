@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { PostsService } from '../../shared/services/posts.service';
+import { PostService } from '../../shared/services/post.service';
 import IPost = Daze.Interfaces.IPost;
 
 @Component({
     selector: 'posts',
-    providers: [PostsService],
+    providers: [PostService],
     templateUrl: 'app/dashboard/posts/posts.template.html',
     styleUrls: ['app/dashboard/posts/posts.style.css']
 })
@@ -16,7 +16,7 @@ export class PostsComponent implements OnInit {
     public numberOfItemsPerPage = 2;
     public currentPage = 1;
 
-    constructor(private readonly _postService: PostsService) { }
+    constructor(private _postService: PostService) { }
 
     async onPageChanged(pageNumber: number) {
         this.currentPage = pageNumber;

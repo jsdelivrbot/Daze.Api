@@ -8,13 +8,13 @@ import IPost = Daze.Interfaces.IPost;
 import ITag = Daze.Interfaces.ITag;
 
 @Injectable()
-export class PostsService {
+export class PostService {
     private static requestUri = 'http://localhost:21403/api/post/';
     constructor(private readonly _http: Http) { }
 
     getPosts() {
         return this._http
-            .get(PostsService.requestUri)
+            .get(PostService.requestUri)
             .retry(3)
             .map(res => res.json() as Array<IPost>)
             .exhaustMap(posts => posts);
@@ -22,14 +22,14 @@ export class PostsService {
 
     async getPostsArrayified() {
         return await this._http
-            .get(PostsService.requestUri)
+            .get(PostService.requestUri)
             .retry(3)
             .map(res => res.json() as Array<IPost>)
             .toPromise();
     }
 
     getPostById(id: string) {
-        return this._http.get(`${PostsService.requestUri}${id}`)
+        return this._http.get(`${PostService.requestUri}${id}`)
             .retry(3)
             .map(res => res.json() as IPost);
     }
@@ -37,7 +37,7 @@ export class PostsService {
     addPost(post: IPost) {
         let headers = new Headers();
         headers.append('content-type', 'application/json');
-        return this._http.post(PostsService.requestUri, post, {
+        return this._http.post(PostService.requestUri, post, {
             headers: headers
         });
     }

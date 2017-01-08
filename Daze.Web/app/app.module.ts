@@ -17,11 +17,10 @@ import { PagerComponent } from './shared/pager/pager.component';
 import { AdminComponent } from './admin/admin.component';
 import { AdminPostsComponent } from './admin/posts/admin.posts.component';
 import { AdminPostsCreateComponent } from './admin/posts/create/admin.posts.create.component';
-
+import { AdminProjectsComponent } from './admin/projects/admin.projects.component';
+import { AdminProjectsCreateComponent } from './admin/projects/create/admin.projects.create.component';
 import { AdminSkillsComponent } from './admin/skills/admin.skills.component';
 import { AdminSkillsCreateComponent } from './admin/skills/create/admin.skills.create.component';
-
-import { AdminProjectsComponent } from './admin/projects/admin.projects.component';
 
 import { AppComponent } from './app.component';
 import { RoutesBuilder } from './infrastructure/routesBuilder';
@@ -35,6 +34,7 @@ const routes = new RoutesBuilder()
     .addRoute('admin/posts', AdminPostsComponent)
     .addRoute('admin/posts/create', AdminPostsCreateComponent)
     .addRoute('admin/projects', AdminProjectsComponent)
+    .addRoute('admin/projects/create', AdminProjectsCreateComponent)
     .addRoute('admin/skills', AdminSkillsComponent)
     .addRoute('admin/skills/create', AdminSkillsCreateComponent)
     .addDefault(PostsComponent)
@@ -64,6 +64,7 @@ const routes = new RoutesBuilder()
         AdminPostsComponent,
         AdminPostsCreateComponent,
         AdminProjectsComponent,
+        AdminProjectsCreateComponent,
         AdminSkillsComponent,
         AdminSkillsCreateComponent
     ],

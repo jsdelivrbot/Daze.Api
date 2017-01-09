@@ -11,13 +11,20 @@ import IPost = Daze.Interfaces.IPost;
 export class AdminPostsComponent {
     private _posts = new Array<IPost>();
     private _selectedPost: IPost | null | undefined = null;
-    private _isPostSelected = false;
     private _isLoading = true;
     constructor(private _postService: PostService) { }
 
     onPostClick(id: string) {
         this._selectedPost = this._posts.find(p => p.id == id);
-        this._isPostSelected = true;
+    }
+
+    onPostDelete(id: string) {
+        this._postService.deletePost(id)
+            .subscribe(res => (res.status == 200)
+                ? console.log("post deleted")
+                : console.log("error"));
+        this._posts = this._posts.filter(p => p.id != id);
+        this._selectedPost = null;
     }
 
     ngOnInit() {

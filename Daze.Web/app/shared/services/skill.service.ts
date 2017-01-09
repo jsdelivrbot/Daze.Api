@@ -40,4 +40,8 @@ export class SkillService {
             headers: headers
         });
     }
+
+    deleteSkill(id: string) {
+        return this._http.delete(`${SkillService.requestUri}${id}`);
+    }
 }

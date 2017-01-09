@@ -18,10 +18,15 @@
     <div class="verticalLine"></div>
 
     <section class="detail">
-        <article *ngIf="_isProjectSelected">
-            <h3>{{!!_selectedProject ? _selectedProject.name : ''}}</h3>
+        <article *ngIf="_selectedProject">
+            <h3>{{_selectedProject.name}}</h3>
             <div>
                 {{_selectedProject.name}}
+            </div>
+            <div>
+                <button (click)="onProjectDelete(_selectedProject.id)" type="button">
+                    delete this project
+                </button>
             </div>
         </article>
     </section>

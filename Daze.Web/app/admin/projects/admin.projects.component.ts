@@ -12,12 +12,19 @@ export class AdminProjectsComponent implements OnInit {
     private _projects = new Array<IProject>();
     private _isLoading = true;
     private _selectedProject: IProject | undefined | null = null;
-    private _isProjectSelected = false;
     constructor(private _projectService: ProjectService) { }
 
     onProjectClick(id: string) {
         this._selectedProject = this._projects.find(p => p.id == id);
-        this._isProjectSelected = true;
+    }
+
+    onProjectDelete(id: string) {
+        this._projectService.deleteProject(id)
+            .subscribe(res => (res.status == 200)
+                ? console.log("project deleted")
+                : console.log("error"));
+        this._projects = this._projects.filter(p => p.id != id);
+        this._selectedProject = null;
     }
 
     ngOnInit() {

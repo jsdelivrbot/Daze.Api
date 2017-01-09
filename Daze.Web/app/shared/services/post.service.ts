@@ -41,4 +41,8 @@ export class PostService {
             headers: headers
         });
     }
+
+    deletePost(id: string) {
+        return this._http.delete(`${PostService.requestUri}${id}`);
+    }
 }

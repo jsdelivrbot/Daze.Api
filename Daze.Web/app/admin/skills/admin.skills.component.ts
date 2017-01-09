@@ -11,13 +11,20 @@ import ISkill = Daze.Interfaces.ISkill;
 export class AdminSkillsComponent implements OnInit {
     private _skills = new Array<ISkill>();
     private _selectedSkill: ISkill | null | undefined = null;
-    private _isSkillSelected = false;
     private _isLoading = true;
     constructor(private _skillService: SkillService) { }
 
     onSkillClick(id: string) {
         this._selectedSkill = this._skills.find(s => s.id == id);
-        this._isSkillSelected = true;
+    }
+
+    onSkillDelete(id: string) {
+        this._skillService.deleteSkill(id)
+            .subscribe(res => (res.status == 200)
+                ? console.log("skill deleted")
+                : console.log("error"));
+        this._skills = this._skills.filter(s => s.id != id);
+        this._selectedSkill = null;
     }
 
     ngOnInit() {

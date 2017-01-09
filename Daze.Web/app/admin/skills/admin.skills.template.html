@@ -16,10 +16,10 @@
     </section>
 
     <div class="verticalLine"></div>
-    
+
     <section class="detail">
-        <article *ngIf="_isSkillSelected">
-            <h3>{{!!_selectedSkill ? _selectedSkill.name : ''}}</h3>
+        <article *ngIf="_selectedSkill">
+            <h3>{{_selectedSkill.name}}</h3>
             <div>
                 {{_selectedSkill.name}} <br/> {{_selectedSkill.level}} <br/>
                 <ul *ngIf="_selectedSkill.courses && _selectedSkill.courses.length > 0">
@@ -27,6 +27,11 @@
                         {{course.name}}
                     </li>
                 </ul>
+            </div>
+            <div>
+                <button (click)="onSkillDelete(_selectedSkill)" type="button">
+                    delete this skill
+                </button>
             </div>
         </article>
     </section>

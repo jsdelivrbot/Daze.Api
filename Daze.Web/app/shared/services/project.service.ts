@@ -10,24 +10,28 @@ export class ProjectService {
     private static requestUri = 'http://localhost:21403/api/project/';
     constructor(private _http: Http) { }
 
-    public getProjects() {
+    getProjects() {
         return this._http.get(ProjectService.requestUri)
             .retry(3)
             .map(res => res.json() as Array<IProject>)
             .exhaustMap(projects => projects);
     }
 
-    public getProjectsById(id: string) {
+    getProjectsById(id: string) {
         this._http.get(`${ProjectService.requestUri}${id}`)
             .retry(3)
             .map(res => res.json() as IProject);
     }
 
-    public addProject(project: IProject) {
+    addProject(project: IProject) {
         let headers = new Headers();
         return this._http.post(ProjectService.requestUri, project, {
             headers: headers
         });
+    }
+
+    deleteProject(id: string) {
+        return this._http.delete(`${ProjectService.requestUri}${id}`);
     }
 }
 

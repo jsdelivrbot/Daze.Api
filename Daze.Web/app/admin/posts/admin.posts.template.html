@@ -1,7 +1,9 @@
 <spinner *ngIf="_isLoading"></spinner>
 
 <ul class="actions">
-    <a routerLink="/admin/posts/create">Create a new Post</a>
+    <li>
+        <a routerLink="/admin/posts/create">Create a new Post</a>
+    </li>
 </ul>
 
 <div class="masterDetail">
@@ -16,12 +18,17 @@
     </section>
 
     <div class="verticalLine"></div>
-    
+
     <section class="detail">
-        <article *ngIf="_isPostSelected">
-            <h3>{{!!_selectedPost ? _selectedPost.title : ''}}</h3>
+        <article *ngIf="_selectedPost">
+            <h3>{{_selectedPost.title}}</h3>
             <div>
                 {{_selectedPost.content}}
+            </div>
+            <div>
+                <button (click)="onPostDelete(_selectedPost.id)" type="button">
+                    delete this post
+                </button>
             </div>
         </article>
     </section>

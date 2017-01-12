@@ -3,7 +3,9 @@ import { Http, Headers } from '@angular/http';
 import { Observable } from 'rxjs';
 import 'rxjs/add/operator/exhaustMap';
 import 'rxjs/add/operator/take';
+import 'rxjs/add/operator/skip';
 import 'rxjs/add/operator/retry';
+import 'rxjs/add/operator/debounceTime';
 import IPost = Daze.Interfaces.IPost;
 import ITag = Daze.Interfaces.ITag;
 
@@ -15,7 +17,7 @@ export class PostService {
     getPosts() {
         return this._http
             .get(PostService.requestUri)
-            .retry(3)
+            .retry(2)
             .map(res => res.json() as Array<IPost>)
             .exhaustMap(posts => posts);
     }
@@ -23,14 +25,14 @@ export class PostService {
     async getPostsArrayified() {
         return await this._http
             .get(PostService.requestUri)
-            .retry(3)
+            .retry(2)
             .map(res => res.json() as Array<IPost>)
             .toPromise();
     }
 
     getPostById(id: string) {
         return this._http.get(`${PostService.requestUri}${id}`)
-            .retry(3)
+            .retry(2)
             .map(res => res.json() as IPost);
     }
 

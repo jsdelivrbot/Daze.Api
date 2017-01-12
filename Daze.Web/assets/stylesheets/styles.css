@@ -18,6 +18,30 @@ ul {
     list-style-type: none;
 }
 
+button {
+    font-weight: bold;
+    font-size: 11pt;
+    height: 3em;
+    width: 10em;
+    color: #22384e;
+    background-color: white;
+    border: 0;
+    box-shadow: 0 2px 2px rgba(0,0,0,0.24), 0 0 2px rgba(0,0,0,0.12);
+    margin: 0 0 1em 0;
+}
+
+button:hover {
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+    transition-duration: 1200ms;
+    transition-delay: 2ms;
+    cursor: pointer;
+    height: 3em;
+    width: 10em;
+    color: white;
+    background-color: #22384e;
+    box-shadow: 0 2px 2px rgba(0,0,0,0.24), 0 0 2px rgba(0,0,0,0.12);
+}
+
 dazeApp {
     /*display: inline-flex;*/
     /*flex-direction: row;*/

@@ -10,14 +10,16 @@ ul.skillsList {
     background-color:#fff; 
     list-style-type: none;
     text-align: center;
-    margin: 0 200px;
+    margin: 0 12%;
     border-radius: 4px;
     padding: 8px 0px 24px 0px;
-    box-shadow: 4px 8px 12px 0px #34495e;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.24), 0 0 2px rgba(0,0,0,0.12);
+    /*box-shadow: 4px 8px 12px 0px #34495e;*/
 }
 
 ul.skillsList:hover {
-    box-shadow: 5px 12px 23px 3px #34495e;
+    box-shadow: 2px 3px 10px rgba(0,0,0,0.24), 5px 6px 10px rgba(0,0,0,0.12);
+    /*box-shadow: 5px 12px 23px 3px #34495e;*/
     transition: cubic-bezier(0.6, -0.28, 0.74, 0.05);
     cursor: pointer;
 }

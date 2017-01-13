@@ -55,7 +55,6 @@ export class PostsComponent implements OnInit {
             .subscribe(p => this._posts.push(p),
             _ => _,
             () => this._isLoading = false);
-
     }
 }
 

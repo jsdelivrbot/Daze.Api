@@ -13,6 +13,7 @@ import { ProjectsComponent } from './dashboard/projects/projects.component';
 import { NotFoundComponent } from './shared/notfound/notfound.component';
 import { SpinnerComponent } from './shared/spinner/spinner.component';
 import { PagerComponent } from './shared/pager/pager.component';
+import { UpComponent } from './shared/up/up.component';
 
 import { AdminComponent } from './admin/admin.component';
 import { AdminPostsComponent } from './admin/posts/admin.posts.component';
@@ -60,6 +61,7 @@ const routes = new RoutesBuilder()
         NotFoundComponent,
         SpinnerComponent,
         PagerComponent,
+        UpComponent,
         AdminComponent,
         AdminPostsComponent,
         AdminPostsCreateComponent,

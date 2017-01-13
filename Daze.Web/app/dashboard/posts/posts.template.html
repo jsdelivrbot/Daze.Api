@@ -20,6 +20,8 @@
     </li>
 </ul>
 
-<button (click)="onLoadmore()">loadmore</button>
+<up></up>
+
+<button *ngIf="!_isLoading" (click)="onLoadmore()">loadmore</button>
 
 <!--<pager *ngIf="!_isLoading" [items]="_posts" (pageChanged)="onPageChanged($event)"></pager>-->

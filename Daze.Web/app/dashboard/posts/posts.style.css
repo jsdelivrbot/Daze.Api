@@ -9,7 +9,7 @@
 }
 
 .card:hover {
-    box-shadow: 0 8px 8px rgba(0,0,0,0.24),0 0 8px rgba(0,0,0,0.12);
+    box-shadow: 0 8px 8px rgba(0,0,0,0.24), 0 0 8px rgba(0,0,0,0.12);
     text-decoration: none;
 }
 
@@ -19,9 +19,8 @@
 }
 
 .blogLink:hover {
-    color: #2196F3;
+    color: #22384e;
 }
-
 
 ul.postList {
     list-style-type: none;
@@ -39,7 +38,7 @@ article.postArticle {
 }
 
 article.postArticle:hover {
-    box-shadow: 0 0 0 2px #2196F3;
+    box-shadow: 0 0 0 2px #22384e;
 }
 
 article.postArticle hr {

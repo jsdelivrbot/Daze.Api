@@ -17,5 +17,6 @@ leftnavbar {
     background-color:#ECF0F1;
     margin: 0 0 0 20em;
     min-height: 40em;
+    overflow-x: hidden;
 }
 

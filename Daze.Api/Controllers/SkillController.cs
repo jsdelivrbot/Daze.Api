@@ -21,7 +21,7 @@ namespace Daze.Api.Controllers
         }
 
         [HttpGet, Route("{id:guid?}")]
-        public IActionResult Get(Guid? id)
+        public IActionResult Get(Guid? id, int? page, int? pageSize)
         {
             if (id.HasValue)
             {
@@ -29,7 +29,10 @@ namespace Daze.Api.Controllers
                 return Json(skill);
             }
 
-            var skills = this._skillRepository.GetAll();
+            var skills = (page.HasValue && pageSize.HasValue) ?
+                this._skillRepository.GetAllPaged(page.Value, pageSize.Value) :
+                this._skillRepository.GetAll();
+
             return Json(skills);
         }
 

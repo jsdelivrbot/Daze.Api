@@ -20,7 +20,7 @@ namespace Daze.Api.Controllers
         }
 
         [HttpGet, Route("{id:guid?}")]
-        public IActionResult Get(Guid? id)
+        public IActionResult Get(Guid? id, int? page, int? pageSize)
         {
             if (id.HasValue)
             {
@@ -28,7 +28,10 @@ namespace Daze.Api.Controllers
                 return Json(project);
             }
 
-            var projects = this._projectRepository.GetAll();
+            var projects = (page.HasValue && pageSize.HasValue) ?
+                this._projectRepository.GetAllPaged(page.Value, pageSize.Value) :
+                this._projectRepository.GetAll();
+
             return Json(projects);
         }
 

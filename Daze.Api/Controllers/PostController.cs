@@ -17,7 +17,7 @@ namespace Daze.Api.Controllers
         }
 
         [HttpGet, Route("{id:guid?}")]
-        public IActionResult Get(Guid? id)
+        public IActionResult Get(Guid? id, int? page, int? pageSize)
         {
             if (id.HasValue)
             {
@@ -25,7 +25,10 @@ namespace Daze.Api.Controllers
                 return Json(post);
             }
 
-            var posts = _postRepository.GetAll();
+            var posts = (page.HasValue && pageSize.HasValue) ?
+                this._postRepository.GetAllPaged(page.Value, pageSize.Value) :
+                this._postRepository.GetAll();
+
             return Json(posts);
         }
 

@@ -19,7 +19,7 @@ namespace Daze.Api.Controllers
         }
 
         [HttpGet, Route("api/tag/{id:guid?}")]
-        public IActionResult Get(Guid? id)
+        public IActionResult Get(Guid? id, int? page, int? pageSize)
         {
             if (id.HasValue)
             {
@@ -27,7 +27,10 @@ namespace Daze.Api.Controllers
                 return Json(tag);
             }
 
-            var tags = _tagRepository.GetAll();
+            var tags = (page.HasValue && pageSize.HasValue) ?
+                this._tagRepository.GetAllPaged(page.Value, pageSize.Value) :
+                this._tagRepository.GetAll();
+
             return Json(tags);
         }
 

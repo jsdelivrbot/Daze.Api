@@ -5,8 +5,9 @@ using System.Threading.Tasks;
 
 namespace Daze.Infrastructure.Interfaces
 {
-    public interface IRepository <TEntity>
+    public interface IRepository<TEntity>
     {
+        IEnumerable<TEntity> GetAllPaged(int pageNumber, int numberOfItemsPerPage);
         IEnumerable<TEntity> GetAll();
         TEntity Find(Guid id);
 

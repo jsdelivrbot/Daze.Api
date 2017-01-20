@@ -3,10 +3,15 @@ import { Component } from '@angular/core';
 @Component({
     selector: 'spinner',
     template: `
-        <div>
-            <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
-            <span class="sr-only">Loading...</span>
-        </div>  
-    `
+        <div class="centerit">
+            <md-spinner mode="indeterminate"></md-spinner> 
+        </div>
+    `,
+    styles: [`
+        .centerit {
+            display: flex;
+            justify-content: center;
+        }
+    `]
 })
 export class SpinnerComponent { } 

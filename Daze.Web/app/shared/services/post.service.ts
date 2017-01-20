@@ -22,6 +22,13 @@ export class PostService {
             .exhaustMap(posts => posts);
     }
 
+    getPagedPosts(page: number, pageSize: number) {
+        return this._http
+            .get(`${PostService.requestUri}?page=${page}&pageSize=${pageSize}`)
+            .map(res => res.json() as Array<IPost>)
+            .exhaustMap(posts => posts);
+    }
+
     async getPostsArrayified() {
         return await this._http
             .get(PostService.requestUri)

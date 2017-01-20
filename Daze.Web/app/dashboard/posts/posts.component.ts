@@ -9,49 +9,24 @@ import IPost = Daze.Interfaces.IPost;
     styleUrls: ['app/dashboard/posts/posts.style.css']
 })
 export class PostsComponent implements OnInit {
-    private static _numberOfClicks = 0;
+    private static _currentPage = 1;
     private _posts = new Array<IPost>();
-    // private _pagedPosts = new Array<IPost>();
     private _isLoading = true;
-
-    public numberOfItemsPerPage = 2;
-    // public currentPage = 1;
+    private _numberOfItemsPerPage = 2;
 
     constructor(private _postService: PostService) { }
 
-    // async onPageChanged(pageNumber: number) {
-    //     this.currentPage = pageNumber;
-    //     const posts = await this._postService.getPostsArrayified();
-
-    //     const startingIndex = (this.currentPage - 1) * this.numberOfItemsPerPage;
-    //     const endIndex = Math.min(startingIndex + this.numberOfItemsPerPage, posts.length);
-    //     this._posts = new Array<IPost>();
-    //     for (let i = startingIndex; i < endIndex; i++) {
-    //         this._posts.push(posts[i]);
-    //     }
-    // }
-
     onLoadmore() {
-        PostsComponent._numberOfClicks++;
-        this._postService.getPosts()
-            .skip(this._posts.length)
-            .take(this.numberOfItemsPerPage)
+        ++PostsComponent._currentPage;
+
+        this._postService.getPagedPosts(PostsComponent._currentPage, this._numberOfItemsPerPage)
             .subscribe(p => this._posts.push(p),
             _ => _,
             () => this._isLoading = false);
     }
 
     ngOnInit() {
-        // this._postService.getPosts()
-        //     .subscribe(p => this._posts.push(p),
-        //     _ => _,
-        //     () => {
-        //         this._isLoading = false;
-        //         PostsComponent._numberOfClicks = Math.min(this._posts.length / this.numberOfItemsPerPage);
-        //     });
-
-        this._postService.getPosts()
-            .take(this.numberOfItemsPerPage)
+        this._postService.getPagedPosts(1, this._numberOfItemsPerPage)
             .subscribe(p => this._posts.push(p),
             _ => _,
             () => this._isLoading = false);

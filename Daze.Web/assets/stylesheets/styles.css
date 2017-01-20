@@ -18,7 +18,7 @@ ul {
     list-style-type: none;
 }
 
-button {
+button.btn {
     font-weight: bold;
     font-size: 11pt;
     height: 3em;
@@ -30,7 +30,7 @@ button {
     margin: 0 0 1em 0;
 }
 
-button:hover {
+button.btn:hover {
     transition: cubic-bezier(0.075, 0.82, 0.165, 1);
     transition-duration: 1200ms;
     transition-delay: 2ms;

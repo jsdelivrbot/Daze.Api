@@ -3,6 +3,7 @@ import { HttpModule } from '@angular/http';
 import { RouterModule, Route, RouterOutlet } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { MaterialModule } from '@angular/material';
 
 import { LeftNavbarComponent } from './leftnavbar/leftnavbar.component';
 import { AvatarComponent } from './leftnavbar/avatar/avatar.component';
@@ -49,6 +50,7 @@ const routes = new RoutesBuilder()
         FormsModule,
         ReactiveFormsModule,
         RouterModule.forRoot(routes),
+        MaterialModule.forRoot()
     ],
     declarations: [
         AppComponent,

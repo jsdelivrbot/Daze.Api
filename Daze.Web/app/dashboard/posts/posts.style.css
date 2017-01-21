@@ -13,15 +13,6 @@
     text-decoration: none;
 }
 
-.blogLink {
-    color: black;
-    text-decoration: none;
-}
-
-.blogLink:hover {
-    color: #22384e;
-}
-
 ul.postList {
     list-style-type: none;
 }

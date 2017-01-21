@@ -1,23 +1,15 @@
-
-.projectArticle {
-    border: 1px dashed black;
-    text-align: left;
+.projectSection {
+    margin: 3em 6em;
 }
 
-.projectHeader {
-    background-color: #22384e;
-    color: white;
-    padding: 0.5em;
+md-card-title {
+    color :#03386d;
 }
 
-.projectHeader h2 {
-    font-weight: 500;
+md-card-actions.projectActions {
+    text-align: right;
 }
 
-.projectDescription {
-    background-color: #cbcfd0;
-    color: black;
-    padding: 0.5em;
+md-card-actions.projectActions:hover {
+    color: #22384e;
 }
-
-

@@ -32,4 +32,3 @@ export class PostsComponent implements OnInit {
             () => this._isLoading = false);
     }
 }
-

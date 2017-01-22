@@ -17,39 +17,40 @@ namespace Daze.Infrastructure.Repositories
             _session = store.OpenSession(DocumentTracking.DirtyTracking);
         }
 
-        public TEntity Find(Guid id)
+        public async Task<TEntity> FindAsync(Guid id)
         {
-            return _session.Query<TEntity>().FirstOrDefault(q => q.ID == id);
+            return await _session.Query<TEntity>().FirstOrDefaultAsync(q => q.ID == id);
         }
 
-        public IEnumerable<TEntity> GetAllPaged(int pageNumber, int numberOfItemsPerPage)
+        public async Task<IEnumerable<TEntity>> GetAllPagedAsync(int pageNumber, int numberOfItemsPerPage)
         {
             var entityCount = this._session.Query<TEntity>().Count();
-            int startingIndex = (pageNumber - 1) * numberOfItemsPerPage;
-            int endIndex = Math.Min(startingIndex + numberOfItemsPerPage, entityCount);
+            int startIndex = (pageNumber - 1) * numberOfItemsPerPage;
+            int endIndex = Math.Min(startIndex + numberOfItemsPerPage, entityCount);
 
-            var entities = this._session.Query<TEntity>().ToArray();
-            for (int i = startingIndex; i < endIndex; i++)
-            {
-                yield return entities[i];
-            }
+            var entities = await this._session.Query<TEntity>().ToListAsync();
+
+            var acc = new List<TEntity>();
+            for (int i = startIndex; i < endIndex; i++)
+                acc.Add(entities[i]);
+            return acc;
         }
 
-        public IEnumerable<TEntity> GetAll()
+        public async Task<IEnumerable<TEntity>> GetAllAsync()
         {
-            return _session.Query<TEntity>().ToList();
+            return await _session.Query<TEntity>().ToListAsync();
         }
 
-        public void Add(TEntity entity)
+        public async Task AddAsync(TEntity entity)
         {
             _session.Store<TEntity>(entity);
-            _session.SaveChanges();
+            await _session.SaveChangesAsync();
         }
 
-        public void Remove(Guid id)
+        public async Task RemoveAsync(Guid id)
         {
             _session.Delete<TEntity>(id);
-            _session.SaveChanges();
+            await _session.SaveChangesAsync();
         }
     }
 }

@@ -21,39 +21,39 @@ namespace Daze.Api.Controllers
         }
 
         [HttpGet, Route("{id:guid?}")]
-        public IActionResult Get(Guid? id, int? page, int? pageSize)
+        public async Task<IActionResult> Get(Guid? id, int? page, int? pageSize)
         {
             if (id.HasValue)
             {
-                var skill = this._skillRepository.Find(id.Value);
+                var skill = await this._skillRepository.FindAsync(id.Value);
                 return Json(skill);
             }
 
             var skills = (page.HasValue && pageSize.HasValue) ?
-                this._skillRepository.GetAllPaged(page.Value, pageSize.Value) :
-                this._skillRepository.GetAll();
+                await this._skillRepository.GetAllPagedAsync(page.Value, pageSize.Value) :
+                await this._skillRepository.GetAllAsync();
 
             return Json(skills);
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody,]Skill skill)
+        public async Task<IActionResult> Post([FromBody,]Skill skill)
         {
             if (skill == null || !ModelState.IsValid)
             {
                 return BadRequest();
             }
 
-            this._skillRepository.Add(skill);
+            await this._skillRepository.AddAsync(skill);
             this._unitOfWork.CommitChanges();
 
             return Ok();
         }
 
         [HttpDelete, Route("{id:guid}")]
-        public IActionResult Delete(Guid id)
+        public async Task<IActionResult> Delete(Guid id)
         {
-            this._skillRepository.Remove(id);
+            await this._skillRepository.RemoveAsync(id);
             this._unitOfWork.CommitChanges();
 
             return Ok();

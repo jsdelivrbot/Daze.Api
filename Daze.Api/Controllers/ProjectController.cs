@@ -20,39 +20,39 @@ namespace Daze.Api.Controllers
         }
 
         [HttpGet, Route("{id:guid?}")]
-        public IActionResult Get(Guid? id, int? page, int? pageSize)
+        public async Task<IActionResult> Get(Guid? id, int? page, int? pageSize)
         {
             if (id.HasValue)
             {
-                var project = this._projectRepository.Find(id.Value);
+                var project = await this._projectRepository.FindAsync(id.Value);
                 return Json(project);
             }
 
             var projects = (page.HasValue && pageSize.HasValue) ?
-                this._projectRepository.GetAllPaged(page.Value, pageSize.Value) :
-                this._projectRepository.GetAll();
+                await this._projectRepository.GetAllPagedAsync(page.Value, pageSize.Value) :
+                await this._projectRepository.GetAllAsync();
 
             return Json(projects);
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody] Project project)
+        public async Task<IActionResult> Post([FromBody] Project project)
         {
             if (project == null || !ModelState.IsValid)
             {
                 return BadRequest();
             }
 
-            this._projectRepository.Add(project);
-
+            await this._projectRepository.AddAsync(project);
             this._unitOfWork.CommitChanges();
+
             return Ok();
         }
 
         [HttpDelete, Route("{id:guid}")]
-        public IActionResult Delete(Guid id)
+        public async Task<IActionResult> Delete(Guid id)
         {
-            this._projectRepository.Remove(id);
+            await this._projectRepository.RemoveAsync(id);
             this._unitOfWork.CommitChanges();
 
             return Ok();

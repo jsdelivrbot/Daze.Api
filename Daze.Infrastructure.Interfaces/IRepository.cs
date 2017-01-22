@@ -7,11 +7,11 @@ namespace Daze.Infrastructure.Interfaces
 {
     public interface IRepository<TEntity>
     {
-        IEnumerable<TEntity> GetAllPaged(int pageNumber, int numberOfItemsPerPage);
-        IEnumerable<TEntity> GetAll();
-        TEntity Find(Guid id);
+        Task<IEnumerable<TEntity>> GetAllPagedAsync(int pageNumber, int numberOfItemsPerPage);
+        Task<IEnumerable<TEntity>> GetAllAsync();
+        Task<TEntity> FindAsync(Guid id);
 
-        void Add(TEntity entity);
-        void Remove(Guid entity);
+        Task AddAsync(TEntity entity);
+        Task RemoveAsync(Guid entity);
     }
 }

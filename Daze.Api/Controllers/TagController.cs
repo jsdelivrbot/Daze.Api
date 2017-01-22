@@ -19,40 +19,40 @@ namespace Daze.Api.Controllers
         }
 
         [HttpGet, Route("api/tag/{id:guid?}")]
-        public IActionResult Get(Guid? id, int? page, int? pageSize)
+        public async Task<IActionResult> Get(Guid? id, int? page, int? pageSize)
         {
             if (id.HasValue)
             {
-                var tag = _tagRepository.Find(id.Value);
+                var tag = await this._tagRepository.FindAsync(id.Value);
                 return Json(tag);
             }
 
             var tags = (page.HasValue && pageSize.HasValue) ?
-                this._tagRepository.GetAllPaged(page.Value, pageSize.Value) :
-                this._tagRepository.GetAll();
+                await this._tagRepository.GetAllPagedAsync(page.Value, pageSize.Value) :
+                await this._tagRepository.GetAllAsync();
 
             return Json(tags);
         }
 
         [HttpPost, Route("api/tag")]
-        public IActionResult Post([FromBody]Tag tag)
+        public async Task<IActionResult> Post([FromBody]Tag tag)
         {
             if (tag == null || !ModelState.IsValid)
             {
                 return BadRequest();
             }
 
-            _tagRepository.Add(tag);
-            _unitOfWork.CommitChanges();
+            await this._tagRepository.AddAsync(tag);
+            this._unitOfWork.CommitChanges();
 
             return Ok();
         }
 
         [HttpDelete, Route("api/tag/{id:guid}")]
-        public IActionResult Delete(Guid id)
+        public async Task<IActionResult> Delete(Guid id)
         {
-            _tagRepository.Remove(id);
-            _unitOfWork.CommitChanges();
+            await this._tagRepository.RemoveAsync(id);
+            this._unitOfWork.CommitChanges();
 
             return Ok();
         }

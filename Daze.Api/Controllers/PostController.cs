@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Daze.Infrastructure.Interfaces;
 using Daze.Domain;
+using System.Threading.Tasks;
 
 namespace Daze.Api.Controllers
 {
@@ -17,40 +18,40 @@ namespace Daze.Api.Controllers
         }
 
         [HttpGet, Route("{id:guid?}")]
-        public IActionResult Get(Guid? id, int? page, int? pageSize)
+        public async Task<IActionResult> Get(Guid? id, int? page, int? pageSize)
         {
             if (id.HasValue)
             {
-                var post = _postRepository.Find(id.Value);
+                var post = await this._postRepository.FindAsync(id.Value);
                 return Json(post);
             }
 
             var posts = (page.HasValue && pageSize.HasValue) ?
-                this._postRepository.GetAllPaged(page.Value, pageSize.Value) :
-                this._postRepository.GetAll();
+                await this._postRepository.GetAllPagedAsync(page.Value, pageSize.Value) :
+                await this._postRepository.GetAllAsync();
 
             return Json(posts);
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody]Post post)
+        public async Task<IActionResult> Post([FromBody]Post post)
         {
             if (post == null || !ModelState.IsValid)
             {
                 return BadRequest();
             }
 
-            _postRepository.Add(post);
-            _unitOfWork.CommitChanges();
+            await this._postRepository.AddAsync(post);
+            this._unitOfWork.CommitChanges();
 
             return Ok();
         }
 
         [HttpDelete, Route("{id:guid}")]
-        public IActionResult Delete(Guid id)
+        public async Task<IActionResult> Delete(Guid id)
         {
-            _postRepository.Remove(id);
-            _unitOfWork.CommitChanges();
+            await this._postRepository.RemoveAsync(id);
+            this._unitOfWork.CommitChanges();
 
             return Ok();
         }

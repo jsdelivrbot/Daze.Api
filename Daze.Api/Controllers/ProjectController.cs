@@ -11,12 +11,10 @@ namespace Daze.Api.Controllers
     [Route("api/project/")]
     public class ProjectController : Controller
     {
-        private readonly IUnitOfWork _unitOfWork;
         private readonly IProjectRepository _projectRepository;
-        public ProjectController(IUnitOfWork unitOfWork)
+        public ProjectController(IProjectRepository projectRepository)
         {
-            this._unitOfWork = unitOfWork;
-            this._projectRepository = this._unitOfWork.ProjectRepo;
+            this._projectRepository = projectRepository;
         }
 
         [HttpGet, Route("{id:guid?}")]
@@ -44,17 +42,32 @@ namespace Daze.Api.Controllers
             }
 
             await this._projectRepository.AddAsync(project);
-            this._unitOfWork.CommitChanges();
+            return Ok(project);
+        }
 
-            return Ok();
+        [HttpPut]
+        public async Task<IActionResult> Put([FromBody] Project project)
+        {
+            if (project == null || !ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
+            var existingProject = await this._projectRepository.FindAsync(project.ID);
+            if (existingProject != null)
+            {
+                await this._projectRepository.RemoveAsync(project.ID);
+                await this._projectRepository.AddAsync(project);
+            }
+
+            var updatedProject = await this._projectRepository.FindAsync(project.ID);
+            return Ok(updatedProject);
         }
 
         [HttpDelete, Route("{id:guid}")]
         public async Task<IActionResult> Delete(Guid id)
         {
             await this._projectRepository.RemoveAsync(id);
-            this._unitOfWork.CommitChanges();
-
             return Ok();
         }
     }

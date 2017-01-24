@@ -4,6 +4,7 @@ using Marten;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace Daze.Infrastructure.Repositories
@@ -14,12 +15,12 @@ namespace Daze.Infrastructure.Repositories
         protected readonly IDocumentSession _session;
         public Repository(IDocumentStore store)
         {
-            _session = store.OpenSession(DocumentTracking.DirtyTracking);
+            this._session = store.OpenSession(DocumentTracking.DirtyTracking);
         }
 
         public async Task<TEntity> FindAsync(Guid id)
         {
-            return await _session.Query<TEntity>().FirstOrDefaultAsync(q => q.ID == id);
+            return await this._session.Query<TEntity>().FirstOrDefaultAsync(q => q.ID == id);
         }
 
         public async Task<IEnumerable<TEntity>> GetAllPagedAsync(int pageNumber, int numberOfItemsPerPage)
@@ -38,19 +39,19 @@ namespace Daze.Infrastructure.Repositories
 
         public async Task<IEnumerable<TEntity>> GetAllAsync()
         {
-            return await _session.Query<TEntity>().ToListAsync();
+            return await this._session.Query<TEntity>().ToListAsync();
         }
 
         public async Task AddAsync(TEntity entity)
         {
-            _session.Store<TEntity>(entity);
-            await _session.SaveChangesAsync();
+            this._session.Store<TEntity>(entity);
+            await this._session.SaveChangesAsync();
         }
 
         public async Task RemoveAsync(Guid id)
         {
-            _session.Delete<TEntity>(id);
-            await _session.SaveChangesAsync();
+            this._session.Delete<TEntity>(id);
+            await this._session.SaveChangesAsync();
         }
     }
 }

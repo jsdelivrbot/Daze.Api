@@ -8,5 +8,6 @@ namespace Daze.Infrastructure.Interfaces
 {
     public interface IPostRepository : IRepository<Post>
     {
+        Task PatchPostAsync(Post entity);
     }
 }

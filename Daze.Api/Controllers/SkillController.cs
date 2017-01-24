@@ -12,12 +12,10 @@ namespace Daze.Api.Controllers
     [Route("api/skill/")]
     public class SkillController : Controller
     {
-        private IUnitOfWork _unitOfWork;
         private ISkillRepository _skillRepository;
-        public SkillController(IUnitOfWork unitOfWork)
+        public SkillController(ISkillRepository skillRepository)
         {
-            this._unitOfWork = unitOfWork;
-            this._skillRepository = unitOfWork.SkillRepo;
+            this._skillRepository = skillRepository;
         }
 
         [HttpGet, Route("{id:guid?}")]
@@ -37,7 +35,7 @@ namespace Daze.Api.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody,]Skill skill)
+        public async Task<IActionResult> Post([FromBody]Skill skill)
         {
             if (skill == null || !ModelState.IsValid)
             {
@@ -45,17 +43,32 @@ namespace Daze.Api.Controllers
             }
 
             await this._skillRepository.AddAsync(skill);
-            this._unitOfWork.CommitChanges();
+            return Ok(skill);
+        }
 
-            return Ok();
+        [HttpPut]
+        public async Task<IActionResult> Put([FromBody] Skill skill)
+        {
+            if (skill == null || !ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
+            var existingSkill = await this._skillRepository.FindAsync(skill.ID);
+            if (existingSkill != null)
+            {
+                await this._skillRepository.RemoveAsync(skill.ID);
+                await this._skillRepository.AddAsync(skill);
+            }
+
+            var updatedSkill = await this._skillRepository.FindAsync(skill.ID);
+            return Ok(updatedSkill);
         }
 
         [HttpDelete, Route("{id:guid}")]
         public async Task<IActionResult> Delete(Guid id)
         {
             await this._skillRepository.RemoveAsync(id);
-            this._unitOfWork.CommitChanges();
-
             return Ok();
         }
     }

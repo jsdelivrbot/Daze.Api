@@ -9,12 +9,10 @@ namespace Daze.Api.Controllers
     [Route("api/post/")]
     public class PostController : Controller
     {
-        private readonly IUnitOfWork _unitOfWork;
         private readonly IPostRepository _postRepository;
-        public PostController(IUnitOfWork unitOfWork)
+        public PostController(IPostRepository postRepository)
         {
-            _unitOfWork = unitOfWork;
-            _postRepository = _unitOfWork.PostRepo;
+            this._postRepository = postRepository;
         }
 
         [HttpGet, Route("{id:guid?}")]
@@ -42,7 +40,37 @@ namespace Daze.Api.Controllers
             }
 
             await this._postRepository.AddAsync(post);
-            this._unitOfWork.CommitChanges();
+            return Ok(post);
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> Put([FromBody] Post post)
+        {
+            if (post == null || !ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
+            var existingPost = await this._postRepository.FindAsync(post.ID);
+            if (existingPost != null)
+            {
+                await this._postRepository.RemoveAsync(post.ID);
+                await this._postRepository.AddAsync(post);
+            }
+
+            var updatedPost = await this._postRepository.FindAsync(post.ID);
+            return Ok(updatedPost);
+        }
+
+        [HttpPatch]
+        public async Task<IActionResult> Patch([FromBody]Post post)
+        {
+            if (post == null || !ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
+            await this._postRepository.PatchPostAsync(post);
 
             return Ok();
         }
@@ -51,8 +79,6 @@ namespace Daze.Api.Controllers
         public async Task<IActionResult> Delete(Guid id)
         {
             await this._postRepository.RemoveAsync(id);
-            this._unitOfWork.CommitChanges();
-
             return Ok();
         }
     }

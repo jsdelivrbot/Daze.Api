@@ -8,17 +8,16 @@ using System.Threading.Tasks;
 
 namespace Daze.Api.Controllers
 {
+    [Route("api/tag/")]
     public class TagController : Controller
     {
-        private readonly IUnitOfWork _unitOfWork; // fix uow 
         private readonly ITagRepository _tagRepository;
-        public TagController(IUnitOfWork unitOfWork)
+        public TagController(ITagRepository tagRepository)
         {
-            _unitOfWork = unitOfWork;
-            _tagRepository = _unitOfWork.TagRepo;
+            _tagRepository = tagRepository;
         }
 
-        [HttpGet, Route("api/tag/{id:guid?}")]
+        [HttpGet, Route("{id:guid?}")]
         public async Task<IActionResult> Get(Guid? id, int? page, int? pageSize)
         {
             if (id.HasValue)
@@ -34,7 +33,7 @@ namespace Daze.Api.Controllers
             return Json(tags);
         }
 
-        [HttpPost, Route("api/tag")]
+        [HttpPost]
         public async Task<IActionResult> Post([FromBody]Tag tag)
         {
             if (tag == null || !ModelState.IsValid)
@@ -43,17 +42,32 @@ namespace Daze.Api.Controllers
             }
 
             await this._tagRepository.AddAsync(tag);
-            this._unitOfWork.CommitChanges();
-
-            return Ok();
+            return Ok(tag);
         }
 
-        [HttpDelete, Route("api/tag/{id:guid}")]
+        [HttpPut]
+        public async Task<IActionResult> Put([FromBody] Tag tag)
+        {
+            if (tag == null || !ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
+            var existingTag = await this._tagRepository.FindAsync(tag.ID);
+            if (existingTag != null)
+            {
+                await this._tagRepository.RemoveAsync(tag.ID);
+                await this._tagRepository.AddAsync(tag);
+            }
+
+            var updatedTag = await this._tagRepository.FindAsync(tag.ID);
+            return Ok(updatedTag);
+        }
+
+        [HttpDelete, Route("{id:guid}")]
         public async Task<IActionResult> Delete(Guid id)
         {
             await this._tagRepository.RemoveAsync(id);
-            this._unitOfWork.CommitChanges();
-
             return Ok();
         }
     }

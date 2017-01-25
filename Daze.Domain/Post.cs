@@ -14,5 +14,23 @@ namespace Daze.Domain
         public DateTime ModifiedAt { get; set; }
 
         public virtual ICollection<Tag> Tags { get; set; }
+
+        public static bool operator ==(Post x, Post y)
+        {
+            if (x?.Tags != null && y?.Tags != null)
+            {
+                return x.Tags.SequenceEqual(y.Tags, new TagEqualityComparer());
+            }
+            return false;
+        }
+
+        public static bool operator !=(Post x, Post y)
+        {
+            if (x?.Tags != null && y?.Tags != null)
+            {
+                return !x.Tags.SequenceEqual(y.Tags, new TagEqualityComparer());
+            }
+            return true;
+        }
     }
 }

@@ -46,20 +46,27 @@ namespace Daze.Api.Controllers
         [HttpPut]
         public async Task<IActionResult> Put([FromBody] Post post)
         {
-            if (post == null || !ModelState.IsValid)
+            try
             {
-                return BadRequest();
-            }
+                if (post == null || !ModelState.IsValid)
+                {
+                    return BadRequest();
+                }
 
-            var existingPost = await this._postRepository.FindAsync(post.ID);
-            if (existingPost != null)
+                var existingPost = await this._postRepository.FindAsync(post.ID);
+                if (existingPost != null && existingPost != post)
+                {
+                    await this._postRepository.RemoveAsync(post.ID);
+                    await this._postRepository.AddAsync(post);
+                }
+
+                var updatedPost = await this._postRepository.FindAsync(post.ID);
+                return Ok(updatedPost);
+            }
+            catch (Exception ex)
             {
-                await this._postRepository.RemoveAsync(post.ID);
-                await this._postRepository.AddAsync(post);
+                throw ex;
             }
-
-            var updatedPost = await this._postRepository.FindAsync(post.ID);
-            return Ok(updatedPost);
         }
 
         [HttpPatch]

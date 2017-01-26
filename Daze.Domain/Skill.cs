@@ -13,5 +13,31 @@ namespace Daze.Domain
         public string FocusArea { get; set; }
 
         public ICollection<Course> Courses { get; set; }
+
+        public static bool operator ==(Skill x, Skill y)
+        {
+            if (x?.Courses != null && y?.Courses != null)
+            {
+                return x?.Name == y?.Name &&
+                    x?.Level == y?.Level &&
+                    x?.FocusArea == y?.FocusArea &&
+                    x.Courses.SequenceEqual(y.Courses, new CourseEqualityComparer());
+            }
+
+            return false;
+        }
+
+        public static bool operator !=(Skill x, Skill y)
+        {
+            if (x?.Courses != null && y?.Courses != null)
+            {
+                return !(x?.Name == y?.Name &&
+                    x?.Level == y?.Level &&
+                    x?.FocusArea == y?.FocusArea &&
+                    x.Courses.SequenceEqual(y.Courses, new CourseEqualityComparer()));
+            }
+
+            return true;
+        }
     }
 }

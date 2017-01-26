@@ -19,18 +19,24 @@ namespace Daze.Domain
         {
             if (x?.Tags != null && y?.Tags != null)
             {
-                return x.Tags.SequenceEqual(y.Tags, new TagEqualityComparer());
+                return x?.Title == y?.Title &&
+                    x?.Content == y?.Content &&
+                    x.Tags.SequenceEqual(y.Tags, new TagEqualityComparer());
             }
-            return false;
+
+            return (x?.Title == y?.Title && x?.Content == y?.Content);
         }
 
         public static bool operator !=(Post x, Post y)
         {
             if (x?.Tags != null && y?.Tags != null)
             {
-                return !x.Tags.SequenceEqual(y.Tags, new TagEqualityComparer());
+                return !(x?.Title == y?.Title &&
+                    x?.Content == y?.Content &&
+                    x.Tags.SequenceEqual(y.Tags, new TagEqualityComparer()));
             }
-            return true;
+
+            return !(x?.Title == y?.Title && x?.Content == y?.Content);
         }
     }
 }

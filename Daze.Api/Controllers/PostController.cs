@@ -18,17 +18,25 @@ namespace Daze.Api.Controllers
         [HttpGet, Route("{id:guid?}")]
         public async Task<IActionResult> Get(Guid? id, int? page, int? pageSize)
         {
-            if (id.HasValue)
+            try
             {
-                var post = await this._postRepository.FindAsync(id.Value);
-                return Json(post);
+                if (id.HasValue)
+                {
+                    var post = await this._postRepository.FindAsync(id.Value);
+                    return Json(post);
+                }
+
+                var posts = (page.HasValue && pageSize.HasValue) ?
+                    await this._postRepository.GetAllPagedAsync(page.Value, pageSize.Value) :
+                    await this._postRepository.GetAllAsync();
+
+                return Json(posts);
+
             }
-
-            var posts = (page.HasValue && pageSize.HasValue) ?
-                await this._postRepository.GetAllPagedAsync(page.Value, pageSize.Value) :
-                await this._postRepository.GetAllAsync();
-
-            return Json(posts);
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         [HttpPost]

@@ -8,5 +8,6 @@ namespace Daze.Infrastructure.Interfaces
 {
     public interface ISkillRepository : IRepository<Skill>
     {
+        Task PatchSkillAsync(Skill skill);
     }
 }

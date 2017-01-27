@@ -8,5 +8,6 @@ namespace Daze.Infrastructure.Interfaces
 {
     public interface IProjectRepository : IRepository<Project>
     {
+        Task PatchProjectAsync(Project project);
     }
 }

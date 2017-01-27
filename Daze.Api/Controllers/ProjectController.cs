@@ -64,6 +64,20 @@ namespace Daze.Api.Controllers
             return Ok(updatedProject);
         }
 
+        [HttpPatch]
+        public async Task<IActionResult> Patch([FromBody] Project project)
+        {
+            if (project == null || !ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
+            await this._projectRepository.PatchProjectAsync(project);
+            var patchedProject = await this._projectRepository.FindAsync(project.ID);
+
+            return Ok(patchedProject);
+        }
+
         [HttpDelete, Route("{id:guid}")]
         public async Task<IActionResult> Delete(Guid id)
         {

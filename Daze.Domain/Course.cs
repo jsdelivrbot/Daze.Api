@@ -10,5 +10,16 @@ namespace Daze.Domain
         public Guid ID { get; set; }
         public string CourseTag { get; set; }
         public string CourseTitle { get; set; }
+
+        public static bool operator ==(Course x, Course y)
+        {
+            return x?.CourseTag == y?.CourseTag &&
+                x?.CourseTitle == y?.CourseTitle;
+        }
+        public static bool operator !=(Course x, Course y)
+        {
+            return !(x?.CourseTag == y?.CourseTag &&
+             x?.CourseTitle == y?.CourseTitle);
+        }
     }
 }

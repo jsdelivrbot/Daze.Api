@@ -48,33 +48,28 @@ namespace Daze.Api.Controllers
             }
 
             await this._postRepository.AddAsync(post);
-            return Ok(post);
+            var insertedPost = await this._postRepository.FindAsync(post.ID);
+
+            return Ok(insertedPost);
         }
 
         [HttpPut]
         public async Task<IActionResult> Put([FromBody] Post post)
         {
-            try
+            if (post == null || !ModelState.IsValid)
             {
-                if (post == null || !ModelState.IsValid)
-                {
-                    return BadRequest();
-                }
-
-                var existingPost = await this._postRepository.FindAsync(post.ID);
-                if (existingPost != null && existingPost != post)
-                {
-                    await this._postRepository.RemoveAsync(post.ID);
-                    await this._postRepository.AddAsync(post);
-                }
-
-                var updatedPost = await this._postRepository.FindAsync(post.ID);
-                return Ok(updatedPost);
+                return BadRequest();
             }
-            catch (Exception ex)
+
+            var existingPost = await this._postRepository.FindAsync(post.ID);
+            if (existingPost != null && existingPost != post)
             {
-                throw ex;
+                await this._postRepository.RemoveAsync(post.ID);
+                await this._postRepository.AddAsync(post);
             }
+
+            var updatedPost = await this._postRepository.FindAsync(post.ID);
+            return Ok(updatedPost);
         }
 
         [HttpPatch]
@@ -86,8 +81,9 @@ namespace Daze.Api.Controllers
             }
 
             await this._postRepository.PatchPostAsync(post);
+            var patchedPost = this._postRepository.FindAsync(post.ID);
 
-            return Ok();
+            return Ok(patchedPost);
         }
 
         [HttpDelete, Route("{id:guid}")]

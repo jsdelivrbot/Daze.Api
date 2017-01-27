@@ -64,6 +64,20 @@ namespace Daze.Api.Controllers
             return Ok(updatedTag);
         }
 
+        [HttpPatch]
+        public async Task<IActionResult> Patch([FromBody] Tag tag)
+        {
+            if (tag == null || !ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
+            await this._tagRepository.PatchTagAsync(tag);
+            var patchedTag = await this._tagRepository.FindAsync(tag.ID);
+
+            return Ok();
+        }
+
         [HttpDelete, Route("{id:guid}")]
         public async Task<IActionResult> Delete(Guid id)
         {

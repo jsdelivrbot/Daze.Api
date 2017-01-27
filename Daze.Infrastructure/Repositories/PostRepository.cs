@@ -15,27 +15,36 @@ namespace Daze.Infrastructure.Repositories
         {
         }
 
-        public async Task PatchPostAsync(Post entity)
+        public async Task PatchPostAsync(Post post)
         {
-            var loadedPost = await this._session.LoadAsync<Post>(entity.ID);
+            var loadedPost = await this._session.LoadAsync<Post>(post.ID);
 
-            if (entity?.Title != loadedPost?.Title)
+            if (post?.Title != loadedPost?.Title)
             {
-                loadedPost.Title = entity?.Title;
+                loadedPost.Title = post?.Title;
             }
 
-            if (entity?.Content != loadedPost?.Content)
+            if (post?.Content != loadedPost?.Content)
             {
-                loadedPost.Content = entity?.Content;
+                loadedPost.Content = post?.Content;
             }
 
-            if (entity?.Tags?.SequenceEqual(loadedPost?.Tags, new TagEqualityComparer()) ?? false)
+            if (post?.Tags?.SequenceEqual(loadedPost?.Tags, new TagEqualityComparer()) ?? false)
             {
-                entity.Tags = loadedPost.Tags;
+                post.Tags = loadedPost.Tags;
+            }
+
+            if (post?.CreatedAt != loadedPost?.CreatedAt)
+            {
+                post.CreatedAt = loadedPost.CreatedAt;
+            }
+
+            if (post?.ModifiedAt != loadedPost?.ModifiedAt)
+            {
+                post.ModifiedAt = loadedPost.ModifiedAt;
             }
 
             await this._session.SaveChangesAsync();
         }
-
     }
 }

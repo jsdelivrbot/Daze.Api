@@ -65,6 +65,20 @@ namespace Daze.Api.Controllers
             return Ok(updatedSkill);
         }
 
+        [HttpPatch]
+        public async Task<IActionResult> Patch([FromBody] Skill skill)
+        {
+            if (skill == null || !ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
+            await this._skillRepository.PatchSkillAsync(skill);
+            var patchedSkill = this._skillRepository.FindAsync(skill.ID);
+
+            return Ok(patchedSkill);
+        }
+
         [HttpDelete, Route("{id:guid}")]
         public async Task<IActionResult> Delete(Guid id)
         {

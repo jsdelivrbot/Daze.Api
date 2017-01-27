@@ -14,16 +14,16 @@ namespace Daze.Domain
 
         public static bool operator ==(Project x, Project y)
         {
-            return x.Name == y.Name &&
-                x.Description == y.Description &&
-                x.Url == y.Url;
+            return x?.Name == y?.Name &&
+                x?.Description == y?.Description &&
+                x?.Url == y?.Url;
         }
 
         public static bool operator !=(Project x, Project y)
         {
-            return !(x.Name == y.Name &&
-                x.Description == y.Description &&
-                x.Url == y.Url);
+            return !(x?.Name == y?.Name &&
+                x?.Description == y?.Description &&
+                x?.Url == y?.Url);
         }
     }
 }

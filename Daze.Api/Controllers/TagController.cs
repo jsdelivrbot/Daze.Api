@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 
 namespace Daze.Api.Controllers
@@ -31,6 +32,18 @@ namespace Daze.Api.Controllers
                 await this._tagRepository.GetAllAsync();
 
             return Json(tags);
+        }
+
+        [HttpGet, Route("{id:guid}")]
+        public async Task<IActionResult> Head(Guid id)
+        {
+            var tag = await this._tagRepository.FindAsync(id);
+            if (tag == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(); 
         }
 
         [HttpPost]

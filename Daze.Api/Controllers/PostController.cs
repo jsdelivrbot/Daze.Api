@@ -39,6 +39,18 @@ namespace Daze.Api.Controllers
             }
         }
 
+        [HttpHead, Route("{id:guid}")]
+        public async Task<IActionResult> Head(Guid id)
+        {
+            var post = await this._postRepository.FindAsync(id);
+            if (post == null)
+            {
+                return NotFound();
+            }
+
+            return Ok();
+        }
+
         [HttpPost]
         public async Task<IActionResult> Post([FromBody]Post post)
         {

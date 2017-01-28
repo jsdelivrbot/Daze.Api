@@ -34,6 +34,18 @@ namespace Daze.Api.Controllers
             return Json(skills);
         }
 
+        [HttpHead, Route("{id:guid}")]
+        public async Task<IActionResult> Head(Guid id)
+        {
+            var skill = await this._skillRepository.FindAsync(id);
+            if (skill == null)
+            {
+                return NotFound();
+            }
+
+            return Ok();
+        }
+
         [HttpPost]
         public async Task<IActionResult> Post([FromBody]Skill skill)
         {

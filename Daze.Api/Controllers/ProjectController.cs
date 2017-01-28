@@ -33,6 +33,18 @@ namespace Daze.Api.Controllers
             return Json(projects);
         }
 
+        [HttpHead, Route("{id:guid}")]
+        public async Task<IActionResult> Head(Guid id)
+        {
+            var project = await this._projectRepository.FindAsync(id);
+            if (project == null)
+            {
+                return NotFound();
+            }
+
+            return Ok();
+        }
+
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] Project project)
         {

@@ -35,6 +35,8 @@ namespace Daze.Api
             services.AddTransient<IUnitOfWork, UnitOfWork>();
             services.AddTransient<IPostRepository, PostRepository>();
             services.AddTransient<ITagRepository, TagRepository>();
+            services.AddTransient<IProjectRepository, ProjectRepository>();
+            services.AddTransient<ISkillRepository, SkillRepository>();
             services.AddScoped<IDocumentStore>(provider =>
                 DocumentStore.For("host=localhost;database=daze_api;password=daze;username=daze")
             );
@@ -47,7 +49,7 @@ namespace Daze.Api
             app.UseCors("CorsPolicy");
 
             app.UseMvc(options =>
-                options.MapRoute("DefaultWebApi", "api/{controller=Post}/{action=Get}")
+                options.MapRoute("DefaultWebApi", "api/{controller}/{action}")
             );
 
             if (env.IsDevelopment())

@@ -16,7 +16,7 @@ export class AdminProjectsCreateComponent implements OnInit {
 
     onFormSubmit(ev: MouseEvent) {
         if (this.project) {
-            this._projectService.addProject(this.project)
+            this._projectService.createProject(this.project)
                 .subscribe(r => console.log("project was inserted"),
                 err => console.log(err),
                 () => { });

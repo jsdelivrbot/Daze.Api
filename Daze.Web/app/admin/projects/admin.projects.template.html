@@ -1,10 +1,10 @@
 <spinner *ngIf="_isLoading"></spinner>
 
-<ul class="actions">
+<ul *ngIf="!_isLoading" class="actions">
     <a routerLink="/admin/projects/create">Create a new Project</a>
 </ul>
 
-<div class="masterDetail">
+<div *ngIf="!_isLoading" class="masterDetail">
     <section class="master">
         <ul>
             <li *ngFor="let project of _projects">
@@ -27,6 +27,9 @@
                 <button (click)="onProjectDelete(_selectedProject.id)" type="button">
                     delete this project
                 </button>
+                <a routerLink="/admin/projects/update/{{_selectedProject.id}}" class="blogLink">
+                    <span>update this post</span>
+                </a>
             </div>
         </article>
     </section>

@@ -1,4 +1,4 @@
-import { Inject, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PostService } from '../../../shared/services/post.service';
 import { Post } from '../../../shared/models/post.model';
@@ -15,9 +15,8 @@ export class AdminPostsCreateComponent implements OnInit {
         private _postService: PostService) { }
 
     onFormSubmit(ev: MouseEvent) {
-        console.log(this.post);
         if (this.post) {
-            this._postService.addPost(this.post)
+            this._postService.createPost(this.post)
                 .subscribe(r => console.log("post was inserted!"),
                 err => console.log(err),
                 () => { });

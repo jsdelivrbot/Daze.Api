@@ -15,38 +15,44 @@ export class PostService {
     constructor(private readonly _http: Http) { }
 
     getPosts() {
-        return this._http
-            .get(PostService.requestUri)
+        return this._http.get(PostService.requestUri)
             .retry(2)
             .map(res => res.json() as Array<IPost>)
             .exhaustMap(posts => posts);
     }
 
     getPagedPosts(page: number, pageSize: number) {
-        return this._http
-            .get(`${PostService.requestUri}?page=${page}&pageSize=${pageSize}`)
+        return this._http.get(`${PostService.requestUri}?page=${page}&pageSize=${pageSize}`)
             .map(res => res.json() as Array<IPost>)
             .exhaustMap(posts => posts);
     }
 
     async getPostsArrayified() {
-        return await this._http
-            .get(PostService.requestUri)
+        return await this._http.get(PostService.requestUri)
             .retry(2)
             .map(res => res.json() as Array<IPost>)
             .toPromise();
     }
 
-    getPostById(id: string) {
+    findPostById(id: string) {
         return this._http.get(`${PostService.requestUri}${id}`)
             .retry(2)
             .map(res => res.json() as IPost);
     }
 
-    addPost(post: IPost) {
+    createPost(post: IPost) {
         let headers = new Headers();
         headers.append('content-type', 'application/json');
         return this._http.post(PostService.requestUri, post, {
+            headers: headers
+        });
+    }
+
+    /** uses http post behind the scenes */
+    updatePost(post: IPost) {
+        let headers = new Headers();
+        headers.append('content-type', 'application/json');
+        return this._http.put(PostService.requestUri, post, {
             headers: headers
         });
     }

@@ -1,12 +1,14 @@
 <spinner *ngIf="_isLoading"></spinner>
 
-<ul class="actions">
+<ul *ngIf="!_isLoading" class="actions">
     <li>
-        <a routerLink="/admin/posts/create">Create a new Post</a>
+        <a routerLink="/admin/posts/create" class="blogLink">
+            <span>Create a new Post</span>
+        </a>
     </li>
 </ul>
 
-<div class="masterDetail">
+<div *ngIf="!_isLoading" class="masterDetail">
     <section class="master">
         <ul>
             <li *ngFor="let post of _posts">
@@ -23,12 +25,15 @@
         <article *ngIf="_selectedPost">
             <h3>{{_selectedPost.title}}</h3>
             <div>
-                {{_selectedPost.content}}
+                <p>{{_selectedPost.content}}</p>
             </div>
             <div>
                 <button (click)="onPostDelete(_selectedPost.id)" type="button">
-                    delete this post
+                    <span>delete this post</span>
                 </button>
+                <a routerLink="/admin/posts/update/{{_selectedPost.id}}" class="blogLink">
+                    <span>update this post</span>
+                </a>
             </div>
         </article>
     </section>

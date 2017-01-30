@@ -19,8 +19,10 @@ import { UpComponent } from './shared/up/up.component';
 import { AdminComponent } from './admin/admin.component';
 import { AdminPostsComponent } from './admin/posts/admin.posts.component';
 import { AdminPostsCreateComponent } from './admin/posts/create/admin.posts.create.component';
+import { AdminPostsUpdateComponent } from './admin/posts/update/admin.posts.update.component';
 import { AdminProjectsComponent } from './admin/projects/admin.projects.component';
 import { AdminProjectsCreateComponent } from './admin/projects/create/admin.projects.create.component';
+import { AdminProjectsUpdateComponent } from './admin/projects/update/admin.projects.update.component';
 import { AdminSkillsComponent } from './admin/skills/admin.skills.component';
 import { AdminSkillsCreateComponent } from './admin/skills/create/admin.skills.create.component';
 
@@ -35,8 +37,10 @@ const routes = new RoutesBuilder()
     .addRoute('admin', AdminComponent)
     .addRoute('admin/posts', AdminPostsComponent)
     .addRoute('admin/posts/create', AdminPostsCreateComponent)
+    .addRoute('admin/posts/update/:id', AdminPostsUpdateComponent)
     .addRoute('admin/projects', AdminProjectsComponent)
     .addRoute('admin/projects/create', AdminProjectsCreateComponent)
+    .addRoute('admin/projects/update/:id', AdminProjectsUpdateComponent)
     .addRoute('admin/skills', AdminSkillsComponent)
     .addRoute('admin/skills/create', AdminSkillsCreateComponent)
     .addDefault(PostsComponent)
@@ -52,6 +56,7 @@ const routes = new RoutesBuilder()
         RouterModule.forRoot(routes),
         MaterialModule.forRoot()
     ],
+
     declarations: [
         AppComponent,
         LeftNavbarComponent,
@@ -67,8 +72,10 @@ const routes = new RoutesBuilder()
         AdminComponent,
         AdminPostsComponent,
         AdminPostsCreateComponent,
+        AdminPostsUpdateComponent,
         AdminProjectsComponent,
         AdminProjectsCreateComponent,
+        AdminProjectsUpdateComponent,
         AdminSkillsComponent,
         AdminSkillsCreateComponent
     ],

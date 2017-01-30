@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Params, ActivatedRoute, Route } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { PostService } from '../../../shared/services/post.service';
 import IPost = Daze.Interfaces.IPost;
 
@@ -14,10 +14,9 @@ export class PostComponent implements OnInit {
         private router: ActivatedRoute) { }
 
     ngOnInit() {
-        this.router.params.subscribe(params => {
-            const postId = params['id'];
-
-            this.postService.getPostById(postId)
+        this.router.params.subscribe(p => {
+            const postId = p['id'];
+            this.postService.findPostById(postId)
                 .subscribe(post => {
                     this._post = post;
                     console.log(post)

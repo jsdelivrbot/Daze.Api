@@ -1,0 +1,22 @@
+<form [formGroup]="_updateForm" #f (ngSubmit)="onFormSubmit($event)" role="form ">
+    <legend> Update this project </legend>
+
+    <div>
+        <label for="name">Name:</label>
+        <input formControlName="name" id="name" type="text">
+    </div>
+
+    <div>
+        <label for="name">Description</label>
+        <input formControlName="description" id="description" type="text">
+    </div>
+
+    <div>
+        <label for="url">Url:</label>
+        <input formControlName="url" id="url" type="text">
+    </div>
+
+    <button type="submit">
+        <span>update this project</span>
+    </button>
+</form>

@@ -1,0 +1,19 @@
+<form [formGroup]="_updateForm" #f (ngSubmit)="onFormSubmit($event)">
+    <div>
+        <legend>Update this post</legend>
+    </div>
+
+    <div>
+        <label for="title">Title:</label>
+        <input formControlName="title" id="title" type="text">
+    </div>
+
+    <div>
+        <label for="content">Content:</label>
+        <textarea formControlName="content" id="content" cols="30" rows="10"></textarea>
+    </div>
+
+    <div>
+        <button type="submit">Update this post</button>
+    </div>
+</form>

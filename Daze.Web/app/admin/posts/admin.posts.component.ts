@@ -19,12 +19,15 @@ export class AdminPostsComponent {
     }
 
     onPostDelete(id: string) {
-        this._postService.deletePost(id)
-            .subscribe(res => (res.status == 200)
-                ? console.log("post deleted")
-                : console.log("error"));
-        this._posts = this._posts.filter(p => p.id != id);
-        this._selectedPost = null;
+        const confirmation = confirm("Are you sure?");
+        if (confirmation) {
+            this._postService.deletePost(id)
+                .subscribe(res => (res.status == 200) ?
+                    console.log("post deleted") :
+                    console.log("error"));
+            this._posts = this._posts.filter(p => p.id != id);
+            this._selectedPost = null;
+        }
     }
 
     ngOnInit() {

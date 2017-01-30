@@ -17,15 +17,24 @@ export class ProjectService {
             .exhaustMap(projects => projects);
     }
 
-    getProjectsById(id: string) {
-        this._http.get(`${ProjectService.requestUri}${id}`)
+    findProjectById(id: string) {
+        return this._http.get(`${ProjectService.requestUri}${id}`)
             .retry(3)
             .map(res => res.json() as IProject);
     }
 
-    addProject(project: IProject) {
+    createProject(project: IProject) {
         let headers = new Headers();
+        headers.append('content-type', 'application/json');
         return this._http.post(ProjectService.requestUri, project, {
+            headers: headers
+        });
+    }
+
+    updateProject(project: IProject) {
+        let headers = new Headers();
+        headers.append('content-type', 'application/json');
+        return this._http.put(ProjectService.requestUri, project, {
             headers: headers
         });
     }

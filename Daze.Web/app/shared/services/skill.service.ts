@@ -33,6 +33,14 @@ export class SkillService {
             .map(res => res.json() as ISkill);
     }
 
+    updateSkill(skill: ISkill) {
+        let headers = new Headers();
+        headers.append('content-type', 'application/json');
+        return this._http.put(SkillService.requestUri, skill, {
+            headers: headers
+        });
+    }
+
     createSkill(skill: ISkill) {
         let headers = new Headers();
         headers.append('content-type', 'application/json');

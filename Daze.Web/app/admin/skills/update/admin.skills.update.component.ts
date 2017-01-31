@@ -22,8 +22,8 @@ export class AdminSkillsUpdateComponent implements OnInit {
     onFormSubmit(event: MouseEvent) {
         if (this._skill) {
             this._skill.id = this._skillId;
-            this._skillService.updateProject(this._skill)
-                .subscribe(s => console.log('project was updated ', s),
+            this._skillService.updateSkill(this._skill)
+                .subscribe(s => console.log('skill was updated ', s),
                 err => console.log(err),
                 () => { });
         }

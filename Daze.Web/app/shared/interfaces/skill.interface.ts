@@ -1,10 +1,10 @@
 namespace Daze.Interfaces {
 
     export interface ISkill {
-        id?: string;
+        id: string;
         name: string | null;
-        level?: number | null;
-        courses?: Array<ICourse>;
-        focusArea?: string;
+        level: number | null;
+        courses: Array<ICourse>;
+        focusArea: string;
     }
 }

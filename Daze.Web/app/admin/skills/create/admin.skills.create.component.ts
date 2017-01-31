@@ -17,7 +17,7 @@ export class AdminSkillsCreateComponent implements OnInit {
     onFormSubmit(ev: MouseEvent) {
         console.log(this.skill);
         if (this.skill) {
-            this._skillService.addSkill(this.skill)
+            this._skillService.createSkill(this.skill)
                 .subscribe(r => console.log("skill was inserted"),
                 err => console.log(err),
                 () => { });

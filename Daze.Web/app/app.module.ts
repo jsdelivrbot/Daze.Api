@@ -25,6 +25,7 @@ import { AdminProjectsCreateComponent } from './admin/projects/create/admin.proj
 import { AdminProjectsUpdateComponent } from './admin/projects/update/admin.projects.update.component';
 import { AdminSkillsComponent } from './admin/skills/admin.skills.component';
 import { AdminSkillsCreateComponent } from './admin/skills/create/admin.skills.create.component';
+import { AdminSkillsUpdateComponent } from './admin/skills/update/admin.skills.update.component';
 
 import { AppComponent } from './app.component';
 import { RoutesBuilder } from './infrastructure/routesBuilder';
@@ -43,6 +44,7 @@ const routes = new RoutesBuilder()
     .addRoute('admin/projects/update/:id', AdminProjectsUpdateComponent)
     .addRoute('admin/skills', AdminSkillsComponent)
     .addRoute('admin/skills/create', AdminSkillsCreateComponent)
+    .addRoute('admin/skills/update/:id', AdminSkillsUpdateComponent)
     .addDefault(PostsComponent)
     .addNotFound(NotFoundComponent)
     .build();
@@ -77,7 +79,8 @@ const routes = new RoutesBuilder()
         AdminProjectsCreateComponent,
         AdminProjectsUpdateComponent,
         AdminSkillsComponent,
-        AdminSkillsCreateComponent
+        AdminSkillsCreateComponent,
+        AdminSkillsUpdateComponent
     ],
     bootstrap: [AppComponent]
 })

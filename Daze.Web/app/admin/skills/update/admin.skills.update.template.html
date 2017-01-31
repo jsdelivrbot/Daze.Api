@@ -1,0 +1,22 @@
+<form [formGroup]="_updateForm" #f (ngSubmit)="onFormSubmit($event)" role="form ">
+    <legend> Update this Skill </legend>
+
+    <div>
+        <label for="name">Name:</label>
+        <input formControlName="name" id="name" type="text">
+    </div>
+
+    <div>
+        <label for="level">Level</label>
+        <input formControlName="level" id="level" type="number">
+    </div>
+
+    <div>
+        <label for="focusArea">FocusArea:</label>
+        <input formControlName="focusArea" id="focusArea" type="text">
+    </div>
+
+    <button type="submit">
+        <span>update this skill</span>
+    </button>
+</form>

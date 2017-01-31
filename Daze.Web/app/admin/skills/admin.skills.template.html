@@ -1,10 +1,10 @@
 <spinner *ngIf="_isLoading"></spinner>
 
-<ul class="actionsF">
+<ul *ngIf="!_isLoading" class="actions">
     <a routerLink="/admin/skills/create">Create a new Skill</a>
 </ul>
 
-<div class="masterDetail">
+<div *ngIf="!_isLoading" class="masterDetail">
     <section class="master">
         <ul>
             <li *ngFor="let skill of _skills">
@@ -30,8 +30,11 @@
             </div>
             <div>
                 <button (click)="onSkillDelete(_selectedSkill)" type="button">
-                    delete this skill
+                    <span>delete this skill</span>
                 </button>
+                <a routerLink="/admin/skills/update/{{_selectedSkill.id}}" class="blogLink">
+                    <span>update this skill</span>
+                </a>
             </div>
         </article>
     </section>

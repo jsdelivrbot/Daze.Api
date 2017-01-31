@@ -19,12 +19,6 @@ export class SkillService {
             .exhaustMap(skills => skills);
     }
 
-    getSkillById(id: string) {
-        return this._http.get(`${SkillService.requestUri}${id}`)
-            .retry(3)
-            .map(res => res.json() as ISkill);
-    }
-
     getSkillsByFocusArea(focusArea: FocusArea) {
         return this._http.get(SkillService.requestUri)
             .retry(3)
@@ -33,7 +27,13 @@ export class SkillService {
             .filter(skill => skill.focusArea == focusArea);
     }
 
-    addSkill(skill: ISkill) {
+    findSkillById(id: string) {
+        return this._http.get(`${SkillService.requestUri}${id}`)
+            .retry(3)
+            .map(res => res.json() as ISkill);
+    }
+
+    createSkill(skill: ISkill) {
         let headers = new Headers();
         headers.append('content-type', 'application/json');
         return this._http.post(SkillService.requestUri, skill, {

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
-import { FocusArea } from '../types/focusArea';
+import { FocusArea } from '../types/focus_area';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/exhaustMap';
 import 'rxjs/add/operator/filter';

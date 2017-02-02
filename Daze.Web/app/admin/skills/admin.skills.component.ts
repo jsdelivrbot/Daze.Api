@@ -20,9 +20,9 @@ export class AdminSkillsComponent implements OnInit {
 
     onSkillDelete(id: string) {
         this._skillService.deleteSkill(id)
-            .subscribe(res => (res.status == 200)
-                ? console.log("skill deleted")
-                : console.log("error"));
+            .subscribe(res => (res.status == 200) ?
+                console.log("skill deleted") :
+                console.log("error"));
         this._skills = this._skills.filter(s => s.id != id);
         this._selectedSkill = null;
     }

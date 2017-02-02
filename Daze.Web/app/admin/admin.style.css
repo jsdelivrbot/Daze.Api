@@ -1,7 +1,14 @@
+.adminNavLinks {
+    margin: 0;
+    padding: 0;
+}
 
-ul.adminNavLinks li {
-    padding: 10px;
-    border: 1px solid black;
+.adminNavLinks md-list-item {
+    padding: 10px; 
+}
+
+.adminNavLinks a {
+    text-decoration: none;
 }
 
 .masterDetail {

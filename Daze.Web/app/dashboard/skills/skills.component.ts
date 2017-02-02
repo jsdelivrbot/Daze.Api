@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SkillService } from '../../shared/services/skill.service';
 import { Skill } from '../../shared/models/skill.model';
-import ISkill = Daze.Interfaces.ISkill;
 
 @Component({
     selector: 'skills',
@@ -10,9 +9,9 @@ import ISkill = Daze.Interfaces.ISkill;
     styleUrls: ['app/dashboard/skills/skills.style.css']
 })
 export class SkillsComponent implements OnInit {
-    private _languages = new Array<ISkill>();
-    private _frameworks = new Array<ISkill>();
-    private _databases = new Array<ISkill>();
+    private _languages = new Array<Skill>();
+    private _frameworks = new Array<Skill>();
+    private _databases = new Array<Skill>();
     private _isLanguagesLoading = true;
     private _isDatabasesLoading = true;
     private _isFrameworksLoading = true;

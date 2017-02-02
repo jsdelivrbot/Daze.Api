@@ -4,7 +4,6 @@ import { ActivatedRoute } from '@angular/router';
 import { SkillService } from '../../../shared/services/skill.service';
 import { Skill } from '../../../shared/models/skill.model';
 
-const tee = (msg: any) => { console.log; return msg; };
 @Component({
     selector: 'adminSkillsUpdate',
     providers: [SkillService, FormBuilder],

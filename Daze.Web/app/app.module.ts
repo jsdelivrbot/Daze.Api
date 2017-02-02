@@ -28,7 +28,7 @@ import { AdminSkillsCreateComponent } from './admin/skills/create/admin.skills.c
 import { AdminSkillsUpdateComponent } from './admin/skills/update/admin.skills.update.component';
 
 import { AppComponent } from './app.component';
-import { RoutesBuilder } from './infrastructure/routesBuilder';
+import { RoutesBuilder } from './infrastructure/routes.builder';
 
 const routes = new RoutesBuilder()
     .addRoute('posts', PostsComponent)
@@ -85,7 +85,3 @@ const routes = new RoutesBuilder()
     bootstrap: [AppComponent]
 })
 export class AppModule { }
-
-
-
-

@@ -1,6 +1,6 @@
 <spinner *ngIf="_isLoading"></spinner>
 
-<ul class="postList">
+<ul *ngIf="!_isLoading" class="postList">
     <!--<li *ngFor="let post of (currentPage == 1 ? _pagedPosts : _posts)">-->
     <li *ngFor="let post of _posts">
         <article class="postArticle card card-1">

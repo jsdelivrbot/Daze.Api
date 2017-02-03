@@ -1,6 +1,7 @@
 module DazeApi.Program
 
 open Suave
+open Suave.CORS
 open Suave.Successful
 open Suave.Filters
 open Suave.Operators
@@ -23,7 +24,7 @@ type PgProvider =
     SqlDataProvider<
         DbVendor,
         ConnectionString,
-        "",         //ConnectionNameString can be left empty 
+        "",         // ConnectionNameString can be left empty 
         ResolutionPath,
         IndividualsAmount,
         UseOptionTypes>
@@ -36,7 +37,6 @@ query { for x in ctx.Public.MtDocPost do
     |> Seq.toArray 
     |> Seq.iter ( printfn "%A" )
 
-
 type Post = {
     Id: Guid
     Data: string }
@@ -48,18 +48,18 @@ let posts = query { for p in ctx.Public.MtDocPost do
                     |> Seq.map (fun x -> x.Data )
                     |> Seq.reduce (fun acc curr -> acc + curr + Environment.NewLine)
                     |> Json.toJson 
+
 // byte to string
 
-module JsonHelper = 
+module JsonHelper =
     open Newtonsoft.Json
     open Suave.Json
     open System.Text
     
     let utf8GetBytes (str: string) = System.Text.Encoding.ASCII.GetBytes(str)
-    let deserialize<'a> bytes = JsonConvert.DeserializeObject<'a>(System.Text.Encoding.ASCII.GetString(bytes) )
+    let deserialize<'a> bytes = JsonConvert.DeserializeObject<'a>(System.Text.Encoding.ASCII.GetString(bytes))
     let serialize<'a> x = JsonConvert.SerializeObject(x) |> utf8GetBytes
     let mapJsonNet<'a, 'b> = mapJsonWith deserialize<'a> serialize<'b>
-
 
 let helloWorldPart = (OK "hello world")
 let postsWebPart = (JsonHelper.serialize posts) 
@@ -71,16 +71,23 @@ let OKJson (ctx: HttpContext) =
         let response = {
             ctx.response with 
                 content = Bytes responseBytes; 
-                headers = headers
+                headers = headers;
+                status = { code = 200; reason = "for reason" }
         }
-        return (Some {ctx with response = response })
+        return (Some { ctx with response = response })
     }
 
+let defaultCorsConfig = {
+    allowedUris = InclusiveOption.All
+    allowedMethods = InclusiveOption.All
+    maxAge = Some(1)
+    allowCookies = false
+    exposeHeaders = true }
 
 let app =
     choose [
         GET >=> path "/" >=> helloWorldPart
-        GET >=> path "/posts/" >=> (OKJson)
+        GET >=> path "/api/posts/" >=> (OKJson) >=> cors defaultCorsConfig
         // GET >=> pathScan "/test/%s/%i" helloWorld3Part
         NOT_FOUND "you are lost"
     ]

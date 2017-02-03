@@ -11,7 +11,8 @@ import ITag = Daze.Interfaces.ITag;
 
 @Injectable()
 export class PostService {
-    private static requestUri = 'http://localhost:21403/api/post/';
+    private static requestUri = 'http://localhost:8080/api/posts/';
+    // private static requestUri = 'http://localhost:21403/api/post/';
     constructor(private readonly _http: Http) { }
 
     getPosts() {

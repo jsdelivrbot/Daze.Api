@@ -26,9 +26,13 @@ export class PostsComponent implements OnInit {
     }
 
     ngOnInit() {
-        this._postService.getPagedPosts(1, this._numberOfItemsPerPage)
+        this._postService.getPosts()
             .subscribe(p => this._posts.push(p),
             _ => _,
             () => this._isLoading = false);
+        // this._postService.getPagedPosts(1, this._numberOfItemsPerPage)
+        //     .subscribe(p => this._posts.push(p),
+        //     _ => _,
+        //     () => this._isLoading = false);
     }
 }

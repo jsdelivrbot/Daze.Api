@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Daze.Infrastructure.Interfaces;
 using Daze.Domain;
 using System.Threading.Tasks;
+using Daze.Api.Models;
 
 namespace Daze.Api.Controllers
 {
@@ -18,25 +19,21 @@ namespace Daze.Api.Controllers
         [HttpGet, Route("{id:guid?}")]
         public async Task<IActionResult> Get(Guid? id, int? page, int? pageSize)
         {
-            try
+            if (id.HasValue)
             {
-                if (id.HasValue)
-                {
-                    var post = await this._postRepository.FindAsync(id.Value);
-                    return Json(post);
-                }
-
-                var posts = (page.HasValue && pageSize.HasValue) ?
-                    await this._postRepository.GetAllPagedAsync(page.Value, pageSize.Value) :
-                    await this._postRepository.GetAllAsync();
-
-                return Json(posts);
-
+                var post = await this._postRepository.FindAsync(id.Value);
+                return Json(post);
             }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+
+            var posts = (page.HasValue && pageSize.HasValue) ?
+                await this._postRepository.GetAllPagedAsync(page.Value, pageSize.Value) :
+                await this._postRepository.GetAllAsync();
+
+            var responseResult = (page.HasValue && pageSize.HasValue) ?
+                new ResponseResultObject<Post>(posts, page.Value, pageSize.Value, Request.Path) :
+                new ResponseResultObject<Post>(posts);
+
+            return Json(responseResult);
         }
 
         [HttpHead, Route("{id:guid}")]

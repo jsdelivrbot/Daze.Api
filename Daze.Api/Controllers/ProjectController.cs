@@ -1,4 +1,5 @@
-﻿using Daze.Domain;
+﻿using Daze.Api.Models;
+using Daze.Domain;
 using Daze.Infrastructure.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -30,7 +31,11 @@ namespace Daze.Api.Controllers
                 await this._projectRepository.GetAllPagedAsync(page.Value, pageSize.Value) :
                 await this._projectRepository.GetAllAsync();
 
-            return Json(projects);
+            var responseResult = (page.HasValue && pageSize.HasValue) ?
+                new ResponseResultObject<Project>(projects, page.Value, pageSize.Value, Request.Path) :
+                new ResponseResultObject<Project>(projects);
+
+            return Json(responseResult);
         }
 
         [HttpHead, Route("{id:guid}")]

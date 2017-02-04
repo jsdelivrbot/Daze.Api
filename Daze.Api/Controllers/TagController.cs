@@ -1,4 +1,5 @@
-﻿using Daze.Domain;
+﻿using Daze.Api.Models;
+using Daze.Domain;
 using Daze.Infrastructure.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -31,7 +32,11 @@ namespace Daze.Api.Controllers
                 await this._tagRepository.GetAllPagedAsync(page.Value, pageSize.Value) :
                 await this._tagRepository.GetAllAsync();
 
-            return Json(tags);
+            var responseResult = (page.HasValue && pageSize.HasValue) ?
+                new ResponseResultObject<Tag>(tags, page.Value, pageSize.Value, Request.Path) :
+                new ResponseResultObject<Tag>(tags);
+
+            return Json(responseResult);
         }
 
         [HttpGet, Route("{id:guid}")]
@@ -43,7 +48,7 @@ namespace Daze.Api.Controllers
                 return NotFound();
             }
 
-            return Ok(); 
+            return Ok();
         }
 
         [HttpPost]

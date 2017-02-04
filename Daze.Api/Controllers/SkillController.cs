@@ -1,4 +1,5 @@
-﻿using Daze.Domain;
+﻿using Daze.Api.Models;
+using Daze.Domain;
 using Daze.Infrastructure.Interfaces;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
@@ -31,7 +32,11 @@ namespace Daze.Api.Controllers
                 await this._skillRepository.GetAllPagedAsync(page.Value, pageSize.Value) :
                 await this._skillRepository.GetAllAsync();
 
-            return Json(skills);
+            var responseResult = (page.HasValue && pageSize.HasValue) ?
+                new ResponseResultObject<Skill>(skills, page.Value, pageSize.Value, Request.Path) :
+                new ResponseResultObject<Skill>(skills);
+
+            return Json(responseResult);
         }
 
         [HttpHead, Route("{id:guid}")]

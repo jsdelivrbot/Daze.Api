@@ -51,6 +51,8 @@
     <Content Include="any\netstandard1.6\FSharp.Core.sigdata">
       <Paket>True</Paket>
     </Content>
+    <Compile Include="Services.fs" />
+    <Compile Include="JsonHelper.fs" />
     <Compile Include="Api.fs" />
   </ItemGroup>
   <PropertyGroup>

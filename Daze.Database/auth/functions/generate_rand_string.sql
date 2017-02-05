@@ -6,7 +6,7 @@ as $$
 select substring( md5(random()::text), 0, len+1)
 $$ language sql;
 
-select auth.generate_rand_string(12)
+select auth.generate_rand_string(12);
 
 
 -- (* ends here *)

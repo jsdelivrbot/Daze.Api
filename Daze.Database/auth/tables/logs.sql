@@ -1,6 +1,6 @@
 set search_path = auth;
 
-create table logs ( 
+create table logs (
     id serial primary key,
     subject log_type,
     user_id bigint,

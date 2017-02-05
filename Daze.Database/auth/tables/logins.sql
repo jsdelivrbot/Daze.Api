@@ -1,6 +1,6 @@
 set search_path = auth;
 
-create table logins (	
+create table logins (
     id bigint primary key default id_generator(),
     user_id bigint not null,
     provider varchar(50) not null default 'local',

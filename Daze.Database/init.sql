@@ -1,6 +1,19 @@
+create database daze_db with 
+owner = daze
+encoding = 'UTF8'
+lc_collate = 'English_United States.1252'
+lc_ctype = 'English_United States.1252'
+tablespace = pg_default
+connection limit = -1;
+
 drop schema if exists auth cascade;
+drop schema if exists domain cascade;
 
 create schema auth;
+create schema domain;
+
+
+
 set search_path = auth;
 
 select 'Schema initialized' as Works;

@@ -1,42 +1,36 @@
 set search_path = auth;
 
 create or replace function change_status(em varchar, new_status_id varchar, reason varchar)
-returns user_summary
+returns boolean
 as $$ 
 declare 
-	found_id bigint;
-	status_name varchar(50);
-	user_record user_summary;
+    found_id bigint;
+    succeded boolean;
 begin
-	set search_path = auth;
+    set search_path = auth;
 
-	select id from users where email = em into found_id;
-	select name from status where status_id = new_status_id into status_name;
+    select id 
+    from user
+    where email = em 
+    into found_id;
+    
+    select name
+    from status
+    where status_id = new_status_id 
+    into status_name;
 
-	if (found_id is not null) then 
-			
-		-- reset the statuc 
-		update users 
-		set status_id = new_status_id 
-		where id = found_id
+    if (found_id is not null) then 
+        update user
+        set status_id = new_status_id
+        where id = found_id;
 
-		-- add a note
-		insert into notes(user_id, note)
-		values (found_id, 'Your status was changed to ' || status_name)
+        insert into log (user_id, subject, entry)
+        values (found_id, 'System', 'Changed status to ' || status_name || ' because ' || reason);
+        succeded := true;
+    end if;
 
-		-- add log
-		insert into logs(user_id, subject, entry)
-		values (found_id, 'System', 'Changed status to ' || status_name || ' because ' || reason)
-
-		-- pull the user
-		user_record := get_user(em);
-		
-	end if;
-
-	return user_record;
+    return succeded;
 end;
 $$ language plpgsql;
-
-
 
 -- (* ends here *)

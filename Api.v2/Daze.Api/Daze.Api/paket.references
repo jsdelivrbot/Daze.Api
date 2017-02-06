@@ -1,5 +1,5 @@
 FSharp.Core
 Suave
-Newtonsoft
+Newtonsoft.Json
 SQLProvider
 Npgsql

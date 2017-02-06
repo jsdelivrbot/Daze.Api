@@ -12,10 +12,7 @@ drop schema if exists domain cascade;
 create schema auth;
 create schema domain;
 
-
-
 set search_path = auth;
-
 select 'Schema initialized' as Works;
 
 create extension if not exists pgcrypto 
@@ -27,9 +24,6 @@ values ( 'hermesgjini@gmail.com', 'hermes', 'gjini' );
 insert into roles (id, role)
 values (10, 'Administrator'), (99, 'user')
 
-select * from authenticate('hermesgjini@gmail.com', 'lols')
-select * from register ('hermesgjini@gmail.com', 'lols');
-
 insert into status (name, description, can_login)
 values 
 ( 'Active', 'User can login, etc', true ),
@@ -38,7 +32,7 @@ values
 ( 'Banned', 'Member has been banned', false ),
 ( 'Locked', 'Member is locked out due to failed logins', false )
 
-
-
+select * from register ('hermesgjini@gmail.com', 'lols');
+select * from authenticate('hermesgjini@gmail.com', 'lols')
 
 -- (* ends here *)

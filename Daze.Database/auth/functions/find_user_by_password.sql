@@ -6,13 +6,11 @@ as $$
     set search_path = auth;
 
     select user_id 
-    from logins 
+    from login
     where provider = 'local'
-    and provider_key = email
-    and provider_key = email
+    and provider_key = em
     and provider_token = crypt(input_password, provider_token);
 
 $$ language sql;
-
 
 -- (* ends here *)

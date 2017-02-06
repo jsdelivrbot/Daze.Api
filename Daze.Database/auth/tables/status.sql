@@ -7,6 +7,4 @@ create table status (
     can_login boolean
 );
 
-
-
 -- (* ends here *)

@@ -15,5 +15,4 @@ create type user_summary as (
     notes jsonb
 );
 
-
 -- (* ends here *)

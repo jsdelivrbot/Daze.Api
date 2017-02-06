@@ -1,32 +1,33 @@
 set search_path = auth;
 
-create or replace function change_password(em varchar, old_password varchar, new_password)
-returns user_summary
+create or replace function change_password(em varchar, old_password varchar, new_password varchar)
+returns boolean
 as $$ 
 declare 
     found_id bigint;
+    succeded boolean;
 begin
     set search_path = auth;
-    -- find the user
+
     select find_user_by_password(em, old_password)
     into found_id; 
-    -- change the password
+
     if (found_id is not null) then 
-        update logins 
+        update login 
         set provider_token = crypt(input_password, gen_salt('bf', 10)) 
         where user_id = found_id
         and provider = 'local';
-        -- log it
-        insert into logs(user_id, subject, entry)
-        values (found_id, 'Authentication', 'Password changed')
-        -- add note to account 
-        insert into notes(user_id, note) 
-        values (found_id, 'Succesfully changed password')
+
+        insert into log (user_id, subject, entry)
+        values (found_id, 'Authentication', 'Password changed');
+
+        succeded := true;
+    else
+        succeded := false;
     end if;
 
-    return get_user(em);
+    return succeded;
 end;
 $$ language plpgsql;
-
 
 -- (* ends here *)

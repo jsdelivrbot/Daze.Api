@@ -8,8 +8,8 @@ open Suave.Operators
 open Suave.RequestErrors
 open JsonHelper
 
-let posts = Services.getPosts()
 
+let posts = Services.getPosts()
 
 
 let helloWorldPart = (OK "hello world")

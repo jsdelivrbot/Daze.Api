@@ -1,4 +1,4 @@
-namespace Daze.Api.Domain
+module Daze.Api.Domain
 
 open System
 
@@ -7,13 +7,13 @@ type Tag = {
     Name: string }
 
 type Post = {
-    Id: Guid
+    Id: int64
     Slug: string
     Title: string
     Content: string
     CreatedAt: DateTime
-    ModifiedAt: DateTime
-    Tags: seq<Tag> }
+    ModifiedAt: DateTime }
+    // Tags: seq<Tag> }
     // Comments: seq<Comment>
 
 type Course = {
@@ -22,14 +22,14 @@ type Course = {
     CourseTitle: string }
 
 type Skill = {
-    Id: Guid
-    Name: string
+    Id: int64
+    // SkillName: string
     Level: int
-    FocusArea: string
-    Courses: seq<Course> }
+    FocusArea: string }
+    // Courses: seq<Course> 
 
 type Project = {
-    Id: Guid
+    Id: int64
     Name: string
     Description: string
     Url: string }

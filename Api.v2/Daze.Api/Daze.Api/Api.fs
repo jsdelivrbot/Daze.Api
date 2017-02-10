@@ -7,43 +7,29 @@ open Suave.Filters
 open Suave.Operators
 open Suave.RequestErrors
 open JsonHelper
-
+open Daze.Api.Utils
 
 let posts = Services.getPosts()
+let skills = Services.getSkills()
+let projects = Services.getSkills()
+
+let homeWebPart = (OK "hello world")
+let postWebPart = (OKJson (serialize posts))
+let skillWebPart = (OKJson (serialize skills))
+let projectWebPart =(OKJson (serialize projects))
 
 
-let helloWorldPart = (OK "hello world")
-let postsWebPart = (serialize posts)
-
-let OKJson (ctx: HttpContext) =
-    async {
-        let responseBytes = posts//System.Text.Encoding.UTF8.GetBytes("hello world")
-        let headers = [("content-type","application/json")]
-        let response = {
-            ctx.response with 
-                content = Bytes responseBytes; 
-                headers = headers;
-                status = { code = 200; reason = "for reason" }
-        }
-        return (Some { ctx with response = response })
-    }
-
-let defaultCorsConfig = {
-    allowedUris = InclusiveOption.All
-    allowedMethods = InclusiveOption.All
-    maxAge = Some(1)
-    allowCookies = false
-    exposeHeaders = true }
 
 let app =
     choose [
-        GET >=> path "/" >=> helloWorldPart
-        GET >=> path "/api/posts/" >=> (OKJson) >=> cors defaultCorsConfig
+        GET >=> path "/" >=> homeWebPart
+        GET >=> path "/api/post/" >=> postWebPart >=> (cors defaultCorsConfig)
+        GET >=> path "/api/skill/" >=> skillWebPart >=> (cors defaultCorsConfig)
+        GET >=> path "/api/project" >=> projectWebPart >=> (cors defaultCorsConfig)
         // GET >=> pathScan "/test/%s/%i" helloWorld3Part
         NOT_FOUND "you are lost"
     ]
     
-
 
 [<EntryPoint>]
 let main argv =

@@ -1,4 +1,4 @@
-module Daze.Api.Domain
+namespace Daze.Api.Domain
 
 open System
 

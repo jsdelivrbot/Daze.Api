@@ -2,6 +2,8 @@
 
 open Suave
 open Suave.CORS
+open System
+open System.Text
 
 let defaultCorsConfig = {
     allowedUris = InclusiveOption.All
@@ -10,25 +12,14 @@ let defaultCorsConfig = {
     allowCookies = false
     exposeHeaders = true }
 
-let OKJson (responseBytes: byte array) (ctx: HttpContext)  =
+let OKJson (responseBytes: byte array) (ctx: HttpContext) =
     async {
+        let headers = [("content-type", "application/json")]
         let response = {
             ctx.response with
-                headers = [("content-type", "application/json")]
-                status = { code = 200; reason = "OK" }
-                content = Bytes responseBytes
-        }
-        return (Some { ctx with response = response })
-    }
-
-
-let OKJsonParameter (responseBytes: byte array) (t: string) (ctx: HttpContext) =
-    async {
-        let response = {
-            ctx.response with 
-                headers = [("content-type", "application/json")]
-                content = Bytes (System.Text.Encoding.UTF8.GetBytes(t))
+                content = HttpContent.Bytes responseBytes
+                headers = headers 
                 status = { code = 200; reason = "OK" }
         }
-        return Some { ctx with response = response}
+        return Some { ctx with response = response }
     }

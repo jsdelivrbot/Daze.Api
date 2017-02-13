@@ -6,45 +6,20 @@ open Suave.Successful
 open Suave.Filters
 open Suave.Operators
 open Suave.RequestErrors
-open JsonHelper
 open Daze.Api.Utils
 
-let homeWebPart = (OK "welcome: daze api")
-
-
-(* post apis *)
-let GETPostWebPart = 
-    let posts = PostService.getAllPosts()
-    OKJson (serialize posts)
-
-let GETSinglePostWebPart (id: int64) =
-    let post = PostService.findPostById id
-    OKJson (serialize post)
-
-let POSTPostWebPart (ctx: HttpContext) =
-    async {
-        let requestBody = ctx.request.rawForm
-
-        let post: Daze.Api.Domain.Post = deserialize requestBody
-        printfn "%A" post 
-        let result = PostService.insertNewPost post
-        let response = {
-            ctx.response with 
-                content = HttpContent.Bytes (serialize result)
-                headers = [("content-type", "application/json")]
-                status = { code = 200; reason = "OK" }
-        }
-        return Some { ctx with response = response }
-    }
 
 let app =
     choose [
-        GET >=> path "/" >=> homeWebPart
-        GET >=> path "/api/post/" >=> GETPostWebPart
-        POST >=> path "/api/post/" >=> POSTPostWebPart
-        GET >=> pathScan "/api/post/%i" GETSinglePostWebPart
+        GET >=> path "/" >=> (OK "__daze_api__")
+        GET >=> path "/api/post/" >=> PostController.get
+        GET >=> pathScan "/api/post/%i" PostController.getSingle
+        HEAD >=> pathScan "/api/post/%i" PostController.head
+        POST >=> path "/api/post/" >=> PostController.post
+        DELETE >=> pathScan "/api/post/%i" PostController.delete
         NOT_FOUND "you are lost"
     ] >=> (cors defaultCorsConfig)
+
 
 [<EntryPoint>]
 let main argv =

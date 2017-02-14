@@ -10,7 +10,7 @@ open Daze.Api.Utils
 open Daze.Api.Domain
 
 
-let get = 
+let get =
     let posts = PostService.getAllPosts()
     OKJson (serialize posts)
 
@@ -37,10 +37,20 @@ let post (ctx: HttpContext) =
         return Some { ctx with response = response }
     }
 
+let put (ctx: HttpContext) =
+    async {
+        let responseBody = ctx.request.rawForm
+        let post: Post = deserialize responseBody
+        PostService.fullyUpdatePost post
+        let response = {
+            ctx.response with
+                content = Bytes (serialize post)
+                headers = [("content-type", "application/json")]
+                status = { code = 200; reason = "OK" }
+        }
+        return Some { ctx with response = response } 
+    }
+
 let delete (id: int64) =
     let post = PostService.removePost id
     setStatus HTTP_200
-
-
-
-

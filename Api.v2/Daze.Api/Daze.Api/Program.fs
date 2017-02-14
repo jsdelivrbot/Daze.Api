@@ -16,6 +16,7 @@ let app =
         GET >=> pathScan "/api/post/%i" PostController.getSingle
         HEAD >=> pathScan "/api/post/%i" PostController.head
         POST >=> path "/api/post/" >=> PostController.post
+        PUT >=> path "/api/post/" >=> PostController.put
         DELETE >=> pathScan "/api/post/%i" PostController.delete
         NOT_FOUND "you are lost"
     ] >=> (cors defaultCorsConfig)

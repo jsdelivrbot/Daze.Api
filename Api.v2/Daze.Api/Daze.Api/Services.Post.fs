@@ -1,6 +1,7 @@
 ﻿[<RequireQualifiedAccess>]
 module Daze.Api.PostService
 
+open System
 open Daze.Api.Services
 open Daze.Api.Domain
 
@@ -44,6 +45,22 @@ let insertNewPost (p: Post) =
     newPost.Slug <- p.Slug
     newPost.Content <- p.Content
     ctx.SubmitUpdates()
+
+let fullyUpdatePost (post: Post) =
+    query {
+        for p in ctx.Public.Post do
+        where (p.Id = post.Id)
+    }
+    |> Seq.iter( fun p ->
+        p.Title <- post.Title
+        p.Slug <- post.Slug
+        p.Content <- post.Content
+        p.ModifiedAt <- DateTime.Now
+    )
+    ctx.SubmitUpdates()
+
+let partialyUpdatePost () =
+    ()
 
 let removePost (id: int64) = 
     let record = ctx.Public.Post.Create()

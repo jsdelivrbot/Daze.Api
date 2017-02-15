@@ -4,7 +4,7 @@ module Daze.Api.PostService
 open System
 open Daze.Api.Services
 open Daze.Api.Domain
-
+open Microsoft.FSharp.Control
 let getAllPosts() = 
     query { 
         for p in ctx.Public.Post do
@@ -39,32 +39,51 @@ let existsPost (id: int64) =
     |> Seq.isEmpty 
     |> not
 
-let insertNewPost (p: Post) = 
-    let newPost = ctx.Public.Post.Create()
-    newPost.Title <- p.Title
-    newPost.Slug <- p.Slug
-    newPost.Content <- p.Content
-    ctx.SubmitUpdates()
+let insertNewPost (post: Post) = 
+    async {
+        let newPost = ctx.Public.Post.Create()
+        newPost.Title <- post.Title
+        newPost.Slug <- post.Slug
+        newPost.Content <- post.Content
+        newPost.ModifiedAt <- post.ModifiedAt
+        newPost.CreatedAt <- post.CreatedAt
+        do! ctx.SubmitUpdatesAsync()
+    }
 
 let fullyUpdatePost (post: Post) =
-    query {
-        for p in ctx.Public.Post do
-        where (p.Id = post.Id)
+    async {
+        query {
+            for p in ctx.Public.Post do
+            where (p.Id = post.Id)
+        }
+        |> Seq.iter(fun p ->
+            p.Title <- post.Title
+            p.Slug <- post.Slug
+            p.Content <- post.Content
+            p.ModifiedAt <- DateTime.Now
+        )
+        do! ctx.SubmitUpdatesAsync()
     }
-    |> Seq.iter( fun p ->
-        p.Title <- post.Title
-        p.Slug <- post.Slug
-        p.Content <- post.Content
-        p.ModifiedAt <- DateTime.Now
-    )
-    ctx.SubmitUpdates()
 
-let partialyUpdatePost () =
-    ()
+let partiallyUpdatePost (post: Post) =
+    async {
+        query {
+            for p in ctx.Public.Post do
+            where (p.Id = post.Id)
+        }
+        |> Seq.iter (fun p ->
+            if not (isNull post.Title) then p.Title <- post.Title
+            if not (isNull post.Slug) then p.Slug <- post.Slug
+            if not (isNull post.Content) then p.Content <- post.Content
+            p.ModifiedAt <- DateTime.UtcNow
+        )
+        do! ctx.SubmitUpdatesAsync()
+    }
 
 let removePost (id: int64) = 
-    let record = ctx.Public.Post.Create()
-    record.Id <- id
-    record.Delete()
-    ctx.SubmitUpdates()
-    
+    async {
+        let record = ctx.Public.Post.Create()
+        record.Id <- id
+        record.Delete()
+        do! ctx.SubmitUpdatesAsync()
+    } |> Async.RunSynchronously

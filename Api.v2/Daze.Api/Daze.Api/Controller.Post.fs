@@ -23,25 +23,25 @@ let head (id: int64) =
     if exists then setStatus HTTP_200
     else setStatus HTTP_404
 
-let post (ctx: HttpContext) =
+let asyncPost (ctx: HttpContext) =
     async {
         let requestBody = ctx.request.rawForm
         let post: Post = deserialize requestBody 
-        let result = PostService.insertNewPost post
+        do! PostService.insertNewPost post
         let response = {
             ctx.response with 
-                content = Bytes (serialize result)
+                content = Bytes (serialize post)
                 headers = [("content-type", "application/json")]
                 status = { code = 200; reason = "OK" }
         }
         return Some { ctx with response = response }
     }
 
-let put (ctx: HttpContext) =
+let asyncPut (ctx: HttpContext) =
     async {
-        let responseBody = ctx.request.rawForm
-        let post: Post = deserialize responseBody
-        PostService.fullyUpdatePost post
+        let requestBody = ctx.request.rawForm
+        let post: Post = deserialize requestBody
+        do! PostService.fullyUpdatePost post
         let response = {
             ctx.response with
                 content = Bytes (serialize post)
@@ -51,6 +51,21 @@ let put (ctx: HttpContext) =
         return Some { ctx with response = response } 
     }
 
+let asyncPatch (ctx: HttpContext) =
+    async {
+        let requestBody = ctx.request.rawForm
+        let post: Post = deserialize requestBody
+        printfn "%A" post
+        do! PostService.partiallyUpdatePost post
+        let response = {
+            ctx.response with 
+                content = Bytes (serialize post)
+                headers = [("content-type", "application/json")]
+                status = { code = 200; reason = "OK" }
+        }
+        return Some { ctx with response = response }
+    }
+
 let delete (id: int64) =
-    let post = PostService.removePost id
+    PostService.removePost id
     setStatus HTTP_200

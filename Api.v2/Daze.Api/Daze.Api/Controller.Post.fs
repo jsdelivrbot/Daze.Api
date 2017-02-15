@@ -55,7 +55,6 @@ let asyncPatch (ctx: HttpContext) =
     async {
         let requestBody = ctx.request.rawForm
         let post: Post = deserialize requestBody
-        printfn "%A" post
         do! PostService.partiallyUpdatePost post
         let response = {
             ctx.response with 

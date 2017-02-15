@@ -23,7 +23,7 @@ type Course = {
 
 type Skill = {
     Id: int64
-    // SkillName: string
+    Name: string
     Level: int
     FocusArea: string }
     // Courses: seq<Course> 

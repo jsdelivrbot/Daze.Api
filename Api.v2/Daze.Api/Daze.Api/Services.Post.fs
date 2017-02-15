@@ -5,10 +5,10 @@ open System
 open Daze.Api.Services
 open Daze.Api.Domain
 open Microsoft.FSharp.Control
+
 let getAllPosts() = 
     query { 
         for p in ctx.Public.Post do
-        take 100
         select { Id = p.Id
                  Slug = p.Slug
                  Title = p.Title
@@ -16,7 +16,7 @@ let getAllPosts() =
                  CreatedAt = p.CreatedAt
                  ModifiedAt = p.ModifiedAt }
     }
-    // |> Seq.cache
+    |> Seq.cache
 
 let findPostById (id : int64) = 
     query { 
@@ -28,16 +28,14 @@ let findPostById (id : int64) =
                  Content = p.Content
                  CreatedAt = p.CreatedAt
                  ModifiedAt = p.ModifiedAt }
-        head
+        exactlyOne
     }
 
 let existsPost (id: int64) = 
     query {
         for p in ctx.Public.Post do
-        where (p.Id = id)
+        exists (p.Id = id)
     }
-    |> Seq.isEmpty 
-    |> not
 
 let insertNewPost (post: Post) = 
     async {

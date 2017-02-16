@@ -27,7 +27,7 @@ let asyncPost (ctx: HttpContext) =
     async {
         let requestBody = ctx.request.rawForm
         let post: Post = deserialize requestBody 
-        do! PostService.insertNewPost post
+        do! PostService.asyncInsertNewPost post
         let response = {
             ctx.response with 
                 content = Bytes (serialize post)
@@ -41,7 +41,7 @@ let asyncPut (ctx: HttpContext) =
     async {
         let requestBody = ctx.request.rawForm
         let post: Post = deserialize requestBody
-        do! PostService.fullyUpdatePost post
+        do! PostService.asyncFullyUpdatePost post
         let response = {
             ctx.response with
                 content = Bytes (serialize post)
@@ -55,7 +55,7 @@ let asyncPatch (ctx: HttpContext) =
     async {
         let requestBody = ctx.request.rawForm
         let post: Post = deserialize requestBody
-        do! PostService.partiallyUpdatePost post
+        do! PostService.asyncPartiallyUpdatePost post
         let response = {
             ctx.response with 
                 content = Bytes (serialize post)
@@ -66,5 +66,5 @@ let asyncPatch (ctx: HttpContext) =
     }
 
 let delete (id: int64) =
-    PostService.removePost id
+    PostService.asyncRemovePost id
     setStatus HTTP_200

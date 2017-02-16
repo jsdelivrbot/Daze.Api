@@ -37,7 +37,7 @@ let existsPost (id: int64) =
         exists (p.Id = id)
     }
 
-let insertNewPost (post: Post) = 
+let asyncInsertNewPost (post: Post) = 
     async {
         let newPost = ctx.Public.Post.Create()
         newPost.Title <- post.Title
@@ -48,7 +48,7 @@ let insertNewPost (post: Post) =
         do! ctx.SubmitUpdatesAsync()
     }
 
-let fullyUpdatePost (post: Post) =
+let asyncFullyUpdatePost (post: Post) =
     async {
         query {
             for p in ctx.Public.Post do
@@ -63,7 +63,7 @@ let fullyUpdatePost (post: Post) =
         do! ctx.SubmitUpdatesAsync()
     }
 
-let partiallyUpdatePost (post: Post) =
+let asyncPartiallyUpdatePost (post: Post) =
     async {
         query {
             for p in ctx.Public.Post do
@@ -78,7 +78,7 @@ let partiallyUpdatePost (post: Post) =
         do! ctx.SubmitUpdatesAsync()
     }
 
-let removePost (id: int64) = 
+let asyncRemovePost (id: int64) = 
     async {
         let record = ctx.Public.Post.Create()
         record.Id <- id

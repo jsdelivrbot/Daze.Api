@@ -78,7 +78,7 @@ let asyncPartiallyUpdatePost (post: Post) =
         do! ctx.SubmitUpdatesAsync()
     }
 
-let asyncRemovePost (id: int64) = 
+let removePost (id: int64) = 
     async {
         let record = ctx.Public.Post.Create()
         record.Id <- id

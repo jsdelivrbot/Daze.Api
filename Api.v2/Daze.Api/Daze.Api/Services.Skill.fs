@@ -54,3 +54,26 @@ let asyncFullyUpdateSkill (skill: Skill) =
         do! ctx.SubmitUpdatesAsync()
     }
 
+let asyncPartiallyUpdateSkill (skill: Skill) =
+    async {
+        query {
+            for s in ctx.Public.Skill do
+            where (s.Id = skill.Id)
+        }
+        |> Seq.iter(fun s ->
+            if not (isNull skill.Name) then  s.Name <- skill.Name
+            if skill.Level <> 0  then  s.Level <- skill.Level
+            if not (isNull skill.FocusArea) then s.FocusArea <- skill.FocusArea
+        )
+        do! ctx.SubmitUpdatesAsync()
+    }
+
+let remove (id: int64) =
+    async {
+        let skill = ctx.Public.Skill.Create()
+        skill.Id  <- id
+        skill.Delete()
+        do! ctx.SubmitUpdatesAsync()
+    } |> Async.RunSynchronously
+
+

@@ -51,3 +51,21 @@ let asyncPut (ctx: HttpContext) =
         return Some { ctx with response = response }
     }
     
+let asyncPatch (ctx: HttpContext) =
+    async {
+        let requestBody = ctx.request.rawForm
+        let skill = deserialize requestBody
+
+        do! SkillService.asyncPartiallyUpdateSkill skill
+        let response = {
+            ctx.response with 
+                content = Bytes (serialize skill)
+                headers = [("content-type", "application/json")]
+                status = { code = 200; reason = "OK" }
+        }
+        return Some { ctx with response = response }
+    }
+
+let delete (id: int64) = 
+    SkillService.remove id
+    setStatus HTTP_200

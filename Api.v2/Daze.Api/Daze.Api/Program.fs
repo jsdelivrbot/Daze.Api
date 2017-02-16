@@ -12,7 +12,7 @@ open Daze.Api.Utils
 let app =
     choose [
         GET >=> path "/" >=> (OK "__daze_api__")
-        
+
         GET >=> path "/api/post/" >=> PostController.get
         GET >=> pathScan "/api/post/%i" PostController.getSingle
         HEAD >=> pathScan "/api/post/%i" PostController.head
@@ -26,7 +26,8 @@ let app =
         HEAD >=> pathScan "/api/skill/%i" SkillController.head
         POST >=> path "/api/skill/" >=> SkillController.asyncPost
         PUT >=> path "/api/skill/" >=> SkillController.asyncPut
-
+        PATCH >=> path "/api/skill/" >=> SkillController.asyncPatch
+        DELETE >=> pathScan "/api/skill/%i" SkillController.delete
 
         NOT_FOUND "you are lost"
     ] >=> (cors defaultCorsConfig)

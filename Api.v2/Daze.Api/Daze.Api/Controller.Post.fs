@@ -66,5 +66,5 @@ let asyncPatch (ctx: HttpContext) =
     }
 
 let delete (id: int64) =
-    PostService.asyncRemovePost id
+    PostService.removePost id
     setStatus HTTP_200

@@ -8,7 +8,6 @@ open Suave.Operators
 open Suave.RequestErrors
 open Daze.Api.Utils
 
-
 let app =
     choose [
         GET >=> path "/" >=> (OK "__daze_api__")
@@ -28,6 +27,14 @@ let app =
         PUT >=> path "/api/skill/" >=> SkillController.asyncPut
         PATCH >=> path "/api/skill/" >=> SkillController.asyncPatch
         DELETE >=> pathScan "/api/skill/%i" SkillController.delete
+
+        GET >=> path "/api/project/" >=> ProjectController.get 
+        GET >=> pathScan "/api/project/%i" ProjectController.getSingle
+        HEAD >=> pathScan "/api/project/%i" ProjectController.head
+        POST >=> path "/api/project/" >=> ProjectController.asyncPost
+        PUT >=> path "/api/project/" >=> ProjectController.asyncPut
+        PATCH >=> path "/api/project/" >=> ProjectController.asyncPatch 
+        DELETE >=> pathScan "/api/project/%i" ProjectController.delete
 
         NOT_FOUND "you are lost"
     ] >=> (cors defaultCorsConfig)

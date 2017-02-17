@@ -70,9 +70,15 @@ let asyncPartiallyUpdatePost (post: Post) =
             where (p.Id = post.Id)
         }
         |> Seq.iter (fun p ->
-            if not (isNull post.Title) then p.Title <- post.Title
-            if not (isNull post.Slug) then p.Slug <- post.Slug
-            if not (isNull post.Content) then p.Content <- post.Content
+            if not (isNull post.Title) then 
+                p.Title <- post.Title
+                
+            if not (isNull post.Slug) then 
+                p.Slug <- post.Slug
+
+            if not (isNull post.Content) then 
+                p.Content <- post.Content
+
             p.ModifiedAt <- DateTime.UtcNow
         )
         do! ctx.SubmitUpdatesAsync()

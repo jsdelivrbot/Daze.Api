@@ -67,5 +67,5 @@ let asyncPatch (ctx: HttpContext) =
     }
 
 let delete (id: int64) = 
-    SkillService.remove id
+    SkillService.removeSkill id
     setStatus HTTP_200

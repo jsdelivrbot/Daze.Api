@@ -15,7 +15,7 @@ export class AdminProjectsComponent implements OnInit {
     constructor(private _projectService: ProjectService) { }
 
     onProjectClick(id: string) {
-        this._selectedProject = this._projects.find(p => p.id == id);
+        this._selectedProject = this._projects.find(p => p.Id == id);
     }
 
     onProjectDelete(id: string) {
@@ -23,7 +23,7 @@ export class AdminProjectsComponent implements OnInit {
             .subscribe(res => (res.status == 200)
                 ? console.log("project deleted")
                 : console.log("error"));
-        this._projects = this._projects.filter(p => p.id != id);
+        this._projects = this._projects.filter(p => p.Id != id);
         this._selectedProject = null;
     }
 

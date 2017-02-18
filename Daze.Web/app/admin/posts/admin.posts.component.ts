@@ -15,7 +15,7 @@ export class AdminPostsComponent {
     constructor(private _postService: PostService) { }
 
     onPostClick(id: string) {
-        this._selectedPost = this._posts.find(p => p.id == id);
+        this._selectedPost = this._posts.find(p => p.Id == id);
     }
 
     onPostDelete(id: string) {
@@ -23,7 +23,7 @@ export class AdminPostsComponent {
             .subscribe(res => (res.status == 200)
                 ? console.log("post deleted")
                 : console.log("error"));
-        this._posts = this._posts.filter(p => p.id != id);
+        this._posts = this._posts.filter(p => p.Id != id);
         this._selectedPost = null;
     }
 

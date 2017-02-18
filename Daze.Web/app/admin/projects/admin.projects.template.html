@@ -8,8 +8,8 @@
     <section class="master">
         <ul>
             <li *ngFor="let project of _projects">
-                <a class="masterLink" (click)="onProjectClick(project.id)">
-                    <span>{{project.name}}</span>
+                <a class="masterLink" (click)="onProjectClick(project.Id)">
+                    <span>{{project.Name}}</span>
                 </a>
             </li>
         </ul>
@@ -19,12 +19,12 @@
 
     <section class="detail">
         <article *ngIf="_selectedProject">
-            <h3>{{_selectedProject.name}}</h3>
+            <h3>{{_selectedProject.Name}}</h3>
             <div>
-                {{_selectedProject.name}}
+                {{_selectedProject.Name}}
             </div>
             <div>
-                <button (click)="onProjectDelete(_selectedProject.id)" type="button">
+                <button (click)="onProjectDelete(_selectedProject.Id)" type="button">
                     delete this project
                 </button>
             </div>

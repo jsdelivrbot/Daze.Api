@@ -1,5 +1,5 @@
 -- 41 timestamp | shardid 13 | userid 10
-set search_path = auth;
+set search_path = public;
 
 create sequence id_sequence;
 
@@ -11,11 +11,11 @@ declare
     now_ms bigint;
     shard_id int := 1;
 begin
-    select nextval('auth.id_sequence') % 1024 into seq_id;
+    select nextval('public.id_sequence') % 1024 into seq_id;
     select floor( extract(epoch from now()) * 1000 ) into now_ms;
     new_id := (now_ms - our_epoch) << 23;
     new_id := new_id | (shard_id << 10);
-  new_id := new_id | (seq_id);
+    new_id := new_id | (seq_id);
 end;
 $$ language plpgsql;
 

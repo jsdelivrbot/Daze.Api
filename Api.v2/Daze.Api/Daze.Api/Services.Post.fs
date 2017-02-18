@@ -43,8 +43,6 @@ let asyncInsertNewPost (post: Post) =
         newPost.Title <- post.Title
         newPost.Slug <- post.Slug
         newPost.Content <- post.Content
-        newPost.ModifiedAt <- post.ModifiedAt
-        newPost.CreatedAt <- post.CreatedAt
         do! ctx.SubmitUpdatesAsync()
     }
 
@@ -58,7 +56,7 @@ let asyncFullyUpdatePost (post: Post) =
             p.Title <- post.Title
             p.Slug <- post.Slug
             p.Content <- post.Content
-            p.ModifiedAt <- DateTime.Now
+            p.ModifiedAt <- DateTime.UtcNow
         )
         do! ctx.SubmitUpdatesAsync()
     }

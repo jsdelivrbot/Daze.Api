@@ -9,7 +9,8 @@ import ISkill = Daze.Interfaces.ISkill;
 
 @Injectable()
 export class SkillService {
-    private static requestUri = 'http://localhost:21403/api/skill/';
+    private static requestUri = 'http://127.0.0.1:8080/api/skill/';
+    // private static requestUri = 'http://localhost:21403/api/skill/';
     constructor(private _http: Http) { }
 
     getSkills() {
@@ -30,7 +31,7 @@ export class SkillService {
             .retry(3)
             .map(res => res.json() as Array<ISkill>)
             .exhaustMap(skills => skills)
-            .filter(skill => skill.focusArea == focusArea);
+            .filter(skill => skill.FocusArea == focusArea);
     }
 
     addSkill(skill: ISkill) {

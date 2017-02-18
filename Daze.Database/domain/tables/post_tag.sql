@@ -1,4 +1,4 @@
-set search_path = domain;
+set search_path = public;
 
 create table if not exists post_tag (
     post_id bigint not null, 
@@ -8,3 +8,5 @@ create table if not exists post_tag (
     constraint fk_post_tag_post foreign key (post_id) references post(id),
     constraint fk_post_tag_tag foreign key (tag_id) references tag(id)
 );
+
+-- ends here

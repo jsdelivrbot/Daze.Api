@@ -1,5 +1,6 @@
 module Daze.Api.Program
 
+open System
 open Suave
 open Suave.CORS
 open Suave.Successful

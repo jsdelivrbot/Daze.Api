@@ -1,15 +1,9 @@
 <article *ngIf="!!_post">
-
-    <h2>{{ _post.title }}</h2>
-
-    <p>
-        {{ _post.content }}
-    </p>
-
-   <ul *ngIf="!!_post.tags">
-       <li *ngFor="let tag of _post.tags" >
-           {{tag.name}}
-       </li>
-   </ul>
-
+    <h2>{{_post.Title}}</h2>
+    <p>{{_post.Content}}</p>
+    <ul *ngIf="!!_post.tags">
+        <li *ngFor="let tag of _post.tags">
+            {{tag.name}}
+        </li>
+    </ul>
 </article>

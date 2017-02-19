@@ -2,21 +2,24 @@
 module Daze.Api.SkillController
 
 open Suave
-open Daze.Api.JsonHelper
-open Daze.Api.Utils
+open Suave.Successful
 open Suave.Writers
+open Daze.Api.Utils
 open Daze.Api.Domain
-open Daze.Api.Services
 
 
 let get = 
     let skills = SkillService.getAllSkills()
-    OKJson (serialize skills)
+    match skills with 
+    | Some ss -> OKJson (serialize ss)
+    | None -> no_content
 
 let getSingle (id: int64) =
     let skill = SkillService.findSkillById id
-    OKJson (serialize skill)
-    
+    match skill with 
+    | Some s -> OKJson (serialize s)
+    | None -> no_content
+
 let head (id: int64) = 
     let exists = SkillService.existsSkill id
     if exists then setStatus HTTP_200
@@ -24,48 +27,27 @@ let head (id: int64) =
 
 let asyncPost (ctx: HttpContext) =
     async {
-        let requestBody = ctx.request.rawForm
-        let skill = deserialize requestBody
-
+        let skill = ctx.GetRequestBody<Skill>()
         do! SkillService.asyncInsertNewSkill skill
-        let response = {
-            ctx.response with 
-                content = Bytes (serialize skill)
-                headers = [("content-type", "application/json")]
-                status = { code = 200; reason = "OK" }
-        }
-        return Some { ctx with response = response }
+        return Some { ctx with response = ctx.GetResponseWith skill }
     }
 let asyncPut (ctx: HttpContext) = 
     async {
-        let requestBody = ctx.request.rawForm
-        let skill = deserialize requestBody
-
+        let skill = ctx.GetRequestBody<Skill>()
         do! SkillService.asyncFullyUpdateSkill skill
-        let response = {
-            ctx.response with 
-                content = Bytes (serialize skill)
-                headers = [("content-type", "application/json")]
-                status = { code = 200; reason = "OK" }
-        }
-        return Some { ctx with response = response }
+        return Some { ctx with response = ctx.GetResponseWith skill }
     }
     
 let asyncPatch (ctx: HttpContext) =
     async {
-        let requestBody = ctx.request.rawForm
-        let skill = deserialize requestBody
-
+        let skill = ctx.GetRequestBody<Skill>()
         do! SkillService.asyncPartiallyUpdateSkill skill
-        let response = {
-            ctx.response with 
-                content = Bytes (serialize skill)
-                headers = [("content-type", "application/json")]
-                status = { code = 200; reason = "OK" }
-        }
-        return Some { ctx with response = response }
+        return Some { ctx with response = ctx.GetResponseWith skill }
     }
-
+    
 let delete (id: int64) = 
-    SkillService.removeSkill id
-    setStatus HTTP_200
+    if SkillService.existsSkill id then 
+        SkillService.removeSkill id
+        setStatus HTTP_200
+    else 
+        setStatus HTTP_204

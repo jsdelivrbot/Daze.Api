@@ -2,70 +2,52 @@
 module Daze.Api.ProjectController
 
 open Suave
+open Suave.Successful
 open Suave.Writers
-open Daze.Api.JsonHelper
 open Daze.Api.Utils
+open Daze.Api.Domain
 
 let get = 
     let projects = ProjectService.getAllProjects()
-    OKJson (serialize projects)
-
+    match projects with 
+    | Some ps -> OKJson (serialize projects)
+    | None -> no_content
+    
 let getSingle (id: int64) = 
     let project = ProjectService.findProjectById id
-    OKJson (serialize project)
-
+    match project with 
+    | Some p -> OKJson (serialize project)
+    | None -> no_content
+    
 let head (id: int64) =
     let exists = ProjectService.existsProject id
     if exists then setStatus HTTP_200
-    else setStatus HTTP_404
+    else setStatus HTTP_204
 
 let asyncPost (ctx: HttpContext) = 
     async {
-        let requestBody = ctx.request.rawForm
-        let project = deserialize requestBody
-
+        let project = ctx.GetRequestBody<Project>()
         do! ProjectService.insertNewProject project
-        let response = {
-            ctx.response with 
-                content = Bytes (serialize project)
-                headers = [("content-type", "application/json")]
-                status = { code = 200; reason = "OK" }
-        }
-        return Some { ctx with response = response }
+        return Some { ctx with response = ctx.GetResponseWith project }
     }
-
 
 let asyncPut (ctx: HttpContext) = 
     async { 
-        let requestBody = ctx.request.rawForm
-        let project = deserialize requestBody 
-
+        let project = ctx.GetRequestBody()
         do! ProjectService.asyncFullyUpdateProject project
-        let response = {
-            ctx.response with 
-                content = Bytes (serialize project)
-                headers = [("content-type", "application/json")]
-                status = { code = 200; reason = "OK" }
-        }
-        return Some { ctx with response = response }
+        return Some { ctx with response = ctx.GetResponseWith project }
     }
 
 let asyncPatch (ctx: HttpContext) =
     async {
-        let requestBody = ctx.request.rawForm
-        let project = deserialize requestBody
-
+        let project = ctx.GetRequestBody<Project>()
         do! ProjectService.asyncPartiallyUpdateProject project
-        let response = {
-            ctx.response with 
-                content = Bytes (serialize project)
-                headers = [("content-type", "application/json")]
-        }
-        return Some { ctx with response = response }
+        return Some { ctx with response = ctx.GetResponseWith project }
     }
 
 let delete (id: int64) =
-    ProjectService.removeProject id
-    setStatus HTTP_200
-
-
+    if ProjectService.existsProject id then
+        ProjectService.removeProject id
+        setStatus HTTP_200
+    else 
+        setStatus HTTP_204

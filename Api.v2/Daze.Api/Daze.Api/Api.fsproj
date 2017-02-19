@@ -59,7 +59,6 @@
     <Compile Include="Services.Post.fs" />
     <Compile Include="Services.Skill.fs" />
     <Compile Include="Services.Project.fs" />
-    <Compile Include="JsonHelper.fs" />
     <Compile Include="Utils.fs" />
     <Compile Include="Controller.Post.fs" />
     <Compile Include="Controller.Project.fs" />

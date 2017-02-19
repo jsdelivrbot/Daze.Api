@@ -5,25 +5,27 @@ open Daze.Api.Services
 open Daze.Api.Domain
 
 let getAllProjects() = 
-    query { 
+    let projects = query { 
         for p in ctx.Public.Project do
         select { Id = p.Id
                  Name = p.Name
                  Description = p.Description
                  Url = p.Url }
     }
-    |> Seq.cache
+    if Seq.isEmpty projects then None
+    else Some (Seq.cache projects)
 
 let findProjectById (id: int64) = 
-    query {
+    let project = query {
         for p in ctx.Public.Project do
         where (p.Id = id)
-        select { Id = p.Id
-                 Name = p.Name
-                 Description = p.Description 
-                 Url = p.Url }
-        exactlyOne
+        exactlyOneOrDefault
     }
+    if isNull project then None
+    else Some { Id = project.Id
+                Name = project.Name
+                Description = project.Description 
+                Url = project.Url }
 
 let existsProject (id: int64) = 
     query {
@@ -37,40 +39,45 @@ let insertNewProject (project: Project) =
         newProject.Name <- project.Name
         newProject.Description <- project.Description
         newProject.Url <- project.Url 
-        do! ctx.SubmitUpdatesAsync()
+        
+        try 
+            do! ctx.SubmitUpdatesAsync()
+        with _ ->
+            ctx.GetUpdates()
+            ctx.ClearUpdates()
     }
 
 let asyncFullyUpdateProject (project: Project) = 
     async {
-        query {
+        let foundProject = query {
             for p in ctx.Public.Project do
             where (p.Id = project.Id)
+            exactlyOneOrDefault
         }
-        |> Seq.iter (fun p ->
-            p.Name <- project.Name
-            p.Description <- project.Description
-            p.Url <- project.Url
-        )
+        if not (isNull foundProject) then
+            foundProject.Name <- project.Name
+            foundProject.Description <- project.Description
+            foundProject.Url <- project.Url
 
         do! ctx.SubmitUpdatesAsync()
     }
 
 let asyncPartiallyUpdateProject (project: Project) =
     async {
-        query {
+        let foundProject = query {
             for p in ctx.Public.Project do
             where (p.Id = project.Id)
+            exactlyOneOrDefault
         }
-        |> Seq.iter (fun p ->
+        if not (isNull foundProject) then
             if not (isNull project.Name) then
-                p.Name <- project.Name
+                foundProject.Name <- project.Name
 
             if not (isNull project.Description) then 
-                p.Description <- project.Description
+                foundProject.Description <- project.Description
 
             if not (isNull project.Url) then 
-                p.Url <- project.Url
-        )
+                foundProject.Url <- project.Url
 
         do! ctx.SubmitUpdatesAsync()
     }

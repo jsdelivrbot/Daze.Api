@@ -4,10 +4,9 @@ module Daze.Api.PostService
 open System
 open Daze.Api.Services
 open Daze.Api.Domain
-open Microsoft.FSharp.Control
 
 let getAllPosts() = 
-    query { 
+    let posts = query { 
         for p in ctx.Public.Post do
         select { Id = p.Id
                  Slug = p.Slug
@@ -16,20 +15,22 @@ let getAllPosts() =
                  CreatedAt = p.CreatedAt
                  ModifiedAt = p.ModifiedAt }
     }
-    |> Seq.cache
+    if Seq.isEmpty posts then None
+    else Some (Seq.cache posts)
 
 let findPostById (id : int64) = 
-    query { 
+    let post = query { 
         for p in ctx.Public.Post do
         where (p.Id = id)
-        select { Id = p.Id
-                 Slug = p.Slug
-                 Title = p.Title
-                 Content = p.Content
-                 CreatedAt = p.CreatedAt
-                 ModifiedAt = p.ModifiedAt }
-        exactlyOne
+        exactlyOneOrDefault 
     }
+    if isNull post then None
+    else Some { Id = post.Id
+                Slug = post.Slug
+                Title = post.Title
+                Content = post.Content
+                CreatedAt = post.CreatedAt
+                ModifiedAt = post.ModifiedAt }
 
 let existsPost (id: int64) = 
     query {
@@ -43,42 +44,49 @@ let asyncInsertNewPost (post: Post) =
         newPost.Title <- post.Title
         newPost.Slug <- post.Slug
         newPost.Content <- post.Content
-        do! ctx.SubmitUpdatesAsync()
+        
+        try 
+            do! ctx.SubmitUpdatesAsync()
+        with _ -> 
+            ctx.GetUpdates()
+            ctx.ClearUpdates()
     }
-
+    
 let asyncFullyUpdatePost (post: Post) =
     async {
-        query {
+        let foundPost = query {
             for p in ctx.Public.Post do
             where (p.Id = post.Id)
+            exactlyOneOrDefault
         }
-        |> Seq.iter(fun p ->
-            p.Title <- post.Title
-            p.Slug <- post.Slug
-            p.Content <- post.Content
-            p.ModifiedAt <- DateTime.UtcNow
-        )
+        if not (isNull foundPost) then
+            foundPost.Title <- post.Title
+            foundPost.Slug <- post.Slug
+            foundPost.Content <- post.Content
+            foundPost.ModifiedAt <- DateTime.UtcNow
+
         do! ctx.SubmitUpdatesAsync()
     }
 
 let asyncPartiallyUpdatePost (post: Post) =
     async {
-        query {
+        let foundPost = query {
             for p in ctx.Public.Post do
             where (p.Id = post.Id)
+            exactlyOneOrDefault
         }
-        |> Seq.iter (fun p ->
+        if not (isNull foundPost) then 
             if not (isNull post.Title) then 
-                p.Title <- post.Title
+                foundPost.Title <- post.Title
                 
             if not (isNull post.Slug) then 
-                p.Slug <- post.Slug
+                foundPost.Slug <- post.Slug
 
             if not (isNull post.Content) then 
-                p.Content <- post.Content
+                foundPost.Content <- post.Content
 
-            p.ModifiedAt <- DateTime.UtcNow
-        )
+            foundPost.ModifiedAt <- DateTime.UtcNow
+
         do! ctx.SubmitUpdatesAsync()
     }
 

@@ -5,25 +5,27 @@ open Daze.Api.Services
 open Daze.Api.Domain
 
 let getAllSkills () = 
-    query { 
+    let skills = query { 
         for s in ctx.Public.Skill do
         select { Id = s.Id
                  Name = s.Name
                  FocusArea = s.FocusArea
                  Level = s.Level }
     }
-    |> Seq.cache
+    if Seq.isEmpty skills then None
+    else Some (Seq.cache skills)
 
 let findSkillById (id: int64) =
-    query {
+    let skill = query {
         for s in ctx.Public.Skill do
         where (s.Id = id)
-        select { Id = s.Id
-                 Name = s.Name
-                 FocusArea = s.FocusArea
-                 Level = s.Level }
-        exactlyOne
+        exactlyOneOrDefault
     }
+    if isNull skill then None
+    else Some { Id = skill.Id
+                Name = skill.Name
+                FocusArea = skill.FocusArea
+                Level = skill.Level }
 
 let existsSkill (id: int64) = 
     query {
@@ -37,39 +39,46 @@ let asyncInsertNewSkill (skill: Skill) =
         newSkill.Name <- skill.Name
         newSkill.Level <- skill.Level
         newSkill.FocusArea <- skill.FocusArea
-        do! ctx.SubmitUpdatesAsync()
+
+        try 
+            do! ctx.SubmitUpdatesAsync()
+        with _ ->
+            ctx.GetUpdates()
+            ctx.ClearUpdates()
     }
 
 let asyncFullyUpdateSkill (skill: Skill) = 
     async {
-        query {
+        let foundSkill = query {
             for s in ctx.Public.Skill do
             where (s.Id = skill.Id)
+            exactlyOneOrDefault
         }
-        |> Seq.iter(fun s ->
-            s.Name <- skill.Name
-            s.Level <- skill.Level
-            s.FocusArea <- skill.FocusArea
-        )
+        if not (isNull foundSkill) then 
+            foundSkill.Name <- skill.Name
+            foundSkill.Level <- skill.Level
+            foundSkill.FocusArea <- skill.FocusArea
+        
         do! ctx.SubmitUpdatesAsync()
     }
 
 let asyncPartiallyUpdateSkill (skill: Skill) =
     async {
-        query {
+        let foundSkill = query {
             for s in ctx.Public.Skill do
             where (s.Id = skill.Id)
+            exactlyOneOrDefault
         }
-        |> Seq.iter(fun s ->
+        if not (isNull foundSkill) then
             if not (isNull skill.Name) then 
-                s.Name <- skill.Name
+                foundSkill.Name <- skill.Name
 
             if skill.Level <> 0 then
-                s.Level <- skill.Level
+                foundSkill.Level <- skill.Level
                 
             if not (isNull skill.FocusArea) then
-                s.FocusArea <- skill.FocusArea
-        )
+                foundSkill.FocusArea <- skill.FocusArea
+        
         do! ctx.SubmitUpdatesAsync()
     }
 

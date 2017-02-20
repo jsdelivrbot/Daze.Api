@@ -14,11 +14,11 @@ export class AdminPostsComponent {
     private _isLoading = true;
     constructor(private _postService: PostService) { }
 
-    onPostClick(id: string) {
+    onPostClick(id: number) {
         this._selectedPost = this._posts.find(p => p.Id == id);
     }
 
-    onPostDelete(id: string) {
+    onPostDelete(id: number) {
         this._postService.deletePost(id)
             .subscribe(res => (res.status == 200)
                 ? console.log("post deleted")

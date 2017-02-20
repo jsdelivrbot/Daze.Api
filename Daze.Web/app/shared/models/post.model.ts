@@ -2,7 +2,7 @@ import IPost = Daze.Interfaces.IPost;
 import ITag = Daze.Interfaces.ITag;
 
 export class Post implements IPost {
-    Id: string;
+    Id: number;
     Title: string;
     Content: string;
     CreatedAt: Date;

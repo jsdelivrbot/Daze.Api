@@ -2,8 +2,9 @@ namespace Daze.Api.Domain
 
 open System
 
+
 type Tag = {
-    Id: Guid
+    Id: int64
     Name: string }
 
 type Post = {
@@ -17,7 +18,7 @@ type Post = {
     // Comments: seq<Comment>
 
 type Course = {
-    Id: Guid
+    Id: int64
     CourseTag: string
     CourseTitle: string }
 

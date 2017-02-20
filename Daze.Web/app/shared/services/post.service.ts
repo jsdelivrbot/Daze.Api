@@ -19,7 +19,10 @@ export class PostService {
         return this._http
             .get(PostService.requestUri)
             .retry(2)
-            .map(res => res.json() as Array<IPost>)
+            .map(res => {
+                console.log(res.json()  );
+                return res.json() as Array<IPost>
+            })
             .exhaustMap(posts => posts);
     }
 
@@ -38,7 +41,7 @@ export class PostService {
             .toPromise();
     }
 
-    getPostById(id: string) {
+    getPostById(id: number) {
         return this._http.get(`${PostService.requestUri}${id}`)
             .retry(2)
             .map(res => res.json() as IPost);
@@ -52,7 +55,7 @@ export class PostService {
         });
     }
 
-    deletePost(id: string) {
+    deletePost(id: number) {
         return this._http.delete(`${PostService.requestUri}${id}`);
     }
 }

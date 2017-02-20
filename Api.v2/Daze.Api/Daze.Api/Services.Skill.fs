@@ -51,7 +51,7 @@ let asyncFullyUpdateSkill (skill: Skill) =
     async {
         let foundSkill = query {
             for s in ctx.Public.Skill do
-            where (s.Id = skill.Id)
+            where (s.Id = int64 skill.Id)
             exactlyOneOrDefault
         }
         if not (isNull foundSkill) then 
@@ -85,7 +85,7 @@ let asyncPartiallyUpdateSkill (skill: Skill) =
 let removeSkill (id: int64) =
     async {
         let skill = ctx.Public.Skill.Create()
-        skill.Id  <- id
+        skill.Id <- id
         skill.Delete()
         do! ctx.SubmitUpdatesAsync()
     } |> Async.RunSynchronously

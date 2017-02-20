@@ -10,13 +10,13 @@ open Daze.Api.Domain
 let get = 
     let projects = ProjectService.getAllProjects()
     match projects with 
-    | Some ps -> OKJson (serialize projects)
+    | Some ps -> OKJson (serialize ps)
     | None -> no_content
     
 let getSingle (id: int64) = 
     let project = ProjectService.findProjectById id
     match project with 
-    | Some p -> OKJson (serialize project)
+    | Some p -> OKJson (serialize p)
     | None -> no_content
     
 let head (id: int64) =

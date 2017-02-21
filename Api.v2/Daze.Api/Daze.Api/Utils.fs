@@ -22,17 +22,9 @@ type Int64ToStringConverter() =
             else value
         serializer.Serialize(writer, v)
 
-
     override this.ReadJson(reader, objectType, existingValue, serializer) = 
         serializer.Deserialize(reader, objectType)
 
-
-let defaultCorsConfig = {
-    allowedUris = InclusiveOption.All
-    allowedMethods = InclusiveOption.All
-    maxAge = Some(1)
-    allowCookies = false
-    exposeHeaders = true }
 
 let utf8GetBytes (str: string) = 
     Encoding.UTF8.GetBytes(str)
@@ -41,7 +33,7 @@ let deserialize<'a> bytes =
      JsonConvert.DeserializeObject<'a>(Encoding.UTF8.GetString(bytes))
 
 let serialize<'a> x = 
-    JsonConvert.SerializeObject(x, new Int64ToStringConverter() ) |> utf8GetBytes
+    JsonConvert.SerializeObject(x, new Int64ToStringConverter()) |> utf8GetBytes
 
 let mapJsonNet<'a, 'b> = 
     mapJsonWith deserialize<'a> serialize<'b>

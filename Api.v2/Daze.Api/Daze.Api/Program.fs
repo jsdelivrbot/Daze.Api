@@ -9,6 +9,13 @@ open Suave.Operators
 open Suave.RequestErrors
 open Daze.Api.Utils
 
+let defaultCorsConfig = {
+    allowedUris = InclusiveOption.All
+    allowedMethods = InclusiveOption.All
+    maxAge = Some(1)
+    allowCookies = false
+    exposeHeaders = true }
+
 let app =
     choose [
         GET >=> path "/" >=> (OK "__daze_api__")

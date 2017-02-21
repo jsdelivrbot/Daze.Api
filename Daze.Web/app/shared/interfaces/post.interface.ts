@@ -1,7 +1,7 @@
 namespace Daze.Interfaces {
 
     export interface IPost {
-        Id: number;
+        Id: string;
         Title: string;
         Content: string;
         CreatedAt: Date;

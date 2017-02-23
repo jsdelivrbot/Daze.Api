@@ -12,9 +12,12 @@ open Daze.Api.Domain
 
 let get =
     let posts = PostService.getAllPosts()
-    match posts with
-    | Some ps -> OKJson (serialize ps)
-    | None -> no_content
+    OKJson (serialize posts)
+
+let getPaginated (page, pageSize) =
+    let posts = PostService.getAllPostsPaginated page pageSize
+    OKJson (serialize posts)
+
 
 let getSingle (id: int64) =
     let post = PostService.findPostById id

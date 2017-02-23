@@ -6,7 +6,7 @@ open Daze.Api.Services
 open Daze.Api.Domain
 
 let getAllPosts() = 
-    let posts = query { 
+    query { 
         for p in ctx.Public.Post do
         select { Id = p.Id
                  Slug = p.Slug
@@ -14,9 +14,21 @@ let getAllPosts() =
                  Content = p.Content
                  CreatedAt = p.CreatedAt
                  ModifiedAt = p.ModifiedAt }
-    }
-    if Seq.isEmpty posts then None
-    else Some (Seq.cache posts)
+    } |> Seq.cache 
+
+let getAllPostsPaginated page pageSize =
+    let startIndex = (page - 1) * pageSize
+    query {
+        for p in ctx.Public.Post do
+        skip startIndex
+        take pageSize
+        select { Id = p.Id
+                 Slug = p.Slug
+                 Title = p.Title
+                 Content = p.Content
+                 CreatedAt = p.CreatedAt
+                 ModifiedAt = p.ModifiedAt }
+    } |> Seq.cache
 
 let findPostById (id : int64) = 
     let post = query { 

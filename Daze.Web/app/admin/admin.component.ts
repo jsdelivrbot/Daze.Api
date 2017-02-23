@@ -6,6 +6,5 @@ import { Component, OnInit } from '@angular/core';
     templateUrl: 'app/admin/admin.template.html'
 })
 export class AdminComponent implements OnInit {
-
     ngOnInit() { }
 }

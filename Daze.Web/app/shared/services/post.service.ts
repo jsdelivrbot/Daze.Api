@@ -12,7 +12,6 @@ import ITag = Daze.Interfaces.ITag;
 @Injectable()
 export class PostService {
     private static requestUri = 'http://127.0.0.1:8080/api/post/';
-    // private static requestUri = 'http://localhost:21403/api/post/';
     constructor(private readonly _http: Http) { }
 
     getPosts() {
@@ -25,7 +24,7 @@ export class PostService {
 
     getPagedPosts(page: number, pageSize: number) {
         return this._http
-            .get(`${PostService.requestUri}?page=${page}&pageSize=${pageSize}`)
+            .get(`${PostService.requestUri}${page}/${pageSize}`)
             .map(res => res.json() as Array<IPost>)
             .exhaustMap(posts => posts);
     }

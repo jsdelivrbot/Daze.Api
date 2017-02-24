@@ -12,8 +12,8 @@
     <section class="master">
         <ul>
             <li *ngFor="let post of _posts">
-                <a class="masterLink" (click)="onPostClick(post.id)">
-                    <span>{{post.title}}</span>
+                <a class="masterLink" (click)="onPostClick(post.Id)">
+                    <span>{{post.Title}}</span>
                 </a>
             </li>
         </ul>
@@ -23,13 +23,21 @@
 
     <section class="detail">
         <article *ngIf="_selectedPost">
-            <h3>{{_selectedPost.title}}</h3>
+            <h3>{{_selectedPost.Title}}</h3>
             <div>
+<<<<<<< HEAD
                 <p>{{_selectedPost.content}}</p>
             </div>
             <div>
                 <button (click)="onPostDelete(_selectedPost.id)" type="button">
                     <span>delete this post</span>
+=======
+                {{_selectedPost.Content}}
+            </div>
+            <div>
+                <button (click)="onPostDelete(_selectedPost.Id)" type="button">
+                    delete this post
+>>>>>>> suaveapi
                 </button>
                 <a routerLink="/admin/posts/update/{{_selectedPost.id}}" class="blogLink">
                     <span>update this post</span>

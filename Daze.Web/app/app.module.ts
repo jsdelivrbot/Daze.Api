@@ -16,6 +16,7 @@ import { SpinnerComponent } from './shared/spinner/spinner.component';
 import { PagerComponent } from './shared/pager/pager.component';
 import { UpComponent } from './shared/up/up.component';
 
+import { LoginComponent } from './admin/login/login.component'
 import { AdminComponent } from './admin/admin.component';
 import { AdminPostsComponent } from './admin/posts/admin.posts.component';
 import { AdminPostsCreateComponent } from './admin/posts/create/admin.posts.create.component';
@@ -35,6 +36,7 @@ const routes = new RoutesBuilder()
     .addRoute('posts/:id', PostComponent)
     .addRoute('skills', SkillsComponent)
     .addRoute('projects', ProjectsComponent)
+    .addRoute('login', LoginComponent)
     .addRoute('admin', AdminComponent)
     .addRoute('admin/posts', AdminPostsComponent)
     .addRoute('admin/posts/create', AdminPostsCreateComponent)
@@ -71,6 +73,7 @@ const routes = new RoutesBuilder()
         SpinnerComponent,
         PagerComponent,
         UpComponent,
+        LoginComponent,
         AdminComponent,
         AdminPostsComponent,
         AdminPostsCreateComponent,

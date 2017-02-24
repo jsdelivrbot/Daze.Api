@@ -29,9 +29,9 @@ export class AdminProjectsCreateComponent implements OnInit {
 
     ngOnInit() {
         this.projectForm = this._formBuilder.group({
-            name: [this.project.name, Validators.required],
-            description: [this.project.description, Validators.required],
-            url: [this.project.url, Validators.required]
+            name: [this.project.Name, Validators.required],
+            description: [this.project.Description, Validators.required],
+            url: [this.project.Url, Validators.required]
         });
 
         this.projectForm.valueChanges.subscribe(r => this.onValueChanged(r));

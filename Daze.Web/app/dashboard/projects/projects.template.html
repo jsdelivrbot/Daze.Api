@@ -3,14 +3,14 @@
 <section class="projectSection">
     <md-card *ngFor="let project of _projects">
         <md-card-title>
-            {{project.name}}
+            {{project.Name}}
         </md-card-title>
         <md-card-content>
-            <p>{{project.description}}</p>
+            <p>{{project.Description}}</p>
         </md-card-content>
         <md-card-actions class="projectActions">
             <button md-button>SHARE</button>
-            <a md-button href="{{project.url}}" target="_blank" rel="noopener">
+            <a md-button href="{{project.Url}}" target="_blank" rel="noopener">
                 <i class="material-icons">open_in_new</i>
             </a>
         </md-card-actions>

@@ -1,6 +1,10 @@
 <spinner *ngIf="_isLoading"></spinner>
 
+<<<<<<< HEAD
 <ul *ngIf="!_isLoading" class="actions">
+=======
+<ul class="actions">
+>>>>>>> suaveapi
     <a routerLink="/admin/skills/create">Create a new Skill</a>
 </ul>
 
@@ -8,8 +12,8 @@
     <section class="master">
         <ul>
             <li *ngFor="let skill of _skills">
-                <a class="masterLink" (click)="onSkillClick(skill.id)">
-                    <span>{{skill.name}}</span>
+                <a class="masterLink" (click)="onSkillClick(skill.Id)">
+                    <span>{{skill.Name}}</span>
                 </a>
             </li>
         </ul>
@@ -19,9 +23,9 @@
 
     <section class="detail">
         <article *ngIf="_selectedSkill">
-            <h3>{{_selectedSkill.name}}</h3>
+            <h3>{{_selectedSkill.Name}}</h3>
             <div>
-                {{_selectedSkill.name}} <br/> {{_selectedSkill.level}} <br/>
+                {{_selectedSkill.Name}} <br/> {{_selectedSkill.Level}} <br/>
                 <ul *ngIf="_selectedSkill.courses && _selectedSkill.courses.length > 0">
                     <li *ngFor="let course of _selectedSkill.courses">
                         {{course.name}}

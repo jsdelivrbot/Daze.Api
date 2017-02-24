@@ -15,15 +15,22 @@ export class AdminSkillsComponent implements OnInit {
     constructor(private _skillService: SkillService) { }
 
     onSkillClick(id: string) {
-        this._selectedSkill = this._skills.find(s => s.id == id);
+        this._selectedSkill = this._skills.find(s => s.Id == id);
     }
 
     onSkillDelete(id: string) {
         this._skillService.deleteSkill(id)
+<<<<<<< HEAD
             .subscribe(res => (res.status == 200) ?
                 console.log("skill deleted") :
                 console.log("error"));
         this._skills = this._skills.filter(s => s.id != id);
+=======
+            .subscribe(res => (res.status == 200)
+                ? console.log("skill deleted")
+                : console.log("error"));
+        this._skills = this._skills.filter(s => s.Id != id);
+>>>>>>> suaveapi
         this._selectedSkill = null;
     }
 

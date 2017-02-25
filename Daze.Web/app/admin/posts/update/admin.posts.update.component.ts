@@ -19,7 +19,7 @@ export class AdminPostsUpdateComponent implements OnInit {
 
     onFormSubmit(event: MouseEvent) {
         if (this._post) {
-            this._post.id = this._postId;
+            this._post.Id = this._postId;
             this._postService.updatePost(this._post)
                 .subscribe(p => console.log('p was added, ', p),
                 err => console.log(err),
@@ -34,8 +34,8 @@ export class AdminPostsUpdateComponent implements OnInit {
     populateForm(post?: Post) {
         if (post) {
             this._updateForm = this._formBuilder.group({
-                title: [post.title, Validators.required],
-                content: [post.content, Validators.required]
+                title: [post.Title, Validators.required],
+                content: [post.Content, Validators.required]
             });
             this._updateForm.valueChanges.subscribe(data => this.onValueChanged(data));
             this.onValueChanged(); // (re)set validation messages now

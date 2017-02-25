@@ -10,7 +10,7 @@ import ISkill = Daze.Interfaces.ISkill;
 @Injectable()
 export class SkillService {
     private static requestUri = 'http://127.0.0.1:8080/api/skill/';
-    constructor(private _http: Http) { }
+    constructor(private readonly _http: Http) { }
 
     getSkills() {
         return this._http.get(SkillService.requestUri)

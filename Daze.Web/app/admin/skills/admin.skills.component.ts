@@ -20,17 +20,10 @@ export class AdminSkillsComponent implements OnInit {
 
     onSkillDelete(id: string) {
         this._skillService.deleteSkill(id)
-<<<<<<< HEAD
             .subscribe(res => (res.status == 200) ?
                 console.log("skill deleted") :
                 console.log("error"));
-        this._skills = this._skills.filter(s => s.id != id);
-=======
-            .subscribe(res => (res.status == 200)
-                ? console.log("skill deleted")
-                : console.log("error"));
         this._skills = this._skills.filter(s => s.Id != id);
->>>>>>> suaveapi
         this._selectedSkill = null;
     }
 

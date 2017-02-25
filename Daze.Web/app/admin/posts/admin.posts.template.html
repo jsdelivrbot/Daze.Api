@@ -25,21 +25,13 @@
         <article *ngIf="_selectedPost">
             <h3>{{_selectedPost.Title}}</h3>
             <div>
-<<<<<<< HEAD
-                <p>{{_selectedPost.content}}</p>
-            </div>
-            <div>
-                <button (click)="onPostDelete(_selectedPost.id)" type="button">
-                    <span>delete this post</span>
-=======
-                {{_selectedPost.Content}}
+                <p>{{_selectedPost.Content}}</p>
             </div>
             <div>
                 <button (click)="onPostDelete(_selectedPost.Id)" type="button">
                     delete this post
->>>>>>> suaveapi
                 </button>
-                <a routerLink="/admin/posts/update/{{_selectedPost.id}}" class="blogLink">
+                <a routerLink="/admin/posts/update/{{_selectedPost.Id}}" class="blogLink">
                     <span>update this post</span>
                 </a>
             </div>

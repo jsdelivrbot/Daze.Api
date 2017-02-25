@@ -1,6 +1,7 @@
 ﻿module Daze.Api.Services
 
 open System
+open FSharp.Data.Sql.Common
 open FSharp.Data
 open FSharp.Data.Sql
 open Npgsql

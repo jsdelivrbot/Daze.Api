@@ -8,7 +8,7 @@ import IProject = Daze.Interfaces.IProject;
 @Injectable()
 export class ProjectService {
     private static requestUri = 'http://127.0.0.1:8080/api/project/';
-    constructor(private _http: Http) { }
+    constructor(private readonly _http: Http) { }
 
     getProjects() {
         return this._http.get(ProjectService.requestUri)

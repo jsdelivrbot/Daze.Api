@@ -20,7 +20,7 @@ export class AdminSkillsUpdateComponent implements OnInit {
 
     onFormSubmit(event: MouseEvent) {
         if (this._skill) {
-            this._skill.id = this._skillId;
+            this._skill.Id = this._skillId;
             this._skillService.updateSkill(this._skill)
                 .subscribe(s => console.log('skill was updated ', s),
                 err => console.log(err),
@@ -35,9 +35,9 @@ export class AdminSkillsUpdateComponent implements OnInit {
     populateForm(skill?: Skill) {
         if (skill) {
             this._updateForm = this._formBuilder.group({
-                name: [skill.name, Validators.required],
-                level: [skill.level, Validators.required],
-                focusArea: [skill.focusArea, Validators.required]
+                name: [skill.Name, Validators.required],
+                level: [skill.Level, Validators.required],
+                focusArea: [skill.FocusArea, Validators.required]
             });
             this._updateForm.valueChanges.subscribe(data => this.onValueChanged(data));
             this.onValueChanged();

@@ -19,24 +19,15 @@ export class AdminPostsComponent {
     }
 
     onPostDelete(id: string) {
-<<<<<<< HEAD
         const confirmation = confirm("Are you sure?");
         if (confirmation) {
             this._postService.deletePost(id)
                 .subscribe(res => (res.status == 200) ?
                     console.log("post deleted") :
                     console.log("error"));
-            this._posts = this._posts.filter(p => p.id != id);
+            this._posts = this._posts.filter(p => p.Id != id);
             this._selectedPost = null;
         }
-=======
-        this._postService.deletePost(id)
-            .subscribe(res => (res.status == 200)
-                ? console.log("post deleted")
-                : console.log("error"));
-        this._posts = this._posts.filter(p => p.Id != id);
-        this._selectedPost = null;
->>>>>>> suaveapi
     }
 
     ngOnInit() {

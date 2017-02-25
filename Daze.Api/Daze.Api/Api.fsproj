@@ -46,6 +46,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Numerics" />
   </ItemGroup>
   <ItemGroup>
@@ -56,10 +57,12 @@
       <Paket>True</Paket>
     </Content>
     <Compile Include="Services.fs" />
+    <Compile Include="Services.Authentication.fs" />
     <Compile Include="Services.Post.fs" />
     <Compile Include="Services.Skill.fs" />
     <Compile Include="Services.Project.fs" />
     <Compile Include="Utils.fs" />
+    <Compile Include="Controller.Authentication.fs" />
     <Compile Include="Controller.Post.fs" />
     <Compile Include="Controller.Project.fs" />
     <Compile Include="Controller.Skill.fs" />

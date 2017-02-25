@@ -22,12 +22,8 @@ export class PostService {
     }
 
     getPagedPosts(page: number, pageSize: number) {
-<<<<<<< HEAD
-        return this._http.get(`${PostService.requestUri}?page=${page}&pageSize=${pageSize}`)
-=======
         return this._http
             .get(`${PostService.requestUri}${page}/${pageSize}`)
->>>>>>> suaveapi
             .map(res => res.json() as Array<IPost>)
             .exhaustMap(posts => posts);
     }

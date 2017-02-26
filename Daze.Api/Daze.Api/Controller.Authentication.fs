@@ -2,18 +2,17 @@
 module Daze.Api.AuthenticationController
 
 open Suave
+open Suave.Operators
+open Suave.Successful
+open Suave.Authentication
 open Daze.Api.Utils
 
 
-type LoginModel = {
-    username: string
-    password: string }
+
+// user = "hermesxgjini@gmail.com" && pwd = "bar") 
+let authenticate =
+    Authentication.authenticateBasic 
+        (AuthenticationService.authenticate)
+        (OK (sprintf "Hello authenticated person "))
 
 
-let authenticate (ctx: HttpContext) = 
-    async {
-        let loginModel = ctx.GetRequestBody<LoginModel>()
-        let result = AuthenticationService.authenticate (loginModel.username, loginModel.password)
-        return Some { ctx with response = ctx.GetResponseWith result }
-    }
-    

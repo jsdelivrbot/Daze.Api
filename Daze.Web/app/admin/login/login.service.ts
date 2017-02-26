@@ -12,7 +12,8 @@ export class LoginService {
         headers.append('content-type', 'application/json');
         return this._http.post(LoginService.requestUri, model, {
             headers: headers
-        });
+        })
+            .map(r => r.json() as boolean);
     }
 }
 

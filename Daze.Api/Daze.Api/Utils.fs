@@ -6,6 +6,8 @@ open System.Reflection
 open Suave
 open Suave.CORS
 open Suave.Json
+open Suave.State.CookieStateStore
+open System.Security.Cryptography
 open Newtonsoft.Json
 
 
@@ -57,6 +59,30 @@ let (|Content|NoContent|) (items: seq<'a>) =
 let (|Content'|NoContent'|) (item: 'a) =
     if (isNull item) then NoContent'
     else Content'
+
+
+let hashPassword (password: string) = 
+    use sha = SHA256.Create()
+    utf8GetBytes(password)
+    |> sha.ComputeHash
+    |> Array.map (fun b -> b.ToString("x2"))
+    |> String.concat ""
+
+let sessionStore setFun = 
+    context (fun x -> 
+        match HttpContext.state x with 
+        | Some state -> setFun state
+        | None -> never)
+
+let returnPathOrHome = 
+    request (fun x -> 
+        let path = 
+            match (x.queryParam "returnPath") with
+            | Choice1Of2 path -> path
+            | _ -> "Path.home"
+        Redirection.FOUND path)
+let session = statefulForSession
+
 
 
 type Suave.Http.HttpContext with

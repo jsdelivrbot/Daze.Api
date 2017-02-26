@@ -10,7 +10,7 @@ open Suave
 let [<Literal>] DbVendor = Common.DatabaseProviderTypes.POSTGRESQL
 let [<Literal>] ConnectionString = "host=localhost;database=daze_db;password=daze;username=daze;"
 let [<Literal>] IndividualsAmount = 1000
-let [<Literal>] UseOptionTypes = false
+let [<Literal>] UseOptionTypes = false // change in the future
 let [<Literal>] ResolutionPath = @"C:\Users\daze\Documents\Visual Studio 2015\Projects\Daze\Api.v2\Daze.Api\packages\Npgsql\lib\net451\Npgsql.dll"
 
 type PgProvider = SqlDataProvider<

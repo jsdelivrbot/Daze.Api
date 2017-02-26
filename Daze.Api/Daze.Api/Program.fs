@@ -19,9 +19,7 @@ let defaultCorsConfig = {
 let app =
     choose [
         GET >=> path "/" >=> (OK "__daze_api__")
-        
-        POST >=> path "/api/authenticate/" >=> AuthenticationController.authenticate
-
+        POST >=> path "/api/authenticate/" >=> AuthenticationController.authenticate 
         GET >=> path "/api/post/" >=> PostController.get
         GET >=> pathScan "/api/post/%i" PostController.getSingle
         GET >=> pathScan "/api/post/%i/%i" PostController.getPaginated

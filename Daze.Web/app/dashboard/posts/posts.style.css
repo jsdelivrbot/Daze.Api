@@ -54,11 +54,12 @@ article.postArticle hr {
 
 .postArticleBody {
     width: 70%;
+
 }
 
 .postArticleBodyTitle {
-    font-size: 16pt;
-    padding: 20px;
+    /*font-size: 16pt;*/
+    padding: 14px 20px 20px 20px;
     height: 10px;
     white-space: nowrap;
     text-overflow: ellipsis;

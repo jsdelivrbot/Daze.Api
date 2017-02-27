@@ -69,19 +69,17 @@ let hashPassword (password: string) =
     |> String.concat ""
 
 let sessionStore setFun = 
-    context (fun x -> 
+    context (fun x ->
         match HttpContext.state x with 
         | Some state -> setFun state
         | None -> never)
 
-let returnPathOrHome = 
-    request (fun x -> 
-        let path = 
-            match (x.queryParam "returnPath") with
-            | Choice1Of2 path -> path
-            | _ -> "Path.home"
-        Redirection.FOUND path)
-let session = statefulForSession
+let sessionGet getFun =
+    context (fun x ->
+        match HttpContext.state x with 
+        | Some state -> getFun state
+        | None -> never
+    )
 
 
 

@@ -8,9 +8,11 @@ export class LoginService {
     constructor(private readonly _http: Http) { }
 
     authenticate(model: LoginModel) {
+        const encodedCredentials = btoa(`${model.username}:${model.password}`);
         let headers = new Headers();
         headers.append('content-type', 'application/json');
-        return this._http.post(LoginService.requestUri, model, {
+        headers.append('authorization', `Basic ${encodedCredentials}`);
+        return this._http.post(LoginService.requestUri, null, {
             headers: headers
         })
             .map(r => r.json() as boolean);

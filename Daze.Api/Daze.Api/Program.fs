@@ -12,14 +12,17 @@ open Daze.Api.Utils
 let defaultCorsConfig = {
     allowedUris = InclusiveOption.All
     allowedMethods = InclusiveOption.All
-    maxAge = Some(1)
-    allowCookies = false
+    maxAge = Some(Int32.MaxValue)
+    allowCookies = true
     exposeHeaders = true }
 
 let app =
     choose [
         GET >=> path "/" >=> (OK "__daze_api__")
+
         POST >=> path "/api/authenticate/" >=> AuthenticationController.authenticate 
+        GET >=> path "/api/cookies/" >=> AuthenticationController.getCookies
+
         GET >=> path "/api/post/" >=> PostController.get
         GET >=> pathScan "/api/post/%i" PostController.getSingle
         GET >=> pathScan "/api/post/%i/%i" PostController.getPaginated

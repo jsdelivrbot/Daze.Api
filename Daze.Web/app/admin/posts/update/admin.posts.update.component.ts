@@ -8,11 +8,12 @@ import { Post } from '../../../shared/models/post.model';
     selector: 'adminPostsUpdate',
     providers: [PostService, FormBuilder],
     templateUrl: 'app/admin/posts/update/admin.posts.update.template.html',
+    styleUrls: ['app/admin/posts/update/admin.posts.update.style.css']
 })
 export class AdminPostsUpdateComponent implements OnInit {
     private _post: Post = null;
     private _postId: string;
-    private _updateForm: FormGroup;
+    private _updatePostForm: FormGroup;
     constructor(private _postService: PostService,
         private _router: ActivatedRoute,
         private _formBuilder: FormBuilder) { }
@@ -33,14 +34,14 @@ export class AdminPostsUpdateComponent implements OnInit {
 
     populateForm(post?: Post) {
         if (post) {
-            this._updateForm = this._formBuilder.group({
+            this._updatePostForm = this._formBuilder.group({
                 title: [post.Title, Validators.required],
                 content: [post.Content, Validators.required]
             });
-            this._updateForm.valueChanges.subscribe(data => this.onValueChanged(data));
+            this._updatePostForm.valueChanges.subscribe(data => this.onValueChanged(data));
             this.onValueChanged(); // (re)set validation messages now
         } else {
-            this._updateForm = this._formBuilder.group({
+            this._updatePostForm = this._formBuilder.group({
                 title: new FormControl(),
                 content: new FormControl()
             });

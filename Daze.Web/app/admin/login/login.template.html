@@ -1,5 +1,7 @@
 <form [formGroup]="_loginForm" #f (ngSubmit)="onLoginFormSubmit($event)" class="login-form">
-    <fieldset> Login </fieldset>
+    <fieldset>
+        <legend>Login</legend>
+    </fieldset>
 
     <md-input-container class="example-full-width">
         <input md-input formControlName="username" type="text" placeholder="username">
@@ -9,5 +11,5 @@
         <input md-input formControlName="password" type="password" placeholder="password">
     </md-input-container>
 
-    <button md-raised-button type="submit" class="login-form-submit" >Submit</button>
+    <button md-raised-button type="submit" class="login-form-submit">Submit</button>
 </form>

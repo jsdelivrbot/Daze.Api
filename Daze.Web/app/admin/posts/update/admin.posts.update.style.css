@@ -1,0 +1,9 @@
+.update-post-form {
+    margin-top: 2em;
+    display: inline-flex;
+    flex-direction: column;
+}
+
+.update-post-form-submit {
+    margin-top: 2em;
+}

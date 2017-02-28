@@ -9,12 +9,19 @@ open Suave.Operators
 open Suave.RequestErrors
 open Daze.Api.Utils
 
+type Method = HttpMethod
+
 let defaultCorsConfig = {
-    allowedUris = InclusiveOption.All
-    allowedMethods = InclusiveOption.All
-    maxAge = Some(Int32.MaxValue)
+    allowedUris = InclusiveOption.Some [ "http://localhost:3000" ]
+    allowedMethods = InclusiveOption.Some [
+                        Method.GET
+                        Method.POST
+                        Method.DELETE
+                        Method.PUT
+                        Method.PATCH ]
     allowCookies = true
-    exposeHeaders = true }
+    maxAge = Some(Int32.MaxValue)
+    exposeHeaders = false }
 
 let app =
     choose [
@@ -28,7 +35,7 @@ let app =
         GET >=> pathScan "/api/post/%i/%i" PostController.getPaginated
         HEAD >=> pathScan "/api/post/%i" PostController.head
         POST >=> path "/api/post/" >=> PostController.asyncPost
-        PUT >=> path "/api/post/" >=> PostController.asyncPut
+        PUT >=> path "/api/post/" >=> PostController.asyncPut 
         PATCH >=> path "/api/post/" >=> PostController.asyncPatch
         DELETE >=> pathScan "/api/post/%i" PostController.delete
 

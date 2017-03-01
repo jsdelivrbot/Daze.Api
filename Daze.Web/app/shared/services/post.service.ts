@@ -27,7 +27,7 @@ export class PostService {
             .map(res => res.json() as Array<IPost>)
             .exhaustMap(posts => posts);
     }
-    
+
     async getPostsArrayified() {
         return await this._http.get(PostService.requestUri)
             .retry(2)

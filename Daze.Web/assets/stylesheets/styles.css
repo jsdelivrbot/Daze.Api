@@ -39,6 +39,10 @@ del {
     text-decoration-style: 1px solid black;
 }
 
+label {
+    color: grey;
+}
+
 button.btn {
     font-weight: bold;
     font-size: 11pt;

@@ -7,12 +7,13 @@ import { Project } from '../../../shared/models/project.model';
 @Component({
     selector: 'adminProjectsUpdate',
     providers: [ProjectService, FormBuilder],
-    templateUrl: 'app/admin/projects/update/admin.projects.update.template.html'
+    templateUrl: 'app/admin/projects/update/admin.projects.update.template.html',
+    styleUrls: ['app/admin/projects/update/admin.projects.update.style.css']
 })
 export class AdminProjectsUpdateComponent implements OnInit {
     private _project: Project = null;
     private _projectId: string;
-    private _updateForm: FormGroup;
+    private _updateProjectForm: FormGroup;
     constructor(private _projectService: ProjectService,
         private _router: ActivatedRoute,
         private _formBuilder: FormBuilder) { }
@@ -33,16 +34,16 @@ export class AdminProjectsUpdateComponent implements OnInit {
 
     populateForm(project?: Project) {
         if (project) {
-            this._updateForm = this._formBuilder.group({
+            this._updateProjectForm = this._formBuilder.group({
                 name: [project.Name, Validators.required],
                 description: [project.Description, Validators.required],
                 url: [project.Url, Validators.required]
             });
-            this._updateForm.valueChanges.subscribe(p => this.onValueChanged(p));
+            this._updateProjectForm.valueChanges.subscribe(p => this.onValueChanged(p));
             this.onValueChanged();
 
         } else {
-            this._updateForm = this._formBuilder.group({
+            this._updateProjectForm = this._formBuilder.group({
                 name: new FormControl(),
                 description: new FormControl(),
                 url: new FormControl()

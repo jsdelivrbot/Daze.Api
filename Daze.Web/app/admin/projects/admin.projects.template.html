@@ -1,36 +1,43 @@
-<spinner *ngIf="_isLoading"></spinner>
+<md-progress-bar *ngIf="_isLoading" mode="indeterminate"></md-progress-bar>
+
+<!--<spinner *ngIf="_isLoading"></spinner>-->
 
 <ul *ngIf="!_isLoading" class="actions">
-    <a routerLink="/admin/projects/create">Create a new Project</a>
+    <li>
+        <a md-raised-button color="primary" routerLink="/admin/projects/create">
+            <md-icon>add</md-icon>
+        </a>
+    </li>
 </ul>
 
 <div *ngIf="!_isLoading" class="masterDetail">
     <section class="master">
-        <ul>
-            <li *ngFor="let project of _projects">
+        <md-list>
+            <md-list-item *ngFor="let project of _projects">
                 <a class="masterLink" (click)="onProjectClick(project.Id)">
-                    <span>{{project.Name}}</span>
+                    {{project.Name}}
                 </a>
-            </li>
-        </ul>
+            </md-list-item>
+        </md-list>
     </section>
 
     <div class="verticalLine"></div>
 
-    <section class="detail">
-        <article *ngIf="_selectedProject">
-            <h3>{{_selectedProject.Name}}</h3>
-            <div>
-                {{_selectedProject.Name}}
-            </div>
-            <div>
-                <button (click)="onProjectDelete(_selectedProject.Id)" type="button">
-                    delete this project
+    <section *ngIf="_selectedProject" class="detail">
+        <md-card>
+            <md-card-header>
+                <md-card-title>{{_selectedProject.Name}}</md-card-title>
+                <md-card-subtitle>{{_selectedProject.Url}}</md-card-subtitle>
+            </md-card-header>
+            <md-card-content>{{_selectedProject.Description}}</md-card-content>
+            <md-card-actions>
+                <button md-button color="warn" (click)="onProjectDelete(_selectedProject.Id)" type="button">
+                    <md-icon>delete_forever</md-icon>
                 </button>
-                <a routerLink="/admin/projects/update/{{_selectedProject.id}}" class="blogLink">
-                    <span>update this post</span>
+                <a md-button color="primary" routerLink="/admin/projects/update/{{_selectedProject.Id}}">
+                    <md-icon>edit</md-icon>
                 </a>
-            </div>
-        </article>
+            </md-card-actions>
+        </md-card>
     </section>
 </div>

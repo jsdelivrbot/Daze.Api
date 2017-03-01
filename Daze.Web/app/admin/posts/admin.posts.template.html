@@ -1,40 +1,43 @@
-<spinner *ngIf="_isLoading"></spinner>
+<md-progress-bar *ngIf="_isLoading" mode="indeterminate"></md-progress-bar>
+
+<!--<spinner *ngIf="_isLoading"></spinner>-->
 
 <ul *ngIf="!_isLoading" class="actions">
     <li>
-        <a routerLink="/admin/posts/create" class="blogLink">
-            <span>Create a new Post</span>
+        <a md-raised-button color="primary" routerLink="/admin/posts/create">
+            <md-icon>add</md-icon>
         </a>
     </li>
 </ul>
 
 <div *ngIf="!_isLoading" class="masterDetail">
     <section class="master">
-        <ul>
-            <li *ngFor="let post of _posts">
+        <md-list>
+            <md-list-item *ngFor="let post of _posts">
                 <a class="masterLink" (click)="onPostClick(post.Id)">
-                    <span>{{post.Title}}</span>
+                    {{post.Title}}
                 </a>
-            </li>
-        </ul>
+            </md-list-item>
+        </md-list>
     </section>
 
     <div class="verticalLine"></div>
 
-    <section class="detail">
-        <article *ngIf="_selectedPost">
-            <h3>{{_selectedPost.Title}}</h3>
-            <div>
-                <p>{{_selectedPost.Content}}</p>
-            </div>
-            <div>
-                <button (click)="onPostDelete(_selectedPost.Id)" type="button">
-                    delete this post
+    <section *ngIf="_selectedPost" class="detail">
+        <md-card>
+            <md-card-header>
+                <md-card-title>{{_selectedPost.Title}}</md-card-title>
+                <md-card-subtitle>{{_selectedPost.Slug}}</md-card-subtitle>
+            </md-card-header>
+            <md-card-content>{{_selectedPost.Content}}</md-card-content>
+            <md-card-actions>
+                <button md-button color="warn" (click)="onPostDelete(_selectedPost.Id)" type="button">
+                    <md-icon>delete_forever</md-icon>
                 </button>
-                <a routerLink="/admin/posts/update/{{_selectedPost.Id}}" class="blogLink">
-                    <span>update this post</span>
+                <a md-button color="primary" routerLink="/admin/posts/update/{{_selectedPost.Id}}">
+                    <md-icon>edit</md-icon>
                 </a>
-            </div>
-        </article>
+            </md-card-actions>
+        </md-card>
     </section>
 </div>

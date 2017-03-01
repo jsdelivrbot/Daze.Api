@@ -1,0 +1,9 @@
+.update-project-form {
+    margin-top: 2em;
+    display: inline-flex;
+    flex-direction: column;
+}
+
+.update-project-form-submit {
+    margin-top: 2em;
+}

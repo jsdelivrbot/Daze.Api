@@ -11,9 +11,9 @@ type Post = {
     Id: int64
     Slug: string
     Title: string
-    Content: string
-    CreatedAt: DateTime
-    ModifiedAt: DateTime }
+    Content: string option 
+    CreatedAt: DateTime option
+    ModifiedAt: DateTime option }
     // Tags: seq<Tag> }
     // Comments: seq<Comment>
 
@@ -24,13 +24,13 @@ type Course = {
 
 type Skill = {
     Id: int64
-    Name: string
-    Level: int
-    FocusArea: string }
+    Name: string option
+    Level: int option
+    FocusArea: string option }
     // Courses: seq<Course> 
 
 type Project = {
     Id: int64
     Name: string
-    Description: string
-    Url: string }
+    Description: string option
+    Url: string option }

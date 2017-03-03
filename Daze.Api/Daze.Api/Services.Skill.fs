@@ -70,13 +70,13 @@ let asyncPartiallyUpdateSkill (skill: Skill) =
             exactlyOneOrDefault
         }
         if not (isNull foundSkill) then
-            if not (isNull skill.Name) then 
+            if skill.Name.IsSome then 
                 foundSkill.Name <- skill.Name
 
-            if skill.Level <> 0 then
+            if skill.Level.IsSome then
                 foundSkill.Level <- skill.Level
                 
-            if not (isNull skill.FocusArea) then
+            if skill.FocusArea.IsSome then
                 foundSkill.FocusArea <- skill.FocusArea
         
         do! ctx.SubmitUpdatesAsync()

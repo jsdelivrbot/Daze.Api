@@ -75,7 +75,7 @@ let asyncFullyUpdatePost (post: Post) =
             foundPost.Title <- post.Title
             foundPost.Slug <- post.Title.Replace(" ", "-")
             foundPost.Content <- post.Content
-            foundPost.ModifiedAt <- DateTime.UtcNow
+            foundPost.ModifiedAt <- Some DateTime.UtcNow
 
         do! ctx.SubmitUpdatesAsync()
     }
@@ -87,17 +87,13 @@ let asyncPartiallyUpdatePost (post: Post) =
             where (p.Id = post.Id)
             exactlyOneOrDefault
         }
-        if not (isNull foundPost) then 
-            if not (isNull post.Title) then 
-                foundPost.Title <- post.Title
-                
-            if not (isNull post.Slug) then 
-                foundPost.Slug <- post.Slug
-
-            if not (isNull post.Content) then 
+        if not (isNull foundPost) then     
+            foundPost.Title <- post.Title
+            foundPost.Slug <- post.Slug
+            foundPost.ModifiedAt <- Some DateTime.UtcNow
+            
+            if post.Content.IsSome then
                 foundPost.Content <- post.Content
-
-            foundPost.ModifiedAt <- DateTime.UtcNow
 
         do! ctx.SubmitUpdatesAsync()
     }

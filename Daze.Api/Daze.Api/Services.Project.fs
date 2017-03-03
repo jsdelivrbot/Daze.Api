@@ -73,10 +73,10 @@ let asyncPartiallyUpdateProject (project: Project) =
             if not (isNull project.Name) then
                 foundProject.Name <- project.Name
 
-            if not (isNull project.Description) then 
+            if project.Description.IsSome then 
                 foundProject.Description <- project.Description
 
-            if not (isNull project.Url) then 
+            if project.Url.IsSome then 
                 foundProject.Url <- project.Url
 
         do! ctx.SubmitUpdatesAsync()

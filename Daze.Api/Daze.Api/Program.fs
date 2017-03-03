@@ -15,8 +15,10 @@ let defaultCorsConfig = {
     allowedUris = InclusiveOption.Some [ "http://localhost:3000" ]
     allowedMethods = InclusiveOption.Some [
                         Method.GET
+                        Method.HEAD
                         Method.POST
                         Method.DELETE
+                        Method.OPTIONS
                         Method.PUT
                         Method.PATCH ]
     allowCookies = true
@@ -61,5 +63,12 @@ let app =
 
 [<EntryPoint>]
 let main argv =
+   
+    Reflection.Assembly.GetExecutingAssembly()
+        .GetName()
+        .Version
+        .ToString() |> printfn "%s"
+    (* not working *)
+
     startWebServer defaultConfig app
     0  // exit of program

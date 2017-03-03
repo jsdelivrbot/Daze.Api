@@ -3,6 +3,7 @@
 
 open Fake
 open Fake.Testing
+open Fake.AssemblyInfoFile
 
 // Directories
 let buildDir  = "./build/"
@@ -15,7 +16,7 @@ let appReferences  =
     ++ "/**/*.fsproj"
 
 // version info
-let version = "0.1"  // or retrieve from CI server
+let version = "0.4"
 
 // Targets
 
@@ -31,6 +32,14 @@ Target "Clean" (fun _ ->
 )
 
 Target "Build" (fun _ ->
+    CreateCSharpAssemblyInfo ".//Daze.Api/Properties/AssemblyInfo.cs"
+        [Attribute.Title "Daze"
+         Attribute.Description "The dazed programmer blog."
+         Attribute.Guid "A539B42C-CB9F-4a23-8E57-AF4E7CEE5BAA"
+         Attribute.Product "Daze"
+         Attribute.Version version
+         Attribute.FileVersion version]
+
     // compile all projects below src/app/
     MSBuildDebug buildDir "Build" appReferences
     |> Log "AppBuild-Output: "

@@ -84,8 +84,3 @@ article.postArticle hr {
     transition: cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
-up { 
-    position: fixed;
-    left: 92%;
-    top: 92%;
-}

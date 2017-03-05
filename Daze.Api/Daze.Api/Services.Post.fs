@@ -4,6 +4,7 @@ module Daze.Api.PostService
 open System
 open Daze.Api.Services
 open Daze.Api.Domain
+open Microsoft.FSharp.Collections
 
 let getAllPosts() = 
     query { 
@@ -13,7 +14,8 @@ let getAllPosts() =
                  Title = p.Title
                  Content = p.Content
                  CreatedAt = p.CreatedAt
-                 ModifiedAt = p.ModifiedAt }
+                 ModifiedAt = p.ModifiedAt
+                 Tags = Seq.empty }
     } |> Seq.cache 
 
 let getAllPostsPaginated page pageSize =
@@ -27,10 +29,38 @@ let getAllPostsPaginated page pageSize =
                  Title = p.Title
                  Content = p.Content
                  CreatedAt = p.CreatedAt
-                 ModifiedAt = p.ModifiedAt }
+                 ModifiedAt = p.ModifiedAt
+                 Tags = Seq.empty }
     } |> Seq.cache
 
 let findPostById (id : int64) = 
+    let result = query {
+        for pt in ctx.Public.PostTag do
+        join p in (ctx.Public.Post) on (pt.PostId = p.Id)
+        join t in (ctx.Public.Tag) on (pt.TagId = t.Id)
+        where (pt.PostId = id)
+        select ({ Id = p.Id
+                  Slug = p.Slug
+                  Title = p.Title
+                  Content = p.Content
+                  CreatedAt = p.CreatedAt
+                  ModifiedAt = p.ModifiedAt
+                  Tags = seq {
+                    yield { Id = t.Id; 
+                            TagName = t.Name } }
+                })
+    }
+    result 
+//    if post then None
+//    else Some { Id = post.Id
+//                Slug = post.Slug
+//                Title = post.Title
+//                Content = post.Content
+//                CreatedAt = post.CreatedAt
+//                ModifiedAt = post.ModifiedAt 
+//                Tags = tag }
+
+    (*
     let post = query { 
         for p in ctx.Public.Post do
         where (p.Id = id)
@@ -43,6 +73,7 @@ let findPostById (id : int64) =
                 Content = post.Content
                 CreatedAt = post.CreatedAt
                 ModifiedAt = post.ModifiedAt }
+    *)
 
 let existsPost (id: int64) = 
     query {
@@ -105,3 +136,6 @@ let removePost (id: int64) =
         record.Delete()
         do! ctx.SubmitUpdatesAsync()
     } |> Async.RunSynchronously
+
+
+

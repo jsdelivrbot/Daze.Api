@@ -8,7 +8,7 @@ let getAllProjects() =
     let projects = query { 
         for p in ctx.Public.Project do
         select { Id = p.Id
-                 Name = p.Name
+                 ProjectName = p.Name
                  Description = p.Description
                  Url = p.Url }
     }
@@ -23,7 +23,7 @@ let findProjectById (id: int64) =
     }
     if isNull project then None
     else Some { Id = project.Id
-                Name = project.Name
+                ProjectName = project.Name
                 Description = project.Description 
                 Url = project.Url }
 
@@ -36,7 +36,7 @@ let existsProject (id: int64) =
 let insertNewProject (project: Project) =
     async { 
         let newProject = ctx.Public.Project.Create()
-        newProject.Name <- project.Name
+        newProject.Name <- project.ProjectName
         newProject.Description <- project.Description
         newProject.Url <- project.Url 
         
@@ -55,7 +55,7 @@ let asyncFullyUpdateProject (project: Project) =
             exactlyOneOrDefault
         }
         if not (isNull foundProject) then
-            foundProject.Name <- project.Name
+            foundProject.Name <- project.ProjectName
             foundProject.Description <- project.Description
             foundProject.Url <- project.Url
 
@@ -70,8 +70,8 @@ let asyncPartiallyUpdateProject (project: Project) =
             exactlyOneOrDefault
         }
         if not (isNull foundProject) then
-            if not (isNull project.Name) then
-                foundProject.Name <- project.Name
+            if not (isNull project.ProjectName) then
+                foundProject.Name <- project.ProjectName
 
             if project.Description.IsSome then 
                 foundProject.Description <- project.Description

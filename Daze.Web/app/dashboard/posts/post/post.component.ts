@@ -6,7 +6,8 @@ import IPost = Daze.Interfaces.IPost;
 @Component({
     selector: 'post',
     providers: [PostService],
-    templateUrl: 'app/dashboard/posts/post/post.template.html'
+    templateUrl: 'app/dashboard/posts/post/post.template.html',
+    styleUrls: ['app/dashboard/posts/post/post.style.css']
 })
 export class PostComponent implements OnInit {
     private _post: IPost | null = null;

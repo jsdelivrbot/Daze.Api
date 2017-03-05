@@ -8,7 +8,7 @@ let getAllSkills () =
     let skills = query { 
         for s in ctx.Public.Skill do
         select { Id = s.Id
-                 Name = s.Name
+                 SkillName = s.Name
                  FocusArea = s.FocusArea
                  Level = s.Level }
     }
@@ -23,7 +23,7 @@ let findSkillById (id: int64) =
     }
     if isNull skill then None
     else Some { Id = skill.Id
-                Name = skill.Name
+                SkillName = skill.Name
                 FocusArea = skill.FocusArea
                 Level = skill.Level }
 
@@ -36,7 +36,7 @@ let existsSkill (id: int64) =
 let asyncInsertNewSkill (skill: Skill) =
     async {
         let newSkill = ctx.Public.Skill.Create() 
-        newSkill.Name <- skill.Name
+        newSkill.Name <- skill.SkillName
         newSkill.Level <- skill.Level
         newSkill.FocusArea <- skill.FocusArea
 
@@ -55,7 +55,7 @@ let asyncFullyUpdateSkill (skill: Skill) =
             exactlyOneOrDefault
         }
         if not (isNull foundSkill) then 
-            foundSkill.Name <- skill.Name
+            foundSkill.Name <- skill.SkillName
             foundSkill.Level <- skill.Level
             foundSkill.FocusArea <- skill.FocusArea
         
@@ -70,8 +70,8 @@ let asyncPartiallyUpdateSkill (skill: Skill) =
             exactlyOneOrDefault
         }
         if not (isNull foundSkill) then
-            if skill.Name.IsSome then 
-                foundSkill.Name <- skill.Name
+            if skill.SkillName.IsSome then 
+                foundSkill.Name <- skill.SkillName
 
             if skill.Level.IsSome then
                 foundSkill.Level <- skill.Level

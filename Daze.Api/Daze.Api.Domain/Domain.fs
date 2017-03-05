@@ -5,7 +5,7 @@ open System
 
 type Tag = {
     Id: int64
-    Name: string }
+    TagName: string option }
 
 type Post = {
     Id: int64
@@ -13,8 +13,8 @@ type Post = {
     Title: string
     Content: string option 
     CreatedAt: DateTime option
-    ModifiedAt: DateTime option }
-    // Tags: seq<Tag> }
+    ModifiedAt: DateTime option
+    Tags: seq<Tag> }
     // Comments: seq<Comment>
 
 type Course = {
@@ -24,13 +24,13 @@ type Course = {
 
 type Skill = {
     Id: int64
-    Name: string option
+    SkillName: string option
     Level: int option
     FocusArea: string option }
     // Courses: seq<Course> 
 
 type Project = {
     Id: int64
-    Name: string
+    ProjectName: string
     Description: string option
     Url: string option }

@@ -1,70 +1,57 @@
-// include Fake libs
 #r "./packages/FAKE/tools/FakeLib.dll"
 
 open Fake
 open Fake.Testing
 open Fake.AssemblyInfoFile
+open System
+open System.Text
+open System.Reflection
+open System.IO
 
-// Directories
+(* Directories *) 
 let buildDir  = "./build/"
 let deployDir = "./deploy/"
 let testDir  = "./build/"
 
-// Filesets
+
+(* Filesets *)
 let appReferences  =
     !! "/**/*.csproj"
     ++ "/**/*.fsproj"
 
-// version info
-let version = "0.4"
+(* version info *)
 
-// Targets
+let (success, buildVersion) =
+    (GetAssemblyVersionString
+            (Path.Combine (__SOURCE_DIRECTORY__, "./build/Daze.Api.exe")) )
+            .Split('.')
+    |> Array.last
+    |> Int32.TryParse 
 
-let generateDocs() = 
-    tracefn "Generating docs."
-    
-Target "GenerateDocs" (fun _ ->
-    generateDocs()
-)
+let version = 
+    match success with
+    | true -> sprintf "0.4.0.%i" (buildVersion + 1)
+    | false -> sprintf "0.4.0.%i" (0 + 1)
 
+
+(* Targets *)
 Target "Clean" (fun _ ->
     CleanDirs [buildDir; deployDir]
 )
 
 Target "Build" (fun _ ->
-    CreateCSharpAssemblyInfo ".//Daze.Api/Properties/AssemblyInfo.cs"
-        [Attribute.Title "Daze"
-         Attribute.Description "The dazed programmer blog."
-         Attribute.Guid "A539B42C-CB9F-4a23-8E57-AF4E7CEE5BAA"
-         Attribute.Product "Daze"
-         Attribute.Version version
-         Attribute.FileVersion version]
+    CreateFSharpAssemblyInfo "./Daze.Api/Properties/AssemblyInfo.fs"
+        [ Attribute.Title "Daze"
+          Attribute.Description "The dazed programmer blog."
+          Attribute.Guid "A539B42C-CB9F-4a23-8E57-AF4E7CEE5BAA"
+          Attribute.Product "Daze"
+          Attribute.Version version
+          Attribute.FileVersion version ]
 
     // compile all projects below src/app/
     MSBuildDebug buildDir "Build" appReferences
     |> Log "AppBuild-Output: "
 )
-
-// let runTests () =
-//     tracefn "Running tests..."
-//     !! (testDir @@ "Daze.Api.Tests.dll")
-//     |> xUnit2 (fun p -> {
-//                         p with HtmlOutputPath = Some(testDir @@ "xunit.html");
-//                                ToolPath = @"./packages/xunit.runner.console/tools/xunit.console.exe";
-//                         })
-
-// let fullDir = System.IO.Path.GetFullPath testDir
-// Target "Watch" (fun _ ->
-//     use watcher = !! (fullDir @@ "*.*") |> WatchChanges (fun changes ->
-//         runTests()
-//     )
-//     System.Console.ReadLine() |> ignore
-//     watcher.Dispose()
-// )                       
-
-// Target "Test" (fun _ ->
-//     runTests()
-// )
 
 Target "Deploy" (fun _ ->
     !! (buildDir + "/**/*.*")
@@ -72,10 +59,10 @@ Target "Deploy" (fun _ ->
     |> Zip buildDir (deployDir + "ApplicationName." + version + ".zip")
 )
 
-// Build order
+(* Build order *)
 "Clean"
   ==> "Build"
   ==> "Deploy"
 
-// start build
+(* start build *)
 RunTargetOrDefault "Build"

@@ -67,6 +67,7 @@
     <Compile Include="Controller.Post.fs" />
     <Compile Include="Controller.Project.fs" />
     <Compile Include="Controller.Skill.fs" />
+    <Compile Include="Properties\AssemblyInfo.fs" />
     <Compile Include="Program.fs" />
     <Content Include="App.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

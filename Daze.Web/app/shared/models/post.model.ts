@@ -8,5 +8,5 @@ export class Post implements IPost {
     Content: string;
     CreatedAt: Date;
     ModifiedAt: Date;
-    tags: Array<ITag>;
+    Tags: Array<ITag>;
 }

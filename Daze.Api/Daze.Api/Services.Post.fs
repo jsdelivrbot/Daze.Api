@@ -34,46 +34,26 @@ let getAllPostsPaginated page pageSize =
     } |> Seq.cache
 
 let findPostById (id : int64) = 
-    let result = query {
-        for pt in ctx.Public.PostTag do
-        join p in (ctx.Public.Post) on (pt.PostId = p.Id)
-        join t in (ctx.Public.Tag) on (pt.TagId = t.Id)
-        where (pt.PostId = id)
-        select ({ Id = p.Id
-                  Slug = p.Slug
-                  Title = p.Title
-                  Content = p.Content
-                  CreatedAt = p.CreatedAt
-                  ModifiedAt = p.ModifiedAt
-                  Tags = seq {
-                    yield { Id = t.Id; 
-                            TagName = t.Name } }
-                })
-    }
-    result 
-//    if post then None
-//    else Some { Id = post.Id
-//                Slug = post.Slug
-//                Title = post.Title
-//                Content = post.Content
-//                CreatedAt = post.CreatedAt
-//                ModifiedAt = post.ModifiedAt 
-//                Tags = tag }
-
-    (*
-    let post = query { 
+    let post = query {
         for p in ctx.Public.Post do
         where (p.Id = id)
-        exactlyOneOrDefault 
+        exactlyOneOrDefault
     }
-    if isNull post then None
+    let tags = Seq.cache <| query {
+        for pt in ctx.Public.PostTag do
+        join t in (ctx.Public.Tag) on (pt.TagId = t.Id)
+        where (pt.PostId = id)
+        select ({ Id = t.Id
+                  TagName = t.Name })
+    }
+    if (isNull post)then None
     else Some { Id = post.Id
                 Slug = post.Slug
                 Title = post.Title
                 Content = post.Content
                 CreatedAt = post.CreatedAt
-                ModifiedAt = post.ModifiedAt }
-    *)
+                ModifiedAt = post.ModifiedAt
+                Tags = tags }
 
 let existsPost (id: int64) = 
     query {

@@ -7,6 +7,6 @@ namespace Daze.Interfaces {
         Content: string;
         CreatedAt: Date;
         ModifiedAt: Date;
-        tags: Array<ITag>;
+        Tags: Array<ITag>;
     }
 }

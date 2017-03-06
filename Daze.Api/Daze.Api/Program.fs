@@ -8,11 +8,15 @@ open Suave.Filters
 open Suave.Operators
 open Suave.RequestErrors
 open Daze.Api.Utils
+open System.Reflection
+open FSharp.Linq
+open System.Reflection
 
 type Method = HttpMethod
 
 let defaultCorsConfig = {
-    allowedUris = InclusiveOption.Some [ "http://localhost:3000" ]
+    allowedUris = InclusiveOption.Some [
+                    "http://localhost:3000" ]
     allowedMethods = InclusiveOption.Some [
                         Method.GET
                         Method.HEAD
@@ -60,15 +64,15 @@ let app =
         NOT_FOUND "you are lost"
     ] >=> (cors defaultCorsConfig)
 
+let printHero () =
+    let currentAssembly = Assembly.GetExecutingAssembly()
+                                  .GetName()
+    let version = currentAssembly.Version.ToString()
+    let name = currentAssembly.Name.ToString()
+    printfn "%s: %s" name version
 
 [<EntryPoint>]
 let main argv =
-   
-    Reflection.Assembly.GetExecutingAssembly()
-        .GetName()
-        .Version
-        .ToString() |> printfn "%s"
-    (* not working *)
-
+    printHero() |> ignore
     startWebServer defaultConfig app
     0  // exit of program

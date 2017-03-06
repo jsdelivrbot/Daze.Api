@@ -9,11 +9,7 @@
 }
 
 html, body {
-    /*"Lato"*/
     font-family: 'PT Sans', Helvetica, Arial, sans-serif;
-    /*min-height: 1000px;*/
-    /* width: 100%; */
-    /*background-color: rgb(245, 245, 245);*/
     overflow-y: auto;
 }
 

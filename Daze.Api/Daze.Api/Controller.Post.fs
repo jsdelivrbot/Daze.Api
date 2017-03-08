@@ -18,7 +18,6 @@ let getPaginated (page, pageSize) =
     let posts = PostService.getAllPostsPaginated page pageSize
     OKJson (serialize posts)
 
-
 let getSingle (id: int64) =
     let post = PostService.findPostById id
     match post with 
@@ -49,6 +48,12 @@ let asyncPatch (ctx: HttpContext) =
         let post = ctx.GetRequestBody<Post>()
         do! PostService.asyncPartiallyUpdatePost post
         return Some { ctx with response = ctx.GetResponseWith post }
+    }
+
+let asyncOptions (ctx: HttpContext) =
+    async {
+        let response = ctx.GetOptionsResponseFor (Project "GET, HEAD, POST, PUT, PATCH, DELETE")
+        return Some { ctx with response = response }
     }
 
 let delete (id: int64) =

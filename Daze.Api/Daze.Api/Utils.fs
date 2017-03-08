@@ -12,6 +12,12 @@ open Newtonsoft.Json
 open Daze.Api.Serializers
 
 
+type SupportedHttpMethods =
+| Post of verbs : string 
+| Skill of verbs : string
+| Project of verbs : string  
+
+
 let utf8GetBytes (str: string) = 
     Encoding.UTF8.GetBytes(str)
 
@@ -79,7 +85,7 @@ type Suave.Http.HttpContext with
         let successResponse = {
             this.response with 
                 content = Bytes (serialize entity)
-                headers = [("content-type", "application/json")]
+                headers = [("Content-Type", "application/json")]
                 status = { code = 200; reason = "OK" }
         }
         let failResponse = {
@@ -89,4 +95,17 @@ type Suave.Http.HttpContext with
         match entity with 
         | null -> failResponse
         | _ -> successResponse
+
+    member this.GetOptionsResponseFor (case: SupportedHttpMethods) =
+        match case with 
+        | Post(p) | Project(p) | Skill(p)  ->
+            let response = {
+                this.response with 
+                    headers = [("Allow", p)]
+                    status = { code = 200; reason = "OK" }
+            }
+            response
+
+
+
 

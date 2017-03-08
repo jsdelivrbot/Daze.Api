@@ -44,6 +44,7 @@ let app =
         PUT >=> path "/api/post/" >=> PostController.asyncPut 
         PATCH >=> path "/api/post/" >=> PostController.asyncPatch
         DELETE >=> pathScan "/api/post/%i" PostController.delete
+        OPTIONS >=> path "/api/post/" >=> PostController.asyncOptions
 
         GET >=> path "/api/skill/" >=> SkillController.get
         GET >=> pathScan "/api/skill/%i" SkillController.getSingle
@@ -52,6 +53,7 @@ let app =
         PUT >=> path "/api/skill/" >=> SkillController.asyncPut
         PATCH >=> path "/api/skill/" >=> SkillController.asyncPatch
         DELETE >=> pathScan "/api/skill/%i" SkillController.delete
+        OPTIONS >=> path "/api/skill/" >=> SkillController.asyncOptions
 
         GET >=> path "/api/project/" >=> ProjectController.get 
         GET >=> pathScan "/api/project/%i" ProjectController.getSingle
@@ -60,6 +62,7 @@ let app =
         PUT >=> path "/api/project/" >=> ProjectController.asyncPut
         PATCH >=> path "/api/project/" >=> ProjectController.asyncPatch 
         DELETE >=> pathScan "/api/project/%i" ProjectController.delete
+        OPTIONS >=> path "/api/project/" >=> ProjectController.asyncOptions
 
         NOT_FOUND "you are lost"
     ] >=> (cors defaultCorsConfig)

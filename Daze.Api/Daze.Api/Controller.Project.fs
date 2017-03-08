@@ -45,6 +45,12 @@ let asyncPatch (ctx: HttpContext) =
         return Some { ctx with response = ctx.GetResponseWith project }
     }
 
+let asyncOptions (ctx: HttpContext) =
+    async {
+        let response = ctx.GetOptionsResponseFor (Project "GET, HEAD, POST, PUT, PATCH, DELETE")
+        return Some { ctx with response = response }
+    }
+
 let delete (id: int64) =
     if ProjectService.existsProject id then
         ProjectService.removeProject id

@@ -8,6 +8,7 @@ open System.Text
 open System.Reflection
 open System.IO
 
+
 (* Directories *) 
 let buildDir  = "./build/"
 let deployDir = "./deploy/"
@@ -48,7 +49,6 @@ Target "Build" (fun _ ->
           Attribute.Version version
           Attribute.FileVersion version ]
 
-    // compile all projects below src/app/
     MSBuildDebug buildDir "Build" appReferences
     |> Log "AppBuild-Output: "
 )

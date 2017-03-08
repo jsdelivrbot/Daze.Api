@@ -44,7 +44,13 @@ let asyncPatch (ctx: HttpContext) =
         do! SkillService.asyncPartiallyUpdateSkill skill
         return Some { ctx with response = ctx.GetResponseWith skill }
     }
-    
+
+let asyncOptions (ctx: HttpContext) =
+    async {
+        let response = ctx.GetOptionsResponseFor (Project "GET, HEAD, POST, PUT, PATCH, DELETE")
+        return Some { ctx with response = response }
+    }
+
 let delete (id: int64) = 
     if SkillService.existsSkill id then 
         SkillService.removeSkill id

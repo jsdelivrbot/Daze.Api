@@ -25,15 +25,16 @@ export class ProjectService {
 
     createProject(project: IProject) {
         let headers = new Headers();
-        headers.append('content-type', 'application/json');
+        headers.append('Content-Type', 'application/json');
         return this._http.post(ProjectService.requestUri, project, {
-            headers: headers
+            headers: headers,
+            withCredentials: true
         });
     }
 
     updateProject(project: IProject) {
         let headers = new Headers();
-        headers.append('content-type', 'application/json');
+        headers.append('Content-Type', 'application/json');
         return this._http.put(ProjectService.requestUri, project, {
             headers: headers
         });

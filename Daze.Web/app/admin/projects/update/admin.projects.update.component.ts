@@ -35,7 +35,7 @@ export class AdminProjectsUpdateComponent implements OnInit {
     populateForm(project?: Project) {
         if (project) {
             this._updateProjectForm = this._formBuilder.group({
-                name: [project.Name, Validators.required],
+                name: [project.ProjectName, Validators.required],
                 description: [project.Description, Validators.required],
                 url: [project.Url, Validators.required]
             });

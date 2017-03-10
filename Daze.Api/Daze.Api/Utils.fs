@@ -102,7 +102,7 @@ type Suave.Http.HttpContext with
             let response = {
                 this.response with 
                     headers = [("Allow", p)]
-                    status = { code = 200; reason = "OK" }
+                    status = { code = 200; reason = "OK" } 
             }
             response
 

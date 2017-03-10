@@ -76,6 +76,6 @@ let printHero () =
 
 [<EntryPoint>]
 let main argv =
-    printHero() |> ignore
+    // printHero() |> ignore
     startWebServer defaultConfig app
     0  // exit of program

@@ -49,7 +49,6 @@ export class PostService {
         });
     }
 
-    /** uses http post behind the scenes */
     updatePost(post: IPost) {
         let headers = new Headers();
         headers.append('content-type', 'application/json');

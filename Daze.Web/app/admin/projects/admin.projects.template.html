@@ -15,7 +15,7 @@
         <md-list>
             <md-list-item *ngFor="let project of _projects">
                 <a class="masterLink" (click)="onProjectClick(project.Id)">
-                    {{project.Name}}
+                    {{project.ProjectName}}
                 </a>
             </md-list-item>
         </md-list>
@@ -26,7 +26,7 @@
     <section *ngIf="_selectedProject" class="detail">
         <md-card>
             <md-card-header>
-                <md-card-title>{{_selectedProject.Name}}</md-card-title>
+                <md-card-title>{{_selectedProject.ProjectName}}</md-card-title>
                 <md-card-subtitle>{{_selectedProject.Url}}</md-card-subtitle>
             </md-card-header>
             <md-card-content>{{_selectedProject.Description}}</md-card-content>

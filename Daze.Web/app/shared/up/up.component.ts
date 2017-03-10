@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 @Component({
     selector: 'up',
     template: `
-        <button md-fab class="up" (click)="onUpClick()" >
+        <button md-fab color="primary" class="up" (click)="onUpClick()" >
             <md-icon>keyboard_arrow_up</md-icon>
         </button>
     `,

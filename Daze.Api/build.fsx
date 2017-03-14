@@ -22,17 +22,20 @@ let appReferences =
 
 (* version info *)
 
-// let (success, buildVersion) =
-//     (GetAssemblyVersionString
-//             (Path.Combine (__SOURCE_DIRECTORY__, "./build/Daze.Api.exe")) )
-//             .Split('.')
-//     |> Array.last
-//     |> Int32.TryParse 
+let (success, buildVersion) =
+    try 
+        (GetAssemblyVersionString
+                (Path.Combine (__SOURCE_DIRECTORY__, "./build/Daze.Api.exe")) )
+                .Split('.')
+        |> Array.last
+        |> Int32.TryParse 
+    with 
+        | :? FileNotFoundException -> (false, 0)
 
-let version = "0.4.0.%i"
-//    match success with
-//    | true -> sprintf "0.4.0.%i" (buildVersion + 1)
-//    | false -> sprintf "0.4.0.%i" (0 + 1)
+let version = 
+    match success with
+    | true -> sprintf "0.4.0.%i" (buildVersion + 1)
+    | false -> sprintf "0.4.0.%i" (0 + 1)
 
 
 (* Targets *)

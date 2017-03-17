@@ -6,7 +6,7 @@ open Daze.Api.Services
 open Daze.Api.Domain
 open Microsoft.FSharp.Collections
 
-let getAllPosts() = 
+let getAllPosts () = 
     query { 
         for p in ctx.Public.Post do
         select { Id = p.Id
@@ -46,7 +46,7 @@ let findPostById (id : int64) =
         select ({ Id = t.Id
                   TagName = t.Name })
     }
-    if (isNull post)then None
+    if (isNull post) then None
     else Some { Id = post.Id
                 Slug = post.Slug
                 Title = post.Title
@@ -54,6 +54,19 @@ let findPostById (id : int64) =
                 CreatedAt = post.CreatedAt
                 ModifiedAt = post.ModifiedAt
                 Tags = tags }
+
+let findTagsByPostId (id: int64) =
+    let tags = Seq.cache <| query {
+        for pt in ctx.Public.PostTag do
+        join t in (ctx.Public.Tag) on (pt.TagId = t.Id)
+        where (pt.PostId = id)
+        select ({ Id = t.Id
+                  TagName = t.Name })
+    }
+    tags 
+    // |> Seq.map(fun x -> { Id = x.Id
+    //                       TagName = x.Name })
+    
 
 let existsPost (id: int64) = 
     query {

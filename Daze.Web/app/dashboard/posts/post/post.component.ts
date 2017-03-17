@@ -18,10 +18,7 @@ export class PostComponent implements OnInit {
         this.router.params.subscribe(p => {
             const postId = p['id'];
             this.postService.findPostById(postId)
-                .subscribe(post => {
-                    this._post = post;
-                    console.log(post)
-                });
+                .subscribe(post => this._post = post);
         });
     }
 }

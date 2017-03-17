@@ -7,8 +7,8 @@ open System.Runtime.InteropServices
 [<assembly: AssemblyDescriptionAttribute("The dazed programmer blog.")>]
 [<assembly: GuidAttribute("A539B42C-CB9F-4a23-8E57-AF4E7CEE5BAA")>]
 [<assembly: AssemblyProductAttribute("Daze")>]
-[<assembly: AssemblyVersionAttribute("0.4.0.17")>]
-[<assembly: AssemblyFileVersionAttribute("0.4.0.17")>]
+[<assembly: AssemblyVersionAttribute("0.4.0.2")>]
+[<assembly: AssemblyFileVersionAttribute("0.4.0.2")>]
 do ()
 
 module internal AssemblyVersionInformation =
@@ -16,5 +16,5 @@ module internal AssemblyVersionInformation =
     let [<Literal>] AssemblyDescription = "The dazed programmer blog."
     let [<Literal>] Guid = "A539B42C-CB9F-4a23-8E57-AF4E7CEE5BAA"
     let [<Literal>] AssemblyProduct = "Daze"
-    let [<Literal>] AssemblyVersion = "0.4.0.17"
-    let [<Literal>] AssemblyFileVersion = "0.4.0.17"
+    let [<Literal>] AssemblyVersion = "0.4.0.2"
+    let [<Literal>] AssemblyFileVersion = "0.4.0.2"

@@ -24,6 +24,10 @@ let getSingle (id: int64) =
     | Some p -> OKJson (serialize p)
     | None -> no_content
 
+let getPostTags (id: int64) =
+    let tags = PostService.findTagsByPostId id
+    OKJson (serialize tags)
+    
 let head (id: int64) =
     let exists = PostService.existsPost id 
     if exists then setStatus HTTP_200

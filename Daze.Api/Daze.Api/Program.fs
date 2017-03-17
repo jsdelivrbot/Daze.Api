@@ -29,15 +29,24 @@ let defaultCorsConfig = {
     maxAge = Some(Int32.MaxValue)
     exposeHeaders = false }
 
+let getVersion () =
+    let currentAssembly = Assembly.GetExecutingAssembly()
+                                  .GetName()
+    let version = currentAssembly.Version.ToString()
+    let name = currentAssembly.Name.ToString()
+    sprintf "%s: %s" name version
+
 let app =
     choose [
         GET >=> path "/" >=> (OK "__daze_api__")
+        GET >=> path "/api/version" >=>
 
         POST >=> path "/api/authenticate/" >=> AuthenticationController.authenticate 
         GET >=> path "/api/cookies/" >=> AuthenticationController.getCookies
 
         GET >=> path "/api/post/" >=> PostController.get
         GET >=> pathScan "/api/post/%i" PostController.getSingle
+        GET >=> pathScan "/api/post/%i/tag" PostController.getPostTags
         GET >=> pathScan "/api/post/%i/%i" PostController.getPaginated
         HEAD >=> pathScan "/api/post/%i" PostController.head
         POST >=> path "/api/post/" >=> PostController.asyncPost
@@ -67,15 +76,10 @@ let app =
         NOT_FOUND "you are lost"
     ] >=> (cors defaultCorsConfig)
 
-let printHero () =
-    let currentAssembly = Assembly.GetExecutingAssembly()
-                                  .GetName()
-    let version = currentAssembly.Version.ToString()
-    let name = currentAssembly.Name.ToString()
-    printfn "%s: %s" name version
+
 
 [<EntryPoint>]
 let main argv =
-    printHero() |> ignore
+    getVersion() |> printfn "%s"
     startWebServer defaultConfig app
     0  // exit of program

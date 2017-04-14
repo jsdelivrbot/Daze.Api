@@ -1,7 +1,7 @@
 ﻿[<RequireQualifiedAccess>]
 module Daze.Api.ProjectService
 
-open Daze.Api.Services
+open Daze.Api.BaseService
 open Daze.Api.Domain
 
 let getAllProjects() = 
@@ -89,18 +89,4 @@ let removeProject (id: int64) =
         post.Delete()
         do! ctx.SubmitUpdatesAsync()
     } |> Async.RunSynchronously
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

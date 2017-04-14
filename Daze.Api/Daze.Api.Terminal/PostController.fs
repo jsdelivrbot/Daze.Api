@@ -5,9 +5,10 @@ open System
 open Suave
 open Suave.Successful
 open Suave.RequestErrors
-open Suave.Writers
+open Suave.Writers  
 open Daze.Api.Utils
 open Daze.Api.Domain
+open Daze.Api.Services
 
 
 let get =

@@ -1,4 +1,4 @@
-module Daze.Api.Program
+﻿module Daze.Api.Program
 
 open System
 open Suave
@@ -41,7 +41,7 @@ let app =
         GET >=> path "/" >=> (OK "__daze_api__")
         GET >=> path "/api/version" >=>
 
-        POST >=> path "/api/authenticate/" >=> AuthenticationController.authenticate 
+        POST >=> path "/api/authenticate/" >=> AuthenticationController.authenticate
         GET >=> path "/api/cookies/" >=> AuthenticationController.getCookies
 
         GET >=> path "/api/post/" >=> PostController.get
@@ -50,7 +50,7 @@ let app =
         GET >=> pathScan "/api/post/%i/%i" PostController.getPaginated
         HEAD >=> pathScan "/api/post/%i" PostController.head
         POST >=> path "/api/post/" >=> PostController.asyncPost
-        PUT >=> path "/api/post/" >=> PostController.asyncPut 
+        PUT >=> path "/api/post/" >=> PostController.asyncPut
         PATCH >=> path "/api/post/" >=> PostController.asyncPatch
         DELETE >=> pathScan "/api/post/%i" PostController.delete
         OPTIONS >=> path "/api/post/" >=> PostController.asyncOptions
@@ -64,18 +64,17 @@ let app =
         DELETE >=> pathScan "/api/skill/%i" SkillController.delete
         OPTIONS >=> path "/api/skill/" >=> SkillController.asyncOptions
 
-        GET >=> path "/api/project/" >=> ProjectController.get 
+        GET >=> path "/api/project/" >=> ProjectController.get
         GET >=> pathScan "/api/project/%i" ProjectController.getSingle
         HEAD >=> pathScan "/api/project/%i" ProjectController.head
         POST >=> path "/api/project/" >=> ProjectController.asyncPost
         PUT >=> path "/api/project/" >=> ProjectController.asyncPut
-        PATCH >=> path "/api/project/" >=> ProjectController.asyncPatch 
+        PATCH >=> path "/api/project/" >=> ProjectController.asyncPatch
         DELETE >=> pathScan "/api/project/%i" ProjectController.delete
         OPTIONS >=> path "/api/project/" >=> ProjectController.asyncOptions
 
         NOT_FOUND "you are lost"
     ] >=> (cors defaultCorsConfig)
-
 
 
 [<EntryPoint>]

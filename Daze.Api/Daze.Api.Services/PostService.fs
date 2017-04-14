@@ -2,11 +2,10 @@
 module Daze.Api.PostService
 
 open System
-open Daze.Api.Services
+open Daze.Api.BaseService
 open Daze.Api.Domain
-open Microsoft.FSharp.Collections
 
-let getAllPosts () = 
+let getAllPosts () =    
     query { 
         for p in ctx.Public.Post do
         select { Id = p.Id

@@ -1,4 +1,4 @@
-[<RequireQualifiedAccess>]
+﻿[<RequireQualifiedAccess>]
 module Daze.Api.AuthenticationController
 
 open Suave
@@ -28,6 +28,4 @@ let getCookies =
         | Some r -> (OKJson (serialize r))
         | None -> never
     )
-
-
 

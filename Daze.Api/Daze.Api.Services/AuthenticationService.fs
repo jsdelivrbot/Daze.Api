@@ -1,20 +1,19 @@
-[<RequireQualifiedAccess>]
+﻿[<RequireQualifiedAccess>]
 module Daze.Api.AuthenticationService
 
 open System
-open Daze.Api.Services
+open Daze.Api.BaseService
 
 type TResult = {
     new_id: string
-    success:string
+    success: string
     message: string
 }
 
-let authenticate (username: string, password: string) = 
+let authenticate (username: string, password: string) =
     printfn "%s %s" username password
     let authenticationResult =  ctx.Functions.Authenticate.Invoke(username, password, "local")
     printfn "%A" authenticationResult.ReturnValue
-    authenticationResult.ReturnValue
-
+    authenticationResult.ReturnValue.[0].GetColumn("success") = true
 
 

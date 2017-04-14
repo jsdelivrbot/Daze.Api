@@ -1,7 +1,7 @@
 ﻿[<RequireQualifiedAccess>]
 module Daze.Api.SkillService
 
-open Daze.Api.Services
+open Daze.Api.BaseService
 open Daze.Api.Domain
 
 let getAllSkills () = 

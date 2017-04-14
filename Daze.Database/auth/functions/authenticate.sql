@@ -7,8 +7,8 @@ returns table (
     message varchar(255)
 )
 as $$
-declare 
-    found_user user;
+declare
+    found_user "public".user;
     return_message varchar(50);
     found_id bigint;
     return_success boolean := false;
@@ -28,31 +28,31 @@ begin
         limit 1 into found_id;
     end if;
 
-    if (found_id is not null) then 
-        select * 
-        from user 
-        where id = found_id 
+    if (found_id is not null) then
+        select *
+        from user
+        where id = found_id
         into found_user;
-        
-        select s.can_login 
-        from status as s 
-        where id = found_user.status_id 
+
+        select s.can_login
+        from status as s
+        where id = found_user.status_id
         into can_login;
-    
-        if (can_login) then 
+
+        if (can_login) then
             insert into log (user_id, subject, entry)
             values (found_id, 'Authentication', 'Logged user in using ' || prov);
-            
+
             return_message := 'successfully authenticated';
             return_success := true;
-        else 
+        else
             insert into log (user_id, subject, entry)
             values (found_id, 'Authentication', 'User tried to login, is locked out ' || prov);
-            
+
             return_success := false;
             return_message := 'The user is currently locked out';
         end if;
-        
+
     end if;
 
     return query

@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/hermesxgjini/Daze.svg?token=sN9qiKvy34fJyhwzHohM&branch=master)](https://travis-ci.com/hermesxgjini/Daze)
+
 ### Technologies used
 
 Front End          | Back End               | Persistance

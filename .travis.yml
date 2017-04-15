@@ -1,6 +1,6 @@
 ---
 language: csharp
-solution: Daze.Api.sln
+solution: ./Daze.Api/Daze.Api.sln
 
 mono:
  - latest
@@ -9,6 +9,6 @@ mono:
 
 install:
   - sudo apt-get install -y gtk-sharp2
-  - nuget restore Daze.Api.sln
+  - nuget restore ./Daze.Api/Daze.Api.sln
 
 script:

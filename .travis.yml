@@ -1,0 +1,14 @@
+---
+language: csharp
+solution: Daze.Api.sln
+
+mono:
+ - latest
+ - latest # => "stable release"
+ - weekly # => "latest commits"
+
+install:
+  - sudo apt-get install -y gtk-sharp2
+  - nuget restore solution-name.sln
+
+script:

@@ -8,8 +8,6 @@ open Suave.RequestErrors
 open Suave.Writers  
 open Daze.Api.Utils
 open Daze.Api.Domain
-open Daze.Api.Services
-
 
 let get =
     let posts = PostService.getAllPosts()

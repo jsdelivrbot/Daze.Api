@@ -1,18 +1,18 @@
 <spinner *ngIf="_isLoading"></spinner>
 
 <section class="projectSection">
-    <md-card *ngFor="let project of _projects">
-        <md-card-title>
+    <div *ngFor="let project of _projects">
+        <div>
             {{project.Name}}
-        </md-card-title>
-        <md-card-content>
+        </div>
+        <div>
             <p>{{project.Description}}</p>
-        </md-card-content>
-        <md-card-actions class="projectActions">
-            <button md-button>SHARE</button>
-            <a md-button href="{{project.Url}}" target="_blank" rel="noopener">
+        </div>
+        <div class="projectActions">
+            <button>SHARE</button>
+            <a href="{{project.Url}}" target="_blank" rel="noopener">
                 <i class="material-icons">open_in_new</i>
             </a>
-        </md-card-actions>
-    </md-card>
+        </div>
+    </div>
 </section>

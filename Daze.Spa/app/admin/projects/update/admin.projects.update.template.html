@@ -1,22 +1,22 @@
 <form [formGroup]="_updateProjectForm" #f (ngSubmit)="onFormSubmit($event)" class="update-project-form">
     <legend> Update this project </legend>
 
-    <md-input-container>
+    <div>
         <label for="name">Name</label>
-        <input md-input formControlName="name">
-    </md-input-container>
+        <input formControlName="name">
+    </div>
 
-    <md-input-container>
+    <div>
         <label>Url</label>
-        <input md-input formControlName="url">
-    </md-input-container>
+        <input formControlName="url">
+    </div>
 
-    <md-input-container>
+    <div>
         <label>Description</label>
-        <textarea md-input formControlName="description"></textarea>
-    </md-input-container>
+        <textarea formControlName="description"></textarea>
+    </div>
 
-    <button md-button color="primary" type="submit" class="update-project-form-submit">
-        <md-icon>save</md-icon>
+    <button type="submit" class="update-project-form-submit">
+        <i>save</i>
     </button>
 </form>

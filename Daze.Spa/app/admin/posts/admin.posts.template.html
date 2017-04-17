@@ -1,43 +1,43 @@
-<md-progress-bar *ngIf="_isLoading" mode="indeterminate"></md-progress-bar>
+<spinner *ngIf="_isLoading"></spinner>
 
 <!--<spinner *ngIf="_isLoading"></spinner>-->
 
 <ul *ngIf="!_isLoading" class="actions">
     <li>
-        <a md-raised-button color="primary" routerLink="/admin/posts/create">
-            <md-icon>add</md-icon>
+        <a routerLink="/admin/posts/create">
+            <i>add</i>
         </a>
     </li>
 </ul>
 
 <div *ngIf="!_isLoading" class="masterDetail">
     <section class="master">
-        <md-list>
-            <md-list-item *ngFor="let post of _posts">
+        <ul>
+            <li *ngFor="let post of _posts">
                 <a class="masterLink" (click)="onPostClick(post.Id)">
                     {{post.Title}}
                 </a>
-            </md-list-item>
-        </md-list>
+            </li>
+        </ul>
     </section>
 
     <div class="verticalLine"></div>
 
     <section *ngIf="_selectedPost" class="detail">
-        <md-card>
-            <md-card-header>
-                <md-card-title>{{_selectedPost.Title}}</md-card-title>
-                <md-card-subtitle>{{_selectedPost.Slug}}</md-card-subtitle>
-            </md-card-header>
-            <md-card-content>{{_selectedPost.Content}}</md-card-content>
-            <md-card-actions>
-                <button md-button color="warn" (click)="onPostDelete(_selectedPost.Id)" type="button">
-                    <md-icon>delete_forever</md-icon>
+        <div>
+            <div>
+                <div>{{_selectedPost.Title}}</div>
+                <div>{{_selectedPost.Slug}}</div>
+            </div>
+            <div>{{_selectedPost.Content}}</div>
+            <div>
+                <button click)="onPostDelete(_selectedPost.Id)" type="button">
+                    <i>delete_forever</i>
                 </button>
-                <a md-button color="primary" routerLink="/admin/posts/update/{{_selectedPost.Id}}">
-                    <md-icon>edit</md-icon>
+                <a routerLink="/admin/posts/update/{{_selectedPost.Id}}">
+                    <i>edit</i>
                 </a>
-            </md-card-actions>
-        </md-card>
+            </div>
+        </div>
     </section>
 </div>

@@ -1,17 +1,17 @@
 <form [formGroup]="_updatePostForm" #f (ngSubmit)="onFormSubmit($event)" class="update-post-form">
     <legend> Update this post </legend>
 
-    <md-input-container>
+    <div>
         <label>Title</label>
-        <input md-input formControlName="title">
-    </md-input-container>
+        <input formControlName="title">
+    </div>
 
-    <md-input-container class="md-block">
+    <div class="md-block">
         <label>Content</label>
-        <textarea md-input formControlName="content" md-maxlength="150" rows="5" md-select-on-focus></textarea>
-    </md-input-container>
+        <textarea formControlName="content" md-maxlength="150" rows="5"></textarea>
+    </div>
 
-    <button md-button color="primary" type="submit" class="update-post-form-submit">
-        <md-icon>save</md-icon>
+    <button type="submit" class="update-post-form-submit">
+        <i>save</i>
     </button>
 </form>

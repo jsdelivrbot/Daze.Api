@@ -1,7 +1,3 @@
-/**
- * System configuration for Angular samples
- * Adjust as necessary for your application needs.
- */
 (function (global) {
   System.config({
     paths: {
@@ -24,7 +20,6 @@
       '@angular/router': 'npm:@angular/router/bundles/router.umd.js',
       '@angular/forms': 'npm:@angular/forms/bundles/forms.umd.js',
       '@angular/upgrade': 'npm:@angular/upgrade/bundles/upgrade.umd.js',
-      '@angular/material': 'npm:@angular/material/bundles/material.umd.js',
 
       // other libraries
       'rxjs': 'npm:rxjs',
@@ -34,11 +29,21 @@
     packages: {
       app: {
         main: './main.js',
-        defaultExtension: 'js'
+        defaultExtension: 'js',
+        meta: {
+          './*.js': {
+            loader: 'systemjs-angular-loader.js'
+          }
+        }
       },
       build: {
         main: './main.js',
-        defaultExtension: 'js'
+        defaultExtension: 'js',
+        meta: {
+          './*.js': {
+            loader: 'systemjs-angular-loader.js'
+          }
+        }
       },
       rxjs: {
         defaultExtension: 'js'

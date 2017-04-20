@@ -96,7 +96,7 @@ let asyncFullyUpdatePost (post: Post) =
         }
         if not (isNull foundPost) then
             foundPost.Title <- post.Title
-            foundPost.Slug <- post.Title.Replace(" ", "-")
+            foundPost.Slug <- post.Title.Replace(" ", "-") // todo all -
             foundPost.Content <- post.Content
             foundPost.ModifiedAt <- Some DateTime.UtcNow
 

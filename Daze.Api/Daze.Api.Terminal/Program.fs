@@ -27,14 +27,7 @@ let defaultCorsConfig = {
                         Method.PATCH ]
     allowCookies = true
     maxAge = Some(Int32.MaxValue)
-    exposeHeaders = false }
-
-let getVersion () =
-    let currentAssembly = Assembly.GetExecutingAssembly()
-                                  .GetName()
-    let version = currentAssembly.Version.ToString()
-    let name = currentAssembly.Name.ToString()
-    sprintf "%s: %s" name version
+    exposeHeaders = true }
 
 let app =
     choose [
@@ -76,6 +69,14 @@ let app =
         NOT_FOUND "you are lost"
     ] >=> (cors defaultCorsConfig)
 
+
+    
+let getVersion () =
+    let currentAssembly = Assembly.GetExecutingAssembly()
+                                  .GetName()
+    let version = currentAssembly.Version.ToString()
+    let name = currentAssembly.Name.ToString()
+    sprintf "%s: %s" name version
 
 [<EntryPoint>]
 let main argv =

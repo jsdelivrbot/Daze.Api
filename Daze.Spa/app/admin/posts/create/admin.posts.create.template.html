@@ -10,9 +10,17 @@
     </div>
 
     <div>
+        <label for="slug">Slug</label>
+        <input formControlName="slug" type="text" id="slug">
+    </div>
+
+    <div>
         <!--[(ngModel)]="post.content" -->
         <label for="content">Content</label>
-        <textarea formControlName="content" id="content" cols="30" rows="10"></textarea>
+        <textarea formControlName="content" id="content" cols="30" rows="10" (keyup)="updateOutput($event.target.value)"></textarea>
+    </div>
+
+    <div [innerHtml]="parsedText">
     </div>
 
     <div>

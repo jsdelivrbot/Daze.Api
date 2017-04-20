@@ -22,12 +22,17 @@ let utf8GetBytes (str: string) =
     Encoding.UTF8.GetBytes(str)
 
 let deserialize<'a> bytes =
-     JsonConvert.DeserializeObject<'a>(Encoding.UTF8.GetString(bytes))
+     JsonConvert.DeserializeObject<'a>(
+        Encoding.UTF8.GetString(bytes),
+        new Int64ToStringConverter(),
+        new OptionConverter()
+     )
 
 let serialize<'a> x = 
-    JsonConvert.SerializeObject(x, 
+    JsonConvert.SerializeObject(x,
         new Int64ToStringConverter(),
-        new OptionConverter()) 
+        new OptionConverter()
+    ) 
     |> utf8GetBytes
 
 let mapJsonNet<'a, 'b> = 
@@ -73,7 +78,6 @@ let sessionGet getFun =
         | Some state -> getFun state
         | None -> never
     )
-
 
 
 type Suave.Http.HttpContext with

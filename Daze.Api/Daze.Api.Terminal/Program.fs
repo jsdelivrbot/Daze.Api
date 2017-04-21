@@ -46,7 +46,7 @@ let app =
         PUT >=> path "/api/post/" >=> PostController.asyncPut
         PATCH >=> path "/api/post/" >=> PostController.asyncPatch
         DELETE >=> pathScan "/api/post/%i" PostController.delete
-        OPTIONS >=> path "/api/post/" >=> PostController.asyncOptions
+        //OPTIONS >=> path "/api/post/" >=> PostController.asyncOptions
 
         GET >=> path "/api/skill/" >=> SkillController.get
         GET >=> pathScan "/api/skill/%i" SkillController.getSingle
@@ -72,8 +72,7 @@ let app =
 
     
 let getVersion () =
-    let currentAssembly = Assembly.GetExecutingAssembly()
-                                  .GetName()
+    let currentAssembly = Assembly.GetExecutingAssembly().GetName()
     let version = currentAssembly.Version.ToString()
     let name = currentAssembly.Name.ToString()
     sprintf "%s: %s" name version

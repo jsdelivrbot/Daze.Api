@@ -31,7 +31,7 @@
             </div>
             <div>{{_selectedPost.Content}}</div>
             <div>
-                <button click)="onPostDelete(_selectedPost.Id)" type="button">
+                <button (click)="onPostDelete(_selectedPost.Id)" type="button">
                     <i>delete_forever</i>
                 </button>
                 <a routerLink="/admin/posts/update/{{_selectedPost.Id}}">

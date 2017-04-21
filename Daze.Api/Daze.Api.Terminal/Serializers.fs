@@ -37,7 +37,7 @@ type Int64ToStringConverter() =
     inherit JsonConverter()
 
     override this.CanConvert(t) =
-        Type.GetTypeCode(t) = TypeCode.Int64
+        Type.GetTypeCode(t) = TypeCode.UInt64
 
     override this.WriteJson (writer, value, serializer) =
         let v =

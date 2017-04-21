@@ -49,6 +49,7 @@ let asyncPut (ctx: HttpContext) =
 let asyncPatch (ctx: HttpContext) =
     async {
         let post = ctx.GetRequestBody<Post>()
+        printfn "%A" post
         do! PostService.asyncPartiallyUpdatePost post
         return Some { ctx with response = ctx.GetResponseWith post }
     }

@@ -9,7 +9,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>Daze.Api.Services</RootNamespace>
     <AssemblyName>Daze.Api.Services</AssemblyName>
-    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <TargetFSharpCoreVersion>4.4.1.0</TargetFSharpCoreVersion>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Name>Daze.Api.Services</Name>
@@ -51,8 +51,8 @@
   </Choose>
   <Import Project="$(FSharpTargetsPath)" />
   <ItemGroup>
-    <Compile Include="AssemblyInfo.fs" />
     <Content Include="packages.config" />
+    <Compile Include="AssemblyInfo.fs" />
     <Compile Include="BaseService.fs" />
     <Compile Include="PostService.fs" />
     <Compile Include="ProjectService.fs" />
@@ -71,8 +71,9 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
     <Reference Include="System.Numerics" />
-  </ItemGroup>
-  <ItemGroup>
+    <Reference Include="System.ValueTuple">
+      <HintPath>..\packages\System.ValueTuple.4.3.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
+    </Reference>
     <ProjectReference Include="..\Daze.Api.Domain\Daze.Api.Domain.fsproj">
       <Name>Daze.Api.Domain</Name>
       <Project>{ae673f06-f767-410b-ad26-bbf491dadde1}</Project>

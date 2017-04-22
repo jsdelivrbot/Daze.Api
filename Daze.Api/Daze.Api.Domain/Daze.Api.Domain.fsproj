@@ -9,7 +9,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>Daze.Api.Domain</RootNamespace>
     <AssemblyName>Daze.Api.Domain</AssemblyName>
-    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <TargetFSharpCoreVersion>4.4.1.0</TargetFSharpCoreVersion>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Name>Daze.Api.Domain</Name>
@@ -51,8 +51,8 @@
   </Choose>
   <Import Project="$(FSharpTargetsPath)" />
   <ItemGroup>
-    <Compile Include="AssemblyInfo.fs" />
     <Content Include="packages.config" />
+    <Compile Include="AssemblyInfo.fs" />
     <Compile Include="Tag.fs" />
     <Compile Include="Post.fs" />
     <Compile Include="Project.fs" />

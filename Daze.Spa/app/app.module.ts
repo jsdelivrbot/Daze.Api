@@ -1,8 +1,12 @@
 import { NgModule } from '@angular/core';
+// import { CommonModule } from '@angular/common';
 import { HttpModule } from '@angular/http';
 import { RouterModule, Route, RouterOutlet } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+
+import { MarkdownPipe } from './shared/pipes/markdown.pipe';
+import { MarkdownParserService } from './shared/services/markdown-parser.service';
 
 import { LeftNavbarComponent } from './leftnavbar/leftnavbar.component';
 import { AvatarComponent } from './leftnavbar/avatar/avatar.component';
@@ -56,9 +60,9 @@ const routes = new RoutesBuilder()
         HttpModule,
         FormsModule,
         ReactiveFormsModule,
+        // CommonModule,
         RouterModule.forRoot(routes)
     ],
-
     declarations: [
         AppComponent,
         LeftNavbarComponent,
@@ -81,8 +85,10 @@ const routes = new RoutesBuilder()
         AdminProjectsUpdateComponent,
         AdminSkillsComponent,
         AdminSkillsCreateComponent,
-        AdminSkillsUpdateComponent
+        AdminSkillsUpdateComponent,
+        MarkdownPipe
     ],
+    providers: [MarkdownParserService],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

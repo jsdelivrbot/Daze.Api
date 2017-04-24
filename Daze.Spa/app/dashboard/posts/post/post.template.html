@@ -2,9 +2,9 @@
     <!--<img src="http://placehold.it/350x150" class="post-article-image">-->
 
     <h2 class="post-article-title"> {{_post.Title}} </h2>
-    <p class="post-article-content"> {{_post.Content}} </p>
-    <ul *ngIf="!!_post.Tags" class="post-article-tags">
-        <li *ngFor="let tag of _post.Tags">
+    <p class="post-article-content" [innerHTML]="_post.Content | markdown"> </p>
+    <ul *ngIf=" !!_post.Tags " class="post-article-tags ">
+        <li *ngFor="let tag of _post.Tags ">
             <a> {{tag.TagName}} </a>
         </li>
     </ul>

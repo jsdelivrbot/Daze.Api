@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PostService } from '../../../shared/services/post.service';
+// import { MarkdownPipe } from '../../../shared/pipes/markdown.pipe';
 import IPost = Daze.Interfaces.IPost;
 
 @Component({
@@ -18,7 +19,10 @@ export class PostComponent implements OnInit {
         this.router.params.subscribe(p => {
             const postId = p['id'];
             this.postService.findPostById(postId)
-                .subscribe(post => this._post = post);
+                .subscribe(post => {
+                    this._post = post;
+                    console.log('post', post);
+                });
         });
     }
 }

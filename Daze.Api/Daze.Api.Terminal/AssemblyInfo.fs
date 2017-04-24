@@ -7,11 +7,11 @@ open System.Runtime.InteropServices
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[<assembly: AssemblyTitle("Daze.Api.Terminal")>]
+[<assembly: AssemblyTitle("Daze Api")>]
 [<assembly: AssemblyDescription("")>]
 [<assembly: AssemblyConfiguration("")>]
 [<assembly: AssemblyCompany("")>]
-[<assembly: AssemblyProduct("Daze.Api.Terminal")>]
+[<assembly: AssemblyProduct("Daze Api")>]
 [<assembly: AssemblyCopyright("Copyright © afractal 2017")>]
 [<assembly: AssemblyTrademark("")>]
 [<assembly: AssemblyCulture("")>]

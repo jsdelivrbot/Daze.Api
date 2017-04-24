@@ -33,6 +33,7 @@ let getAllPostsPaginated page pageSize =
     } |> Seq.cache
 
 let findPostById (id : int64) = 
+    printfn "%A " id
     let post = query {
         for p in ctx.Public.Post do
         where (p.Id = id)

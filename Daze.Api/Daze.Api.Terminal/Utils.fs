@@ -24,7 +24,7 @@ let utf8GetBytes (str: string) =
 let deserialize<'a> bytes =
      JsonConvert.DeserializeObject<'a>(
         Encoding.UTF8.GetString(bytes),
-        //new Int64ToStringConverter(),
+        new Int64ToStringConverter(),
         new OptionConverter()
      )
 

@@ -12,7 +12,7 @@ export class AdminSkillsComponent implements OnInit {
     private _skills = new Array<ISkill>();
     private _selectedSkill: ISkill | null | undefined = null;
     private _isLoading = true;
-    constructor(private _skillService: SkillService) { }
+    constructor(private readonly _skillService: SkillService) { }
 
     onSkillClick(id: string) {
         this._selectedSkill = this._skills.find(s => s.Id == id);

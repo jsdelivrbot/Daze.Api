@@ -15,7 +15,7 @@ export class SkillsComponent implements OnInit {
     private _isLanguagesLoading = true;
     private _isDatabasesLoading = true;
     private _isFrameworksLoading = true;
-    constructor(private _skillService: SkillService) { }
+    constructor(private readonly _skillService: SkillService) { }
 
     ngOnInit() {
         this._skillService.getSkillsByFocusArea("languages")

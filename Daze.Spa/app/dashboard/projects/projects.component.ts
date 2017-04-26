@@ -11,7 +11,7 @@ import IProject = Daze.Interfaces.IProject;
 export class ProjectsComponent implements OnInit {
     private _projects = new Array<IProject>();
     private _isLoading = true;
-    constructor(private _projectService: ProjectService) { }
+    constructor(private readonly _projectService: ProjectService) { }
 
     ngOnInit() {
         this._projectService.getProjects()

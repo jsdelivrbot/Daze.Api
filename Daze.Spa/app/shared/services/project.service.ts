@@ -4,21 +4,23 @@ import { Observable } from 'rxjs';
 import 'rxjs/add/operator/exhaustMap';
 import 'rxjs/add/operator/retry';
 import IProject = Daze.Interfaces.IProject;
+import IApiService = Daze.Interfaces.IApiService;
+1
 
 @Injectable()
-export class ProjectService {
-    private static requestUri = 'http://127.0.0.1:8080/api/project/';
+export class ProjectService implements IApiService {
+    readonly requestUri = 'http://127.0.0.1:8080/api/project/';
     constructor(private readonly _http: Http) { }
 
     getProjects() {
-        return this._http.get(ProjectService.requestUri)
+        return this._http.get(this.requestUri)
             .retry(3)
             .map(res => res.json() as Array<IProject>)
             .exhaustMap(projects => projects);
     }
 
     findProjectById(id: string) {
-        return this._http.get(`${ProjectService.requestUri}${id}`)
+        return this._http.get(`${this.requestUri}${id}`)
             .retry(3)
             .map(res => res.json() as IProject);
     }
@@ -26,7 +28,7 @@ export class ProjectService {
     createProject(project: IProject) {
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');
-        return this._http.post(ProjectService.requestUri, project, {
+        return this._http.post(this.requestUri, project, {
             headers: headers,
             withCredentials: true
         });
@@ -35,13 +37,13 @@ export class ProjectService {
     updateProject(project: IProject) {
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');
-        return this._http.put(ProjectService.requestUri, project, {
+        return this._http.put(this.requestUri, project, {
             headers: headers
         });
     }
 
     deleteProject(id: string) {
-        return this._http.delete(`${ProjectService.requestUri}${id}`);
+        return this._http.delete(`${this.requestUri}${id}`);
     }
 }
 

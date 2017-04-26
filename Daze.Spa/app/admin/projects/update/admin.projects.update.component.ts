@@ -14,9 +14,9 @@ export class AdminProjectsUpdateComponent implements OnInit {
     private _project: Project = null;
     private _projectId: string;
     private _updateProjectForm: FormGroup;
-    constructor(private _projectService: ProjectService,
-        private _router: ActivatedRoute,
-        private _formBuilder: FormBuilder) { }
+    constructor(private readonly _projectService: ProjectService,
+        private readonly _router: ActivatedRoute,
+        private readonly _formBuilder: FormBuilder) { }
 
     onFormSubmit(event: MouseEvent) {
         if (this._project) {

@@ -13,9 +13,9 @@ export class AdminPostsCreateComponent implements OnInit {
     public postForm: FormGroup;
     public post = new Post();
     public parsedText = '';
-    constructor(private formBuilder: FormBuilder,
-        private _postService: PostService,
-        private _mdParserService: MarkdownParserService) { }
+    constructor(private readonly _postService: PostService,
+        private readonly _mdParserService: MarkdownParserService,
+        private readonly _formBuilder: FormBuilder) { }
 
 
     updateOutput(value: string) {
@@ -36,7 +36,7 @@ export class AdminPostsCreateComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.postForm = this.formBuilder.group({
+        this.postForm = this._formBuilder.group({
             title: [this.post.Title, Validators.required],
             content: [this.post.Content, Validators.required],
             slug: [this.post.Slug, Validators.required]

@@ -14,9 +14,9 @@ export class AdminPostsUpdateComponent implements OnInit {
     private _post: Post = null;
     private _postId: string;
     private _updatePostForm: FormGroup;
-    constructor(private _postService: PostService,
-        private _router: ActivatedRoute,
-        private _formBuilder: FormBuilder) { }
+    constructor(private readonly _postService: PostService,
+        private readonly _router: ActivatedRoute,
+        private readonly _formBuilder: FormBuilder) { }
 
     onFormSubmit(event: MouseEvent) {
         if (this._post) {

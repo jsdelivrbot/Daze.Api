@@ -12,7 +12,7 @@ export class AdminPostsComponent {
     private _posts = new Array<IPost>();
     private _selectedPost: IPost | null | undefined = null;
     private _isLoading = true;
-    constructor(private _postService: PostService) { }
+    constructor(private readonly _postService: PostService) { }
 
     onPostClick(id: string) {
         this._selectedPost = this._posts.find(p => p.Id == id);

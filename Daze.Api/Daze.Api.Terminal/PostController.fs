@@ -19,7 +19,7 @@ let getPaginated (page, pageSize) =
 
 let getSingle (id: int64) =
     let post = PostService.findPostById id
-    printfn "post: %A " post
+    // printfn "post: %A " post
     match post with 
     | Some p -> OKJson (serialize p)
     | None -> no_content

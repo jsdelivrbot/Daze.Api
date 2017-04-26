@@ -32,7 +32,7 @@ let defaultCorsConfig = {
 let app =
     choose [
         GET >=> path "/" >=> (OK "__daze_api__")
-        GET >=> path "/api/version" >=>
+        GET >=> path "/api/version/" >=> (OKJson <| serialize ["*v1", "v0"])
 
         POST >=> path "/api/authenticate/" >=> AuthenticationController.authenticate
         GET >=> path "/api/cookies/" >=> AuthenticationController.getCookies

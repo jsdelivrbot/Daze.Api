@@ -5,9 +5,6 @@ import { RouterModule, Route, RouterOutlet } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { MarkdownPipe } from './shared/pipes/markdown.pipe';
-import { MarkdownParserService } from './shared/services/markdown-parser.service';
-
 import { LeftNavbarComponent } from './leftnavbar/leftnavbar.component';
 import { AvatarComponent } from './leftnavbar/avatar/avatar.component';
 import { PostsComponent } from './dashboard/posts/posts.component';
@@ -33,6 +30,10 @@ import { AdminSkillsUpdateComponent } from './admin/skills/update/admin.skills.u
 
 import { AppComponent } from './app.component';
 import { RoutesBuilder } from './infrastructure/routes.builder';
+import { LoginGuard } from "./shared/guards/login.guard";
+import { AuthService } from "./shared/services/auth.service";
+import { MarkdownParserService } from './shared/services/markdown-parser.service';
+import { MarkdownPipe } from './shared/pipes/markdown.pipe';
 
 const routes = new RoutesBuilder()
     .addRoute('posts', PostsComponent)
@@ -40,16 +41,16 @@ const routes = new RoutesBuilder()
     .addRoute('skills', SkillsComponent)
     .addRoute('projects', ProjectsComponent)
     .addRoute('login', LoginComponent)
-    .addRoute('admin', AdminComponent)
-    .addRoute('admin/posts', AdminPostsComponent)
-    .addRoute('admin/posts/create', AdminPostsCreateComponent)
-    .addRoute('admin/posts/update/:id', AdminPostsUpdateComponent)
-    .addRoute('admin/projects', AdminProjectsComponent)
-    .addRoute('admin/projects/create', AdminProjectsCreateComponent)
-    .addRoute('admin/projects/update/:id', AdminProjectsUpdateComponent)
-    .addRoute('admin/skills', AdminSkillsComponent)
-    .addRoute('admin/skills/create', AdminSkillsCreateComponent)
-    .addRoute('admin/skills/update/:id', AdminSkillsUpdateComponent)
+    .addRoute('admin', AdminComponent, true)
+    .addRoute('admin/posts', AdminPostsComponent, true)
+    .addRoute('admin/posts/create', AdminPostsCreateComponent, true)
+    .addRoute('admin/posts/update/:id', AdminPostsUpdateComponent, true)
+    .addRoute('admin/projects', AdminProjectsComponent, true)
+    .addRoute('admin/projects/create', AdminProjectsCreateComponent, true)
+    .addRoute('admin/projects/update/:id', AdminProjectsUpdateComponent, true)
+    .addRoute('admin/skills', AdminSkillsComponent, true)
+    .addRoute('admin/skills/create', AdminSkillsCreateComponent, true)
+    .addRoute('admin/skills/update/:id', AdminSkillsUpdateComponent, true)
     .addDefault(PostsComponent)
     .addNotFound(NotFoundComponent)
     .build();
@@ -88,7 +89,11 @@ const routes = new RoutesBuilder()
         AdminSkillsUpdateComponent,
         MarkdownPipe
     ],
-    providers: [MarkdownParserService],
+    providers: [
+        MarkdownParserService,
+        AuthService,
+        LoginGuard
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

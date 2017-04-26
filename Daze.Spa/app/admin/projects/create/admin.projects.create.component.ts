@@ -11,8 +11,8 @@ import { Project } from '../../../shared/models/project.model';
 export class AdminProjectsCreateComponent implements OnInit {
     public projectForm: FormGroup;
     public project = new Project();
-    constructor(private _formBuilder: FormBuilder,
-        private _projectService: ProjectService) { }
+    constructor(private readonly _projectService: ProjectService,
+        private readonly _formBuilder: FormBuilder) { }
 
     onFormSubmit(ev: MouseEvent) {
         if (this.project) {
@@ -37,4 +37,4 @@ export class AdminProjectsCreateComponent implements OnInit {
         this.projectForm.valueChanges.subscribe(r => this.onValueChanged(r));
         this.onValueChanged();
     }
-}   
+}

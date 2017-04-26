@@ -12,7 +12,7 @@ export class AdminProjectsComponent implements OnInit {
     private _projects = new Array<IProject>();
     private _isLoading = true;
     private _selectedProject: IProject | undefined | null = null;
-    constructor(private _projectService: ProjectService) { }
+    constructor(private readonly _projectService: ProjectService) { }
 
     onProjectClick(id: string) {
         this._selectedProject = this._projects.find(p => p.Id == id);

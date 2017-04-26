@@ -1,12 +1,14 @@
 import { Route } from '@angular/router';
+import { LoginGuard } from "../shared/guards/login.guard";
 
 export class RoutesBuilder {
     private routes: Array<Route> = new Array<Route>();
 
-    addRoute(path: string, component: any) {
+    addRoute(path: string, component: any, withLoginGuard: boolean = false) {
         this.routes.push({
             path: path,
-            component: component
+            component: component,
+            canActivate: !!withLoginGuard ? [LoginGuard] : []
         });
         return this;
     }

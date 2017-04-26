@@ -18,10 +18,10 @@ select 'Schema initialized' as Works;
 create extension if not exists pgcrypto 
 with schema auth;
 
-insert into users (email, first, last)
+insert into user (email, first, last)
 values ( 'hermesgjini@gmail.com', 'hermes', 'gjini' );
 
-insert into roles (id, role)
+insert into role (id, role)
 values (10, 'Administrator'), (99, 'user')
 
 insert into status (name, description, can_login)

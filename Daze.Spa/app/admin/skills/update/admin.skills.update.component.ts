@@ -13,9 +13,9 @@ export class AdminSkillsUpdateComponent implements OnInit {
     private _skill: Skill = null;
     private _skillId: string;
     private _updateForm: FormGroup;
-    constructor(private _skillService: SkillService,
-        private _formBuilder: FormBuilder,
-        private _router: ActivatedRoute) { }
+    constructor(private readonly _skillService: SkillService,
+        private readonly _formBuilder: FormBuilder,
+        private readonly _router: ActivatedRoute) { }
 
 
     onFormSubmit(event: MouseEvent) {

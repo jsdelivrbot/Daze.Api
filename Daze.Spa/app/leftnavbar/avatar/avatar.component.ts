@@ -9,10 +9,10 @@ import AvatarService from './avatar.service';
 })
 export class AvatarComponent implements OnInit {
     private _avatar = {};
-    constructor(private avatarService: AvatarService) { }
+    constructor(private readonly _avatarService: AvatarService) { }
 
     ngOnInit() {
-        this.avatarService.getAvatarInfo()
+        this._avatarService.getAvatarInfo()
             .subscribe(res => this._avatar = res);
     }
 }

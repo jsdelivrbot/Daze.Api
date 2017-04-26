@@ -13,7 +13,7 @@ export class PostsComponent implements OnInit {
     private _posts = new Array<IPost>();
     private _isLoading = true;
     private _numberOfItemsPerPage = 2;
-    constructor(private _postService: PostService) { }
+    constructor(private readonly _postService: PostService) { }
 
     onLoadmore() {
         ++PostsComponent._currentPage;

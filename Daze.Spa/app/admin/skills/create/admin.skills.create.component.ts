@@ -11,8 +11,8 @@ import { Skill } from '../../../shared/models/skill.model';
 export class AdminSkillsCreateComponent implements OnInit {
     public skillForm: FormGroup;
     public skill = new Skill(null, null);
-    constructor(private _formBuilder: FormBuilder,
-        private _skillService: SkillService) { }
+    constructor(private readonly _skillService: SkillService,
+        private readonly _formBuilder: FormBuilder) { }
 
     onFormSubmit(ev: MouseEvent) {
         console.log(this.skill);

@@ -1,0 +1,15 @@
+.admin-create-section {
+    display: inline-flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.admin-create-form, .admin-create-form-reflect {
+    width: 50%;
+    padding: 2em;
+    border: 1px dashed black;
+}
+
+.admin-create-form-reflect {
+    text-align: left;
+}

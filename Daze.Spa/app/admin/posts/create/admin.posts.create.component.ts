@@ -6,6 +6,7 @@ import { Post } from '../../../shared/models/post.model';
 
 @Component({
     selector: 'adminPostsCreate',
+    styleUrls: ['app/admin/posts/create/admin.posts.create.style.css'],
     providers: [FormBuilder, PostService, MarkdownParserService],
     templateUrl: 'app/admin/posts/create/admin.posts.create.template.html'
 })
@@ -16,7 +17,6 @@ export class AdminPostsCreateComponent implements OnInit {
     constructor(private readonly _postService: PostService,
         private readonly _mdParserService: MarkdownParserService,
         private readonly _formBuilder: FormBuilder) { }
-
 
     updateOutput(value: string) {
         this.parsedText = this._mdParserService.convertToHtml(value);

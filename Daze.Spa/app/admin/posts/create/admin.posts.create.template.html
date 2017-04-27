@@ -1,36 +1,42 @@
-<form [formGroup]="postForm" #f (ngSubmit)="onFormSubmit($event)" role="form">
-    <div>
-        <legend>Create a new post</legend>
-    </div>
+<section class="admin-create-section">
+    <section class="admin-create-form">
+        <form [formGroup]="postForm" #f (ngSubmit)="onFormSubmit($event)" role="form">
+            <div>
+                <legend>Create a new post</legend>
+            </div>
 
-    <div>
-        <label for="title">Title</label>
-        <!--[(ngModel)]="post.title"-->
-        <input formControlName="title" type="text" id="title" />
-    </div>
+            <div>
+                <label for="title">Title</label>
+                <!--[(ngModel)]="post.title"-->
+                <input formControlName="title" type="text" id="title" />
+            </div>
 
-    <div>
-        <label for="slug">Slug</label>
-        <input formControlName="slug" type="text" id="slug">
-    </div>
+            <div>
+                <label for="slug">Slug</label>
+                <input formControlName="slug" type="text" id="slug">
+            </div>
 
-    <div>
-        <!--[(ngModel)]="post.content" -->
-        <label for="content">Content</label>
-        <textarea formControlName="content" id="content" cols="30" rows="10" (keyup)="updateOutput($event.target.value)"></textarea>
-    </div>
+            <div>
+                <!--[(ngModel)]="post.content" -->
+                <label for="content">Content</label>
+                <textarea formControlName="content" id="content" cols="30" rows="10" (keyup)="updateOutput($event.target.value)"></textarea>
+            </div>
 
-    <div [innerHtml]="parsedText">
-    </div>
+            <div>
+                <label for="">Tags</label>
+                <ul>
+                    <li>todo: tags</li>
+                </ul>
+            </div>
 
-    <div>
-        <label for="">Tags</label>
-        <ul>
-            <li>todo: tags</li>
-        </ul>
-    </div>
+            <div>
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+    </section>
 
-    <div>
-        <button type="submit">Submit</button>
-    </div>
-</form>
+    <section class="admin-create-form-reflect">
+        <div [innerHtml]="parsedText">
+        </div>
+    </section>
+</section>

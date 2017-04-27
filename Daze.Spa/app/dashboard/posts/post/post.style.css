@@ -12,12 +12,18 @@
     border-bottom: 1px solid #22384e;
 }
 
-.post-article-title { 
+.post-article-title {
     /*text-decoration: underline;*/
     text-transform: capitalize;
 }
 
-.post-article-content { }
+.post-article-content {
+    text-align: left;
+    padding: 3em;
+    font-family: 'Sanchez', serif;
+    -webkit-font-smoothing: antialiased;
+    letter-spacing: .1px;
+ }
 
 .post-article-tags {
     margin-top: 1em;
@@ -28,7 +34,7 @@
     justify-content: center;
     align-content: center;
  }
- 
+
 .post-article-tags li a {
     padding: 0.2em 0.8em;
     border-radius: 3.4%;

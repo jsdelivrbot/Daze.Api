@@ -1,12 +1,16 @@
 [![Build Status](https://travis-ci.com/hermesxgjini/Daze.svg?token=sN9qiKvy34fJyhwzHohM&branch=master)](https://travis-ci.com/hermesxgjini/Daze)
 
-### Technologies used
+[![Say Thanks!](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg)](https://saythanks.io/to/hermesxgjini)
 
-Front End          | Back End               | Persistance
------------------- | ---------------------- | ------------------ 
-Angular 2          | v1.AspNetCore WebApi   | Postgres
-Typescript         | v2.Suave  WebApi       | Marten
-Javascript         |                        | Redis
-Css Pure           |                        | Self Build Auth
-   
+
+### **Technologies used**
+
+**Front End:** typescript/javascript | angular4
+
+**Back End:** fsharp | suave
+
+**Persistance:** postgresql | redis
+
+
+
 

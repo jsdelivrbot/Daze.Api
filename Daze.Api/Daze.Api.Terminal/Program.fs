@@ -12,19 +12,19 @@ open System.Reflection
 open FSharp.Linq
 open System.Reflection
 
-type Method = HttpMethod
+type HTTP = HttpMethod
 
 let defaultCorsConfig = {
     allowedUris = InclusiveOption.Some [
                     "http://localhost:3000" ]
     allowedMethods = InclusiveOption.Some [
-                        Method.GET
-                        Method.HEAD
-                        Method.POST
-                        Method.DELETE
-                        Method.OPTIONS
-                        Method.PUT
-                        Method.PATCH ]
+                        HTTP.GET
+                        HTTP.HEAD
+                        HTTP.POST
+                        HTTP.PUT
+                        HTTP.PATCH 
+                        HTTP.DELETE
+                        HTTP.OPTIONS ]
     allowCookies = true
     maxAge = Some(Int32.MaxValue)
     exposeHeaders = true }

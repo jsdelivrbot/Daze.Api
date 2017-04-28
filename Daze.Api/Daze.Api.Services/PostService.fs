@@ -11,6 +11,7 @@ let getAllPosts () =
         select { Id = p.Id
                  Slug = p.Slug
                  Title = p.Title
+                 HeroContent = p.HeroContent
                  Content = p.Content
                  CreatedAt = p.CreatedAt
                  ModifiedAt = p.ModifiedAt
@@ -26,6 +27,7 @@ let getAllPostsPaginated page pageSize =
         select { Id = p.Id
                  Slug = p.Slug
                  Title = p.Title
+                 HeroContent = p.HeroContent
                  Content = p.Content
                  CreatedAt = p.CreatedAt
                  ModifiedAt = p.ModifiedAt
@@ -49,6 +51,7 @@ let findPostById (id : int64) =
     else Some { Id = post.Id
                 Slug = post.Slug
                 Title = post.Title
+                HeroContent = post.HeroContent
                 Content = post.Content
                 CreatedAt = post.CreatedAt
                 ModifiedAt = post.ModifiedAt
@@ -78,6 +81,7 @@ let asyncInsertNewPost (post: Post) =
         let newPost = ctx.Public.Post.Create()
         newPost.Title <- post.Title
         newPost.Slug <- post.Slug
+        newPost.HeroContent <- post.HeroContent
         newPost.Content <- post.Content
         
         try 
@@ -97,6 +101,7 @@ let asyncFullyUpdatePost (post: Post) =
         if not (isNull foundPost) then
             foundPost.Title <- post.Title
             foundPost.Slug <- post.Title.Replace(" ", "-") // todo all -
+            foundPost.HeroContent <- post.HeroContent
             foundPost.Content <- post.Content
             foundPost.ModifiedAt <- Some DateTime.UtcNow
 
@@ -115,6 +120,9 @@ let asyncPartiallyUpdatePost (post: Post) =
             foundPost.Slug <- post.Slug
             foundPost.ModifiedAt <- Some DateTime.UtcNow
             
+            if post.HeroContent.IsSome then 
+                foundPost.HeroContent <- post.HeroContent
+
             if post.Content.IsSome then
                 foundPost.Content <- post.Content
 

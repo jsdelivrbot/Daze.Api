@@ -13,14 +13,24 @@
 }
 
 .post-article-title {
-    /*text-decoration: underline;*/
+    font-family: 'Kreon', serif;
+    cursor: pointer;
     text-transform: capitalize;
+    font-size: 24pt;
+    color: rgb(34, 56, 78);
+}
+
+.post-article-title:hover {
+    color: rgba(34, 56, 78, 0.8);
 }
 
 .post-article-content {
+    font-family: 'Kreon', serif;
+    color: #333;
     text-align: left;
-    padding: 3em;
-    font-family: 'Sanchez', serif;
+    padding: 2em;
+    font-size: 13pt;
+    line-height: 20pt;
     -webkit-font-smoothing: antialiased;
     letter-spacing: .1px;
  }

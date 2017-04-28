@@ -5,6 +5,7 @@ export class Post implements IPost {
     Id: string;
     Title: string;
     Slug: string;
+    HeroContent: string;
     Content: string;
     CreatedAt: Date;
     ModifiedAt: Date;

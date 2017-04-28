@@ -75,7 +75,6 @@ article.postArticle hr {
     text-overflow: ellipsis;
     float: left;
     text-align: left;
-    text-align: justify;
     padding : 10px 22px 36px 22px;
 }
 

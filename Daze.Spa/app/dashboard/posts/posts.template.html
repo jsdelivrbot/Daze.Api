@@ -11,8 +11,9 @@
                 <h3 class="postArticleBodyTitle">
                     <a class="blogLink" routerLink="/posts/{{post.Id}}">{{post.Title}}</a>
                 </h3>
-                <hr />
-                <p class="postArticleBodyDetails" [innerHTML]="post.Content | markdown">
+                <hr/>
+                <p class="postArticleBodyDetails">
+                    {{post.HeroContent}}
                 </p>
             </div>
         </article>

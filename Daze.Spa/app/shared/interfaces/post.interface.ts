@@ -4,6 +4,7 @@ namespace Daze.Interfaces {
         Id: string;
         Title: string;
         Slug: string;
+        HeroContent: string;
         Content: string;
         CreatedAt: Date;
         ModifiedAt: Date;

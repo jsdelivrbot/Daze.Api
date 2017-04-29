@@ -34,6 +34,7 @@ import { LoginGuard } from "./shared/guards/login.guard";
 import { AuthService } from "./shared/services/auth.service";
 import { MarkdownParserService } from './shared/services/markdown-parser.service';
 import { MarkdownPipe } from './shared/pipes/markdown.pipe';
+import { DomSanitizerPipe } from './shared/pipes/dom-sanitizer.pipe';
 
 const routes = new RoutesBuilder()
     .addRoute('posts', PostsComponent)
@@ -87,7 +88,8 @@ const routes = new RoutesBuilder()
         AdminSkillsComponent,
         AdminSkillsCreateComponent,
         AdminSkillsUpdateComponent,
-        MarkdownPipe
+        MarkdownPipe,
+        DomSanitizerPipe
     ],
     providers: [
         MarkdownParserService,

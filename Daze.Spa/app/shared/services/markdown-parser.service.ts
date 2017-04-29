@@ -8,6 +8,7 @@ export class MarkdownParserService {
         this.md = marked;
         this.md.setOptions({
             gfm: true,
+            sanitize: true,
             breaks: true
         });
     }

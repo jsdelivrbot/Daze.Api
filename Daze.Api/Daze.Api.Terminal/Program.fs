@@ -1,8 +1,6 @@
 ﻿module Daze.Api.Program
 
 open System
-open System.Reflection
-open System.Reflection
 open FSharp.Linq
 open Suave
 open Suave.CORS
@@ -37,7 +35,7 @@ let authorize =
 let app =
     choose [
         GET >=> path "/" >=> (OK "__daze_api__")
-        GET >=> path "/api/version/" >=> (OKJson <| serialize ["*v1", "v0"])
+        GET >=> path "/api/version/" >=> VersionController.getVersion
         GET >=> path "/api/cookies/" >=> AuthenticationController.getCookies
 
         GET >=> path "/api/post/" >=> PostController.get
@@ -79,14 +77,10 @@ let app =
         NOT_FOUND "you are lost"
     ] >=> (cors defaultCorsConfig)
 
-let getVersion () =
-    let currentAssembly = Assembly.GetExecutingAssembly().GetName()
-    let version = currentAssembly.Version.ToString()
-    let name = currentAssembly.Name.ToString()
-    sprintf "%s: %s" name version
+
 
 [<EntryPoint>]
 let main argv =
-    getVersion() |> printfn "%s"
+    VersionController.getVersionTuple() |> fun (name, version) -> printfn "%s %s " name version
     startWebServer defaultConfig app
     0  // exit of program

@@ -14,7 +14,6 @@ import IApiService = Daze.Interfaces.IApiService;
 @Injectable()
 export class PostService implements IApiService {
     readonly requestUri = 'http://127.0.0.1:8080/api/post/';
-    readonly _headers = new Headers();
     constructor( @Inject(AuthService) private readonly _authService: AuthService,
         private readonly _http: Http) {
     }

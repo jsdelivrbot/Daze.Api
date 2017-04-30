@@ -1,9 +1,13 @@
-<h3 class="penName">{{this._avatar.penName}}</h3>
+<h3 class="penName">{{_avatar.penName}}</h3>
 
 <div class="avatarImageContainer">
-    <img src="{{this._avatar.profileImageUrl}}" placeholder="avatar image" />
+    <img src="{{_avatar.profileImageUrl}}" placeholder="avatar image" />
 </div>
 
-<summary style="padding:20px;">
-    {{this._avatar.bio}}
-</summary>
+<div style="padding:20px;">
+    {{_avatar.bio}}
+</div>
+
+<div class="version">
+    Copyright © {{_currentYear}} afractal<br /> Version: {{_version}}
+</div>

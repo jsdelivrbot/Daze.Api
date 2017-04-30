@@ -62,6 +62,7 @@
     <Compile Include="AssemblyInfo.fs" />
     <Compile Include="Serializers.fs" />
     <Compile Include="Utils.fs" />
+    <Compile Include="VersionController.fs" />
     <Compile Include="AuthenticationController.fs" />
     <Compile Include="PostController.fs" />
     <Compile Include="ProjectController.fs" />

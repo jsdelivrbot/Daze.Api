@@ -8,7 +8,7 @@ import IAvatar = Daze.Interfaces.IAvatar;
 import IApiService = Daze.Interfaces.IApiService;
 
 @Injectable()
-export default class AvatarService implements IApiService {
+export class AvatarService implements IApiService {
     readonly requestUri = "./app/shared/data/avatar.json";
     constructor(private readonly _http: Http) { }
 

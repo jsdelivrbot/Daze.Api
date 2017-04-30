@@ -1,16 +1,17 @@
 ﻿module Daze.Api.Program
 
 open System
+open System.Reflection
+open System.Reflection
+open FSharp.Linq
 open Suave
 open Suave.CORS
 open Suave.Successful
 open Suave.Filters
 open Suave.Operators
 open Suave.RequestErrors
+open Suave.Authentication
 open Daze.Api.Utils
-open System.Reflection
-open FSharp.Linq
-open System.Reflection
 
 type HTTP = HttpMethod
 
@@ -29,12 +30,14 @@ let defaultCorsConfig = {
     maxAge = Some(Int32.MaxValue)
     exposeHeaders = true }
 
+let authorize = 
+    authenticateBasic (AuthenticationService.authenticate)
+
+// all mutable apis are need authentication
 let app =
     choose [
         GET >=> path "/" >=> (OK "__daze_api__")
         GET >=> path "/api/version/" >=> (OKJson <| serialize ["*v1", "v0"])
-
-        POST >=> path "/api/authenticate/" >=> AuthenticationController.authenticate
         GET >=> path "/api/cookies/" >=> AuthenticationController.getCookies
 
         GET >=> path "/api/post/" >=> PostController.get
@@ -42,35 +45,40 @@ let app =
         GET >=> pathScan "/api/post/%i/tag" PostController.getPostTags
         GET >=> pathScan "/api/post/%i/%i" PostController.getPaginated
         HEAD >=> pathScan "/api/post/%i" PostController.head
-        POST >=> path "/api/post/" >=> PostController.asyncPost
-        PUT >=> path "/api/post/" >=> PostController.asyncPut
-        PATCH >=> path "/api/post/" >=> PostController.asyncPatch
-        DELETE >=> pathScan "/api/post/%i" PostController.delete
         OPTIONS >=> path "/api/post/" >=> PostController.asyncOptions
 
         GET >=> path "/api/skill/" >=> SkillController.get
         GET >=> pathScan "/api/skill/%i" SkillController.getSingle
-        HEAD >=> pathScan "/api/skill/%i" SkillController.head
-        POST >=> path "/api/skill/" >=> SkillController.asyncPost
-        PUT >=> path "/api/skill/" >=> SkillController.asyncPut
-        PATCH >=> path "/api/skill/" >=> SkillController.asyncPatch
-        DELETE >=> pathScan "/api/skill/%i" SkillController.delete
+        HEAD >=> pathScan "/api/skill/%i" SkillController.head        
         OPTIONS >=> path "/api/skill/" >=> SkillController.asyncOptions
 
         GET >=> path "/api/project/" >=> ProjectController.get
         GET >=> pathScan "/api/project/%i" ProjectController.getSingle
         HEAD >=> pathScan "/api/project/%i" ProjectController.head
-        POST >=> path "/api/project/" >=> ProjectController.asyncPost
-        PUT >=> path "/api/project/" >=> ProjectController.asyncPut
-        PATCH >=> path "/api/project/" >=> ProjectController.asyncPatch
-        DELETE >=> pathScan "/api/project/%i" ProjectController.delete
         OPTIONS >=> path "/api/project/" >=> ProjectController.asyncOptions
+
+        authorize <| choose [
+            POST >=> path "/api/authenticate/" >=> AuthenticationController.authenticate
+
+            POST >=> path "/api/post/" >=> PostController.asyncPost
+            PUT >=> path "/api/post/" >=> PostController.asyncPut
+            PATCH >=> path "/api/post/" >=> PostController.asyncPatch
+            DELETE >=> pathScan "/api/post/%i" PostController.delete
+
+            POST >=> path "/api/skill/" >=> SkillController.asyncPost
+            PUT >=> path "/api/skill/" >=> SkillController.asyncPut
+            PATCH >=> path "/api/skill/" >=> SkillController.asyncPatch
+            DELETE >=> pathScan "/api/skill/%i" SkillController.delete
+
+            POST >=> path "/api/project/" >=> ProjectController.asyncPost
+            PUT >=> path "/api/project/" >=> ProjectController.asyncPut
+            PATCH >=> path "/api/project/" >=> ProjectController.asyncPatch
+            DELETE >=> pathScan "/api/project/%i" ProjectController.delete
+        ]
 
         NOT_FOUND "you are lost"
     ] >=> (cors defaultCorsConfig)
 
-
-    
 let getVersion () =
     let currentAssembly = Assembly.GetExecutingAssembly().GetName()
     let version = currentAssembly.Version.ToString()

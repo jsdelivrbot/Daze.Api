@@ -14,7 +14,7 @@
 
 .post-article-title {
     font-family: 'Kreon', serif;
-    cursor: pointer;
+    cursor: text;
     text-transform: capitalize;
     font-size: 24pt;
     color: rgb(34, 56, 78);

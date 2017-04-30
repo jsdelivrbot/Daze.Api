@@ -1,6 +1,7 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 import { Observable } from 'rxjs';
+import { AuthService } from './auth.service';
 import 'rxjs/add/operator/exhaustMap';
 import 'rxjs/add/operator/take';
 import 'rxjs/add/operator/skip';
@@ -13,7 +14,10 @@ import IApiService = Daze.Interfaces.IApiService;
 @Injectable()
 export class PostService implements IApiService {
     readonly requestUri = 'http://127.0.0.1:8080/api/post/';
-    constructor(private readonly _http: Http) { }
+    readonly _headers = new Headers();
+    constructor( @Inject(AuthService) private readonly _authService: AuthService,
+        private readonly _http: Http) {
+    }
 
     getPosts() {
         return this._http.get(this.requestUri)
@@ -43,7 +47,7 @@ export class PostService implements IApiService {
     }
 
     createPost(post: IPost) {
-        let headers = new Headers();
+        let headers = this._authService.generateHeadersFromStorage();
         headers.append('content-type', 'application/json');
         return this._http.post(this.requestUri, post, {
             headers: headers
@@ -51,7 +55,7 @@ export class PostService implements IApiService {
     }
 
     updatePost(post: IPost) {
-        let headers = new Headers();
+        let headers = this._authService.generateHeadersFromStorage();
         headers.append('content-type', 'application/json');
         return this._http.put(this.requestUri, post, {
             headers: headers
@@ -59,6 +63,9 @@ export class PostService implements IApiService {
     }
 
     deletePost(id: string) {
-        return this._http.delete(`${this.requestUri}${id}`);
+        let headers = this._authService.generateHeadersFromStorage();
+        return this._http.delete(`${this.requestUri}${id}`, {
+            headers: headers
+        });
     }
 }

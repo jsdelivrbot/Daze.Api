@@ -15,5 +15,3 @@ let authenticate (username: string, password: string) =
     let authenticationResult =  ctx.Functions.Authenticate.Invoke(username, password, "local")
     printfn "%A" authenticationResult.ReturnValue
     authenticationResult.ReturnValue.[0].GetColumn("success") = true
-
-

@@ -20,6 +20,18 @@ export class AuthService implements IApiService {
             .map(r => r.json() as boolean);
     }
 
+    generateHeadersFromStorage() {
+        let currentUser = JSON.parse(localStorage.getItem('currentuser')) as LoginModel;
+        if (currentUser) {
+            const encodedCredentials = btoa(`${currentUser.username}:${currentUser.password}`);
+            let headers = new Headers();
+            headers.append('authorization', `Basic ${encodedCredentials}`);
+            return headers;
+        }
+        console.log("Could not generate headers, the user is not logged in");
+        return null;
+    }
+
     /** @deprecated  don`t use login */
     login(username: string, password: string) { }
     /** @deprecated don`t use logout */

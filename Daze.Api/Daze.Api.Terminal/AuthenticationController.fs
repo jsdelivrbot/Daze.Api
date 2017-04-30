@@ -20,10 +20,12 @@ open Suave.State.CookieStateStore
 //        >=> sessionStore (fun store ->
 //            store.set "username" "lolz" )
 
+// authenticateBasic ((=) ("hermesgjini@gmail.com", "mnbvcxz"))
+
 let authenticate = 
-    authenticateBasic 
-        (AuthenticationService.authenticate)
-        (OKJson (serialize true)) // can`t be reached if the user is unauthorized
+    //authenticateBasic 
+    //    (AuthenticationService.authenticate)
+    (OKJson (serialize true)) // can`t be reached if the user is unauthorized
 
 let getCookies =
     sessionGet (fun store ->

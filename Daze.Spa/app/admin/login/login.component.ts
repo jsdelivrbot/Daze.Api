@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
     onLoginFormSubmit($event: MouseEvent) {
         this._authService.authenticate(this._loginModel)
             .subscribe(r => {
-                localStorage.clear();
+                localStorage.removeItem('currentuser');
                 localStorage.setItem('currentuser', JSON.stringify(this._loginModel));
             });
     }

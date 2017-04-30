@@ -8,7 +8,7 @@ export class LoginGuard implements CanActivate {
         private readonly _router: Router) { }
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-        let currentUser = localStorage.getItem('currentuser');
+        const currentUser = localStorage.getItem('currentuser');
         if (currentUser) {
             return this._authService.authenticate(JSON.parse(currentUser));
         }

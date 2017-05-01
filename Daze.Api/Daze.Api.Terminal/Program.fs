@@ -78,7 +78,6 @@ let app =
     ] >=> (cors defaultCorsConfig)
 
 
-
 [<EntryPoint>]
 let main argv =
     VersionController.getVersionTuple() |> fun (name, version) -> printfn "%s %s " name version

@@ -57,6 +57,7 @@
     <Compile Include="Project.fs" />
     <Compile Include="Skill.fs" />
     <Compile Include="Course.fs" />
+    <Compile Include="LoginModel.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />

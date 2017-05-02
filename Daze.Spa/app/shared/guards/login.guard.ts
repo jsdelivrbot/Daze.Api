@@ -1,6 +1,7 @@
 import { Injectable, Inject } from '@angular/core';
 import { CanActivate, RouterStateSnapshot, ActivatedRouteSnapshot, Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
+import { LoginModel } from "../models/login.model";
 
 @Injectable()
 export class LoginGuard implements CanActivate {
@@ -8,9 +9,9 @@ export class LoginGuard implements CanActivate {
         private readonly _router: Router) { }
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-        const currentUser = localStorage.getItem('currentuser');
+        const currentUser = JSON.parse(localStorage.getItem('currentuser')) as LoginModel;
         if (currentUser) {
-            return this._authService.authenticate(JSON.parse(currentUser));
+            return this._authService.authenticate(currentUser);
         }
         console.log("LoginGuard: The user is not logged in and can't navigate to desired page");
         this._router.navigate(['/login'], { queryParams: { returnUrl: state.url } });

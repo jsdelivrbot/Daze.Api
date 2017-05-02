@@ -35,7 +35,7 @@ let head (id: int64) =
 
 let asyncPost (ctx: HttpContext) =
     async {
-        let post = ctx.GetRequestBody()
+        let post = ctx.GetRequestBody<Post>()
         do! PostService.asyncInsertNewPost post
         return Some { ctx with response = ctx.GetResponseWith post }
     }

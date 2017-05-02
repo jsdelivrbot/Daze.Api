@@ -19,11 +19,7 @@ export class LoginComponent implements OnInit {
         private readonly _activatedRoute: ActivatedRoute) { }
 
     onLoginFormSubmit($event: MouseEvent) {
-        this._authService.authenticate(this._loginModel)
-            .subscribe(r => {
-                localStorage.removeItem('currentuser');
-                localStorage.setItem('currentuser', JSON.stringify(this._loginModel));
-            });
+        this._authService.login(this._loginModel);
     }
 
     onValueChange(loginData?: LoginModel) {

@@ -36,6 +36,7 @@ let app =
     choose [
         GET >=> path "/" >=> (OK "__daze_api__")
         GET >=> path "/api/version/" >=> VersionController.getVersion
+        POST >=> path "/api/login/" >=> AuthenticationController.login
         GET >=> path "/api/cookies/" >=> AuthenticationController.getCookies
 
         GET >=> path "/api/post/" >=> PostController.get

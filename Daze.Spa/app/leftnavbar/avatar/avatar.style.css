@@ -9,13 +9,6 @@
     pointer-events: none;
 }
 
-h3.penName {
+.penName {
     margin: 0 0 20px 0;
-}
-
-.version {
-    position: fixed;
-    left: 3.8em;
-    bottom: 0em;
-    text-align: center;
 }

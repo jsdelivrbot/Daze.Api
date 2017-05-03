@@ -22,8 +22,13 @@
 
 <up *ngIf="!_isLoading"></up>
 
-<button *ngIf="!_isLoading" (click)="onLoadmore()" class="btn">
+<!--<button *ngIf="!_isLoading" (click)="onLoadmore()" class="btn">
     <i class="material-icons">expand_more</i>
+</button>-->
+
+<button *ngIf="!_isLoading" (click)="onLoadmore()" class="btn">
+    <span>load more</span>
 </button>
+
 
 <!--<pager *ngIf="!_isLoading" [items]="_posts" (pageChanged)="onPageChanged($event)"></pager>-->

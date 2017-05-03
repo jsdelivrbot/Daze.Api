@@ -29,14 +29,14 @@ import { AdminSkillsCreateComponent } from './admin/skills/create/admin.skills.c
 import { AdminSkillsUpdateComponent } from './admin/skills/update/admin.skills.update.component';
 
 import { AppComponent } from './app.component';
-import { RoutesBuilder } from './infrastructure/routes.builder';
+import { RouterBuilder } from './infrastructure/router-builder';
 import { LoginGuard } from "./shared/guards/login.guard";
 import { AuthService } from "./shared/services/auth.service";
 import { MarkdownParserService } from './shared/services/markdown-parser.service';
 import { MarkdownPipe } from './shared/pipes/markdown.pipe';
 import { DomSanitizerPipe } from './shared/pipes/dom-sanitizer.pipe';
 
-const routes = new RoutesBuilder()
+const routes = new RouterBuilder()
     .addRoute('posts', PostsComponent)
     .addRoute('posts/:id', PostComponent)
     .addRoute('skills', SkillsComponent)

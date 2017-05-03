@@ -75,7 +75,7 @@ article.postArticle hr {
     text-overflow: ellipsis;
     float: left;
     text-align: left;
-    padding : 10px 22px 36px 22px;
+    padding: 12px 12px 36px 12px;
 }
 
 .postArticleBodyDetails:hover {

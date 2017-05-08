@@ -55,6 +55,7 @@
     <Compile Include="AssemblyInfo.fs" />
     <Compile Include="BaseService.fs" />
     <Compile Include="PostService.fs" />
+    <Compile Include="TagService.fs" />
     <Compile Include="ProjectService.fs" />
     <Compile Include="SkillService.fs" />
     <Compile Include="AuthenticationService.fs" />

@@ -46,6 +46,9 @@ let app =
         HEAD >=> pathScan "/api/post/%i" PostController.head
         OPTIONS >=> path "/api/post/" >=> PostController.asyncOptions
 
+        GET >=> path "/api/tag/" >=> TagController.get
+        GET >=> pathScan "/api/tag/" TagController.getSingle
+
         GET >=> path "/api/skill/" >=> SkillController.get
         GET >=> pathScan "/api/skill/%i" SkillController.getSingle
         HEAD >=> pathScan "/api/skill/%i" SkillController.head        

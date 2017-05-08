@@ -65,6 +65,7 @@
     <Compile Include="VersionController.fs" />
     <Compile Include="AuthenticationController.fs" />
     <Compile Include="PostController.fs" />
+    <Compile Include="TagController.fs" />
     <Compile Include="ProjectController.fs" />
     <Compile Include="SkillController.fs" />
     <Compile Include="Program.fs" />

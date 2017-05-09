@@ -1,18 +1,24 @@
----
+
 language: csharp
 solution: ./Daze.Api/Daze.Api.sln
 
 # mono:
-#  - latest
-#  - latest # => "stable release"
-#  - weekly # => "latest commits"
+#    - latest
+#    - latest # => "stable release"
+#    - weekly # => "latest commits"
 
 mono: none
 dotnet: 1.0.1
 dist: trusty
+sudo: required
+
 
 install:
-  - sudo apt-get install -y gtk-sharp2
-  - nuget restore ./Daze.Api/Daze.Api.sln
+    - dotnet restore ./Daze.Api/Daze.Api.sln
+
+# install:
+#   - sudo apt-get install -y gtk-sharp2
+#   - nuget restore ./Daze.Api/Daze.Api.sln
+#   - xbuild /p:Configuration=Release ./Daze.Api/Daze.Api.sln
 
 # script:

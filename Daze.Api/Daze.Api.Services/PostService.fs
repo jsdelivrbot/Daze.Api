@@ -45,7 +45,7 @@ let findPostById (id : int64) =
         join t in (ctx.Public.Tag) on (pt.TagId = t.Id)
         where (pt.PostId = id)
         select ({ Id = t.Id
-                  TagName = t.Name })
+                  TagName = t.TagName })
     }
     if (isNull post) then None
     else Some { Id = post.Id
@@ -63,7 +63,7 @@ let findTagsByPostId (id: int64) =
         join t in (ctx.Public.Tag) on (pt.TagId = t.Id)
         where (pt.PostId = id)
         select ({ Id = t.Id
-                  TagName = t.Name })
+                  TagName = t.TagName })
     }
     tags 
     // |> Seq.map(fun x -> { Id = x.Id

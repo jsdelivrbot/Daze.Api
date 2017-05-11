@@ -14,6 +14,7 @@ open Daze.Api.Serializers
 
 type SupportedHttpMethods =
 | Post of verbs : string 
+| Tag of verbs : string
 | Skill of verbs : string
 | Project of verbs : string  
 
@@ -102,7 +103,7 @@ type Suave.Http.HttpContext with
 
     member this.GetOptionsResponseFor (case: SupportedHttpMethods) =
         match case with 
-        | Post(p) | Project(p) | Skill(p)  ->
+        | Post(p) | Project(p) | Skill(p) | Tag(p) ->
             let response = {
                 this.response with 
                     headers = [("Allow", p)]

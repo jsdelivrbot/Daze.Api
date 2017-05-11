@@ -14,8 +14,7 @@ open Daze.Api.Utils
 type HTTP = HttpMethod
 
 let defaultCorsConfig = {
-    allowedUris = InclusiveOption.Some [
-                    "http://localhost:3000" ]
+    allowedUris = InclusiveOption.Some [ "http://localhost:3000" ]
     allowedMethods = InclusiveOption.Some [
                         HTTP.GET
                         HTTP.HEAD
@@ -47,7 +46,10 @@ let app =
         OPTIONS >=> path "/api/post/" >=> PostController.asyncOptions
 
         GET >=> path "/api/tag/" >=> TagController.get
-        GET >=> pathScan "/api/tag/" TagController.getSingle
+        GET >=> pathScan "/api/tag/%i" TagController.getSingle
+        GET >=> pathScan "/api/tag/%i/%i" PostController.getPaginated
+        HEAD >=> pathScan "/api/tag/%i" PostController.head
+        OPTIONS >=> path "/api/tag/" >=> TagController.asyncOptions
 
         GET >=> path "/api/skill/" >=> SkillController.get
         GET >=> pathScan "/api/skill/%i" SkillController.getSingle
@@ -66,6 +68,11 @@ let app =
             PUT >=> path "/api/post/" >=> PostController.asyncPut
             PATCH >=> path "/api/post/" >=> PostController.asyncPatch
             DELETE >=> pathScan "/api/post/%i" PostController.delete
+
+            POST >=> path "/api/tag/" >=> TagController.asyncPost
+            PUT >=> path "/api/tag/" >=> TagController.asyncPut
+            PATCH >=> path "/api/tag/" >=> TagController.asyncPatch
+            DELETE >=> pathScan "/api/tag/%i" TagController.delete
 
             POST >=> path "/api/skill/" >=> SkillController.asyncPost
             PUT >=> path "/api/skill/" >=> SkillController.asyncPut

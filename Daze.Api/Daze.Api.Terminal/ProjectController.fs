@@ -47,7 +47,7 @@ let asyncPatch (ctx: HttpContext) =
 
 let asyncOptions (ctx: HttpContext) =
     async {
-        let response = ctx.GetOptionsResponseFor (Project "GET, HEAD, POST, PUT, PATCH, DELETE")
+        let response = ctx.GetOptionsResponseFor (SupportedHttpMethods.Project "GET, HEAD, POST, PUT, PATCH, DELETE")
         return Some { ctx with response = response }
     }
 

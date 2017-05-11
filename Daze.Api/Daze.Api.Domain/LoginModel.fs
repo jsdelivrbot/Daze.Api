@@ -2,5 +2,4 @@
 
 type LoginModel = {
     username: string
-    password: string
-}
+    password: string }

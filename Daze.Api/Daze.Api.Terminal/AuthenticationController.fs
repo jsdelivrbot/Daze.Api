@@ -18,14 +18,13 @@ let authenticate =
     //    (AuthenticationService.authenticate)
     (OKJson (serialize true)) // can`t be reached if the user is unauthorized
 
-
-
 let login (ctx: HttpContext) = 
     async {
         let loginModel = ctx.GetRequestBody<LoginModel>()
         let loginResult = AuthenticationService.login loginModel
         return Some { ctx with response = ctx.GetResponseWith loginResult } 
     }
+
 let getCookies =
     sessionGet (fun store ->
         let cok = store.get "username"

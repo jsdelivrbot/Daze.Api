@@ -1,0 +1,4 @@
+FSharp.Core
+SQLProvider
+Npgsql
+System.Data.Common

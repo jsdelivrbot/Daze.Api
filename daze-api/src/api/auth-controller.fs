@@ -21,7 +21,7 @@ let authenticate =
 let login (ctx: HttpContext) =
     async {
         let loginModel = ctx.GetRequestBody<LoginModel>()
-        let loginResult = AuthService.login loginModel
+        let loginResult = AuthService.login (loginModel)
         return Some { ctx with response = ctx.GetResponseWith loginResult }
     }
 

@@ -1,6 +1,6 @@
 
 language: csharp
-solution: /Daze.Api.sln
+solution: Daze.Api.sln
 
 mono:
    - latest

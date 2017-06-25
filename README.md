@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/afractal/Daze.svg?token=sN9qiKvy34fJyhwzHohM&branch=master)](https://travis-ci.com/afractal/Daze)
+[![Build Status](https://travis-ci.com/afractal/Daze.svg?token=sN9qiKvy34fJyhwzHohM&branch=master)](https://travis-ci.com/afractal/Daze.Api)
 
 
 ## **Technologies used**

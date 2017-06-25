@@ -1,6 +1,6 @@
 
 language: csharp
-solution: ./Daze.Api/Daze.Api.sln
+solution: /Daze.Api.sln
 
 mono:
    - latest
@@ -13,14 +13,13 @@ mono:
 dist: trusty
 sudo: required
 
-
 # install:
-#     - dotnet restore ./Daze.Api/Daze.Api.sln
+#     - dotnet restore Daze.Api.sln
 
 install:
   - travis_wait 30 mvn install
   - sudo apt-get install -y gtk-sharp2
-  - nuget restore ./Daze.Api/Daze.Api.sln
-  - xbuild /p:Configuration=Release ./Daze.Api/Daze.Api.sln
+  - nuget restore Daze.Api.sln
+  - xbuild /p:Configuration=Release Daze.Api.sln
 
 # script:

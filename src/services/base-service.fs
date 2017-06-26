@@ -6,8 +6,8 @@ open FSharp.Data.Sql
 open Npgsql
 
 let [<Literal>] DbVendor = Common.DatabaseProviderTypes.POSTGRESQL
-let [<Literal>] ConnectionStringLocal = "host=localhost;database=daze_db;password=daze;username=daze;"
-//let [<Literal>] ConnectionStringHeroku = "host=ec2-79-125-118-221.eu-west-1.compute.amazonaws.com;database=d61j8q5jugg0gt;password=5148065972a3e30a340554d9e43303ab7ea3c35bde0a514114cf947d03b6fdd0;username=ukloqkouwwawpb;"
+// let [<Literal>] ConnectionStringLocal = "host=localhost;database=daze_db;password=daze;username=daze;"
+let [<Literal>] ConnectionStringHeroku = "SSL Mode=Prefer;Trust Server Certificate=true;host=ec2-79-125-13-42.eu-west-1.compute.amazonaws.com;database=d581ac58mau63r;password=314ce477224861d0f7946cd6e4f3af114cd1d45c874eab6e34602e2aafa47fd9;username=yyvtjjkjittkdg;port=5432;"
 //let [<Literal>] ConnectionStringGCloud = "host=35.187.43.156;database=daze_db;password=swords$online$99;username=daze;pooling=True;"
 let [<Literal>] ConnectionNameString = "" // ConnectionNameString can be left empty
 let [<Literal>] IndividualsAmount = 1000
@@ -16,10 +16,11 @@ let [<Literal>] ResolutionPath = @"..\packages\Npgsql\lib\netstandard1.3\Npgsql.
 
 type PgProvider = SqlDataProvider<
                     DbVendor,
-                    ConnectionStringLocal,
+                    ConnectionStringHeroku,
                     ConnectionNameString,
                     ResolutionPath,
                     IndividualsAmount,
                     UseOptionTypes>
 
 let ctx = PgProvider.GetDataContext()
+

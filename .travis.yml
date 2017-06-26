@@ -1,13 +1,9 @@
 dist: trusty
 sudo: required
 language: csharp
-solution: Daze.Api.sln
 
 mono:
    - latest
 
-install:
-    nuget restore Daze.Api.sln
-
 script:
-    - xbuild /p:Configuration=Release Daze.Api.sln
+  - ./build.sh

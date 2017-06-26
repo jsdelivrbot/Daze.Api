@@ -23,4 +23,3 @@ type PgProvider = SqlDataProvider<
                     UseOptionTypes>
 
 let ctx = PgProvider.GetDataContext()
-

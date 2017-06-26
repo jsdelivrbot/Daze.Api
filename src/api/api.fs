@@ -14,7 +14,7 @@ open Utils
 type HTTP = HttpMethod
 
 let defaultCorsConfig = {
-    allowedUris = InclusiveOption.Some [ "http://localhost:3000" ]
+    allowedUris = InclusiveOption.All // Some [ "http://localhost:3000" ]
     allowedMethods = InclusiveOption.Some [
                         HTTP.GET
                         HTTP.HEAD

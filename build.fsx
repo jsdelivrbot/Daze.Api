@@ -1,4 +1,3 @@
-// include Fake libs
 #r "./packages/FAKE/tools/FakeLib.dll"
 
 open Fake
@@ -32,6 +31,13 @@ Target "Deploy" (fun _ ->
     !! (buildDir + "/**/*.*")
     -- "*.zip"
     |> Zip buildDir (deployDir + "ApplicationName." + version + ".zip")
+)
+
+Target "deployazure" (fun _ ->
+  let sourceDirectory = __SOURCE_DIRECTORY__
+  let wwwrootDirectory = __SOURCE_DIRECTORY__ @@ "../wwwroot"
+  CleanDir wwwrootDirectory
+  CopyRecursive sourceDirectory wwwrootDirectory false |> ignore
 )
 
 // Build order

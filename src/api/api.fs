@@ -25,7 +25,7 @@ let defaultCorsConfig = {
                         HTTP.OPTIONS ]
     allowCookies = true
     maxAge = Some(Int32.MaxValue)
-    exposeHeaders = true }
+    exposeHeaders = InclusiveOption.All }
 
 let authorize =
     authenticateBasic (AuthService.authenticate)

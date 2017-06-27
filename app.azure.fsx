@@ -8,7 +8,9 @@ open System
 open System.Net
 open Suave
 open Suave.Http
-
+open System
+open System.IO
+open Suave.Web
 
 let serverConfig =
     let port = int (getBuildParam "port")

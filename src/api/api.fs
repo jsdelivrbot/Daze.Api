@@ -89,8 +89,8 @@ let app =
     ] >=> (cors defaultCorsConfig)
 
 
-[<EntryPoint>]
-let main argv =
-    VersionController.getVersionTuple() |> fun (name, version) -> printfn "%s %s" name version
-    startWebServer defaultConfig app
-    0  // exit of program
+// [<EntryPoint>]
+// let main argv =
+//     VersionController.getVersionTuple() |> fun (name, version) -> printfn "%s %s" name version
+//     startWebServer defaultConfig app
+//     0  // exit of program

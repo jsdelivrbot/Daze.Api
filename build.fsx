@@ -35,9 +35,9 @@ Target "Deploy" (fun _ ->
 
 Target "deployazure" (fun _ ->
   let sourceDirectory = __SOURCE_DIRECTORY__
-  let wwwrootDirectory = __SOURCE_DIRECTORY__ @@ "../wwwroot"
-  CleanDir wwwrootDirectory
-  CopyRecursive sourceDirectory wwwrootDirectory false |> ignore
+//   let wwwrootDirectory = __SOURCE_DIRECTORY__ @@ "../wwwroot"
+  CleanDir sourceDirectory
+//   CopyRecursive sourceDirectory wwwrootDirectory false |> ignore
 )
 
 // Build order

@@ -2,8 +2,8 @@
 // Start the 'app' WebPart defined in 'app.fsx' on Azure using %HTTP_PLATFORM_PORT%
 // --------------------------------------------------------------------------------------
 
-#r "packages/FAKE/tools/FakeLib.dll"
-#r "packages/Suave/lib/net40/Suave.dll"
+#r "./packages/FAKE/tools/FakeLib.dll"
+#r "./packages/Suave/lib/net40/Suave.dll"
 #load "./src/api/api.fs"
 
 open Api

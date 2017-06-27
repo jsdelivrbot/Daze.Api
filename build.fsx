@@ -33,12 +33,12 @@ Target "Deploy" (fun _ ->
     |> Zip buildDir (deployDir + "ApplicationName." + version + ".zip")
 )
 
-Target "deployazure" (fun _ ->
-  let sourceDirectory = __SOURCE_DIRECTORY__
-  let wwwrootDirectory = __SOURCE_DIRECTORY__ @@ "../wwwroot"
-  CleanDir sourceDirectory
-  CopyRecursive sourceDirectory wwwrootDirectory false |> ignore
-)
+// Target "deployazure" (fun _ ->
+//   let sourceDirectory = __SOURCE_DIRECTORY__
+//   let wwwrootDirectory = __SOURCE_DIRECTORY__ @@ "../wwwroot"
+//   CleanDir sourceDirectory
+//   CopyRecursive sourceDirectory wwwrootDirectory false |> ignore
+// )
 
 // Build order
 "Clean"

@@ -11,7 +11,4 @@ if errorlevel 1 (
     exit /b %errorlevel%
 )
 
-REM packages\FAKE\tools\FAKE.exe build.fsx %*
-packages\FAKE\tools\FAKE.exe %* --fsiargs build.fsx
-
-
+packages\FAKE\tools\FAKE.exe build.fsx %*

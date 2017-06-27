@@ -13,10 +13,11 @@ open System.Net
 open Suave
 open Suave.Http
 
+
 let serverConfig =
-    let port = int (getBuildParam "port")
-    { Web.defaultConfig with
-        homeFolder = Some __SOURCE_DIRECTORY__
-        bindings = [ HttpBinding.createSimple HTTP "127.0.0.1" port ] }
+    let port = getBuildParamOrDefault "port" "8083" |> Sockets.Port.Parse
+    { defaultConfig with
+         // homeFolder = Some __SOURCE_DIRECTORY__
+         bindings = [ HttpBinding.create HTTP IPAddress.Loopback port ] }
 
 startWebServer serverConfig app

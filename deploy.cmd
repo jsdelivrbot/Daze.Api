@@ -4,7 +4,7 @@ cls
 if not exist .paket (
   @echo "Installing Paket"
   mkdir .paket
-  curl https://github.com/fsprojects/Paket/releases/download/5.2.3/paket.bootstrapper.exe -L --insecure -o .paket\paket.bootstrapper.exe
+  curl https://github.com/fsprojects/Paket/releases/download/5.2.1/paket.bootstrapper.exe -L --insecure -o .paket\paket.bootstrapper.exe
 
   .paket\paket.bootstrapper.exe prerelease
   if errorlevel 1 (

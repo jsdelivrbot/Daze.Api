@@ -1,7 +1,7 @@
 #if BOOTSTRAP
 System.Environment.CurrentDirectory <- __SOURCE_DIRECTORY__
 if not (System.IO.File.Exists "paket.exe") then
-    let url = "https://github.com/fsprojects/Paket/releases/download/3.13.3/paket.exe" in
+    let url = "https://github.com/fsprojects/Paket/releases/download/5.2.3/paket.exe" in
         use wc = new System.Net.WebClient() in
         let tmp = System.IO.Path.GetTempFileName() in
             wc.DownloadFile(url, tmp);

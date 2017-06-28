@@ -1,0 +1,10 @@
+{
+    "name": "Daze",
+    "description": "The dazed programmer backend, deployable to Heroku.",
+    "website": "https://github.com/afractal/Daze.Api",
+    "repository": "https://github.com/afractal/Daze.Api",
+    "logo": "https://github.com/SuaveIO/resources/raw/master/images/head_trans.png",
+    "env": {
+        "BUILDPACK_URL": "https://github.com/SuaveIO/mono-script-buildpack.git"
+    }
+}

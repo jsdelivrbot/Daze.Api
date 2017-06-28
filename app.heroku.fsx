@@ -31,6 +31,5 @@ let serverConfig =
         bindings=[ (if port = null then HttpBinding.create HTTP ip127 (uint16 8080)
                     else HttpBinding.create HTTP ipZero (uint16 port)) ] }
 
-
 startWebServer serverConfig app
 printfn "exiting server..."

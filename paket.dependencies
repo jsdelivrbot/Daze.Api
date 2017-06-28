@@ -1,9 +1,10 @@
 source https://www.nuget.org/api/v2
 nuget FAKE
 nuget FSharp.Compiler.Service
-nuget FSharp.Core 4.1.17
+nuget FSharp.Core 4.2.1
 nuget Newtonsoft.Json
 nuget SQLProvider
 nuget Npgsql 3.1.10
 nuget Suave
 nuget System.Data.Common
+nuget System.ValueTuple

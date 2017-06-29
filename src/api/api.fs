@@ -1,6 +1,7 @@
 module Api
 
 open System
+open System.Net
 open FSharp.Linq
 open Suave
 open Suave.CORS
@@ -88,9 +89,28 @@ let app =
         NOT_FOUND "you are lost"
     ] >=> (cors defaultCorsConfig)
 
+let serverConfig =
+  let port =
+    match System.Environment.GetCommandLineArgs() |> Seq.tryPick (fun s ->
+      if s.StartsWith("port=") then Some(int(s.Substring("port=".Length)))
+      else None ) with
+    | Some p -> p | _ -> failwith "No port specified"
+
+  { Web.defaultConfig with
+      homeFolder = Some __SOURCE_DIRECTORY__
+      bindings = [ HttpBinding.createSimple HTTP "127.0.0.1" port ] }
+
+    // let ip127  = IPAddress.Parse("127.0.0.1")
+    // let ipZero = IPAddress.Parse("0.0.0.0")
+    // { defaultConfig with
+    //     homeFolder = Some __SOURCE_DIRECTORY__
+    //     bindings=[ (if port = null then HttpBinding.create HTTP ip127 (uint16 8080)
+    //                 else HttpBinding.create HTTP ipZero (uint16 port)) ] }
 
 // [<EntryPoint>]
 // let main argv =
-//     VersionController.getVersionTuple() |> fun (name, version) -> printfn "%s %s" name version
-//     startWebServer defaultConfig app
-//     0  // exit of program
+printfn "starting server..."
+VersionController.getVersionTuple() |> fun (name, version) -> printfn "%s %s" name version
+startWebServer serverConfig app
+printfn "exiting server..."
+// 0  // exit of program

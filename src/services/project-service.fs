@@ -10,7 +10,8 @@ let getAllProjects() =
         select { Id = p.Id
                  ProjectName = p.Name
                  Description = p.Description
-                 Url = p.Url }
+                 Url = p.Url
+                 PublishedYear = p.PublishedYear }
     }
     if Seq.isEmpty projects then None
     else Some (Seq.cache projects)
@@ -25,7 +26,8 @@ let findProjectById (id: int64) =
     else Some { Id = project.Id
                 ProjectName = project.Name
                 Description = project.Description
-                Url = project.Url }
+                Url = project.Url
+                PublishedYear = project.PublishedYear }
 
 let existsProject (id: int64) =
     query {
@@ -39,7 +41,7 @@ let insertNewProject (project: Project) =
         newProject.Name <- project.ProjectName
         newProject.Description <- project.Description
         newProject.Url <- project.Url
-
+        newProject.PublishedYear <- project.PublishedYear
         try
             do! ctx.SubmitUpdatesAsync()
         with _ ->
@@ -58,6 +60,7 @@ let asyncFullyUpdateProject (project: Project) =
             foundProject.Name <- project.ProjectName
             foundProject.Description <- project.Description
             foundProject.Url <- project.Url
+            foundProject.PublishedYear <- project.PublishedYear
 
         do! ctx.SubmitUpdatesAsync()
     }
@@ -78,6 +81,10 @@ let asyncPartiallyUpdateProject (project: Project) =
 
             if project.Url.IsSome then
                 foundProject.Url <- project.Url
+
+            if project.PublishedYear.IsSome then
+                foundProject.PublishedYear <- project.PublishedYear
+
 
         do! ctx.SubmitUpdatesAsync()
     }

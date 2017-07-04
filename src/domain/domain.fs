@@ -21,7 +21,8 @@ type Project = {
     Id: int64
     ProjectName: string
     Description: string option
-    Url: string option }
+    Url: string option
+    PublishedYear: int option }
 
 type Skill = {
     Id: int64

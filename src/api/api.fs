@@ -107,11 +107,10 @@ let app =
 
 
 let serverConfig =
-    let port = int (Environment.GetEnvironmentVariable("PORT"))
+    let port = 8080 //int (Environment.GetEnvironmentVariable("PORT"))
     { Web.defaultConfig with
           homeFolder = Some __SOURCE_DIRECTORY__
           bindings = [ HttpBinding.createSimple HTTP "0.0.0.0" port ] }
-
 
 
     // let ip127  = IPAddress.Parse("127.0.0.1")
@@ -121,10 +120,10 @@ let serverConfig =
     //     bindings=[ (if port = null then HttpBinding.create HTTP ip127 (uint16 8080)
     //                 else HttpBinding.create HTTP ipZero (uint16 port)) ] }
 
-// [<EntryPoint>]
-// let main argv =
-//     printfn "starting server..."
-//     VersionController.getVersionTuple() |> fun (name, version) -> printfn "%s %s" name version
-//     startWebServer serverConfig app
-//     printfn "exiting server..."
-//     0  // exit of program
+[<EntryPoint>]
+let main argv =
+    printfn "starting server..."
+    VersionController.getVersionTuple() |> fun (name, version) -> printfn "%s %s" name version
+    startWebServer serverConfig app
+    printfn "exiting server..."
+    0  // exit of program

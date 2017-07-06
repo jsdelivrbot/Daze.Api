@@ -15,11 +15,11 @@ open Utils
 type HTTP = HttpMethod
 
 let defaultCorsConfig = {
-    // https://daze-spa.herokuapp.com/
     allowedUris = InclusiveOption.Some [
                         "http://localhost:3000"
                         "http://localhost:5000"
-                        "https://daze-spa.herokuapp.com" ]
+                        "https://daze-spa.herokuapp.com"
+                        "https://afractal.herokuapp.com" ]
     allowedMethods = InclusiveOption.Some [
                         HTTP.GET
                         HTTP.HEAD
@@ -35,7 +35,7 @@ let defaultCorsConfig = {
 let authorize =
     authenticateBasic (AuthService.authenticate)
 
-// all mutable apis are need authentication
+// all non-idempotent apis need authentication
 let app =
     choose [
         GET >=> path "/" >=> (OK "__daze_api__")
@@ -92,19 +92,6 @@ let app =
 
         NOT_FOUND "you are lost"
     ] >=> (cors defaultCorsConfig)
-
-// let serverConfig =
-//   let port =
-//     match Environment.GetCommandLineArgs() |> Seq.tryPick (fun s ->
-//       if s.StartsWith("port=") then Some(int(s.Substring("port=".Length)))
-//       else None ) with
-//     | Some p -> p
-//     | _ -> 8080 // failwith "No port specified"
-
-//   { Web.defaultConfig with
-//       homeFolder = Some __SOURCE_DIRECTORY__
-//       bindings = [ HttpBinding.createSimple HTTP "127.0.0.1" port ] }
-
 
 let serverConfig =
     let port = int (Environment.GetEnvironmentVariable("PORT"))

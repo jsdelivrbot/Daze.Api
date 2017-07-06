@@ -19,7 +19,7 @@ let defaultCorsConfig = {
     allowedUris = InclusiveOption.Some [
                         "http://localhost:3000"
                         "http://localhost:5000"
-                        "https://daze-spa.herokuapp.com/" ]
+                        "https://daze-spa.herokuapp.com" ]
     allowedMethods = InclusiveOption.Some [
                         HTTP.GET
                         HTTP.HEAD

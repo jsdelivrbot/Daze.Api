@@ -19,7 +19,8 @@ let defaultCorsConfig = {
                         "http://localhost:3000"
                         "http://localhost:5000"
                         "https://daze-spa.herokuapp.com"
-                        "https://afractal.herokuapp.com" ]
+                        "https://afractal.herokuapp.com"
+                        "http://afractal.herokuapp.com" ]
     allowedMethods = InclusiveOption.Some [
                         HTTP.GET
                         HTTP.HEAD
@@ -95,8 +96,10 @@ let app =
 
 let serverConfig =
     let port = int (Environment.GetEnvironmentVariable("PORT"))
+    let port = 8080
     { Web.defaultConfig with
           homeFolder = Some __SOURCE_DIRECTORY__
+        //   bindings = [ HttpBinding.createSimple HTTP "127.0.0.1" port ] }
           bindings = [ HttpBinding.createSimple HTTP "0.0.0.0" port ] }
 
 [<EntryPoint>]

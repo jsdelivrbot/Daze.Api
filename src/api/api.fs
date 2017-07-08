@@ -96,7 +96,7 @@ let app =
 
 let serverConfig =
     let port = int (Environment.GetEnvironmentVariable("PORT"))
-    let port = 8080
+    // let port = 8080
     { Web.defaultConfig with
           homeFolder = Some __SOURCE_DIRECTORY__
         //   bindings = [ HttpBinding.createSimple HTTP "127.0.0.1" port ] }

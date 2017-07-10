@@ -13,6 +13,7 @@ let getAllPosts () =
                  Title = p.Title
                  HeroContent = p.HeroContent
                  Content = p.Content
+                 CoverImage = p.CoverImage
                  CreatedAt = p.CreatedAt
                  ModifiedAt = p.ModifiedAt
                  Tags = Seq.empty }
@@ -29,6 +30,7 @@ let getAllPostsPaginated page pageSize =
                  Title = p.Title
                  HeroContent = p.HeroContent
                  Content = p.Content
+                 CoverImage = p.CoverImage
                  CreatedAt = p.CreatedAt
                  ModifiedAt = p.ModifiedAt
                  Tags = Seq.empty }
@@ -53,6 +55,7 @@ let findPostById (id : int64) =
                 Title = post.Title
                 HeroContent = post.HeroContent
                 Content = post.Content
+                CoverImage = post.CoverImage
                 CreatedAt = post.CreatedAt
                 ModifiedAt = post.ModifiedAt
                 Tags = tags }
@@ -83,6 +86,7 @@ let asyncInsertNewPost (post: Post) =
         newPost.Slug <- post.Slug
         newPost.HeroContent <- post.HeroContent
         newPost.Content <- post.Content
+        newPost.CoverImage <- post.CoverImage
 
         try
             do! ctx.SubmitUpdatesAsync()
@@ -104,6 +108,7 @@ let asyncFullyUpdatePost (post: Post) =
             foundPost.HeroContent <- post.HeroContent
             foundPost.Content <- post.Content
             foundPost.ModifiedAt <- Some DateTime.UtcNow
+            foundPost.CoverImage <- post.CoverImage
 
         do! ctx.SubmitUpdatesAsync()
     }
@@ -125,6 +130,9 @@ let asyncPartiallyUpdatePost (post: Post) =
 
             if post.Content.IsSome then
                 foundPost.Content <- post.Content
+
+            if post.CoverImage.IsSome then
+                foundPost.CoverImage <- post.CoverImage
 
         do! ctx.SubmitUpdatesAsync()
     }

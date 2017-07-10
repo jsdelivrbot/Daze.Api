@@ -12,6 +12,7 @@ type Post = {
     Title: string
     HeroContent: string option
     Content: string option
+    CoverImage: string option
     CreatedAt: DateTime option
     ModifiedAt: DateTime option
     Tags: seq<Tag> }

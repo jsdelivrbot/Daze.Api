@@ -5,7 +5,9 @@
     "repository": "https://github.com/afractal/Daze.Spa",
     "logo": "",
     "env": {
-        "ENV": "prod"
+        "ENV": {
+            "value": "prod"
+        }
     },
     "buildpacks": [
         {

@@ -95,12 +95,13 @@ let app =
     ] >=> (cors defaultCorsConfig)
 
 let serverConfig =
-    let port = int (Environment.GetEnvironmentVariable("PORT"))
-    // let port = 8080
+    let mode = Environment.GetEnvironmentVariable("ENV")
+    let port = if mode = "prod" then int (Environment.GetEnvironmentVariable("PORT")) else 8080
+    let ip = if mode = "prod" then "0.0.0.0" else "127.0.0.1"
+
     { Web.defaultConfig with
           homeFolder = Some __SOURCE_DIRECTORY__
-        //   bindings = [ HttpBinding.createSimple HTTP "127.0.0.1" port ] }
-          bindings = [ HttpBinding.createSimple HTTP "0.0.0.0" port ] }
+          bindings = [ HttpBinding.createSimple HTTP ip port ] }
 
 [<EntryPoint>]
 let main argv =

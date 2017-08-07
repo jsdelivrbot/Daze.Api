@@ -4,9 +4,7 @@
     "website": "https://afractal.herokuapp.com",
     "repository": "https://github.com/afractal/Daze.Spa",
     "logo": "",
-    "buildpacks": [
-        {
-            "url": "https://github.com/afractal/mono-script-buildpack.git"
-        }
-    ]
+    "env": {
+        "BUILDPACK_URL": "https://github.com/afractal/mono-script-buildpack.git"
+    }
 }

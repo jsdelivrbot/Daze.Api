@@ -10,6 +10,7 @@ open Suave.State.CookieStateStore
 open System.Security.Cryptography
 open Newtonsoft.Json
 open Serializers
+open Types
 
 
 type SupportedHttpMethods =
@@ -41,7 +42,7 @@ let mapJsonNet<'a, 'b> =
 
 let OKJson (responseBytes: byte array) (ctx: HttpContext) =
     async {
-        let headers = [("content-type", "application/json;charset=UTF-8")]
+        let headers = [("Content-Type", "application/json;charset=UTF-8")]
         let response = {
             ctx.response with
                 content = Bytes responseBytes
@@ -77,8 +78,7 @@ let sessionGet getFun =
     context (fun x ->
         match HttpContext.state x with
         | Some state -> getFun state
-        | None -> never
-    )
+        | None -> never )
 
 
 type Suave.Http.HttpContext with

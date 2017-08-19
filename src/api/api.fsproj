@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Name>api</Name>
@@ -39,16 +39,17 @@
     <Reference Include="System.Numerics" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\services\services.fsproj">
-      <Name>services.fsproj</Name>
-      <Project>{1d53fd82-4dc2-4346-a08a-9e31cda70d75}</Project>
-    </ProjectReference>
     <ProjectReference Include="..\domain\domain.fsproj">
       <Name>domain.fsproj</Name>
       <Project>{ddad1212-842e-4733-9ecb-352f8e8055df}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\persistance\persistance.fsproj">
+      <Name>persistance.fsproj</Name>
+      <Project>{ea06615b-a251-45f2-ac5f-8c5c8b2d9255}</Project>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="types.fs" />
     <Compile Include="serializers.fs" />
     <Compile Include="utils.fs" />
     <Compile Include="version-controller.fs" />

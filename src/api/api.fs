@@ -34,7 +34,7 @@ let defaultCorsConfig = {
     exposeHeaders = InclusiveOption.All }
 
 let authorize =
-    authenticateBasic (AuthService.authenticate)
+    authenticateBasic (Db.Auth.authenticate)
 
 // all non-idempotent apis need authentication
 let app =

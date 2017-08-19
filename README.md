@@ -4,7 +4,7 @@
 
 **Front End:** typescript/javascript | angular4
 
-**Back End:** fsharp | suave
+**Back End:** fsharp | suaveW
 
 **Persistance:** postgresql | redis
 
@@ -21,7 +21,8 @@
 *v.0.4.0*
 
 - added more style into the project
-- added
+- configured env variables
+- init unit tests
 - refactored all projects
 
 *v.0.3.0*

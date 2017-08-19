@@ -1,0 +1,5 @@
+namespace Cache
+
+module BaseCache =
+    ()
+

@@ -9,49 +9,49 @@ open Suave.Writers
 open Suave.Authentication
 open Utils
 open Domain
+open Types
 
 let get =
-    let posts = PostService.getAllPosts()
+    let posts = Db.Post.getAllPosts()
     OKJson (serialize posts)
 
 let getPaginated (page, pageSize) =
-    let posts = PostService.getAllPostsPaginated page pageSize
+    let posts = Db.Post.getAllPostsPaginated page pageSize
     OKJson (serialize posts)
 
 let getSingle (id: int64) =
-    let post = PostService.findPostById id
+    let post = Db.Post.findPostById id
     match post with
     | Some p -> OKJson (serialize p)
     | None -> no_content
 
 let getPostTags (id: int64) =
-    let tags = PostService.findTagsByPostId id
+    let tags = Db.Post.findTagsByPostId id
     OKJson (serialize tags)
 
 let head (id: int64) =
-    let exists = PostService.existsPost id
+    let exists = Db.Post.existsPost id
     if exists then setStatus HTTP_200
     else setStatus HTTP_404
 
 let asyncPost (ctx: HttpContext) =
     async {
         let post = ctx.GetRequestBody<Post>()
-        do! PostService.asyncInsertNewPost post
+        do! Db.Post.asyncInsertNewPost post
         return Some { ctx with response = ctx.GetResponseWith post }
     }
 
 let asyncPut (ctx: HttpContext) =
     async {
         let post = ctx.GetRequestBody<Post>()
-        do! PostService.asyncFullyUpdatePost post
+        do! Db.Post.asyncFullyUpdatePost post
         return Some { ctx with response = ctx.GetResponseWith post }
     }
 
 let asyncPatch (ctx: HttpContext) =
     async {
         let post = ctx.GetRequestBody<Post>()
-        printfn "%A" post
-        do! PostService.asyncPartiallyUpdatePost post
+        do! Db.Post.asyncPartiallyUpdatePost post
         return Some { ctx with response = ctx.GetResponseWith post }
     }
 
@@ -62,8 +62,8 @@ let asyncOptions (ctx: HttpContext) =
     }
 
 let delete (id: int64) =
-    if PostService.existsPost id then
-        PostService.removePost id
+    if Db.Post.existsPost id then
+        Db.Post.removePost id
         setStatus HTTP_200
     else
         setStatus HTTP_204

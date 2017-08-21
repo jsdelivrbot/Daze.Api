@@ -1,4 +1,4 @@
-namespace Db
+namespace Persistance.Db
 
 module BaseDb =
 
@@ -9,9 +9,9 @@ module BaseDb =
     open Domain
 
 
-    // let [<Literal>] ConnectionStringHeroku = "SSL Mode=Prefer;Trust Server Certificate=true;host=ec2-79-125-13-42.eu-west-1.compute.amazonaws.com;database=d581ac58mau63r;password=314ce477224861d0f7946cd6e4f3af114cd1d45c874eab6e34602e2aafa47fd9;username=yyvtjjkjittkdg;port=5432;"
+    let [<Literal>] ConnectionStringHeroku = "SSL Mode=Prefer;Trust Server Certificate=true;host=ec2-79-125-13-42.eu-west-1.compute.amazonaws.com;database=d581ac58mau63r;password=314ce477224861d0f7946cd6e4f3af114cd1d45c874eab6e34602e2aafa47fd9;username=yyvtjjkjittkdg;port=5432;"
 
-    let [<Literal>] ConnectionStringLocal = "host=localhost;database=daze_db;password=daze;username=daze;"
+    // let [<Literal>] ConnectionStringLocal = "host=localhost;database=daze_db;password=daze;username=daze;"
     // let [<Literal>] ConnectionStringGCloud = "host=35.187.43.156;database=daze_db;password=swords$online$99;username=daze;pooling=True;"
 
     let [<Literal>] DbVendor = Common.DatabaseProviderTypes.POSTGRESQL
@@ -23,7 +23,7 @@ module BaseDb =
     type PgProvider =
         SqlDataProvider<
             DbVendor,
-            ConnectionStringLocal,
+            ConnectionStringHeroku,
             ConnectionNameString,
             ResolutionPath,
             IndividualsAmount,

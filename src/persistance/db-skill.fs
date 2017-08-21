@@ -1,4 +1,4 @@
-namespace Db
+namespace Persistance.Db
 
 [<RequireQualifiedAccess>]
 module Skill =
@@ -8,15 +8,13 @@ module Skill =
     open Mappings
 
     let getAllSkills () =
-        let skills = query {
+        query {
             for s in ctx.Public.Skill do
             select { Id = s.Id
                      SkillName = s.Name
                      FocusArea = s.FocusArea
                      Level = s.Level }
-        }
-        if Seq.isEmpty skills then None
-        else Some (Seq.cache skills)
+        } |> Seq.cache
 
     let findSkillById (id: int64) =
         let skill = query {

@@ -1,4 +1,4 @@
-namespace Db
+namespace Persistance.Db
 
 [<RequireQualifiedAccess>]
 module Post =
@@ -6,8 +6,7 @@ module Post =
     open System
     open Domain
     open BaseDb
-    open Db.Mappings
-
+    open Mappings
 
     let getAllPosts () =
         query {

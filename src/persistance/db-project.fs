@@ -1,4 +1,4 @@
-namespace Db
+namespace Persistance.Db
 
 [<RequireQualifiedAccess>]
 module Project =
@@ -8,16 +8,14 @@ module Project =
     open Mappings
 
     let getAllProjects() =
-        let projects = query {
+        query {
             for p in ctx.Public.Project do
             select { Id = p.Id
                      ProjectName = p.Name
                      Description = p.Description
                      Url = p.Url
                      PublishedYear = p.PublishedYear }
-        }
-        if Seq.isEmpty projects then None
-        else Some (Seq.cache projects)
+        } |> Seq.cache
 
     let findProjectById (id: int64) =
         let project = query {

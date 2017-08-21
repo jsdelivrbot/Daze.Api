@@ -8,7 +8,7 @@ open Suave
 open Suave.Testing
 open Suave.Successful
 open Expecto
-open Api
+open Api.App
 open System.Threading
 open Suave.Logging
 

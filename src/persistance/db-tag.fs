@@ -1,4 +1,4 @@
-namespace Db
+namespace Persistance.Db
 
 [<RequireQualifiedAccess>]
 module Tag =

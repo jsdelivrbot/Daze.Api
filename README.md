@@ -4,7 +4,7 @@
 
 **Front End:** typescript/javascript | angular4
 
-**Back End:** fsharp | suaveW
+**Back End:** fsharp | suave
 
 **Persistance:** postgresql | redis
 
@@ -32,7 +32,7 @@
 
 *v.0.2.0*
 
-- started using suave for wbeb apis
+- started using suave for web apis
 - init admin area
 - addedd pagination for posts
 

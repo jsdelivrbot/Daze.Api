@@ -39,7 +39,7 @@ module Post =
                      Tags = Seq.empty }
         } |> Seq.cache
 
-    let findPostById (id : int64) =
+    let findPostById (id: int64) =
         let post = query {
             for p in ctx.Public.Post do
             where (p.Id = id)
@@ -49,6 +49,30 @@ module Post =
             for pt in ctx.Public.PostTag do
             join t in (ctx.Public.Tag) on (pt.TagId = t.Id)
             where (pt.PostId = id)
+            select ({ Id = t.Id
+                      TagName = t.TagName })
+        }
+        if (isNull post) then None
+        else Some { Id = post.Id
+                    Slug = post.Slug
+                    Title = post.Title
+                    HeroContent = post.HeroContent
+                    Content = post.Content
+                    CoverImage = post.CoverImage
+                    CreatedAt = post.CreatedAt
+                    ModifiedAt = post.ModifiedAt
+                    Tags = tags }
+
+    let findPostBySlug (slug: string) =
+        let post = query {
+            for p in ctx.Public.Post do
+            where (p.Slug = slug)
+            exactlyOneOrDefault
+        }
+        let tags = Seq.cache <| query {
+            for pt in ctx.Public.PostTag do
+            join t in (ctx.Public.Tag) on (pt.TagId = t.Id)
+            where (pt.PostId = post.Id)
             select ({ Id = t.Id
                       TagName = t.TagName })
         }

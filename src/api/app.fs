@@ -25,6 +25,7 @@ module App =
 
             GET >=> path "/api/post/" >=> PostController.get
             GET >=> pathScan "/api/post/%i" PostController.getSingle
+            GET >=> pathScan "/api/post/?slug=%s" PostController.getSingleBySlug
             GET >=> pathScan "/api/post/%i/tag" PostController.getPostTags
             GET >=> pathScan "/api/post/%i/%i" PostController.getPaginated
             HEAD >=> pathScan "/api/post/%i" PostController.head

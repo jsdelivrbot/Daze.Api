@@ -56,6 +56,20 @@ module PostController =
 
         OKJson (serialize hal)
 
+    let getSingleBySlug (slug: string) =
+        let post = Db.Post.findPostBySlug slug
+
+        let links = {
+            Self = { href = sprintf "/api/post/%s" slug }
+            Next = { href = null } }
+
+        let hal = {
+            totalCount = if post.IsNone then 0 else 1
+            _links = links
+            _embedded = Item(post) }
+
+        OKJson (serialize hal)
+
     let getPostTags (id: int64) =
         let tags = Db.Post.findTagsByPostId id
 

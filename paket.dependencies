@@ -1,13 +1,13 @@
-source http://nuget.org/api/v2
+source https://api.nuget.org/v3/index.json
 framework: >= net46
 
 nuget Expecto
 nuget FSharp.Core
 nuget FAKE
-nuget Suave
+nuget Suave 2.2.1
 nuget Suave.Testing
 nuget Newtonsoft.Json
 nuget SQLProvider
 nuget Npgsql 3.1.10
-nuget System.Data.Common 4.0.0
+nuget System.Data.Common
 nuget System.Net.Http

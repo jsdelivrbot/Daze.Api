@@ -1,5 +1,5 @@
 source https://api.nuget.org/v3/index.json
-framework: >= net46
+framework: >= netstandard1.3
 
 nuget Expecto
 nuget FSharp.Core redirects: force
@@ -10,5 +10,5 @@ nuget Suave.Testing 2.2.1
 nuget Newtonsoft.Json
 nuget SQLProvider 1.1.11
 nuget Npgsql 3.1.10
-nuget System.Data.Common >= 4.1.0
+nuget System.Data.Common 4.1.0
 nuget System.Net.Http

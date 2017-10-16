@@ -1,5 +1,5 @@
 source https://api.nuget.org/v3/index.json
-framework: >= net461
+framework: >= net46
 
 nuget Expecto
 nuget FSharp.Core redirects: force

@@ -69,6 +69,7 @@ module Post =
             where (p.Slug = slug)
             exactlyOneOrDefault
         }
+
         let tags = Seq.cache <| query {
             for pt in ctx.Public.PostTag do
             join t in (ctx.Public.Tag) on (pt.TagId = t.Id)

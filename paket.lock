@@ -11,7 +11,7 @@ NUGET
     Mono.Cecil (0.10.0-beta6)
     Newtonsoft.Json (10.0.3)
     Npgsql (3.1.9)
-    SQLProvider (1.1.14)
+    SQLProvider (1.1.11)
     Suave (2.2.1)
       FSharp.Core (>= 4.0.0.1)
     Suave.Testing (2.2.1)

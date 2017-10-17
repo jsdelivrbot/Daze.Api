@@ -11,7 +11,7 @@
     <OutputType>Library</OutputType>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <TargetFSharpCoreVersion>4.4.1.0</TargetFSharpCoreVersion>
+    <!-- <TargetFSharpCoreVersion>4.4.1.0</TargetFSharpCoreVersion> -->
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -92,13 +92,8 @@
   <Choose>
     <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.6.1'">
       <ItemGroup>
-        <Reference Include="FSharp.Core">
-          <HintPath>..\..\packages\SQLProvider\lib\net451\FSharp.Core.dll</HintPath>
-          <Private>True</Private>
-          <Paket>True</Paket>
-        </Reference>
         <Reference Include="FSharp.Data.SqlProvider">
-          <HintPath>..\..\packages\SQLProvider\lib\net451\FSharp.Data.SqlProvider.dll</HintPath>
+          <HintPath>..\..\packages\SQLProvider\lib\FSharp.Data.SqlProvider.dll</HintPath>
           <Private>True</Private>
           <Paket>True</Paket>
         </Reference>

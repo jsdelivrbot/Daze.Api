@@ -1,4 +1,6 @@
 source https://api.nuget.org/v3/index.json
+#source https://nuget.org/api/v2
+framework: auto-detect
 #framework: >= net461
 # match mono on server
 
@@ -13,3 +15,7 @@ nuget SQLProvider 1.1.11
 nuget Npgsql 3.1.9
 nuget System.Data.Common
 nuget System.Net.Http
+
+
+
+

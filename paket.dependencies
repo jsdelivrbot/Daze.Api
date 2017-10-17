@@ -14,7 +14,7 @@ nuget Newtonsoft.Json
 nuget SQLProvider 1.1.11
 nuget Npgsql 3.1.9
 nuget System.Data.Common
-nuget System.Net.Http
+nuget System.Net.Http 4.0.0
 
 
 

@@ -1,5 +1,6 @@
 source https://api.nuget.org/v3/index.json
-# framework: >= 461
+framework: >= 461
+# match mono on server
 
 nuget Expecto
 nuget FSharp.Core redirects: force

@@ -6,7 +6,7 @@ framework: >= net461
 
 nuget Expecto
 nuget FSharp.Core redirects: force
-nuget FSharp.NET.Sdk
+#nuget FSharp.NET.Sdk
 nuget FAKE
 nuget Suave 2.2.1
 nuget Suave.Testing 2.2.1

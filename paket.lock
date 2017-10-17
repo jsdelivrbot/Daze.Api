@@ -15,10 +15,7 @@ NUGET
       System.Diagnostics.TraceSource (>= 4.3) - restriction: && (>= net461) (>= netstandard1.6)
       System.Linq.Parallel (>= 4.3) - restriction: && (>= net461) (>= netstandard1.6)
     FAKE (4.63.2)
-    FSharp.Compiler.Tools (4.1.27)
     FSharp.Core (4.2.3) - redirects: force
-    FSharp.NET.Sdk (1.0.5)
-      FSharp.Compiler.Tools (>= 4.1.17)
     Microsoft.NETCore.Platforms (2.0) - restriction: || (&& (>= monotouch) (>= net461)) (&& (< net45) (>= net461) (>= netstandard2.0)) (&& (>= net461) (>= netcoreapp2.0)) (&& (>= net461) (>= netstandard1.6)) (&& (>= net461) (>= xamarinios)) (&& (>= net461) (>= xamarinmac)) (&& (>= net461) (>= xamarintvos)) (&& (>= net461) (>= xamarinwatchos))
     Mono.Cecil (0.10.0-beta6)
     NETStandard.Library (2.0.1) - restriction: && (>= net461) (>= netstandard1.6)

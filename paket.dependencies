@@ -1,7 +1,7 @@
 source https://api.nuget.org/v3/index.json
 #source https://nuget.org/api/v2
 #framework: auto-detect
-framework: >= net461
+framework: = net461
 # match mono on server
 
 nuget Expecto
@@ -14,8 +14,8 @@ nuget Newtonsoft.Json
 nuget SQLProvider 1.1.11
 nuget Npgsql 3.1.9
 nuget System.Data.Common
-nuget System.Net.Http 4.0.0
-
+nuget System.Net.Http
+nuget NETStandard.Library 1.6.1
 
 
 

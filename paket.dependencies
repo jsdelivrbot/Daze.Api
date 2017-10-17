@@ -1,5 +1,5 @@
 source https://api.nuget.org/v3/index.json
-framework: >= net461
+framework: >= netstandard1.4
 # match mono on server
 
 nuget Expecto

@@ -8,14 +8,14 @@ nuget Expecto
 nuget FSharp.Core redirects: force
 #nuget FSharp.NET.Sdk
 nuget FAKE
-nuget Suave 2.2.1
-nuget Suave.Testing 2.2.1
+nuget Suave #2.2.1
+nuget Suave.Testing #2.2.1
 nuget Newtonsoft.Json
-nuget SQLProvider 1.1.11
+nuget SQLProvider #1.1.11
 nuget Npgsql 3.1.9
 nuget System.Data.Common
 nuget System.Net.Http
-nuget NETStandard.Library 1.6.1
+#nuget NETStandard.Library 1.6.1
 
 
 

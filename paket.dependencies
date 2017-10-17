@@ -1,7 +1,7 @@
 source https://api.nuget.org/v3/index.json
 #source https://nuget.org/api/v2
-framework: auto-detect
-#framework: >= net461
+#framework: auto-detect
+framework: >= net461
 # match mono on server
 
 nuget Expecto

@@ -393,5 +393,5 @@ paket-files/
 
 # AppConfigs
 *.config
-src/api/App.config
 src/persistance/App.config
+src/api/App.config

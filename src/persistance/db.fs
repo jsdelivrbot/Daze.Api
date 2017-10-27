@@ -12,7 +12,7 @@ module BaseDb =
 
 
     let [<Literal>] DbVendor = Common.DatabaseProviderTypes.POSTGRESQL
-    let [<Literal>] CompileTimeConnectionNameString = "Heroku"
+    let [<Literal>] CompileTimeConnectionNameString = "Local"
     let [<Literal>] IndividualsAmount = 1000
     let [<Literal>] UseOptionTypes = true
     let [<Literal>] ResolutionPath = @"..\packages\Npgsql\lib\netstandard1.3\Npgsql.dll"

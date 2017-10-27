@@ -390,3 +390,8 @@ paket-files/
 # JetBrains Rider
 .idea/
 *.sln.iml
+
+# AppConfigs
+*.config
+src/api/App.config
+src/persistance/App.config

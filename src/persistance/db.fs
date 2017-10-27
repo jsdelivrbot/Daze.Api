@@ -29,7 +29,8 @@ module BaseDb =
             IndividualsAmount = IndividualsAmount,
             UseOptionTypes = UseOptionTypes>
 
-    let runtimeConnectionString = Settings.ConnectionStrings.Heroku
+    let runtimeConnectionString = System.Environment.GetEnvironmentVariable("DAZE_PROD")
+    // Settings.ConnectionStrings.Heroku
 
     let ctx = PgProvider.GetDataContext runtimeConnectionString
 

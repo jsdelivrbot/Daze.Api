@@ -24,14 +24,12 @@ module BaseDb =
         SqlDataProvider<
             DatabaseVendor = DbVendor,
             // ConnectionString = ConnectionStringHeroku,
-            ConnectionStringName = CompileTimeConnectionNameString,
+            // ConnectionStringName = CompileTimeConnectionNameString,
             ResolutionPath = ResolutionPath,
             IndividualsAmount = IndividualsAmount,
             UseOptionTypes = UseOptionTypes>
 
     let runtimeConnectionString = System.Environment.GetEnvironmentVariable("DAZE_PROD")
-    // Settings.ConnectionStrings.Heroku
-
     let ctx = PgProvider.GetDataContext runtimeConnectionString
 
     let PostContext = ctx.Public.Post

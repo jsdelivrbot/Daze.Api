@@ -14,7 +14,11 @@ module Config =
                             "http://localhost:5000"
                             "https://daze-spa.herokuapp.com"
                             "https://afractal.herokuapp.com"
-                            "http://afractal.herokuapp.com" ]
+                            "http://afractal.herokuapp.com"
+                            "http://afractal.me"
+                            "https://afractal.me"
+                            "http://www.afractal.me"
+                            "https://www.afractal.me" ]
         allowedMethods = InclusiveOption.Some [
                             HTTP.GET
                             HTTP.HEAD

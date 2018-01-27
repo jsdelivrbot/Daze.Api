@@ -23,7 +23,7 @@ module BaseDb =
     type PgProvider =
         SqlDataProvider<
             DatabaseVendor = DbVendor,
-            ConnectionString = ConnectionStringHeroku,
+            // ConnectionString = ConnectionStringHeroku,
             // ConnectionStringName = CompileTimeConnectionNameString,
             ResolutionPath = ResolutionPath,
             IndividualsAmount = IndividualsAmount,

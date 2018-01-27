@@ -24,7 +24,7 @@ module BaseDb =
         SqlDataProvider<
             DatabaseVendor = DbVendor,
             // ConnectionString = ConnectionStringHeroku,
-            // ConnectionStringName = CompileTimeConnectionNameString,
+            ConnectionStringName = CompileTimeConnectionNameString,
             ResolutionPath = ResolutionPath,
             IndividualsAmount = IndividualsAmount,
             UseOptionTypes = UseOptionTypes>

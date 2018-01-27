@@ -2,11 +2,9 @@
 
 ## **Technologies used**
 
-**Front End:** typescript/javascript | angular4
-
 **Back End:** fsharp | suave
 
-**Persistance:** postgresql | redis
+**Persistance:** postgresql
 
 ## **Changes**
 

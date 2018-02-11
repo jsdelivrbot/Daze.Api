@@ -1,0 +1,11 @@
+c:\Users\daze\Desktop\Daze.Api\build\domain.dll
+c:\Users\daze\Desktop\Daze.Api\build\domain.pdb
+c:\Users\daze\Desktop\Daze.Api\build\domain.XML
+c:\Users\daze\Desktop\Daze.Api\src\domain\obj\Debug\domain.fsprojResolveAssemblyReference.cache
+c:\Users\daze\Desktop\Daze.Api\src\domain\obj\Debug\domain.dll
+c:\Users\daze\Desktop\Daze.Api\src\domain\obj\Debug\domain.pdb
+c:\Users\daze\Desktop\Daze.Api\src\domain\bin\Debug\domain.XML
+c:\Users\daze\Desktop\Daze.Api\src\domain\bin\Debug\domain.dll
+c:\Users\daze\Desktop\Daze.Api\src\domain\bin\Debug\domain.pdb
+c:\Users\daze\Desktop\Daze.Api\src\domain\bin\Debug\FSharp.Core.dll
+c:\Users\daze\Desktop\Daze.Api\src\domain\bin\Debug\FSharp.Core.xml

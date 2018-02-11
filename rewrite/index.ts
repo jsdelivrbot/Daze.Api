@@ -6,10 +6,12 @@ const HOST_NAME = 'localhost';
 const app = express();
 
 app.get('/', (request, response) => {
-    response.end('HELLO THERE');
+    response.end('HELLO WORLD');
 });
 
 app.listen(PORT, HOST_NAME, () => {
     console.log(`Server is listening at http://${HOST_NAME}:${PORT}`);
 });
+
+
 

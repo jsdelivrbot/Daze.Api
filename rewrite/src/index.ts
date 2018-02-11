@@ -1,5 +1,6 @@
 import * as express from 'express';
 import { defaultCors } from './apiConfig';
+import * as postRouter from './api/postRouter';
 
 const env = process.env.NODE_ENV;
 
@@ -20,10 +21,9 @@ const NOT_IMPLEMENTED = (request: express.Request, response: express.Response) =
     response.end('NOT IMPLEMENTED');
 };
 
-
 app.post("/api/login/", NOT_IMPLEMENTED);
-app.get("/api/post/", NOT_IMPLEMENTED);
 
+app.get("/api/post/", postRouter.get);
 app.get("/api/post/%i", NOT_IMPLEMENTED);
 app.get("/api/post/slug/%s", NOT_IMPLEMENTED);
 app.get("/api/post/%i/tag", NOT_IMPLEMENTED);

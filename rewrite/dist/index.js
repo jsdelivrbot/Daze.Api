@@ -12,6 +12,6 @@ router.options('*', apiConfig_1.defaultCors);
 app.get('/', function (request, response) {
     response.end('HELLO WORLD');
 });
-app.listen(+PORT, HOST_NAME, function () {
+var server = app.listen(+PORT, HOST_NAME, function () {
     console.log("Server is listening at http://" + HOST_NAME + ":" + PORT);
 });

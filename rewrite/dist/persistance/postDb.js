@@ -36,23 +36,12 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 var _this = this;
 Object.defineProperty(exports, "__esModule", { value: true });
-var pg_1 = require("pg");
+var db_1 = require("./db");
 exports.getPosts = function () { return __awaiter(_this, void 0, void 0, function () {
-    var client;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0:
-                client = new pg_1.Client({
-                    host: 'localhost',
-                    database: 'daze_db',
-                    password: 'daze',
-                    user: 'daze'
-                });
-                return [4 /*yield*/, client.connect()];
-            case 1:
-                _a.sent();
-                return [4 /*yield*/, client.query("SELECT * FROM public.Post")];
-            case 2: return [2 /*return*/, _a.sent()];
+            case 0: return [4 /*yield*/, db_1.Connection.instance.getConnection().query("SELECT * FROM public.Post")];
+            case 1: return [2 /*return*/, _a.sent()];
         }
     });
 }); };

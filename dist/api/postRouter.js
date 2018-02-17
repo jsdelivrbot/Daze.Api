@@ -37,10 +37,11 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 var _this = this;
 Object.defineProperty(exports, "__esModule", { value: true });
 var persistance_1 = require("../persistance");
-var createHal = function () {
-};
-// "/api/post/"
-exports.get = function (request, response) { return __awaiter(_this, void 0, void 0, function () {
+var express = require("express");
+var createHal = function () { };
+var router = express.Router();
+// "/api/post/"11
+router.get("/", function (req, res) { return __awaiter(_this, void 0, void 0, function () {
     var posts, links, hal;
     return __generator(this, function (_a) {
         switch (_a.label) {
@@ -56,17 +57,17 @@ exports.get = function (request, response) { return __awaiter(_this, void 0, voi
                     _links: links,
                     _embedded: posts
                 };
-                return [2 /*return*/, response.json(hal)];
+                return [2 /*return*/, res.json(hal)];
         }
     });
-}); };
+}); });
 // "/api/post/%i/%i"
-exports.getPaginated = function (request, response) { return __awaiter(_this, void 0, void 0, function () {
+exports.getPaginated = function (req, res) { return __awaiter(_this, void 0, void 0, function () {
     var _a, page, pageSize, posts;
     return __generator(this, function (_b) {
         switch (_b.label) {
             case 0:
-                _a = request.params, page = _a.page, pageSize = _a.pageSize;
+                _a = req.params, page = _a.page, pageSize = _a.pageSize;
                 return [4 /*yield*/, persistance_1.Db.posts.getPostsPaginated(page, pageSize)];
             case 1:
                 posts = _b.sent();
@@ -75,8 +76,8 @@ exports.getPaginated = function (request, response) { return __awaiter(_this, vo
     });
 }); };
 // "/api/post/%i"
-exports.getSingle = function (request, response) {
-    return response.json();
+exports.getSingle = function (req, res) {
+    return res.json();
 };
 // "/api/post/slug/%s"
 exports.getSingleBySlug = function () { };
@@ -86,3 +87,13 @@ exports.getPostTags = function () { };
 exports.head = function () { };
 // "/api/post/" 
 exports.asyncOptions = function () { };
+var NOT_IMPLEMENTED = function (req, res) {
+    return res.end('NOT IMPLEMENTED');
+};
+router.get("/api/post/:id", exports.getSingle);
+router.get("/api/post/slug/%s", NOT_IMPLEMENTED);
+router.get("/api/post/%i/tag", NOT_IMPLEMENTED);
+router.get("/api/post/%i/%i", NOT_IMPLEMENTED);
+router.head("/api/post/%i", NOT_IMPLEMENTED);
+router.options("/api/post/", NOT_IMPLEMENTED);
+exports.default = router;

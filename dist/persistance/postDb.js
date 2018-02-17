@@ -36,6 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 var _this = this;
 Object.defineProperty(exports, "__esModule", { value: true });
+var db_1 = require("./db");
 exports.getPosts = function () { return __awaiter(_this, void 0, void 0, function () {
     var query;
     return __generator(this, function (_a) {

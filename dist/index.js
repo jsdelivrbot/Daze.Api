@@ -2,7 +2,10 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var express = require("express");
 var apiConfig_1 = require("./apiConfig");
-var postRouter = require("./api/postRouter");
+var postRouter_1 = require("./api/postRouter");
+var tagRouter_1 = require("./api/tagRouter");
+var skillRouter_1 = require("./api/skillRouter");
+var projectRouter_1 = require("./api/projectRouter");
 var env = process.env.NODE_ENV;
 var PORT = +(process.env.PORT || '8080');
 var HOST_NAME = env == 'production' ? '0.0.0.0' : '127.0.0.1';
@@ -13,30 +16,14 @@ router.options('*', apiConfig_1.defaultCors);
 app.get('/', function (request, response) {
     response.end('__daze_api__');
 });
-var NOT_IMPLEMENTED = function (request, response) {
-    response.end('NOT IMPLEMENTED');
+var NOT_IMPLEMENTED = function (req, res) {
+    res.end('NOT IMPLEMENTED');
 };
 app.post("/api/login/", NOT_IMPLEMENTED);
-app.get("/api/post/", postRouter.get);
-app.get("/api/post/:id", postRouter.getSingle);
-app.get("/api/post/slug/%s", NOT_IMPLEMENTED);
-app.get("/api/post/%i/tag", NOT_IMPLEMENTED);
-app.get("/api/post/%i/%i", NOT_IMPLEMENTED);
-app.head("/api/post/%i", NOT_IMPLEMENTED);
-app.options("/api/post/", NOT_IMPLEMENTED);
-app.get("/api/tag/", NOT_IMPLEMENTED);
-app.get("/api/tag/%i", NOT_IMPLEMENTED);
-app.get("/api/tag/%i/%i", NOT_IMPLEMENTED);
-app.head("/api/tag/%i", NOT_IMPLEMENTED);
-app.options("/api/tag/", NOT_IMPLEMENTED);
-app.get("/api/skill/", NOT_IMPLEMENTED);
-app.get("/api/skill/%i", NOT_IMPLEMENTED);
-app.head("/api/skill/%i", NOT_IMPLEMENTED);
-app.options("/api/skill/", NOT_IMPLEMENTED);
-app.get("/api/project/", NOT_IMPLEMENTED);
-app.get("/api/project/%i", NOT_IMPLEMENTED);
-app.head("/api/project/%i", NOT_IMPLEMENTED);
-app.options("/api/project/", NOT_IMPLEMENTED);
+app.use('/api/post', postRouter_1.default);
+app.use('/api/tag', tagRouter_1.default);
+app.use('/api/skill', skillRouter_1.default);
+app.use('/api/project', projectRouter_1.default);
 app.all('*', function (req, res) {
     return res.end('NOT FOUND');
 });

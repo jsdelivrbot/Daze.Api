@@ -2,13 +2,14 @@ import { Request, Response } from 'express';
 import { Db } from '../persistance';
 import { HAL } from './types';
 import { Post } from '../domain';
+import * as express from 'express';
 
-const createHal = () => {
+const createHal = () => { };
 
-};
+const router = express.Router();
 
-// "/api/post/"
-export const get = async (req: Request, res: Response) => {
+// "/api/post/"11
+router.get("/", async (req, res) => {
     const posts = await Db.posts.getPosts();
 
     const links = {
@@ -22,7 +23,7 @@ export const get = async (req: Request, res: Response) => {
     };
 
     return res.json(hal);
-};
+});
 
 // "/api/post/%i/%i"
 export const getPaginated = async (req: Request, res: Response) => {
@@ -50,3 +51,17 @@ export const head = () => { };
 // "/api/post/" 
 export const asyncOptions = () => { };
 
+
+
+const NOT_IMPLEMENTED = (req: express.Request, res: express.Response) =>
+    res.end('NOT IMPLEMENTED');
+
+router.get("/api/post/:id", getSingle);
+router.get("/api/post/slug/%s", NOT_IMPLEMENTED);
+router.get("/api/post/%i/tag", NOT_IMPLEMENTED);
+router.get("/api/post/%i/%i", NOT_IMPLEMENTED);
+router.head("/api/post/%i", NOT_IMPLEMENTED);
+router.options("/api/post/", NOT_IMPLEMENTED);
+
+
+export default router;

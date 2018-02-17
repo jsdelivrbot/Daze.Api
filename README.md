@@ -1,4 +1,5 @@
 
+[![codebeat badge](https://codebeat.co/badges/efa21d21-7f3b-41d1-9500-549375837eb3)](https://codebeat.co/projects/github-com-afractal-daze-api-master)
 
 ## **Technologies used**
 

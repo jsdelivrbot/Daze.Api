@@ -1,53 +1,45 @@
-import * as express from 'express';
-import { defaultCors } from './apiConfig';
-import * as postRouter from './api/postRouter';
-
-const env = process.env.NODE_ENV;
-
-const PORT = +(process.env.PORT || '8080');
-const HOST_NAME = env == 'production' ? '0.0.0.0' : '127.0.0.1';
-
-const app = express();
-const router = express.Router();
-
-router.use(defaultCors);
-router.options('*', defaultCors);
-
-app.get('/', (request, response) => {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var express = require("express");
+var apiConfig_1 = require("./apiConfig");
+var postRouter = require("./api/postRouter");
+var env = process.env.NODE_ENV;
+var PORT = +(process.env.PORT || '8080');
+var HOST_NAME = env == 'production' ? '0.0.0.0' : '127.0.0.1';
+var app = express();
+var router = express.Router();
+router.use(apiConfig_1.defaultCors);
+router.options('*', apiConfig_1.defaultCors);
+app.get('/', function (request, response) {
     response.end('__daze_api__');
 });
-
-const NOT_IMPLEMENTED = (request: express.Request, response: express.Response) => {
+var NOT_IMPLEMENTED = function (request, response) {
     response.end('NOT IMPLEMENTED');
 };
-
 app.post("/api/login/", NOT_IMPLEMENTED);
-
 app.get("/api/post/", postRouter.get);
-app.get("/api/post/%i", NOT_IMPLEMENTED);
+app.get("/api/post/:id", postRouter.getSingle);
 app.get("/api/post/slug/%s", NOT_IMPLEMENTED);
 app.get("/api/post/%i/tag", NOT_IMPLEMENTED);
 app.get("/api/post/%i/%i", NOT_IMPLEMENTED);
 app.head("/api/post/%i", NOT_IMPLEMENTED);
 app.options("/api/post/", NOT_IMPLEMENTED);
-
 app.get("/api/tag/", NOT_IMPLEMENTED);
 app.get("/api/tag/%i", NOT_IMPLEMENTED);
 app.get("/api/tag/%i/%i", NOT_IMPLEMENTED);
 app.head("/api/tag/%i", NOT_IMPLEMENTED);
 app.options("/api/tag/", NOT_IMPLEMENTED);
-
 app.get("/api/skill/", NOT_IMPLEMENTED);
 app.get("/api/skill/%i", NOT_IMPLEMENTED);
 app.head("/api/skill/%i", NOT_IMPLEMENTED);
 app.options("/api/skill/", NOT_IMPLEMENTED);
-
 app.get("/api/project/", NOT_IMPLEMENTED);
 app.get("/api/project/%i", NOT_IMPLEMENTED);
 app.head("/api/project/%i", NOT_IMPLEMENTED);
 app.options("/api/project/", NOT_IMPLEMENTED);
-
-const server = app.listen(PORT, HOST_NAME, () => {
-    console.log(`Server is listening at http://${HOST_NAME}:${PORT}`);
+app.all('*', function (req, res) {
+    return res.end('NOT FOUND');
 });
-
+var server = app.listen(PORT, HOST_NAME, function () {
+    console.log("Server is listening at http://" + HOST_NAME + ":" + PORT);
+});

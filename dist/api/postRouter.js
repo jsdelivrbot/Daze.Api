@@ -37,26 +37,51 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 var _this = this;
 Object.defineProperty(exports, "__esModule", { value: true });
 var persistance_1 = require("../persistance");
+var createHal = function () {
+};
 // "/api/post/"
 exports.get = function (request, response) { return __awaiter(_this, void 0, void 0, function () {
-    var posts;
+    var posts, links, hal;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0: return [4 /*yield*/, persistance_1.Db.posts.getPosts()];
             case 1:
                 posts = _a.sent();
-                return [2 /*return*/, response.json(posts)];
+                links = {
+                    Self: { href: '/api/post/2' },
+                    Next: { href: '/api/post/2/2' }
+                };
+                hal = {
+                    totalCount: posts.length,
+                    _links: links,
+                    _embedded: posts
+                };
+                return [2 /*return*/, response.json(hal)];
+        }
+    });
+}); };
+// "/api/post/%i/%i"
+exports.getPaginated = function (request, response) { return __awaiter(_this, void 0, void 0, function () {
+    var _a, page, pageSize, posts;
+    return __generator(this, function (_b) {
+        switch (_b.label) {
+            case 0:
+                _a = request.params, page = _a.page, pageSize = _a.pageSize;
+                return [4 /*yield*/, persistance_1.Db.posts.getPostsPaginated(page, pageSize)];
+            case 1:
+                posts = _b.sent();
+                return [2 /*return*/];
         }
     });
 }); };
 // "/api/post/%i"
-exports.getSingle = function () { };
+exports.getSingle = function (request, response) {
+    return response.json();
+};
 // "/api/post/slug/%s"
 exports.getSingleBySlug = function () { };
 // "/api/post/%i/tag"
 exports.getPostTags = function () { };
-// "/api/post/%i/%i"
-exports.getPaginated = function () { };
 // "/api/post/%i"
 exports.head = function () { };
 // "/api/post/" 

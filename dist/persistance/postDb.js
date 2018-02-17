@@ -36,12 +36,21 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 var _this = this;
 Object.defineProperty(exports, "__esModule", { value: true });
-var db_1 = require("./db");
 exports.getPosts = function () { return __awaiter(_this, void 0, void 0, function () {
+    var query;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, db_1.Connection.instance.getConnection().query("SELECT * FROM public.Post")];
-            case 1: return [2 /*return*/, _a.sent()];
+            case 0: return [4 /*yield*/, db_1.Connection.instance
+                    .getConnection()
+                    .query("\n            SELECT * FROM public.Post\n        ")];
+            case 1:
+                query = _a.sent();
+                return [2 /*return*/, query.rows];
         }
+    });
+}); };
+exports.getPostsPaginated = function (page, pageSize) { return __awaiter(_this, void 0, void 0, function () {
+    return __generator(this, function (_a) {
+        throw '';
     });
 }); };

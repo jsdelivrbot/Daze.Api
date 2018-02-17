@@ -1,4 +1,5 @@
-
+[![Build Status](https://travis-ci.org/afractal/Daze.Api.svg?branch=master)](https://travis-ci.org/afractal/Daze.Api)
+[![Build status](https://ci.appveyor.com/api/projects/status/3ivf4s6rfrq6u5j3?svg=true)](https://ci.appveyor.com/project/hermesxgjini/daze-api)
 [![codebeat badge](https://codebeat.co/badges/efa21d21-7f3b-41d1-9500-549375837eb3)](https://codebeat.co/projects/github-com-afractal-daze-api-master)
 
 ## **Technologies used**

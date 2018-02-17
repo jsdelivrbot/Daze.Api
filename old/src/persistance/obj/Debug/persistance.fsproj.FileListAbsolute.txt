@@ -1,5 +1,0 @@
-c:\Users\daze\Desktop\Daze.Api\old\src\persistance\bin\Debug\domain.dll
-c:\Users\daze\Desktop\Daze.Api\old\src\persistance\bin\Debug\FSharp.Core.dll
-c:\Users\daze\Desktop\Daze.Api\old\src\persistance\bin\Debug\System.Data.Common.dll
-c:\Users\daze\Desktop\Daze.Api\old\src\persistance\bin\Debug\FSharp.Core.xml
-c:\Users\daze\Desktop\Daze.Api\old\src\persistance\obj\Debug\persistance.fsprojResolveAssemblyReference.cache

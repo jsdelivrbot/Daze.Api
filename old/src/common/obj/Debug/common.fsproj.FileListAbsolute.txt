@@ -1,3 +1,0 @@
-c:\Users\daze\Desktop\Daze.Api\old\src\common\bin\Debug\common.dll
-c:\Users\daze\Desktop\Daze.Api\old\src\common\bin\Debug\FSharp.Core.dll
-c:\Users\daze\Desktop\Daze.Api\old\src\common\bin\Debug\FSharp.Core.xml

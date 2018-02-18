@@ -39,9 +39,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var persistance_1 = require("../persistance");
 var express = require("express");
 var createHal = function () { };
-var router = express.Router();
+exports.postRouter = express.Router();
 // "/api/post/"11
-router.get("/", function (req, res) { return __awaiter(_this, void 0, void 0, function () {
+exports.postRouter.get("/", function (req, res) { return __awaiter(_this, void 0, void 0, function () {
     var posts, links, hal;
     return __generator(this, function (_a) {
         switch (_a.label) {
@@ -62,7 +62,7 @@ router.get("/", function (req, res) { return __awaiter(_this, void 0, void 0, fu
     });
 }); });
 // "/api/post/%i/%i"
-exports.getPaginated = function (req, res) { return __awaiter(_this, void 0, void 0, function () {
+var getPaginated = function (req, res) { return __awaiter(_this, void 0, void 0, function () {
     var _a, page, pageSize, posts;
     return __generator(this, function (_b) {
         switch (_b.label) {
@@ -76,24 +76,23 @@ exports.getPaginated = function (req, res) { return __awaiter(_this, void 0, voi
     });
 }); };
 // "/api/post/%i"
-exports.getSingle = function (req, res) {
+var getSingle = function (req, res) {
     return res.json();
 };
 // "/api/post/slug/%s"
-exports.getSingleBySlug = function () { };
+var getSingleBySlug = function () { };
 // "/api/post/%i/tag"
-exports.getPostTags = function () { };
+var getPostTags = function () { };
 // "/api/post/%i"
-exports.head = function () { };
+var head = function () { };
 // "/api/post/" 
-exports.asyncOptions = function () { };
+var asyncOptions = function () { };
 var NOT_IMPLEMENTED = function (req, res) {
     return res.end('NOT IMPLEMENTED');
 };
-router.get("/api/post/:id", exports.getSingle);
-router.get("/api/post/slug/%s", NOT_IMPLEMENTED);
-router.get("/api/post/%i/tag", NOT_IMPLEMENTED);
-router.get("/api/post/%i/%i", NOT_IMPLEMENTED);
-router.head("/api/post/%i", NOT_IMPLEMENTED);
-router.options("/api/post/", NOT_IMPLEMENTED);
-exports.default = router;
+exports.postRouter.get("/api/post/:id", getSingle);
+exports.postRouter.get("/api/post/slug/%s", NOT_IMPLEMENTED);
+exports.postRouter.get("/api/post/%i/tag", NOT_IMPLEMENTED);
+exports.postRouter.get("/api/post/%i/%i", NOT_IMPLEMENTED);
+exports.postRouter.head("/api/post/%i", NOT_IMPLEMENTED);
+exports.postRouter.options("/api/post/", NOT_IMPLEMENTED);

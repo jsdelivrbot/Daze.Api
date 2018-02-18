@@ -1,4 +1,5 @@
 {
+    "compileOnSave": true,
     "compilerOptions": {
         "target": "es5",
         "module": "commonjs",
@@ -8,7 +9,8 @@
         "emitDecoratorMetadata": true,
         "pretty": true,
         "lib": [
-            "es2018"
+            "es2018",
+            "esnext.asynciterable"
         ]
     },
     "exclude": [

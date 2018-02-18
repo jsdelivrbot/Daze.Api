@@ -1,9 +1,11 @@
 import * as express from 'express';
 import { defaultCors } from './apiConfig';
-import postRouter from './api/postRouter';
-import tagRouter from './api/tagRouter';
-import skillRouter from './api/skillRouter';
-import projectRouter from './api/projectRouter';
+import { postRouter } from './api/postRouter';
+import { tagRouter } from './api/tagRouter';
+import { skillRouter } from './api/skillRouter';
+import { projectRouter } from './api/projectRouter';
+import schema from './schema';
+import * as graphqlHTTP from 'express-graphql';
 
 const env = process.env.NODE_ENV;
 
@@ -16,20 +18,26 @@ const router = express.Router();
 router.use(defaultCors);
 router.options('*', defaultCors);
 
-app.get('/', (request, response) => {
-    response.end('__daze_api__');
+app.use('/graphql', graphqlHTTP({
+    schema: schema,
+    graphiql: true,
+    pretty: true
+}));
+
+app.get('/', (req, res) => {
+    res.end('__daze_api__');
 });
 
-const NOT_IMPLEMENTED = (req: express.Request, res: express.Response) => {
-    res.end('NOT IMPLEMENTED');
-};
+// const NOT_IMPLEMENTED = (req: express.Request, res: express.Response) => {
+//     res.end('NOT IMPLEMENTED');
+// };
 
-app.post("/api/login/", NOT_IMPLEMENTED);
+// app.post("/api/login/", NOT_IMPLEMENTED);
 
-app.use('/api/post', postRouter);
-app.use('/api/tag', tagRouter);
-app.use('/api/skill', skillRouter);
-app.use('/api/project', projectRouter);
+// app.use('/api/post', postRouter);
+// app.use('/api/tag', tagRouter);
+// app.use('/api/skill', skillRouter);
+// app.use('/api/project', projectRouter);
 
 app.all('*', (req, res) => {
     return res.end('NOT FOUND')

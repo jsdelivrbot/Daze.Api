@@ -1,12 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var express = require("express");
-var router = express.Router();
+exports.projectRouter = express.Router();
 var NOT_IMPLEMENTED = function (req, res) {
     res.end('NOT IMPLEMENTED');
 };
-router.get("/api/project/", function (req, res) { });
-router.get("/api/project/%i", NOT_IMPLEMENTED);
-router.head("/api/project/%i", NOT_IMPLEMENTED);
-router.options("/api/project/", NOT_IMPLEMENTED);
-exports.default = router;
+exports.projectRouter.get("/api/project/", function (req, res) { });
+exports.projectRouter.get("/api/project/%i", NOT_IMPLEMENTED);
+exports.projectRouter.head("/api/project/%i", NOT_IMPLEMENTED);
+exports.projectRouter.options("/api/project/", NOT_IMPLEMENTED);

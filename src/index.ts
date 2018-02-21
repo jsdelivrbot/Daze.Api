@@ -24,6 +24,10 @@ app.use('/graphql', graphqlHTTP({
     pretty: true
 }));
 
+app.all('*', (req, res) => {
+    return res.end('NOT FOUND')
+});
+
 app.get('/', (req, res) => {
     res.end('__daze_api__');
 });
@@ -38,10 +42,6 @@ app.get('/', (req, res) => {
 // app.use('/api/tag', tagRouter);
 // app.use('/api/skill', skillRouter);
 // app.use('/api/project', projectRouter);
-
-app.all('*', (req, res) => {
-    return res.end('NOT FOUND')
-});
 
 const server = app.listen(PORT, HOST_NAME, () => {
     console.log(`Server is listening at http://${HOST_NAME}:${PORT}`);

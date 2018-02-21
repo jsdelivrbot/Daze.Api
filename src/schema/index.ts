@@ -1,8 +1,14 @@
 import { GraphQLSchema, GraphQLObjectType, GraphQLString } from 'graphql';
+import { postQueryType } from './postSchema';
 
 const rootQueryType = new GraphQLObjectType({
     name: 'RootQueryType',
     fields: {
+        post: {
+            type: postQueryType,
+            description: 'post',
+            resolve: () => ''
+        },
         hello: {
             type: GraphQLString,
             description: 'desc',
@@ -11,8 +17,6 @@ const rootQueryType = new GraphQLObjectType({
     }
 });
 
-const schema = new GraphQLSchema({
+export default new GraphQLSchema({
     query: rootQueryType
 });
-
-export default schema;

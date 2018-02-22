@@ -1,14 +1,22 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var graphql_1 = require("graphql");
-exports.tagQueryType = new graphql_1.GraphQLObjectType({
-    name: 'TagQueryType',
+exports.skillQueryType = new graphql_1.GraphQLObjectType({
+    name: 'SkillQueryType',
     fields: {
         id: {
             type: graphql_1.GraphQLString,
             resolve: function () { }
         },
-        tagName: {
+        skillName: {
+            type: graphql_1.GraphQLString,
+            resolve: function () { }
+        },
+        level: {
+            type: graphql_1.GraphQLString,
+            resolve: function () { }
+        },
+        focusArea: {
             type: graphql_1.GraphQLString,
             resolve: function () { }
         }

@@ -1,45 +1,44 @@
 import { GraphQLObjectType, GraphQLString, GraphQLList } from "graphql";
-import { tagType } from "./tagSchema";
-
+import { tagQueryType } from "./tagSchema";
 
 export const postQueryType = new GraphQLObjectType({
     name: 'PostQueryType',
     fields: {
         id: {
             type: GraphQLString,
-            resolve: () => ''
+            resolve() { }
         },
         slug: {
             type: GraphQLString,
-            resolve: () => ''
+            resolve() { }
         },
         title: {
             type: GraphQLString,
-            resolve: () => ''
+            resolve() { }
         },
         heroContent: {
             type: GraphQLString,
-            resolve: () => ''
+            resolve() { }
         },
         content: {
             type: GraphQLString,
-            resolve: () => ''
+            resolve() { }
         },
         coverImage: {
             type: GraphQLString,
-            resolve: () => ''
+            resolve() { }
         },
         createdAt: {
             type: GraphQLString,
-            resolve: () => ''
+            resolve() { }
         },
         modifiedAt: {
             type: GraphQLString,
-            resolve: () => ''
+            resolve() { }
         },
         tags: {
-            type: new GraphQLList(tagType),
-            resolve: () => ''
+            type: new GraphQLList(tagQueryType),
+            resolve() { }
         }
     }
 });

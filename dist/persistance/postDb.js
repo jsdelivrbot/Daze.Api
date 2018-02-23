@@ -36,16 +36,23 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 var _this = this;
 Object.defineProperty(exports, "__esModule", { value: true });
+var db_1 = require("./db");
 exports.getPosts = function () { return __awaiter(_this, void 0, void 0, function () {
-    var query;
+    var query, err_1;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, db_1.Connection.instance
-                    .getConnection()
-                    .query("\n            SELECT * FROM public.Post\n        ")];
+            case 0:
+                _a.trys.push([0, 2, , 3]);
+                return [4 /*yield*/, db_1.Connection.instance
+                        .getConnection()
+                        .query("\n                select p.* \n                from public.Post as p \n            ")];
             case 1:
                 query = _a.sent();
                 return [2 /*return*/, query.rows];
+            case 2:
+                err_1 = _a.sent();
+                throw err_1;
+            case 3: return [2 /*return*/];
         }
     });
 }); };

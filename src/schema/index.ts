@@ -11,9 +11,7 @@ const rootQueryType = new GraphQLObjectType({
             type: new GraphQLList(postQueryType),
             description: 'post',
             async resolve() {
-                const posts = await Db.posts.getPosts();
-                console.log(posts);
-                return posts;
+                return await Db.posts.getPosts();
             }
         },
         tags: {

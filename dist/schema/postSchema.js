@@ -7,39 +7,57 @@ exports.postQueryType = new graphql_1.GraphQLObjectType({
     fields: {
         id: {
             type: graphql_1.GraphQLString,
-            resolve: function () { }
+            resolve: function (post) {
+                return post.id;
+            }
         },
         slug: {
             type: graphql_1.GraphQLString,
-            resolve: function () { }
+            resolve: function (post) {
+                console.log('post', post);
+                return post.slug;
+            }
         },
         title: {
             type: graphql_1.GraphQLString,
-            resolve: function () { }
+            resolve: function (post) {
+                return post.title;
+            }
         },
         heroContent: {
             type: graphql_1.GraphQLString,
-            resolve: function () { }
+            resolve: function (post) {
+                return post.hero_content;
+            }
         },
         content: {
             type: graphql_1.GraphQLString,
-            resolve: function () { }
+            resolve: function (post) {
+                return post.content;
+            }
         },
         coverImage: {
             type: graphql_1.GraphQLString,
-            resolve: function () { }
+            resolve: function (post) {
+                return post.cover_image;
+            }
         },
         createdAt: {
             type: graphql_1.GraphQLString,
-            resolve: function () { }
+            resolve: function (post) {
+                return post.created_at;
+            }
         },
         modifiedAt: {
             type: graphql_1.GraphQLString,
-            resolve: function () { }
+            resolve: function (post) {
+                return post.modified_at;
+            }
         },
         tags: {
             type: new graphql_1.GraphQLList(tagSchema_1.tagQueryType),
-            resolve: function () { }
+            resolve: function (post) {
+            }
         }
     }
 });

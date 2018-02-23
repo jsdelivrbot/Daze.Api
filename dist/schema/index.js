@@ -48,14 +48,10 @@ var rootQueryType = new graphql_1.GraphQLObjectType({
             description: 'post',
             resolve: function () {
                 return __awaiter(this, void 0, void 0, function () {
-                    var posts;
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0: return [4 /*yield*/, persistance_1.Db.posts.getPosts()];
-                            case 1:
-                                posts = _a.sent();
-                                console.log(posts);
-                                return [2 /*return*/, posts];
+                            case 1: return [2 /*return*/, _a.sent()];
                         }
                     });
                 });

@@ -6,39 +6,58 @@ export const postQueryType = new GraphQLObjectType({
     fields: {
         id: {
             type: GraphQLString,
-            resolve() { }
+            resolve(post) {
+                return post.id;
+            }
         },
         slug: {
             type: GraphQLString,
-            resolve() { }
+            resolve(post) {
+                console.log('post', post)                
+                return post.slug;
+            }
         },
         title: {
             type: GraphQLString,
-            resolve() { }
+            resolve(post) {
+                return post.title;
+            }
         },
         heroContent: {
             type: GraphQLString,
-            resolve() { }
+            resolve(post) {
+                return post.hero_content;
+            }
         },
         content: {
             type: GraphQLString,
-            resolve() { }
+            resolve(post) {
+                return post.content;
+            }
         },
         coverImage: {
             type: GraphQLString,
-            resolve() { }
+            resolve(post) {
+                return post.cover_image;
+            }
         },
         createdAt: {
             type: GraphQLString,
-            resolve() { }
+            resolve(post) {
+                return post.created_at;
+            }
         },
         modifiedAt: {
             type: GraphQLString,
-            resolve() { }
+            resolve(post) {
+                return post.modified_at;
+            }
         },
         tags: {
             type: new GraphQLList(tagQueryType),
-            resolve() { }
+            resolve(post) {
+
+            }
         }
     }
 });

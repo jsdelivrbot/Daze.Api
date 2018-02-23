@@ -3,12 +3,17 @@ import { Post } from "../domain";
 
 
 export const getPosts = async (): Promise<Post[]> => {
-    const query = await Connection.instance
-        .getConnection()
-        .query(`
-            SELECT * FROM public.Post
-        `);
-    return query.rows;
+    try {
+        const query = await Connection.instance
+            .getConnection()
+            .query(`
+                select p.* 
+                from public.Post as p 
+            `);
+        return query.rows;
+    } catch (err) {
+        throw err;
+    }
 };
 
 export const getPostsPaginated = async (page: number, pageSize: number): Promise<Post[]> => {

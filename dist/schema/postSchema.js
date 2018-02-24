@@ -2,8 +2,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var graphql_1 = require("graphql");
 var tagSchema_1 = require("./tagSchema");
-exports.postQueryType = new graphql_1.GraphQLObjectType({
-    name: 'PostQueryType',
+exports.PostType = new graphql_1.GraphQLObjectType({
+    name: 'PostType',
     fields: {
         id: {
             type: graphql_1.GraphQLString,
@@ -14,7 +14,6 @@ exports.postQueryType = new graphql_1.GraphQLObjectType({
         slug: {
             type: graphql_1.GraphQLString,
             resolve: function (post) {
-                console.log('post', post);
                 return post.slug;
             }
         },
@@ -55,7 +54,7 @@ exports.postQueryType = new graphql_1.GraphQLObjectType({
             }
         },
         tags: {
-            type: new graphql_1.GraphQLList(tagSchema_1.tagQueryType),
+            type: new graphql_1.GraphQLList(tagSchema_1.TagType),
             resolve: function (post) {
             }
         }

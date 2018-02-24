@@ -1,7 +1,7 @@
 import { GraphQLObjectType, GraphQLString } from "graphql";
 
-export const tagQueryType = new GraphQLObjectType({
-    name: 'TagQueryType',
+export const TagType = new GraphQLObjectType({
+    name: 'TagType',
     fields: {
         id: {
             type: GraphQLString,

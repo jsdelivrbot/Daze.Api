@@ -1,9 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var express = require("express");
-var apiConfig_1 = require("./apiConfig");
-var schema_1 = require("./schema");
 var graphqlHTTP = require("express-graphql");
+var apiConfig_1 = require("./apiConfig");
+var rootSchema_1 = require("./schema/rootSchema");
+var schema_1 = require("./schema");
 var env = process.env.NODE_ENV;
 var PORT = +(process.env.PORT || '8080');
 var HOST_NAME = env == 'production' ? '0.0.0.0' : '127.0.0.1';
@@ -13,6 +14,7 @@ router.use(apiConfig_1.defaultCors);
 router.options('*', apiConfig_1.defaultCors);
 app.use('/graphql', graphqlHTTP({
     schema: schema_1.default,
+    rootValue: rootSchema_1.RootType,
     graphiql: true,
     pretty: true
 }));

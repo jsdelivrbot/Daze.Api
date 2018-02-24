@@ -1,11 +1,12 @@
 import * as express from 'express';
+import * as graphqlHTTP from 'express-graphql';
 import { defaultCors } from './apiConfig';
 import { postRouter } from './api/postRouter';
 import { tagRouter } from './api/tagRouter';
 import { skillRouter } from './api/skillRouter';
 import { projectRouter } from './api/projectRouter';
+import { RootType } from './schema/rootSchema';
 import schema from './schema';
-import * as graphqlHTTP from 'express-graphql';
 
 const env = process.env.NODE_ENV;
 
@@ -20,6 +21,7 @@ router.options('*', defaultCors);
 
 app.use('/graphql', graphqlHTTP({
     schema: schema,
+    rootValue: RootType,
     graphiql: true,
     pretty: true
 }));

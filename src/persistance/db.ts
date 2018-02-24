@@ -26,6 +26,15 @@ export class Connection {
     }
 }
 
+// import { Pool } from 'pg';
+// export const pool = new Pool({
+//     host: 'localhost',
+//     database: 'daze_db',
+//     password: 'daze',
+//     user: 'daze'
+// });
+
+
 // const DB_KEY = Symbol('db');
 
 // global[DB_KEY] = {

@@ -1,8 +1,8 @@
 import { GraphQLObjectType, GraphQLString, GraphQLList } from "graphql";
-import { tagQueryType } from "./tagSchema";
+import { TagType } from "./tagSchema";
 
-export const postQueryType = new GraphQLObjectType({
-    name: 'PostQueryType',
+export const PostType = new GraphQLObjectType({
+    name: 'PostType',
     fields: {
         id: {
             type: GraphQLString,
@@ -13,7 +13,6 @@ export const postQueryType = new GraphQLObjectType({
         slug: {
             type: GraphQLString,
             resolve(post) {
-                console.log('post', post)                
                 return post.slug;
             }
         },
@@ -54,9 +53,8 @@ export const postQueryType = new GraphQLObjectType({
             }
         },
         tags: {
-            type: new GraphQLList(tagQueryType),
+            type: new GraphQLList(TagType),
             resolve(post) {
-
             }
         }
     }

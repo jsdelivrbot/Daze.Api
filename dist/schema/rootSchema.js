@@ -34,52 +34,51 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var _this = this;
 Object.defineProperty(exports, "__esModule", { value: true });
-var db_1 = require("./db");
-exports.getPosts = function () { return __awaiter(_this, void 0, void 0, function () {
-    var query, err_1;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0:
-                _a.trys.push([0, 2, , 3]);
-                return [4 /*yield*/, db_1.Connection.instance
-                        .getConnection()
-                        .query("\n                select p.* \n                from public.Post as p \n            ")];
-            case 1:
-                query = _a.sent();
-                return [2 /*return*/, query.rows];
-            case 2:
-                err_1 = _a.sent();
-                throw err_1;
-            case 3: return [2 /*return*/];
+var graphql_1 = require("graphql");
+var postSchema_1 = require("./postSchema");
+var persistance_1 = require("../persistance");
+var tagSchema_1 = require("./tagSchema");
+var projectSchema_1 = require("./projectSchema");
+exports.RootType = new graphql_1.GraphQLObjectType({
+    name: 'RootType',
+    fields: {
+        posts: {
+            type: new graphql_1.GraphQLList(postSchema_1.PostType),
+            description: 'posts',
+            args: {
+                slug: { type: graphql_1.GraphQLString }
+            },
+            resolve: function (root, args) {
+                return __awaiter(this, void 0, void 0, function () {
+                    return __generator(this, function (_a) {
+                        switch (_a.label) {
+                            case 0:
+                                console.log('slug', args.slug);
+                                if (!args.slug) return [3 /*break*/, 2];
+                                return [4 /*yield*/, persistance_1.Db.posts.getPostBySlug(args.slug)];
+                            case 1: return [2 /*return*/, _a.sent()];
+                            case 2: return [4 /*yield*/, persistance_1.Db.posts.getPosts()];
+                            case 3: return [2 /*return*/, _a.sent()];
+                        }
+                    });
+                });
+            }
+        },
+        tags: {
+            type: new graphql_1.GraphQLList(tagSchema_1.TagType),
+            description: 'tag',
+            resolve: function () { }
+        },
+        projects: {
+            type: new graphql_1.GraphQLList(projectSchema_1.ProjectType),
+            description: 'project',
+            resolve: function () { }
+        },
+        hello: {
+            type: graphql_1.GraphQLString,
+            description: 'desc',
+            resolve: function () { }
         }
-    });
-}); };
-exports.getPostBySlug = function (slug) { return __awaiter(_this, void 0, void 0, function () {
-    var query, err_2;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0:
-                console.log(slug);
-                _a.label = 1;
-            case 1:
-                _a.trys.push([1, 3, , 4]);
-                return [4 /*yield*/, db_1.Connection.instance
-                        .getConnection()
-                        .query("\n                select p.*\n                from public.Post as p\n                where p.slug = $1\n            ", [slug])];
-            case 2:
-                query = _a.sent();
-                return [2 /*return*/, query.rows[0]];
-            case 3:
-                err_2 = _a.sent();
-                throw err_2;
-            case 4: return [2 /*return*/];
-        }
-    });
-}); };
-exports.getPostsPaginated = function (page, pageSize) { return __awaiter(_this, void 0, void 0, function () {
-    return __generator(this, function (_a) {
-        throw '';
-    });
-}); };
+    }
+});

@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var graphql_1 = require("graphql");
-exports.skillQueryType = new graphql_1.GraphQLObjectType({
-    name: 'SkillQueryType',
+exports.SkillType = new graphql_1.GraphQLObjectType({
+    name: 'SkillType',
     fields: {
         id: {
             type: graphql_1.GraphQLString,

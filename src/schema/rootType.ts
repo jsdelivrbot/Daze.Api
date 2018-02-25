@@ -1,8 +1,8 @@
 import { GraphQLObjectType, GraphQLList, GraphQLString, GraphQLUnionType } from "graphql";
-import { PostType } from "./postSchema";
+import { PostType } from "./postType";
 import { Db } from "../persistance";
-import { TagType } from "./tagSchema";
-import { ProjectType } from "./projectSchema";
+import { TagType } from "./tagType";
+import { ProjectType } from "./projectType";
 
 export const RootType = new GraphQLObjectType({
     name: 'RootType',
@@ -14,22 +14,18 @@ export const RootType = new GraphQLObjectType({
                 slug: { type: GraphQLString }
             },
             async resolve(root, args) {
-                console.log('slug', args.slug);
                 if (args.slug)
-                    return await Db.posts.getPostBySlug(args.slug);
+                    return [await Db.posts.getPostBySlug(args.slug)];
                 else
                     return await Db.posts.getPosts();
             }
         },
-        tags: {
-            type: new GraphQLList(TagType),
-            description: 'tag',
-            resolve() { }
-        },
         projects: {
             type: new GraphQLList(ProjectType),
-            description: 'project',
-            resolve() { }
+            description: 'projects',
+            async resolve() {
+                return await Db.projects.getProjects();
+            }
         },
         hello: {
             type: GraphQLString,

@@ -5,7 +5,7 @@ import { postRouter } from './api/postRouter';
 import { tagRouter } from './api/tagRouter';
 import { skillRouter } from './api/skillRouter';
 import { projectRouter } from './api/projectRouter';
-import { RootType } from './schema/rootSchema';
+import { RootType } from './schema/rootType';
 import schema from './schema';
 
 const env = process.env.NODE_ENV;
@@ -14,10 +14,10 @@ const PORT = +(process.env.PORT || '8080');
 const HOST_NAME = env == 'production' ? '0.0.0.0' : '127.0.0.1';
 
 const app = express();
-const router = express.Router();
+// const router = express.Router();
 
-router.use(defaultCors);
-router.options('*', defaultCors);
+// router.use(defaultCors);
+// router.options('*', defaultCors);
 
 app.use('/graphql', graphqlHTTP({
     schema: schema,

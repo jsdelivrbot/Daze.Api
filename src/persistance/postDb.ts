@@ -16,7 +16,6 @@ export const getPosts = async (): Promise<Post[]> => {
 };
 
 export const getPostBySlug = async (slug: string): Promise<Post> => {
-    console.log(slug);
     try {
         const query = await Connection.instance
             .getConnection()

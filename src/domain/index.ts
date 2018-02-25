@@ -5,24 +5,24 @@ export type Tag = {
 }
 
 export type Post = {
-    Id: string | undefined
-    Slug: string
-    Title: string
-    HeroContent: string | undefined
-    Content: string | undefined
-    CoverImage: string | undefined
-    CreatedAt: Date | undefined
-    ModifiedAt: Date | undefined
-    Tags: Tag[]
+    id: string | undefined
+    slug: string
+    title: string
+    hero_content: string | undefined
+    content: string | undefined
+    cover_image: string | undefined
+    created_at: Date | undefined
+    modified_at: Date | undefined
+    tags: Tag[]
 }
 // Comments: seq<Comment>
 
 export type Project = {
-    Id: string
-    ProjectName: string
-    Description: string | undefined
-    Url: string | undefined
-    PublishedYear: number | undefined
+    id: string
+    name: string
+    description: string | undefined
+    url: string | undefined
+    published_year: number | undefined
 }
 
 export type Skill = {

@@ -10,25 +10,11 @@ export const postRouter = express.Router();
 
 // "/api/post/"11
 postRouter.get("/", async (req, res) => {
-    const posts = await Db.posts.getPosts();
-
-    const links = {
-        Self: { href: '/api/post/2' },
-        Next: { href: '/api/post/2/2' }
-    };
-    const hal: HAL<Post> = {
-        totalCount: posts.length,
-        _links: links,
-        _embedded: posts
-    };
-
-    return res.json(hal);
 });
 
 // "/api/post/%i/%i"
 const getPaginated = async (req: Request, res: Response) => {
-    const { page, pageSize } = req.params;
-    const posts = await Db.posts.getPostsPaginated(page, pageSize);
+    ;
 };
 
 // "/api/post/%i"

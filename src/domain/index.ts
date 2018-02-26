@@ -1,7 +1,7 @@
 
 export type Tag = {
-    Id: string
-    TagName: string | undefined
+    id: string
+    name: string | undefined
 }
 
 export type Post = {

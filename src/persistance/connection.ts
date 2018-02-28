@@ -1,12 +1,13 @@
 import { Client } from "pg";
+import config from './config';
 
 export class Connection {
     private constructor() {
         this.client = new Client({
-            host: 'localhost',
-            database: 'daze_db',
-            password: 'daze',
-            user: 'daze'
+            host: config.host,
+            database: config.database,
+            password: config.password,
+            user: config.user
         });
         this.client.connect();
     }

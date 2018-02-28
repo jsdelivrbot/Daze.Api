@@ -4,13 +4,11 @@ import { Db } from "../persistance";
 import { TagType } from "./tagType";
 import { ProjectType } from "./projectType";
 
-
 type PostsTypeArgs = {
     page: number
     pageSize: number
     slug?: string
 }
-
 
 export const RootType = new GraphQLObjectType({
     name: 'RootType',

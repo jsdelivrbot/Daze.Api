@@ -1,5 +1,4 @@
 import { Request, Response } from 'express';
-import { Db } from '../persistance';
 import { HAL } from './types';
 import { Post } from '../domain';
 import * as express from 'express';

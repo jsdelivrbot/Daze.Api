@@ -8,11 +8,11 @@ export type Post = {
     id: string | undefined
     slug: string
     title: string
-    hero_content: string | undefined
+    heroContent: string | undefined
     content: string | undefined
-    cover_image: string | undefined
-    created_at: Date | undefined
-    modified_at: Date | undefined
+    coverImage: string | undefined
+    createdAt: Date | undefined
+    modifiedAt: Date | undefined
     tags: Tag[]
 }
 // Comments: seq<Comment>

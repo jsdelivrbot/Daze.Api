@@ -4,20 +4,16 @@ export const SkillType = new GraphQLObjectType({
     name: 'SkillType',
     fields: {
         id: {
-            type: GraphQLString,
-            resolve() { }
+            type: GraphQLString
         },
         skillName: {
-            type: GraphQLString,
-            resolve() { }
+            type: GraphQLString
         },
         level: {
-            type: GraphQLString,
-            resolve() { }
+            type: GraphQLString
         },
         focusArea: {
-            type: GraphQLString,
-            resolve() { }
+            type: GraphQLString
         }
     }
 });

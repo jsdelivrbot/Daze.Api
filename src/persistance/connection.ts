@@ -1,14 +1,9 @@
 import { Client } from "pg";
-import config from './config';
+import config from './configuration';
 
 export class Connection {
     private constructor() {
-        this.client = new Client({
-            host: config.host,
-            database: config.database,
-            password: config.password,
-            user: config.user
-        });
+        this.client = new Client(config);
         this.client.connect();
     }
 

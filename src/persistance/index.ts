@@ -1,7 +1,8 @@
-import * as posts from './postDb';
-import * as projects from './projectDb';
+import * as postDb from './postDb';
+import * as projectDb from './projectDb';
+import { Pool } from 'pg';
 
-export const Db = {
-    posts: posts,
-    projects: projects
-};
+export const db = (pool: Pool) => ({
+    ...postDb,
+    ...projectDb
+});

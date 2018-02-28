@@ -6,57 +6,31 @@ export const PostType = new GraphQLObjectType({
     name: 'PostType',
     fields: {
         id: {
-            type: GraphQLString,
-            resolve(post: Post) {
-                return post.id;
-            }
+            type: GraphQLString
         },
         slug: {
-            type: GraphQLString,
-            resolve(post: Post) {
-                return post.slug;
-            }
+            type: GraphQLString
         },
         title: {
             type: GraphQLString,
-            resolve(post: Post) {
-                return post.title;
-            }
         },
         heroContent: {
-            type: GraphQLString,
-            resolve(post: Post) {
-                return post.hero_content;
-            }
+            type: GraphQLString
         },
         content: {
-            type: GraphQLString,
-            resolve(post: Post) {
-                return post.content;
-            }
+            type: GraphQLString
         },
         coverImage: {
-            type: GraphQLString,
-            resolve(post: Post) {
-                return post.cover_image;
-            }
+            type: GraphQLString
         },
         createdAt: {
-            type: GraphQLString,
-            resolve(post: Post) {
-                return post.created_at;
-            }
+            type: GraphQLString
         },
         modifiedAt: {
-            type: GraphQLString,
-            resolve(post: Post) {
-                return post.modified_at;
-            }
+            type: GraphQLString
         },
         tags: {
-            type: new GraphQLList(TagType),
-            resolve(post) {
-            }
+            type: new GraphQLList(TagType)
         }
     }
 });

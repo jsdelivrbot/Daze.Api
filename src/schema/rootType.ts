@@ -1,6 +1,6 @@
 import { GraphQLObjectType, GraphQLList, GraphQLString, GraphQLUnionType, GraphQLInt, GraphQLNonNull, GraphQLResolveInfo } from "graphql";
 import { PostType } from "./postType";
-import { Db } from "../persistance";
+import { db } from "../persistance";
 import { TagType } from "./tagType";
 import { ProjectType } from "./projectType";
 
@@ -31,20 +31,20 @@ export const RootType = new GraphQLObjectType({
                     type: GraphQLString
                 },
             },
-            async resolve(root, args) {
+            async resolve(parent, args, { pool }) {
                 const postsArgs = args as PostsTypeArgs;
 
                 if (postsArgs.slug)
-                    return [await Db.posts.getPostBySlug(postsArgs.slug)];
+                    return [await db(pool).getPostBySlug(pool, postsArgs.slug)];
                 else
-                    return await Db.posts.getPosts(postsArgs.page, postsArgs.pageSize);
+                    return await db(pool).getPosts(pool, postsArgs.page, postsArgs.pageSize);
             }
         },
         projects: {
             type: new GraphQLList(ProjectType),
             description: 'projects',
-            async resolve() {
-                return await Db.projects.getProjects();
+            async resolve(parent, args, { pool }) {
+                return await db(pool).getProjects(pool);
             }
         }
     }

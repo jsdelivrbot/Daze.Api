@@ -5,34 +5,19 @@ export const ProjectType = new GraphQLObjectType({
     name: 'ProjectType',
     fields: {
         id: {
-            type: GraphQLString,
-            resolve(project: Project) {
-                return project.id;
-            }
+            type: GraphQLString
         },
         projectName: {
             type: GraphQLString,
-            resolve(project: Project) {
-                return project.name;
-            }
         },
         description: {
-            type: GraphQLString,
-            resolve(project: Project) {
-                return project.description;
-            }
+            type: GraphQLString
         },
         url: {
-            type: GraphQLString,
-            resolve(project: Project) {
-                return project.url;
-            }
+            type: GraphQLString
         },
         publishedYear: {
-            type: GraphQLString,
-            resolve(project: Project) {
-                return project.published_year;
-            }
+            type: GraphQLString
         }
     }
 });

@@ -1,52 +1,39 @@
-import { Connection } from "./db";
+import { Connection } from "./connection";
 import { Post } from "../domain";
-
+import { Pool } from "pg";
+import * as R from 'ramda';
+import * as humps from 'humps';
 
 /** 
  * @param page the offset number for the page starting at 1
  * @param pageSize the size limit for the page  
  **/
-export const getPosts = async (page: number, pageSize: number): Promise<Post[]> => {
+export const getPosts = async (pool: Pool, page: number, pageSize: number): Promise<Post[]> => {
     try {
-        const query = await Connection.instance
-            .getConnection()
-            .query(`
-                select p.*  
-                from public.Post as p 
-                order by p.created_at desc
-                offset $1
-                limit $2
-            `, [page - 1, pageSize]);
-        return query.rows;
+        const query = await pool.query(`
+            select p.*  
+            from public.Post as p 
+            order by p.created_at desc
+            offset $1
+            limit $2
+        `, [page - 1, pageSize]);
+        return query.rows.map(R.unary(humps.camelizeKeys)) as Post[];
     } catch (err) {
         throw err;
     }
 };
 
-export const getPostBySlug = async (slug: string): Promise<Post> => {
+export const getPostBySlug = async (pool: Pool, slug: string): Promise<Post> => {
     try {
-        const query = await Connection.instance
-            .getConnection()
-            .query(`
-                select p.*
-                from public.Post as p
-                where p.slug = $1
-            `, [slug]);
-        return query.rows[0];
+        const query = await pool.query(`
+            select p.*
+            from public.Post as p
+            where p.slug = $1
+        `, [slug]);
+        return humps.camelizeKeys(query.rows[0]) as Post;
     } catch (err) {
         throw err;
     }
 };
-
-
-export const getPostsPaginated = async (page: number, pageSize: number): Promise<Post[]> => {
-    throw '';
-    // const query = await Connection.instance.getConnection()
-    //     .query(`
-
-    //     `);
-    // return query.rows;
-};
-
 
 

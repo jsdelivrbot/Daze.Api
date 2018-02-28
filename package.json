@@ -24,14 +24,18 @@
         "express": "^4.16.2",
         "express-graphql": "^0.6.11",
         "graphql": "^0.13.1",
-        "pg": "^7.4.1"
+        "humps": "^2.0.1",
+        "pg": "^7.4.1",
+        "ramda": "^0.25.0"
     },
     "devDependencies": {
         "@types/cors": "^2.8.3",
         "@types/express": "^4.11.1",
         "@types/express-graphql": "0.0.36",
         "@types/graphql": "^0.12.4",
+        "@types/humps": "^1.1.2",
         "@types/pg": "^7.4.2",
+        "@types/ramda": "^0.25.19",
         "concurrently": "^3.5.1",
         "typescript": "^2.7.1"
     }

@@ -7,6 +7,7 @@ import { skillRouter } from './api/skillRouter';
 import { projectRouter } from './api/projectRouter';
 import { RootType } from './schema/rootType';
 import schema from './schema';
+import { pool } from './persistance/pgPool';
 
 const env = process.env.NODE_ENV;
 
@@ -23,7 +24,10 @@ app.use('/graphql', graphqlHTTP({
     schema: schema,
     rootValue: RootType,
     graphiql: true,
-    pretty: true
+    pretty: true,
+    context: {
+        pool: pool
+    }
 }));
 
 app.all('*', (req, res) => {

@@ -2,6 +2,7 @@
 [![Build status](https://ci.appveyor.com/api/projects/status/3ivf4s6rfrq6u5j3?svg=true)](https://ci.appveyor.com/project/hermesxgjini/daze-api)
 [![codebeat badge](https://codebeat.co/badges/efa21d21-7f3b-41d1-9500-549375837eb3)](https://codebeat.co/projects/github-com-afractal-daze-api-master)
 [![Maintainability](https://api.codeclimate.com/v1/badges/16765e48067170a5fcf9/maintainability)](https://codeclimate.com/github/afractal/Daze.Api/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/16765e48067170a5fcf9/test_coverage)](https://codeclimate.com/github/afractal/Daze.Api/test_coverage)
 
 ## **Technologies used**
 

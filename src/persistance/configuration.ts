@@ -1,3 +1,4 @@
+import { ENV } from "../common/enviromnent";
 
 type ConfigurationNode = {
     host: string
@@ -10,8 +11,6 @@ type Configuration = {
     development: ConfigurationNode
     production: ConfigurationNode
 }
-
-type Environment = 'development' | 'production'
 
 const config: Configuration = {
     development: {
@@ -28,6 +27,4 @@ const config: Configuration = {
     }
 };
 
-const env = (process.env.NODE_ENV || 'development') as Environment;
-
-export default config[env];
+export default config[ENV];

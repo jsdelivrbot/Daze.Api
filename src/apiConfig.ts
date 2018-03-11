@@ -29,7 +29,7 @@ const allowedHeaders = [
 ];
 
 const defaultCorsConfig = {
-    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     allowedHeaders: allowedHeaders,
     preflightContinue: false,
     credentials: true,

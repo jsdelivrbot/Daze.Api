@@ -1,7 +1,7 @@
 import { Project } from "../domain";
 import { Connection } from "./connection";
-import * as R from "ramda";
-import * as humps from 'humps';
+import * as R from 'ramda';
+import { camelizeKeys } from 'humps';
 import { Pool } from "pg";
 
 export const getProjects = async (pool: Pool): Promise<Project[]> => {
@@ -10,7 +10,7 @@ export const getProjects = async (pool: Pool): Promise<Project[]> => {
             select p.*
             from public.Project as p
         `);
-        return query.rows.map(R.unary(humps.camelizeKeys)) as Project[];
+        return query.rows.map(R.unary(camelizeKeys)) as Project[];
     } catch (err) {
         throw err;
     }

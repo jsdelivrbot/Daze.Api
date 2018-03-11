@@ -3,18 +3,32 @@
     "compilerOptions": {
         "target": "es5",
         "module": "commonjs",
-        "outDir": "dist",
+        "outDir": "./dist/",
+        "moduleResolution": "node",
+        "noEmitHelpers": false,
         "strict": true,
+        "sourceMap": true,
+        "noImplicitAny": false,
+        "suppressImplicitAnyIndexErrors": true,
+        "forceConsistentCasingInFileNames": true,
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true,
         "pretty": true,
+        // "allowJs": true,
         "lib": [
             "es2018",
             "esnext.asynciterable"
+        ],
+        "typeRoots": [
+            "/node_modules/@types/"
         ]
     },
+    "include": [
+        "src/**/*"
+    ],
     "exclude": [
         "node_modules",
-        "dist"
+        "**/*.spec.ts",
+        "dist",
     ]
 }

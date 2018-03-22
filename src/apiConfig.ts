@@ -3,20 +3,20 @@ import * as cors from 'cors';
 type CustomOriginCallback = (err: Error | null, allow?: boolean) => void
 
 const allowedOrigins = [
-    "http://localhost:3000",
-    "http://localhost:5000",
-    "https://daze-spa.herokuapp.com",
-    "https://afractal.herokuapp.com",
-    "http://afractal.herokuapp.com",
-    "http://afractal.me",
-    "https://afractal.me",
-    "http://www.afractal.me",
-    "https://www.afractal.me"
+    'http://localhost:3000',
+    'http://localhost:5000',
+    'https://daze-spa.herokuapp.com',
+    'https://afractal.herokuapp.com',
+    'http://afractal.herokuapp.com',
+    'http://afractal.me',
+    'https://afractal.me',
+    'http://www.afractal.me',
+    'https://www.afractal.me'
 ];
 
 const allowedHeaders = [
-    "Origin",
-    "X-Requested-With",
+    'Origin',
+    'X-Requested-With',
     'Cache-Control',
     'Last-Modified',
     'Pragma',

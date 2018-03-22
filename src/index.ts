@@ -3,6 +3,7 @@ import { defaultCors } from './apiConfig';
 import { pool } from './persistance/pgPool';
 import { ENV } from './common/enviromnent';
 import { json, urlencoded } from 'body-parser';
+import { postRouter } from './api/postRouter';
 
 // import * as  swaggerUi from 'swagger-ui-express';
 // const swaggerDocument = require('./swagger.json');
@@ -16,7 +17,7 @@ const router = express.Router();
 router.use(defaultCors);
 router.options('*', defaultCors);
 
-router.route('/posts');
+app.use('/api/post', postRouter);
 
 app.use(urlencoded({ extended: true }));
 app.use(json);

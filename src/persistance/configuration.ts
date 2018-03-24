@@ -5,12 +5,12 @@ type ConfigurationNode = {
     database: string
     password: string
     user: string
-}
+};
 
 type Configuration = {
     development: ConfigurationNode
     production: ConfigurationNode
-}
+};
 
 const config: Configuration = {
     development: {

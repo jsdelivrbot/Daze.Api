@@ -1,14 +1,23 @@
 import { Request, Response } from 'express';
-import { HAL } from './types';
+import { HAL, HALLinks } from './types';
 import { Post } from '../domain';
 import * as express from 'express';
 
-const createHal = () => { };
+const createHAL = <T>(collection: T[], links?: HALLinks): HAL<T> => ({
+    totalCount: collection.length,
+    _links: links,
+    _embedded: collection
+});
 
 export const postRouter = express.Router();
 
 // "/api/post/"11
 postRouter.get('/', async (req, res) => {
+    const links: HALLinks = {
+        Self: { href: "/api/project/" },
+        Next: { href: "/api/project/2/2" }
+    };
+
     console.log('get postRouter');
 });
 

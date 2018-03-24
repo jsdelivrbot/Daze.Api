@@ -2,7 +2,7 @@
 export type Tag = {
     id: string
     name: string | undefined
-}
+};
 
 export type Post = {
     id: string | undefined
@@ -14,7 +14,7 @@ export type Post = {
     createdAt: Date | undefined
     modifiedAt: Date | undefined
     tags: Tag[]
-}
+};
 // Comments: seq<Comment>
 
 export type Project = {
@@ -23,26 +23,26 @@ export type Project = {
     description: string | undefined
     url: string | undefined
     published_year: number | undefined
-}
+};
 
 export type Skill = {
     Id: string
     SkillName: string | undefined
     Level: number | undefined
     FocusArea: string | undefined
-}
+};
 // Courses: seq<Course>
 
 export type Course = {
     Id: string
     CourseTag: string
     CourseTitle: string
-}
+};
 
 export type LoginModel = {
     username: string
     password: string
-}
+};
 
 
 

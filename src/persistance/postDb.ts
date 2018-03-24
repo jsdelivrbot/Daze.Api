@@ -4,15 +4,15 @@ import { Pool } from "pg";
 import * as R from 'ramda';
 import { camelizeKeys } from 'humps';
 
-/** 
+/**
  * @param page the offset number for the page starting at 1
- * @param pageSize the size limit for the page  
+ * @param pageSize the size limit for the page
  **/
 export const getPosts = async (pool: Pool, page: number, pageSize: number): Promise<Post[]> => {
     try {
         const query = await pool.query(`
-            select p.*  
-            from public.Post as p 
+            select p.*
+            from public.Post as p
             order by p.created_at desc
             offset $1
             limit $2
@@ -35,5 +35,3 @@ export const getPostBySlug = async (pool: Pool, slug: string): Promise<Post> => 
         throw err;
     }
 };
-
-

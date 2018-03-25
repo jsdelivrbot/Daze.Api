@@ -16,8 +16,8 @@ const config: Configuration = {
     development: {
         host: 'localhost',
         database: 'daze_db',
-        password: 'daze',
-        user: 'daze'
+        password: '',
+        user: 'postgres'
     },
     production: {
         host: 'localhost',

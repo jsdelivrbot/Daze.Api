@@ -1,9 +1,11 @@
-import { Client } from "pg";
-import config from './configuration';
+import { Client, PoolClient, Pool, QueryResult } from "pg";
+import config from "./configuration";
 
 export class Connection {
     private constructor() {
-        this.client = new Client(config);
+        this.client = new Client({
+            ...config,
+        });
         this.client.connect();
     }
 
@@ -23,20 +25,36 @@ export class Connection {
 }
 
 // import { Pool } from 'pg';
-// export const pool = new Pool({
-//     host: 'localhost',
-//     database: 'daze_db',
-//     password: 'daze',
-//     user: 'daze'
-// });
 
+// export const createPool = (): Pool => {
+//     return new Pool({
+//         ...config,
+//         max: 20
+//     });
+// };
+
+const pool = new Pool({
+    ...config,
+    max: 20
+});
+
+console.log('pool connected');
+
+export default {
+    async query(queryText: string, values?: any[]): Promise<QueryResult> {
+        try {
+            return await pool.query(queryText, values);
+        } catch (err) {
+            throw err;
+        }
+    }
+};
 
 // const DB_KEY = Symbol('db');
 
 // global[DB_KEY] = {
 //     db: "lol"
 // };
-
 
 // let client = new Client({
 //     host: 'localhost',

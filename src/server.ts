@@ -7,14 +7,16 @@ import app from "./app";
  */
 app.use(errorHandler());
 
-/**
- * Start Express server.
- */
-const server = app.listen(app.get("port"), () => {
-    const port = app.get("port");
-    const env = app.get("env");
+// Start Express server.
+
+const port = app.get('port');
+const env = app.get('env');
+const hostname = app.get('hostname');
+
+const server = app.listen(port, hostname, () => {
+    const message = "App is running at http://localhost:%d in %s mode";
     console.log(
-        "  App is running at http://localhost:%d in %s mode",
+        message,
         port,
         env
     );

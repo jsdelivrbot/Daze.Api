@@ -1,7 +1,7 @@
 import { Project } from "../domain";
 import { Connection } from "./connection";
-import * as R from 'ramda';
-import { camelizeKeys } from 'humps';
+import R from "ramda";
+import { camelizeKeys } from "humps";
 import { Pool } from "pg";
 
 export const getProjects = async (pool: Pool): Promise<Project[]> => {

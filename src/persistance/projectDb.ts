@@ -1,17 +1,24 @@
 import { Project } from "../domain";
-import { Connection } from "./connection";
-import R from "ramda";
+import { unary } from "ramda";
 import { camelizeKeys } from "humps";
-import { Pool } from "pg";
+import conn from "./connection";
 
-export const getProjects = async (pool: Pool): Promise<Project[]> => {
+/**
+ * @param offset the offset number for the page starting at 1
+ * @param limit the size limit for the page
+ **/
+export const getProjects = async (offset: number, limit: number): Promise<Project[]> => {
     try {
-        const query = await pool.query(`
+        const query = await conn.query(`
             select p.*
             from public.Project as p
-        `);
-        return query.rows.map(R.unary(camelizeKeys)) as Project[];
+            order by p.published_year desc
+            offset $1
+            limit $2
+        `, [offset - 1, limit]);
+
+        return query.rows.map<Project>(unary(camelizeKeys));
     } catch (err) {
         throw err;
     }
-};  
+};

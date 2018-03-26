@@ -1,15 +1,13 @@
-// import { Connection } from "./connection";
 import { Post } from "../domain";
-import { Pool, PoolClient } from "pg";
-import { unary } from 'ramda';
-import { camelizeKeys } from 'humps';
-import conn from './connection';
+import { unary } from "ramda";
+import { camelizeKeys } from "humps";
+import conn from "./connection";
 
 /**
- * @param page the offset number for the page starting at 1
- * @param pageSize the size limit for the page
+ * @param offset the offset number for the page starting at 1
+ * @param limit the size limit for the page
  **/
-export const getPosts = async (page: number, pageSize: number): Promise<Post[]> => {
+export const getPosts = async (offset: number, limit: number): Promise<Post[]> => {
     try {
         const query = await conn.query(`
             select p.*
@@ -17,7 +15,7 @@ export const getPosts = async (page: number, pageSize: number): Promise<Post[]> 
             order by p.created_at desc
             offset $1
             limit $2
-        `, [page - 1, pageSize]);
+        `, [offset - 1, limit]);
 
         return query.rows.map<Post>(unary(camelizeKeys));
     } catch (err) {

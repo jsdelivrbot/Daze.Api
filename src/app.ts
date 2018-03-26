@@ -4,7 +4,6 @@ import { ENV } from "./common/enviromnent";
 import bodyParser from "body-parser";
 import expressValidator from "express-validator";
 import compression from "compression";
-import logger from "./util/logger";
 import mountRoutes from "./routers";
 
 const PORT = process.env.PORT || '8080';

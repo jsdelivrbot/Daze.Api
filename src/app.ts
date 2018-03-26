@@ -27,6 +27,6 @@ app.use(expressValidator());
 mountRoutes(app);
 
 app.get('/', (req, res) => res.end('__daze_api__'));
-app.all('*', (req, res) => res.status(400).end('NOT FOUND'));
+app.all('*', (req, res) => res.status(404).end('NOT FOUND'));
 
 export default app;

@@ -16,8 +16,9 @@ export type HAL<T> = {
     _links?: HALLinks
 };
 
-export const createHAL = <T>(collection: T[], links?: HALLinks): HAL<T> => ({
-    totalCount: collection.length,
+export const createHAL = <T>(collection: T | T[], links?: HALLinks): HAL<T> => ({
+    totalCount: (<T[]>collection).length !== undefined ? (<T[]>collection).length : 1,
     _links: links,
     _embedded: collection
 });
+

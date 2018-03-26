@@ -15,11 +15,7 @@ const hostname = app.get('hostname');
 
 const server = app.listen(port, hostname, () => {
     const message = "App is running at http://localhost:%d in %s mode";
-    console.log(
-        message,
-        port,
-        env
-    );
+    console.log(message, port, env);
     console.log("  Press CTRL-C to stop\n");
 });
 

@@ -32,6 +32,7 @@ export const getPostBySlug = async (slug: string): Promise<Post> => {
             from public.Post as p
             where p.slug = $1
         `, [slug]);
+
         return camelizeKeys(query.rows[0]) as Post;
     } catch (err) {
         throw err;

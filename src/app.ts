@@ -15,13 +15,12 @@ const app = express();
 app.set('port', PORT);
 app.set('hostname', HOST_NAME);
 
-// app.use(defaultCors);
-// app.options('*', defaultCors);
-
 app.use(compression());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(expressValidator());
+app.use(defaultCors);
+// app.options('*', defaultCors);
 
 // route handlers
 mountRoutes(app);

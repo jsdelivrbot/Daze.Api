@@ -8,6 +8,8 @@ import mountRoutes from "./routers";
 
 const PORT = process.env.PORT || '8080';
 const HOST_NAME = ENV == 'production' ? '0.0.0.0' : '127.0.0.1';
+console.log('PORT', PORT);
+console.log('HOST_NAME', HOST_NAME);
 
 const app = express();
 

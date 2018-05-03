@@ -42,6 +42,7 @@
         "humps": "^2.0.1",
         "pg": "^7.4.1",
         "ramda": "^0.25.0",
+        "request": "^2.85.0",
         "swagger-ui-express": "^3.0.8"
     },
     "devDependencies": {

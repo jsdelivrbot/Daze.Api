@@ -15,6 +15,7 @@
         "url": "https://github.com/afractal/Daze.Api/issues"
     },
     "scripts": {
+        "prestart": "npm run build",
         "start": "npm run serve",
         "build": "npm run build-ts && npm run tslint",
         "test": "jest --forceExit --coverage --verbose",

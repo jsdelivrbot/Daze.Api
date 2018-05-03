@@ -19,7 +19,7 @@ app.use(compression());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(expressValidator());
-app.use(defaultCors);
+// app.use(defaultCors);
 // app.options('*', defaultCors);
 
 // route handlers

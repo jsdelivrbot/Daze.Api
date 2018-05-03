@@ -1,0 +1,7 @@
+{
+    "name": "daze api",
+    "description": "afractal backend",
+    "repository": "https://github.com/afractal/Daze.Api",
+    "logo": "https://cdn.rawgit.com/heroku/node-js-getting-started/master/public/node.svg",
+    "image": "heroku/nodejs"
+}

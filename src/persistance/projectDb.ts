@@ -31,8 +31,8 @@ export const getProjects2 = async (): Promise<Project[]> => {
     try {
         const query = await conn.query(`
             select p.*
-            from public.Post as p
-            order by p.created_at desc
+            from public.Project as p
+            order by p.published_year desc
         `);
 
         return query.rows.map<Project>(unary(camelizeKeys));

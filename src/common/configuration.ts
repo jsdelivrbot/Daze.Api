@@ -27,5 +27,4 @@ const config: Configuration = {
     }
 };
 
-// export default config[ENV];
-export default config['production'];
+export default config[ENV];

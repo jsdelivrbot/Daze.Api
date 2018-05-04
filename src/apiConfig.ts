@@ -42,7 +42,7 @@ const defaultCorsConfig = {
 
 export const defaultCors = cors((req, callback) => {
     const requestOrigin = req.hostname;
-    // console.log('req', requestOrigin);
+    console.log('req', requestOrigin);
     allowedOrigins.includes(requestOrigin)
         ? callback(undefined, { ...defaultCorsConfig, origin: true })
         : callback(new Error("Origin Not Allowed by CORS"), { ...defaultCorsConfig, origin: false });

@@ -5,7 +5,7 @@ import { createHAL } from "./halTypes";
 const router = Router();
 
 router.get('/', async (req, res) => {
-    const projects = await db.getProjects(1, 2);
+    const projects = await db.getProjects2();
 
     const hal = createHAL(projects);
     return res.json(hal);

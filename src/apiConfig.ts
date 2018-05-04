@@ -1,46 +1,51 @@
 import cors from "cors";
 
-type CustomOriginCallback = (err: Error | null, allow?: boolean) => void;
-
 const allowedOrigins = [
-    "http://localhost:3000",
-    "http://localhost:5000",
-    "http://localhost:8080",
-    "https://daze-spa.herokuapp.com",
-    "https://afractal.herokuapp.com",
-    "http://afractal.herokuapp.com",
-    "http://afractal.me",
-    "https://afractal.me",
-    "http://www.afractal.me",
-    "https://www.afractal.me"
+    'localhost',
+    'daze-spa.herokuapp.com',
+    'afractal.herokuapp.com',
+    'afractal.me',
+    'www.afractal.me'
 ];
 
 const allowedHeaders = [
-    "Origin",
-    "X-Requested-With",
-    "Cache-Control",
-    "Last-Modified",
-    "Pragma",
-    "Expires",
-    "Content-Language",
-    "Content-Type",
-    "Content-Length",
-    "Accept",
-    "X-Access-Token"
+    'Origin',
+    'X-Requested-With',
+    'Cache-Control',
+    'Last-Modified',
+    'Pragma',
+    'Expires',
+    'Content-Language',
+    'Content-Type',
+    'Content-Length',
+    'Accept',
+    'X-Access-Token'
+];
+
+const allowedMethods = [
+    'GET',
+    'HEAD',
+    'PUT',
+    'PATCH',
+    'POST',
+    'DELETE'
 ];
 
 const defaultCorsConfig = {
-    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    methods: allowedMethods,
     allowedHeaders: allowedHeaders,
     preflightContinue: false,
     credentials: true,
     optionsSuccessStatus: 204,
-    maxAge: 3600,
-    origin(requestOrigin: string, callback: CustomOriginCallback) {
-        return allowedOrigins.includes(requestOrigin) ?
-            callback(undefined, true) :
-            callback(new Error("Origin Not Allowed by CORS"), false);
-    }
+    maxAge: 3600
 };
 
-export const defaultCors = cors(defaultCorsConfig);
+export const defaultCors = cors((req, callback) => {
+    const requestOrigin = req.hostname;
+    // console.log('req', requestOrigin);
+    allowedOrigins.includes(requestOrigin)
+        ? callback(undefined, { ...defaultCorsConfig, origin: true })
+        : callback(new Error("Origin Not Allowed by CORS"), { ...defaultCorsConfig, origin: false });
+});
+
+

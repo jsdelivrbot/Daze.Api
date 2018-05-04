@@ -8,8 +8,6 @@ import mountRoutes from "./routers";
 
 const PORT = process.env.PORT || '8080';
 const HOST_NAME = ENV == 'production' ? '0.0.0.0' : '127.0.0.1';
-console.log('PORT', PORT);
-console.log('HOST_NAME', HOST_NAME);
 
 const app = express();
 
@@ -21,8 +19,8 @@ app.use(compression());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(expressValidator());
-// app.use(defaultCors);
 // app.options('*', defaultCors);
+// app.use(defaultCors);
 
 // route handlers
 mountRoutes(app);

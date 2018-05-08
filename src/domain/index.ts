@@ -25,6 +25,14 @@ export type Project = {
     published_year: number | undefined
 };
 
+export type Resource = {
+    id: string
+    category: string
+    name: string
+    link: string
+    description: string
+};
+
 export type Skill = {
     Id: string
     SkillName: string | undefined

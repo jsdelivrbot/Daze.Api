@@ -19,7 +19,6 @@ export const getPosts = async (offset: number, limit: number): Promise<Post[]> =
 
         return query.rows.map<Post>(unary(camelizeKeys));
     } catch (err) {
-        console.log('err', err);
         throw err;
     }
 };

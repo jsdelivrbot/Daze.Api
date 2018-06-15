@@ -18,6 +18,10 @@
 
 ## **Changes**
 
+*v1.1*
+
+- added resources api
+
 *v1.0*
 
 - rewrite nodejs

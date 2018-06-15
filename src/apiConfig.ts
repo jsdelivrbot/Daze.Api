@@ -2,6 +2,7 @@ import cors from "cors";
 
 const allowedOrigins = [
     'localhost',
+    '127.0.0.1',
     'daze-spa.herokuapp.com',
     'daze-api.herokuapp.com',
     'afractal.herokuapp.com',

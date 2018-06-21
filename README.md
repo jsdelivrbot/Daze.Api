@@ -20,6 +20,7 @@
 
 *v1.1*
 
+- added skills api
 - added resources api
 
 *v1.0*

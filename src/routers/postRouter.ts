@@ -1,8 +1,6 @@
 import { Router } from 'express';
-import { HAL, createHAL } from './halTypes';
-import { Post } from '../domain';
+import { createHAL } from './halTypes';
 import { db } from '../persistance';
-import { defaultCors } from '../apiConfig';
 
 const router = Router();
 

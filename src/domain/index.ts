@@ -34,10 +34,9 @@ export type Resource = {
 };
 
 export type Skill = {
-    Id: string
-    SkillName: string | undefined
-    Level: number | undefined
-    FocusArea: string | undefined
+    id: string
+    name: string
+    level: number
 };
 // Courses: seq<Course>
 

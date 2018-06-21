@@ -4,7 +4,7 @@ import config from "../common/configuration";
 const pool = new Pool({
     ...config,
     max: 20,
-    ssl: true
+    // ssl: true
 });
 
 console.log('pool connected');

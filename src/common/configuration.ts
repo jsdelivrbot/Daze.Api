@@ -14,14 +14,14 @@ type Configuration = {
 
 const config: Configuration = {
     development: {
-        host: process.env.DATABASE_HOST,
-        database: process.env.DATABASE_NAME,
-        password: process.env.DATABASE_PASSWORD,
-        user: process.env.DATABASE_USER
-        // host: 'localhost',
-        // database: 'daze_db',
-        // password: '',
-        // user: 'postgres'
+        // host: process.env.DATABASE_HOST,
+        // database: process.env.DATABASE_NAME,
+        // password: process.env.DATABASE_PASSWORD,
+        // user: process.env.DATABASE_USER
+        host: 'localhost',
+        database: 'daze_db',
+        password: '',
+        user: 'postgres'
     },
     production: {
         host: process.env.DATABASE_HOST,

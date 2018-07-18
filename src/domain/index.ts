@@ -1,11 +1,12 @@
+import * as mongoose from 'mongoose';
 
 export type Tag = {
     id: string
-    name: string | undefined
+    name: string
 };
 
-export type Post = {
-    id: string | undefined
+export type Post = mongoose.Document & {
+    id: string
     slug: string
     title: string
     heroContent: string | undefined
@@ -17,7 +18,7 @@ export type Post = {
 };
 // Comments: seq<Comment>
 
-export type Project = {
+export type Project = mongoose.Document & {
     id: string
     name: string
     description: string | undefined
@@ -25,7 +26,7 @@ export type Project = {
     published_year: number | undefined
 };
 
-export type Resource = {
+export type Resource = mongoose.Document & {
     id: string
     category: string
     name: string
@@ -33,24 +34,10 @@ export type Resource = {
     description: string
 };
 
-export type Skill = {
+export type Skill = mongoose.Document & {
     id: string
     name: string
     level: number
 };
-// Courses: seq<Course>
-
-export type Course = {
-    Id: string
-    CourseTag: string
-    CourseTitle: string
-};
-
-export type LoginModel = {
-    username: string
-    password: string
-};
-
-
 
 

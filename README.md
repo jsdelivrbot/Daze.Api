@@ -20,6 +20,7 @@
 
 *v1.1*
 
+<!-- - switch from postgresql to mongodb -->
 - added skills api
 - added resources api
 

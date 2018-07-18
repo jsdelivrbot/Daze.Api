@@ -1,10 +1,12 @@
 import { ENV } from "../common/enviromnent";
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 type ConfigurationNode = {
     host: string
-    database: string
-    password: string
-    user: string
+    port: string
+    name: string
 };
 
 type Configuration = {
@@ -14,20 +16,14 @@ type Configuration = {
 
 const config: Configuration = {
     development: {
-        // host: process.env.DATABASE_HOST,
-        // database: process.env.DATABASE_NAME,
-        // password: process.env.DATABASE_PASSWORD,
-        // user: process.env.DATABASE_USER
         host: 'localhost',
-        database: 'daze_db',
-        password: '',
-        user: 'postgres'
+        port: '27017',
+        name: 'daze_db'
     },
     production: {
         host: process.env.DATABASE_HOST,
-        database: process.env.DATABASE_NAME,
-        password: process.env.DATABASE_PASSWORD,
-        user: process.env.DATABASE_USER
+        port: process.env.DATABASE_PORT,
+        name: process.env.DATABASE_NAME
     }
 };
 

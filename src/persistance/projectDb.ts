@@ -1,23 +1,17 @@
-import { Project } from "../domain";
-import { unary } from "ramda";
-import { camelizeKeys } from "humps";
-import conn from "./connection";
+import { Project as ProjectDomain } from "../domain";
+import { ProjectModel } from "../schemas";
 
 /**
  * @param offset the offset number for the page starting at 1
  * @param limit the size limit for the page
  **/
-export const getProjects = async (offset: number, limit: number): Promise<Project[]> => {
+export const getProjects = async (offset: number, limit: number): Promise<ProjectDomain[]> => {
     try {
-        const query = await conn.query(`
-            select p.*
-            from public.Project as p
-            order by p.published_year desc
-            offset $1
-            limit $2
-        `, [offset - 1, limit]);
-
-        return query.rows.map<Project>(unary(camelizeKeys));
+        return await ProjectModel
+            .find({})
+            .sort({ publishedAt: 'desc' })
+            .skip(offset)
+            .limit(limit);
     } catch (err) {
         throw err;
     }
@@ -27,15 +21,11 @@ export const getProjects = async (offset: number, limit: number): Promise<Projec
  * @param offset the offset number for the page starting at 1
  * @param limit the size limit for the page
  **/
-export const getProjects2 = async (): Promise<Project[]> => {
+export const getProjects2 = async (): Promise<ProjectDomain[]> => {
     try {
-        const query = await conn.query(`
-            select p.*
-            from public.Project as p
-            order by p.published_year desc
-        `);
-
-        return query.rows.map<Project>(unary(camelizeKeys));
+        return await ProjectModel
+            .find({})
+            .sort({ publishedAt: 'desc' });
     } catch (err) {
         throw err;
     }

@@ -1,37 +1,26 @@
-import { Post } from "../domain";
-import { unary } from "ramda";
-import { camelizeKeys } from "humps";
-import conn from "./connection";
+import { Post as PostDomain } from "../domain";
+import { PostModel } from '../schemas';
 
 /**
  * @param offset the offset number for the page starting at 1
  * @param limit the size limit for the page
  **/
-export const getPosts = async (offset: number, limit: number): Promise<Post[]> => {
+export const getPosts = async (offset: number, limit: number): Promise<PostDomain[]> => {
     try {
-        const query = await conn.query(`
-            select p.*
-            from public.Post as p
-            order by p.created_at desc
-            offset $1
-            limit $2
-        `, [offset - 1, limit]);
-
-        return query.rows.map<Post>(unary(camelizeKeys));
+        return await PostModel
+            .find({})
+            .sort({ createdAt: 'desc' })
+            .skip(offset)
+            .limit(limit);
     } catch (err) {
         throw err;
     }
 };
 
-export const getPostBySlug = async (slug: string): Promise<Post> => {
+export const getPostBySlug = async (slug: string): Promise<PostDomain> => {
     try {
-        const query = await conn.query(`
-            select p.*
-            from public.Post as p
-            where p.slug = $1
-        `, [slug]);
-
-        return camelizeKeys(query.rows[0]) as Post;
+        return await PostModel
+            .findOne({ slug: slug });
     } catch (err) {
         throw err;
     }

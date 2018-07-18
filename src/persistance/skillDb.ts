@@ -1,16 +1,11 @@
-import { unary } from 'ramda';
-import { camelizeKeys } from 'humps';
-import conn from './connection';
-import { Skill } from '../domain';
+import { Skill as SkillDomain } from '../domain';
+import { SkillModel } from '../schemas';
 
-export const getSkills = async () => {
+export const getSkills = async (): Promise<SkillDomain[]> => {
     try {
-        const query = await conn.query(`
-            select s.*
-            from public.skill as s
-            order by s.level desc
-        `);
-        return query.rows.map<Skill>(unary(camelizeKeys));
+        return await SkillModel
+            .find({})
+            .sort({ level: 'desc' });
     } catch (err) {
         throw err;
     }

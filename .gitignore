@@ -61,7 +61,7 @@ typings/
 .next
 
 old/
-dist/**/*
+dist/
 
 # OS metadata
 .DS_Store

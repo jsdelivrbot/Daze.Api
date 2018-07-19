@@ -5,18 +5,32 @@ import { createHAL } from "./halTypes";
 const router = Router();
 
 router.get('/', async (req, res) => {
-    const projects = await db.getProjects2();
+    try {
+        const projects = await db.getProjects2();
 
-    const hal = createHAL(projects);
-    return res.json(hal);
+        const hal = createHAL(projects);
+        return res.json(hal);
+    }
+    catch (err) {
+        return res
+            .status(500)
+            .send(err);
+    }
 });
 
 router.get('/:offset/:limit', async (req, res) => {
-    const { offset, limit } = req.params;
-    const projects = await db.getProjects(offset, limit);
+    try {
+        const { offset, limit } = req.params;
+        const projects = await db.getProjects(offset, limit);
 
-    const hal = createHAL(projects);
-    return res.json(hal);
+        const hal = createHAL(projects);
+        return res.json(hal);
+    }
+    catch (err) {
+        return res
+            .status(500)
+            .send(err);
+    }
 });
 
 export default router;

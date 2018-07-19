@@ -1,33 +1,45 @@
-import conn from '../persistance/connection';
-import { Skill, Post, Project, Resource } from '../domain';
+import { mongoose } from '../persistance/connection';
+import { SkillDocument, PostDocument, ProjectDocument, ResourceDocument } from '../domain';
 
-const TagSchema = new conn.Schema({
+const TagSchema = new mongoose.Schema({
     name: {
         type: String,
-        required: true
+        required: true,
+        trim: true,
+        minlength: 1
     }
 });
 
-const PostSchema = new conn.Schema({
+const PostSchema = new mongoose.Schema({
     slug: {
         type: String,
-        required: true
+        required: true,
+        trim: true,
+        minlength: 1
     },
     title: {
         type: String,
-        required: true
+        required: true,
+        trim: true,
+        minlength: 1
     },
     heroContent: {
         type: String,
-        required: false
+        required: false,
+        trim: true,
+        minlength: 1
     },
     content: {
         type: String,
-        required: false
+        required: false,
+        trim: true,
+        minlength: 1
     },
     coverImage: {
         type: String,
-        required: false
+        required: false,
+        trim: true,
+        minlength: 1
     },
     createdAt: {
         type: Date,
@@ -42,38 +54,50 @@ const PostSchema = new conn.Schema({
     tags: [TagSchema]
 });
 
-const ProjectSchema = new conn.Schema({
+const ProjectSchema = new mongoose.Schema({
     name: {
         type: String,
-        required: true
+        required: true,
+        trim: true,
+        minlength: 1
     },
     description: {
         type: String,
-        required: false
+        required: true,
+        trim: true,
+        minlength: 1
     },
     url: {
         type: String,
-        required: false
+        required: true,
+        trim: true,
+        minlength: 1
     },
     publishedAt: {
         type: Date,
-        required: false,
+        required: true,
         default: Date.now
     }
 });
 
-const ResourceSchema = new conn.Schema({
+const ResourceSchema = new mongoose.Schema({
     name: {
         type: String,
-        required: true
+        required: true,
+        trim: true,
+        minlength: 1
     },
     category: {
         type: String,
-        required: true
+        required: true,
+        trim: true,
+        minlength: 1
     },
     link: {
         type: String,
-        required: true
+        required: true,
+        trim: true,
+        minlength: 1
     },
     description: {
         type: String,
@@ -81,21 +105,24 @@ const ResourceSchema = new conn.Schema({
     }
 });
 
-const SkillSchema = new conn.Schema({
+const SkillSchema = new mongoose.Schema({
     name: {
         type: String,
-        required: true
+        required: true,
+        trim: true,
+        minlength: 1
     },
     level: {
         type: Number,
-        required: true
+        required: true,
+        min: 0
     }
 });
 
-const PostModel = conn.model<Post>('Post', PostSchema);
-const ProjectModel = conn.model<Project>('Project', ProjectSchema);
-const ResourceModel = conn.model<Resource>('Resource', ResourceSchema);
-const SkillModel = conn.model<Skill>('Skill', SkillSchema);
+const PostModel = mongoose.model<PostDocument>('Post', PostSchema);
+const ProjectModel = mongoose.model<ProjectDocument>('Project', ProjectSchema);
+const ResourceModel = mongoose.model<ResourceDocument>('Resource', ResourceSchema);
+const SkillModel = mongoose.model<SkillDocument>('Skill', SkillSchema);
 
 export {
     PostModel,

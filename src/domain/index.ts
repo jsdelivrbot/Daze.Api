@@ -1,32 +1,31 @@
 import * as mongoose from 'mongoose';
 
-export type Tag = {
+export type TagDomain = {
     id: string
     name: string
 };
 
-export type Post = mongoose.Document & {
+export type PostDomain = {
     id: string
     slug: string
     title: string
-    heroContent: string | undefined
-    content: string | undefined
-    coverImage: string | undefined
-    createdAt: Date | undefined
-    modifiedAt: Date | undefined
-    tags: Tag[]
+    heroContent?: string
+    content?: string
+    coverImage?: string
+    createdAt?: Date
+    modifiedAt?: Date
+    tags?: TagDomain[]
 };
-// Comments: seq<Comment>
 
-export type Project = mongoose.Document & {
+export type ProjectDomain = {
     id: string
     name: string
-    description: string | undefined
-    url: string | undefined
-    published_year: number | undefined
+    description: string
+    url: string
+    publishedAt: Date
 };
 
-export type Resource = mongoose.Document & {
+export type ResourceDomain = {
     id: string
     category: string
     name: string
@@ -34,10 +33,19 @@ export type Resource = mongoose.Document & {
     description: string
 };
 
-export type Skill = mongoose.Document & {
+export type SkillDomain = {
     id: string
     name: string
     level: number
 };
 
+export type TagDocument = mongoose.Document & TagDomain;
+
+export type PostDocument = mongoose.Document & PostDomain;
+
+export type ProjectDocument = mongoose.Document & ProjectDomain;
+
+export type ResourceDocument = mongoose.Document & ResourceDomain;
+
+export type SkillDocument = mongoose.Document & SkillDomain;
 

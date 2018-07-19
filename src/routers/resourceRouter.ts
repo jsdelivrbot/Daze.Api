@@ -5,10 +5,17 @@ import { createHAL } from "./halTypes";
 const router = Router();
 
 router.get('/', async (req, res) => {
-    const resources = await db.getResources();
+    try {
+        const resources = await db.getResources();
 
-    const hal = createHAL(resources);
-    return res.json(hal);
+        const hal = createHAL(resources);
+        return res.json(hal);
+    }
+    catch (err) {
+        return res
+            .status(500)
+            .send(err);
+    }
 });
 
 export default router;

@@ -1,4 +1,4 @@
-import { Project as ProjectDomain } from "../domain";
+import { ProjectDomain } from "../domain";
 import { ProjectModel } from "../schemas";
 
 /**
@@ -6,15 +6,11 @@ import { ProjectModel } from "../schemas";
  * @param limit the size limit for the page
  **/
 export const getProjects = async (offset: number, limit: number): Promise<ProjectDomain[]> => {
-    try {
-        return await ProjectModel
-            .find({})
-            .sort({ publishedAt: 'desc' })
-            .skip(offset)
-            .limit(limit);
-    } catch (err) {
-        throw err;
-    }
+    return await ProjectModel
+        .find({})
+        .sort({ publishedAt: 'desc' })
+        .skip(offset)
+        .limit(limit);
 };
 
 /**
@@ -22,13 +18,9 @@ export const getProjects = async (offset: number, limit: number): Promise<Projec
  * @param limit the size limit for the page
  **/
 export const getProjects2 = async (): Promise<ProjectDomain[]> => {
-    try {
-        return await ProjectModel
-            .find({})
-            .sort({ publishedAt: 'desc' });
-    } catch (err) {
-        throw err;
-    }
+    return await ProjectModel
+        .find({})
+        .sort({ publishedAt: 'desc' });
 };
 
 

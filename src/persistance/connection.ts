@@ -6,28 +6,32 @@ const connected = chalk.bold.cyan;
 const error = chalk.bold.yellow;
 const disconnected = chalk.bold.red;
 const termination = chalk.bold.magenta;
+const log = console.log;
 
 const connectionString = `mongodb://${config.host}:${config.port}/${config.name}`;
 
+mongoose.Promise = global.Promise; // used by default
 mongoose.connect(connectionString);
 
 mongoose.connection.on('connected', () => {
-    console.log(connected("Mongoose default connection is open to ", connectionString));
+    log(connected("Mongoose default connection is open to ", connectionString));
 });
 
 mongoose.connection.on('error', (err) => {
-    console.log(error("Mongoose default connection has occured " + err + " error"));
+    log(error("Mongoose default connection has occured " + err + " error"));
 });
 
 mongoose.connection.on('disconnected', () => {
-    console.log(disconnected("Mongoose default connection is disconnected"));
+    log(disconnected("Mongoose default connection is disconnected"));
 });
 
 process.on('SIGINT', function () {
     mongoose.connection.close(() => {
-        console.log(termination("Mongoose default connection is disconnected due to application termination"));
+        log(termination("Mongoose default connection is disconnected due to application termination"));
         process.exit(0);
     });
 });
 
-export default mongoose;
+export {
+    mongoose
+};

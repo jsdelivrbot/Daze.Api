@@ -23,4 +23,7 @@ export const getProjects2 = async (): Promise<ProjectDomain[]> => {
         .sort({ publishedAt: 'desc' });
 };
 
-
+export const createProject = async (payload: ProjectDomain): Promise<ProjectDomain> => {
+    return new ProjectModel(payload)
+        .save();
+};

@@ -19,21 +19,6 @@ router.get('/', async (req, res) => {
     }
 });
 
-router.post('/', async (req, res) => {
-    try {
-        const payload = req.body;
-        const createdPost = await db.createPost(payload);
-
-        const hal = createHAL(createdPost);
-        return res.json(hal);
-    }
-    catch (err) {
-        return res
-            .status(500)
-            .send(err);
-    }
-});
-
 router.get('/:offset/:limit', async (req, res) => {
     try {
         const { offset, limit } = req.params;
@@ -59,6 +44,21 @@ router.get('/:slug', async (req, res) => {
         const post = await db.getPostBySlug(slug);
 
         const hal = createHAL(post);
+        return res.json(hal);
+    }
+    catch (err) {
+        return res
+            .status(500)
+            .send(err);
+    }
+});
+
+router.post('/', async (req, res) => {
+    try {
+        const payload = req.body;
+        const createdPost = await db.createPost(payload);
+
+        const hal = createHAL(createdPost);
         return res.json(hal);
     }
     catch (err) {

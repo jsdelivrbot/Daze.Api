@@ -33,4 +33,19 @@ router.get('/:offset/:limit', async (req, res) => {
     }
 });
 
+router.post('/', async (req, res) => {
+    try {
+        const payload = req.body;
+        const createdProject = db.createProject(payload);
+
+        const hal = createHAL(createdProject);
+        return res.json(hal);
+    }
+    catch (err) {
+        return res
+            .status(500)
+            .send(err);
+    }
+});
+
 export default router;

@@ -10,7 +10,6 @@ const log = console.log;
 
 const connectionString = `mongodb://${config.host}:${config.port}/${config.name}`;
 
-mongoose.Promise = global.Promise; // used by default
 mongoose.connect(connectionString);
 
 mongoose.connection.on('connected', () => {

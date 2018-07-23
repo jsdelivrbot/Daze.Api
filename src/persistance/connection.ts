@@ -10,14 +10,16 @@ const log = console.log;
 
 const connectionString = `mongodb://${config.host}:${config.port}/${config.name}`;
 
-mongoose.connect(connectionString);
+mongoose.connect(connectionString, {
+    useNewUrlParser: true
+});
 
 mongoose.connection.on('connected', () => {
     log(connected("Mongoose default connection is open to ", connectionString));
 });
 
 mongoose.connection.on('error', (err) => {
-    log(error("Mongoose default connection has occured " + err + " error"));
+    log(error(`Mongoose default connection has occured ${err} error`));
 });
 
 mongoose.connection.on('disconnected', () => {

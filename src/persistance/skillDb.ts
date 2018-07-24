@@ -6,3 +6,8 @@ export const getSkills = async (): Promise<SkillDomain[]> => {
         .find({})
         .sort({ level: 'desc' });
 };
+
+export const createSkill = async (payload: SkillDomain): Promise<SkillDomain> => {
+    return await new SkillModel(payload)
+        .save();
+};

@@ -24,6 +24,6 @@ export const getProjects2 = async (): Promise<ProjectDomain[]> => {
 };
 
 export const createProject = async (payload: ProjectDomain): Promise<ProjectDomain> => {
-    return new ProjectModel(payload)
+    return await new ProjectModel(payload)
         .save();
 };

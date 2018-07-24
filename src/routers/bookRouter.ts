@@ -1,14 +1,14 @@
-import { Router } from "express";
-import { db } from "../persistance";
-import { createHAL } from "./halTypes";
+import { Router } from 'express';
+import { createHAL } from './halTypes';
+import { db } from '../persistance';
 
 const router = Router();
 
 router.get('/', async (req, res) => {
     try {
-        const resources = await db.getResources();
+        const books = await db.getBooks();
 
-        const hal = createHAL(resources);
+        const hal = createHAL(books);
         return res.json(hal);
     }
     catch (err) {
@@ -20,10 +20,10 @@ router.get('/', async (req, res) => {
 
 router.post('/', async (req, res) => {
     try {
-        const payload = req.body; 
-        const createdResource = await db.createResource(payload);
+        const payload = req.body;
+        const createdBook = db.createBook(payload);
 
-        const hal = createHAL(createdResource);
+        const hal = createHAL(createdBook);
         return res.json(hal);
     }
     catch (err) {

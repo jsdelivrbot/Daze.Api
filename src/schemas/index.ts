@@ -1,5 +1,5 @@
 import { mongoose } from '../persistance/connection';
-import { SkillDocument, PostDocument, ProjectDocument, ResourceDocument } from '../domain';
+import { SkillDocument, PostDocument, ProjectDocument, ResourceDocument, BookDocument } from '../domain';
 
 const TagSchema = new mongoose.Schema({
     name: {
@@ -119,15 +119,42 @@ const SkillSchema = new mongoose.Schema({
     }
 });
 
+const BookSchema = new mongoose.Schema({
+    image: {
+        type: String,
+        required: true,
+        trim: true,
+        minlength: 1
+    },
+    title: {
+        type: String,
+        required: true,
+        trim: true,
+        minlength: 1
+    },
+    readAt: {
+        type: Date,
+        required: true,
+        default: Date.now
+    },
+    authors: {
+        type: Array,
+        required: false,
+        default: []
+    }
+});
+
 const PostModel = mongoose.model<PostDocument>('Post', PostSchema);
 const ProjectModel = mongoose.model<ProjectDocument>('Project', ProjectSchema);
 const ResourceModel = mongoose.model<ResourceDocument>('Resource', ResourceSchema);
 const SkillModel = mongoose.model<SkillDocument>('Skill', SkillSchema);
+const BookModel = mongoose.model<BookDocument>('Book', BookSchema);
 
 export {
     PostModel,
     ProjectModel,
     ResourceModel,
-    SkillModel
+    SkillModel,
+    BookModel
 };
 

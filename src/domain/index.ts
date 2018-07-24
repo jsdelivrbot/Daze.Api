@@ -14,7 +14,7 @@ export type PostDomain = {
     coverImage?: string
     createdAt?: Date
     modifiedAt?: Date
-    tags?: TagDomain[]
+    tags: TagDomain[]
 };
 
 export type ProjectDomain = {
@@ -39,6 +39,13 @@ export type SkillDomain = {
     level: number
 };
 
+export type BookDomain = {
+    image: string
+    title: string
+    readAt: Date
+    authors: string[]
+};
+
 export type TagDocument = mongoose.Document & TagDomain;
 
 export type PostDocument = mongoose.Document & PostDomain;
@@ -48,4 +55,6 @@ export type ProjectDocument = mongoose.Document & ProjectDomain;
 export type ResourceDocument = mongoose.Document & ResourceDomain;
 
 export type SkillDocument = mongoose.Document & SkillDomain;
+
+export type BookDocument = mongoose.Document & BookDomain;
 

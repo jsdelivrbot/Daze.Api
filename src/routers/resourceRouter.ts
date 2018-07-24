@@ -18,4 +18,19 @@ router.get('/', async (req, res) => {
     }
 });
 
+router.post('/', async (req, res) => {
+    try {
+        const payload = req.body; 
+        const createdResource = db.createResource(payload);
+
+        const hal = createHAL(createdResource);
+        return res.json(hal);
+    }
+    catch (err) {
+        return res
+            .status(500)
+            .send(err);
+    }
+});
+
 export default router;

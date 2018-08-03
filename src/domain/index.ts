@@ -1,10 +1,5 @@
 import * as mongoose from 'mongoose';
 
-export type TagDomain = {
-    id: string
-    name: string
-};
-
 export type PostDomain = {
     id: string
     slug: string
@@ -14,7 +9,10 @@ export type PostDomain = {
     coverImage?: string
     createdAt?: Date
     modifiedAt?: Date
-    tags: TagDomain[]
+    tags: [{
+        id: string
+        name: string
+    }]
 };
 
 export type ProjectDomain = {
@@ -46,7 +44,16 @@ export type BookDomain = {
     authors: string[]
 };
 
-export type TagDocument = mongoose.Document & TagDomain;
+
+export type UserDomain = {
+    email: string
+    password: string
+    tokens: [{
+        access: string
+        token: string
+    }]
+};
+
 
 export type PostDocument = mongoose.Document & PostDomain;
 
@@ -57,4 +64,6 @@ export type ResourceDocument = mongoose.Document & ResourceDomain;
 export type SkillDocument = mongoose.Document & SkillDomain;
 
 export type BookDocument = mongoose.Document & BookDomain;
+
+export type UserDocument = mongoose.Document & UserDomain;
 

@@ -5,6 +5,7 @@ import projectRouter from './projectRouter';
 import resourceRouter from './resourceRouter';
 import skillRouter from './skillRouter';
 import bookRouter from './bookRouter';
+import userRouter from './userRouter';
 
 export default (app: Express) => {
     app.use('/api/posts', defaultCors, postRouter);
@@ -12,4 +13,5 @@ export default (app: Express) => {
     app.use('/api/resources', defaultCors, resourceRouter);
     app.use('/api/skills', defaultCors, skillRouter);
     app.use('/api/books', defaultCors, bookRouter);
+    app.use('/api/users', defaultCors, userRouter);
 };

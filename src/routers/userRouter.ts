@@ -4,13 +4,15 @@ import { createHAL } from './halTypes';
 
 const router = Router();
 
-router.post('/users', async (req, res) => {
+router.post('/', async (req, res) => {
     try {
         const user = req.body;
-        const createdUser = await db.createUser(user);
+        const { token, createdUser } = await db.createUser(user);
 
         const hal = createHAL(createdUser);
-        return res.json(hal);
+        return res
+            .header('x-auth', token)
+            .json(hal);
     }
     catch (err) {
         return res

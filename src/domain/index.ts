@@ -65,5 +65,7 @@ export type SkillDocument = mongoose.Document & SkillDomain;
 
 export type BookDocument = mongoose.Document & BookDomain;
 
-export type UserDocument = mongoose.Document & UserDomain;
+export type UserDocument = mongoose.Document & UserDomain & {
+    generateAuthToken: () => Promise<string>
+};
 

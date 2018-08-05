@@ -1,6 +1,9 @@
 import { mongoose } from '../persistance/connection';
 import { isEmail } from 'validator';
-export const UserSchema = new mongoose.Schema({
+import * as jwt from 'jsonwebtoken';
+import { UserDocument } from '../domain';
+
+const UserSchema = new mongoose.Schema({
     email: {
         type: String,
         required: true,
@@ -29,3 +32,30 @@ export const UserSchema = new mongoose.Schema({
     }]
 });
 
+UserSchema.methods.toJSON = function () {
+    const user = this as UserDocument;
+    const { _id, email } = user.toObject();
+    return { _id, email };
+};
+
+UserSchema.methods.generateAuthToken = function () {
+    const user = this as UserDocument;
+    const access = 'auth';
+    const secret = 'abc123';
+
+    const token = jwt.sign({
+        _id: user._id.toHexString(),
+        access: access
+    }, secret);
+
+    (user.tokens as any) = user.tokens.concat({
+        access: access,
+        token: token
+    });
+
+    return user.save().then(() => {
+        return token;
+    });
+};
+
+export { UserSchema };

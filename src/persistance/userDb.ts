@@ -1,8 +1,14 @@
 import { UserModel } from "../schemas";
-import { UserDomain } from "../domain";
+import { UserDomain, UserDocument } from "../domain";
 
-export const createUser = async (payload: UserDomain) => {
-    return await new UserModel(payload)
-        .save();
+type TokenResponse = {
+    createdUser: UserDocument
+    token: string
+};
+
+export const createUser = async (payload: UserDomain): Promise<TokenResponse> => {
+    const createdUser = await new UserModel(payload).save();
+    const token = await createdUser.generateAuthToken();
+    return { createdUser, token };
 };
 

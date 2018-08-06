@@ -44,7 +44,6 @@ export type BookDomain = {
     authors: string[]
 };
 
-
 export type UserDomain = {
     email: string
     password: string
@@ -53,7 +52,6 @@ export type UserDomain = {
         token: string
     }]
 };
-
 
 export type PostDocument = mongoose.Document & PostDomain;
 

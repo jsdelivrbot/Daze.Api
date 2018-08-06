@@ -12,3 +12,9 @@ export const createUser = async (payload: UserDomain): Promise<TokenResponse> =>
     return { createdUser, token };
 };
 
+export const findAuthenticatedUser = async (token: string): Promise<UserDocument> => {
+    return await (UserModel as any).findByToken(token);
+};
+
+
+

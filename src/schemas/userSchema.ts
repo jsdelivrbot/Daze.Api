@@ -38,7 +38,7 @@ UserSchema.methods.toJSON = function () {
     return { _id, email };
 };
 
-UserSchema.methods.generateAuthToken = function () {
+UserSchema.methods.generateAuthToken = async function () {
     const user = this as UserDocument;
     const access = 'auth';
     const secret = 'abc123';
@@ -53,8 +53,24 @@ UserSchema.methods.generateAuthToken = function () {
         token: token
     });
 
-    return user.save().then(() => {
-        return token;
+    await user.save();
+    return token;
+};
+
+UserSchema.statics.findByToken = async function (token: string) {
+    const User = this;
+    const secret = 'abc123';
+    let decoded: any;
+    try {
+        decoded = jwt.verify(token, secret);
+    } catch {
+        return Promise.reject();
+    }
+
+    return await User.findOne({
+        '_id': decoded._id,
+        'tokens.token': token,
+        'tokens.access': 'auth'
     });
 };
 

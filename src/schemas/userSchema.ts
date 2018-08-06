@@ -1,7 +1,8 @@
 import { mongoose } from '../persistance/connection';
 import { isEmail } from 'validator';
-import * as jwt from 'jsonwebtoken';
 import { UserDocument } from '../domain';
+import * as jwt from 'jsonwebtoken';
+import * as bcrypt from 'bcryptjs';
 
 const UserSchema = new mongoose.Schema({
     email: {
@@ -32,7 +33,22 @@ const UserSchema = new mongoose.Schema({
     }]
 });
 
-UserSchema.methods.toJSON = function () {
+UserSchema.pre('save', async function (next) {
+    const user = this as any;
+
+    if (!user.isModified('password')) {
+        next();
+    }
+
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(user.password, salt);
+
+    user.password = hashedPassword;
+
+    next();
+});
+
+UserSchema.methods.toJSON = function () { 
     const user = this as UserDocument;
     const { _id, email } = user.toObject();
     return { _id, email };
@@ -61,6 +77,7 @@ UserSchema.statics.findByToken = async function (token: string) {
     const User = this;
     const secret = 'abc123';
     let decoded: any;
+
     try {
         decoded = jwt.verify(token, secret);
     } catch {

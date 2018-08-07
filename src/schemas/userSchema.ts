@@ -73,6 +73,18 @@ UserSchema.methods.generateAuthToken = async function () {
     return token;
 };
 
+UserSchema.methods.removeToken = async function (token: string) {
+    const user = this as UserDocument;
+
+    return await user.update({
+        $pull: {
+            tokens: {
+                token: token
+            }
+        }
+    });
+};
+
 UserSchema.statics.findByToken = async function (token: string) {
     const User = this;
     const secret = 'abc123';

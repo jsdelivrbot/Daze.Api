@@ -39,8 +39,8 @@ router.get('/me', authenticate, async (req, res) => {
 router.post('/login', async (req, res) => {
     try {
         const { email, password } = req.body;
-
         const { user, token } = await db.findUser(email, password);
+
         if (!user) {
             return res
                 .status(401)
@@ -58,5 +58,19 @@ router.post('/login', async (req, res) => {
     }
 });
 
+router.delete('/me/token', authenticate, async (req, res) => {
+    try {
+        const token = (req as any).token;
+
+        await db.removeTokenFromUser(token);
+        return res.status(200).send();
+    }
+    catch (err) {
+        throw err;
+        return res
+            .status(500)
+            .send(err);
+    }
+});
 
 export default router;

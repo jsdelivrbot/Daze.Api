@@ -7,8 +7,8 @@ type TokenResponse = {
     token: string
 };
 
-export const createUser = async (payload: UserDomain): Promise<TokenResponse> => {
-    const createdUser = await new UserModel(payload).save();
+export const createUser = async (user: UserDomain): Promise<TokenResponse> => {
+    const createdUser = await new UserModel(user).save();
     const token = await createdUser.generateAuthToken();
 
     return {
@@ -23,7 +23,6 @@ export const findAuthenticatedUser = async (token: string): Promise<UserDomain> 
 
 export const findUser = async (email: string, password: string): Promise<TokenResponse> => {
     const foundUser = await UserModel.findOne({ email });
-    const authToken = foundUser.tokens.find(token => token.access === 'auth');
     const areEqual = await bcrypt.compare(password, foundUser.password);
     const token = await foundUser.generateAuthToken();
 
@@ -33,5 +32,11 @@ export const findUser = async (email: string, password: string): Promise<TokenRe
     } : null;
 };
 
+export const removeTokenFromUser = async (token: string): Promise<void> => {
+    const foundUser = await UserModel.findOne({
+        'tokens.token': token
+    });
 
+    return await foundUser.removeToken(token);
+};
 

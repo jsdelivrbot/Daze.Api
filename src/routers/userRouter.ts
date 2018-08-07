@@ -7,10 +7,10 @@ const router = Router();
 
 router.post('/', async (req, res) => {
     try {
-        const user = req.body;
-        const { token, createdUser } = await db.createUser(user);
+        const payload = req.body;
+        const { token, user } = await db.createUser(payload);
 
-        const hal = createHAL(createdUser);
+        const hal = createHAL(user);
         return res
             .header('x-auth', token)
             .json(hal);
@@ -24,9 +24,9 @@ router.post('/', async (req, res) => {
 
 router.get('/me', authenticate, async (req, res) => {
     try {
-        const user = (req as any).user;
+        const payload = (req as any).user;
 
-        const hal = createHAL(user);
+        const hal = createHAL(payload);
         return res.json(hal);
     }
     catch (err) {
@@ -35,5 +35,28 @@ router.get('/me', authenticate, async (req, res) => {
             .send(err);
     }
 });
+
+router.post('/login', async (req, res) => {
+    try {
+        const { email, password } = req.body;
+
+        const { user, token } = await db.findUser(email, password);
+        if (!user) {
+            return res
+                .status(401)
+                .send();
+        }
+
+        return res
+            .header('x-auth', token)
+            .json(user);
+    }
+    catch (err) {
+        return res
+            .status(500)
+            .send(err);
+    }
+});
+
 
 export default router;

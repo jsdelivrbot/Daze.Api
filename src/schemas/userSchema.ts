@@ -48,7 +48,7 @@ UserSchema.pre('save', async function (next) {
     next();
 });
 
-UserSchema.methods.toJSON = function () { 
+UserSchema.methods.toJSON = function () {
     const user = this as UserDocument;
     const { _id, email } = user.toObject();
     return { _id, email };
@@ -89,6 +89,9 @@ UserSchema.statics.findByToken = async function (token: string) {
         'tokens.token': token,
         'tokens.access': 'auth'
     });
+};
+
+UserSchema.statics.findByCredentials = function () {
 };
 
 export { UserSchema };

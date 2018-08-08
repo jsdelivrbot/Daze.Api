@@ -3,6 +3,7 @@ import { isEmail } from 'validator';
 import { UserDocument } from '../domain';
 import * as jwt from 'jsonwebtoken';
 import * as bcrypt from 'bcryptjs';
+import config from '../common/configuration';
 
 const UserSchema = new mongoose.Schema({
     email: {
@@ -57,12 +58,11 @@ UserSchema.methods.toJSON = function () {
 UserSchema.methods.generateAuthToken = async function () {
     const user = this as UserDocument;
     const access = 'auth';
-    const secret = 'abc123';
 
     const token = jwt.sign({
         _id: user._id.toHexString(),
         access: access
-    }, secret);
+    }, config.jwtSecret);
 
     (user.tokens as any) = user.tokens.concat({
         access: access,
@@ -87,11 +87,10 @@ UserSchema.methods.removeToken = async function (token: string) {
 
 UserSchema.statics.findByToken = async function (token: string) {
     const User = this;
-    const secret = 'abc123';
     let decoded: any;
 
     try {
-        decoded = jwt.verify(token, secret);
+        decoded = jwt.verify(token, config.jwtSecret);
     } catch {
         return Promise.reject();
     }

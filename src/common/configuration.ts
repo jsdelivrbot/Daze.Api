@@ -7,6 +7,7 @@ type ConfigurationNode = {
     host: string
     port: string
     name: string
+    jwtSecret: string
 };
 
 type Configuration = {
@@ -16,14 +17,16 @@ type Configuration = {
 
 const config: Configuration = {
     development: {
-        host: 'localhost',
-        port: '27017',
-        name: 'daze_db'
+        host: process.env.DATABASE_HOST,
+        port: process.env.DATABASE_PORT,
+        name: process.env.DATABASE_NAME,
+        jwtSecret: process.env.JWT_SECRET
     },
     production: {
         host: process.env.DATABASE_HOST,
         port: process.env.DATABASE_PORT,
-        name: process.env.DATABASE_NAME
+        name: process.env.DATABASE_NAME,
+        jwtSecret: process.env.JWT_SECRET
     }
 };
 

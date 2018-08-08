@@ -2,6 +2,7 @@ import { Router } from "express";
 import { db } from "../persistance";
 import { createHAL } from "./halTypes";
 import { SkillDomain } from "../domain";
+import { authenticate } from "../middleware";
 
 const router = Router();
 
@@ -19,7 +20,7 @@ router.get('/', async (req, res) => {
     }
 });
 
-router.post('/', async (req, res) => {
+router.post('/', authenticate, async (req, res) => {
     try {
         const skill = req.body;
         const createdSkill = await db.createSkill(skill);

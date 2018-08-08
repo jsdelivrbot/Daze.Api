@@ -2,6 +2,7 @@ import { Router } from 'express';
 import { createHAL } from './halTypes';
 import { db } from '../persistance';
 import { parseNumber } from '../common/utils';
+import { authenticate } from '../middleware';
 
 const router = Router();
 
@@ -53,7 +54,7 @@ router.get('/:slug', async (req, res) => {
     }
 });
 
-router.post('/', async (req, res) => {
+router.post('/', authenticate, async (req, res) => {
     try {
         const payload = req.body;
         const createdPost = await db.createPost(payload);

@@ -1,6 +1,7 @@
 import { Router } from "express";
 import { db } from "../persistance";
 import { createHAL } from "./halTypes";
+import { authenticate } from "../middleware";
 
 const router = Router();
 
@@ -18,7 +19,7 @@ router.get('/', async (req, res) => {
     }
 });
 
-router.post('/', async (req, res) => {
+router.post('/', authenticate, async (req, res) => {
     try {
         const payload = req.body; 
         const createdResource = await db.createResource(payload);

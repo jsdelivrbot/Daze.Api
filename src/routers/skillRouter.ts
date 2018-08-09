@@ -14,9 +14,7 @@ router.get('/', async (req, res) => {
         return res.json(hal);
     }
     catch (err) {
-        return res
-            .status(500)
-            .send(err);
+        return res.status(500).send(err);
     }
 });
 
@@ -29,9 +27,7 @@ router.post('/', authenticate, async (req, res) => {
         return res.json(hal);
     }
     catch (err) {
-        return res
-            .status(500)
-            .send(err);
+        return res.status(500).send(err);
     }
 });
 

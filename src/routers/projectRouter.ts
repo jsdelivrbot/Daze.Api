@@ -1,7 +1,7 @@
-import { Router } from "express";
-import { db } from "../persistance";
-import { createHAL } from "./halTypes";
-import { authenticate } from "../middleware";
+import { Router } from 'express';
+import { db } from '../persistance';
+import { createHAL } from './halTypes';
+import { authenticate } from '../middleware';
 
 const router = Router();
 
@@ -13,9 +13,7 @@ router.get('/', async (req, res) => {
         return res.json(hal);
     }
     catch (err) {
-        return res
-            .status(500)
-            .send(err);
+        return res.status(500).send(err);
     }
 });
 
@@ -28,9 +26,7 @@ router.get('/:offset/:limit', async (req, res) => {
         return res.json(hal);
     }
     catch (err) {
-        return res
-            .status(500)
-            .send(err);
+        return res.status(500).send(err);
     }
 });
 
@@ -43,9 +39,7 @@ router.post('/', authenticate, async (req, res) => {
         return res.json(hal);
     }
     catch (err) {
-        return res
-            .status(500)
-            .send(err);
+        return res.status(500).send(err);
     }
 });
 

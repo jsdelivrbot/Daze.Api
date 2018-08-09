@@ -2,7 +2,7 @@ import { mongoose } from '../persistance/connection';
 import { isEmail } from 'validator';
 import { UserDocument } from '../domain';
 import * as jwt from 'jsonwebtoken';
-import * as bcrypt from 'bcryptjs';
+import * as bcrypt from 'bcrypt';
 import config from '../common/configuration';
 
 const UserSchema = new mongoose.Schema({
@@ -36,17 +36,19 @@ const UserSchema = new mongoose.Schema({
 
 UserSchema.pre('save', async function (next) {
     const user = this as any;
-
     if (!user.isModified('password')) {
-        next();
+        return next();
     }
 
-    const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(user.password, salt);
-
-    user.password = hashedPassword;
-
-    next();
+    try {
+        const salt = await bcrypt.genSalt(16.5);
+        const hashedPassword = await bcrypt.hash(user.password, salt);
+        user.password = hashedPassword;
+        next();
+    }
+    catch (err) {
+        return next(err);
+    }
 });
 
 UserSchema.methods.toJSON = function () {

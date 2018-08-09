@@ -1,10 +1,10 @@
 import express from "express";
-import { defaultCors } from "./apiConfig";
-import { ENV } from "./common/enviromnent";
-import bodyParser from "body-parser";
-import expressValidator from "express-validator";
-import compression from "compression";
-import mountRoutes from "./routers";
+import { defaultCors } from './apiConfig';
+import { ENV } from './common/enviromnent';
+import bodyParser from 'body-parser';
+import expressValidator from 'express-validator';
+import compression from 'compression';
+import mountRoutes from './routers';
 // @ts-ignore
 import { version } from '../package.json';
 
@@ -13,18 +13,23 @@ const HOST_NAME = ENV == 'production' ? '0.0.0.0' : '127.0.0.1';
 
 const app = express();
 
-// express configuration
-app.set('port', PORT);
-app.set('hostname', HOST_NAME);
+app.configure(() => {
+    app.set('port', PORT);
+    app.set('hostname', HOST_NAME);
 
-app.use(compression());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(expressValidator());
-// app.options('*', defaultCors);
-// app.use(defaultCors);
+    app.use(compression());
+    app.use(bodyParser.json());
+    app.use(bodyParser.urlencoded({ extended: true }));
+    app.use(expressValidator());
+    // app.options('*', defaultCors);
+    // app.use(defaultCors);
 
-// route handlers
+    // app.use((req, res, next) => {
+    //     res.header('Access-Control-Allow-Origin', '*');
+    //     res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
+    // });
+});
+
 mountRoutes(app);
 
 app.get('/', (req, res) => {

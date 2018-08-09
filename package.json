@@ -32,7 +32,7 @@
         "watch-debug": "concurrently -k -p \"[{name}]\" -n \"TS,Node\" -c \"cyan.bold,green.bold\" \"npm run watch-ts\" \"npm run serve-debug\""
     },
     "dependencies": {
-        "bcryptjs": "^2.4.3",
+        "bcrypt": "^3.0.0",
         "body-parser": "^1.18.3",
         "chalk": "^2.4.1",
         "compression": "^1.7.3",
@@ -48,7 +48,7 @@
         "validator": "^10.5.0"
     },
     "devDependencies": {
-        "@types/bcryptjs": "^2.4.1",
+        "@types/bcrypt": "^2.0.0",
         "@types/body-parser": "^1.17.0",
         "@types/compression": "^0.0.36",
         "@types/cors": "^2.8.4",

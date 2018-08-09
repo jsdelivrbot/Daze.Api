@@ -1,6 +1,6 @@
 import { UserModel } from '../schemas';
 import { UserDomain, UserDocument } from '../domain';
-import * as bcrypt from 'bcryptjs';
+import * as bcrypt from 'bcrypt';
 
 type TokenResponse = {
     user: UserDocument
@@ -23,6 +23,7 @@ export const findAuthenticatedUser = async (token: string): Promise<UserDomain> 
 
 export const findUser = async (email: string, password: string): Promise<TokenResponse> => {
     const foundUser = await UserModel.findOne({ email });
+
     const areEqual = await bcrypt.compare(password, foundUser.password);
     const token = await foundUser.generateAuthToken();
 

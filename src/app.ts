@@ -13,22 +13,22 @@ const HOST_NAME = ENV == 'production' ? '0.0.0.0' : '127.0.0.1';
 
 const app = express();
 
-app.configure(() => {
-    app.set('port', PORT);
-    app.set('hostname', HOST_NAME);
+// app.configure(() => {
+app.set('port', PORT);
+app.set('hostname', HOST_NAME);
 
-    app.use(compression());
-    app.use(bodyParser.json());
-    app.use(bodyParser.urlencoded({ extended: true }));
-    app.use(expressValidator());
-    // app.options('*', defaultCors);
-    // app.use(defaultCors);
+app.use(compression());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(expressValidator());
+// app.options('*', defaultCors);
+// app.use(defaultCors);
 
-    // app.use((req, res, next) => {
-    //     res.header('Access-Control-Allow-Origin', '*');
-    //     res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
-    // });
-});
+// app.use((req, res, next) => {
+//     res.header('Access-Control-Allow-Origin', '*');
+//     res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
+// });
+// })
 
 mountRoutes(app);
 
